@@ -1,39 +1,84 @@
-.navbar ul li a {
-    font-weight: 500;
-    font-size: 16px;
-    color: #edf0f1;
+#navbar {
+    position: fixed;
+    height: 30px;
+    right: 0;
+    width: 400px;
+}
+
+.navbar__white {
+    background-color: white;
+    width: 100%!important;
+}
+
+.navbar-links {
+    position: absolute;
+    right: 12px;
+    margin-top: 2px;
+}
+
+.navbar-item {
+    margin: 0px 5px 0px 5px;
+}
+
+.navbar-link-simple {
     text-decoration: none;
-    outline: 0;
+    font-size: 0.9em;
 }
 
-.navbar a:visited {
-    text-decoration: none!important;
-    border: none!important;
-    outline: 0;
+.navbar-link {
+    padding: 3px 12px 3px 12px;
+    color: white;
+    text-decoration: none;
+    font-size: 0.9em;
+    border-radius: 5px;
 }
 
-.navbar {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding-left: 5%;
-    padding-right: 5%;
-    height: 40px;
-    background-color: #24252A;
+.navbar-link:hover {
+    color: white;
 }
 
-#logo {
-    margin-top: -15px;
-    width: 40px;
-    cursor: pointer;
-    margin-right: auto;
+.navbar-link__login {
+    background-color: rgb(40, 167, 69);
 }
 
-.nav-links {
-    list-style: none;
+.navbar-link__login:hover {
+    background-color: #198754;
 }
 
-.nav-links li {
-    display: inline-block;
-    padding: 0px 20px;
+.navbar-link__home {
+    background-color: rgb(108, 117, 125);
+}
+
+.navbar-link__home:hover {
+    background-color: rgb(73, 80, 87);
+}
+
+.navbar-link__account {
+    background-color: rgb(61, 139, 253);
+}
+
+.navbar-link__account:hover {
+    background-color: #0d6efd;
+}
+
+.navbar-btn {
+    padding: 1px 10px 1px 10px;
+    color: white;
+    text-decoration: none;
+    font-size: 0.9em;
+    background-color: rgb(61, 139, 253);
+    border: none;
+    border-radius: 5px;
+}
+
+.navbar-btn__logout {
+    background-color: #dc3545;
+}
+
+.navbar-btn__logout:hover {
+    background-color: rgb(176, 42, 55);
+}
+
+#navbar button {
+    margin: 0;
 }

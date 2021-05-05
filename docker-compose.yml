@@ -1,21 +1,25 @@
-version: "2"
+version: "3"
 services:
   web:
     build:
       context: ./frontend
       dockerfile: Dockerfile
     volumes:
+      - ./frontend/nginx/templates:/etc/nginx/templates
       - ./frontend/webapp:/app
     ports:
-      - 8080:80
-    image: my-apache2
+      - "8080:80"
+    image: bowtietool_static
+    environment: 
+      - NGINX_HOST=localhost
+      - NGINX_PORT=80
   nginx:
     build: ./nginx
     ports: 
         - 1337:80
     depends_on: 
         - app
-
+        - web
   app:
     build:
       context: ./backend

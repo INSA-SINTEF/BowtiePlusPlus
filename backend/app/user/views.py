@@ -10,25 +10,31 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.exceptions import ValidationError
 from rest_framework.views import APIView
-from user.serializers import UserSerializer, AuthTokenSerialize, UserUpdateSerialize, UserInfoSerializer, PasswordResetSerializer
+from user.serializers import UserSerializer, AuthTokenSerialize, UserUpdateSerialize, UserInfoSerializer, PasswordResetSerializer, DeleteUserSerializer
 from user.customPermission import HasConfirmedEmail
-from user.authentication import AccountActivationTokenGenerator, TOTPValidityToken, PasswordResetToken, ExpiringTokenAuthentication
+from user.authentication import AccountActivationTokenGenerator, TOTPValidityToken, PasswordResetToken, ExpiringTokenAuthentication, create_random_user_id, find_user_id_from_nonce
 from django.core import mail
 from django.contrib.auth import get_user_model
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 import django.contrib.auth.password_validation as validators
-from core.models import Profile, User
+from core.models import Profile, User, NonceToToken
 from django.utils import timezone
 from django.db.utils import IntegrityError
 from django.contrib.auth import authenticate
+import environ
 
 logger = logging.getLogger(__name__)
 
-CONFIRM_REDIRECT = "http://localhost:8080/app/bowtie/validation.html?for=email_confirm&id=%s&token=%s"
-REDIRECT_LOGIN = "http://localhost:8080/app/bowtie++/common/authentication.html#login"
-PASSWORD_RESET_URL = "http://localhost:8080/app/bowtie/validation.html?for=reset_pwd&id=%s&token=%s"
-PASSWORD_RESET_REQUEST_URL = "http://localhost:8080/app/bowtie/common/authentication.html#password-reset"
+env = environ.Env()
+# reading .env file
+environ.Env.read_env()
+
+STATIC_SERVER_URL = env('WEB_PROTOCOL') + "://" + env('STATIC_SERVER_HOST') + ":" + env('STATIC_SERVER_PORT')
+CONFIRM_REDIRECT = STATIC_SERVER_URL + "/register/email-confirm?id=%s&token=%s"
+REDIRECT_LOGIN = STATIC_SERVER_URL + "/login"
+PASSWORD_RESET_URL = STATIC_SERVER_URL + "/password-reset?id=%s&token=%s"
+PASSWORD_RESET_REQUEST_URL = STATIC_SERVER_URL + "/password-reset"
 
 
 def send_mail(subject, message, email, fromm='no-reply@Bowtie'):
@@ -53,7 +59,7 @@ class CreateUserView(generics.CreateAPIView):
 
         except (ValidationError, AssertionError, IntegrityError) as error_validation:
 
-            if not isinstance(error_validation, IntegrityError):
+            if not isinstance(error_validation, IntegrityError): # counter data privacy leak
                 error_dict = dict()
                 key = list(error_validation.detail.keys())[0]
                 error_dict[key] = "Invalid field"
@@ -71,19 +77,19 @@ class CreateUserView(generics.CreateAPIView):
                 send_mail(subject, message, user.email)
                 return Response(status=status.HTTP_201_CREATED)
 
+
         user = get_user_model().objects.filter(email=request.data['email']).first()
         token = AccountActivationTokenGenerator().make_token(user)
+        nonce = create_random_user_id(user.id)
         message = "To activate your Bowtie++ account, please click on the following link %s" % (
-            CONFIRM_REDIRECT % (urlsafe_base64_encode(force_bytes(user.pk)), token))
+            CONFIRM_REDIRECT % (urlsafe_base64_encode(force_bytes(nonce)), token))
         subject = 'Activate account for no-reply-Bowtieowtie++'
         send_mail(subject, message, user.email)
-
         return Response(status=status.HTTP_201_CREATED)
-
 
 class CreateTokenView(ObtainAuthToken):
     """Create a new authentication token for user"""
-    serializer_class = AuthTokenSerialize
+
     renderer_classes = api_settings.DEFAULT_RENDERER_CLASSES
     permission_classes = (HasConfirmedEmail,)
 
@@ -97,7 +103,8 @@ class CreateTokenView(ObtainAuthToken):
             # if user has enabled 2 fa redirect the login
             if user.profile.two_factor_enabled:
                 token = TOTPValidityToken().make_token(user)
-                return Response({"uidb64": urlsafe_base64_encode(force_bytes(user.pk)), "token": token},
+                nonce = create_random_user_id(user.id)
+                return Response({"uidb64": urlsafe_base64_encode(force_bytes(nonce)), "token": token},
                     status=status.HTTP_200_OK)
 
 
@@ -134,7 +141,6 @@ class UpdatePassword(APIView):
     authentication_classes = (ExpiringTokenAuthentication,)
     permission_classes = (permissions.IsAuthenticated,)
 
-
     def put(self, request):
         user = request.user
         serializer = UserUpdateSerialize(data=request.data, user=user)
@@ -145,7 +151,7 @@ class UpdatePassword(APIView):
         logger.warning("User %s changed password ", user)
         message = "Your Bowtie++ account password has been changed. If you're familiar with this activity, " + \
         "you can discard this email. Otherwise, we suggest you to immediatly change your " + \
-        "password at http://localhost:8080/app/bowtie/common/authentication.html#password-reset.\n\n" + \
+        "password at " + PASSWORD_RESET_REQUEST_URL + ".\n\n" + \
         "Sincerly, \n\n Bowtie++ team"
         subject = 'Changed password for Bowtie++'
         mail.send_mail(subject, message, 'no-reply@Bowtie', [user.email],
@@ -164,7 +170,8 @@ class ActivateAccount(APIView):
         """ Confirm the creation of an user account"""
 
         try:
-            uid = force_text(urlsafe_base64_decode(uidb64))
+            nonce = force_text(urlsafe_base64_decode(uidb64))
+            uid = find_user_id_from_nonce(nonce)
             user = get_user_model().objects.get(pk=uid)
 
         except (TypeError, ValueError, OverflowError, get_user_model().DoesNotExist) as e_valid:
@@ -209,15 +216,15 @@ class ValidatePasswordReset(APIView):
         """Post method for password reset"""
 
         try:
-            uid = force_text(urlsafe_base64_decode(uidb64))
+            nonce = force_text(urlsafe_base64_decode(uidb64))
+            uid = find_user_id_from_nonce(nonce)
             user = get_user_model().objects.get(pk=uid)
 
         except (TypeError, ValueError, OverflowError, get_user_model().DoesNotExist) as e_ex:
-            user = None
             logger.warning("Failed resset password for User with id %s. Exception: %s", uid, e_ex)
             return Response(status=status.HTTP_400_BAD_REQUEST)
-
-        if PasswordResetToken().check_token(user, token):
+        data = ""
+        if PasswordResetToken().check_token(user, token) and "password" in request.data:
 
             try:
                 user.is_active = False # User needs to be inactive for the reset password duration
@@ -231,9 +238,8 @@ class ValidatePasswordReset(APIView):
 
             except ValidationError:
                 data = "bad credentials"
-                return Response(status=status.HTTP_400_BAD_REQUEST, data=data)
 
-        return Response(status=status.HTTP_400_BAD_REQUEST)
+        return Response(status=status.HTTP_400_BAD_REQUEST, data=data)
 
 
 class DeleteUserView(APIView):
@@ -241,22 +247,20 @@ class DeleteUserView(APIView):
 
     authentication_classes = (ExpiringTokenAuthentication,)
     permission_classes = (permissions.IsAuthenticated,)
+    serializer_class = DeleteUserSerializer
 
     def post(self, request):
         """Deletes the user of the request"""
 
-        if not "password" in request.data:
-            return Response(status=status.HTTP_400_BAD_REQUEST)
-
-        user = request.user
-        password = request.data['password']
-        if authenticate(request=request, email=user.email, password=password):
+        try:
+            user = request.user
+            serializer = DeleteUserSerializer(data=request.data, user=user)
+            serializer.is_valid(raise_exception=True)
             logger.info('User with email %s is deleting its account',user.email)
-            user.delete()
             return Response(status=status.HTTP_200_OK)
 
-        return Response(status=status.HTTP_400_BAD_REQUEST)
-
+        except ValidationError:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
 
     def __str__(self):
         return "Delete user endpoint"
