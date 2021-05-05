@@ -1,0 +1,38 @@
+localcharset.o: ../.././gnulib/import/localcharset.c \
+ /usr/include/stdc-predef.h ../config.h \
+ ../.././gnulib/import/localcharset.h /usr/include/fcntl.h \
+ /usr/include/features.h /usr/include/bits/alltypes.h \
+ /usr/include/bits/fcntl.h /usr/include/stddef.h stdio.h \
+ /usr/include/stdio.h /usr/include/stdarg.h sys/types.h \
+ /usr/include/sys/types.h /usr/include/endian.h /usr/include/sys/select.h \
+ string.h /usr/include/string.h /usr/include/strings.h stdlib.h \
+ /usr/include/stdlib.h alloca.h unistd.h /usr/include/unistd.h \
+ /usr/include/bits/posix.h /usr/include/langinfo.h \
+ /usr/include/nl_types.h configmake.h
+/usr/include/stdc-predef.h:
+../config.h:
+../.././gnulib/import/localcharset.h:
+/usr/include/fcntl.h:
+/usr/include/features.h:
+/usr/include/bits/alltypes.h:
+/usr/include/bits/fcntl.h:
+/usr/include/stddef.h:
+stdio.h:
+/usr/include/stdio.h:
+/usr/include/stdarg.h:
+sys/types.h:
+/usr/include/sys/types.h:
+/usr/include/endian.h:
+/usr/include/sys/select.h:
+string.h:
+/usr/include/string.h:
+/usr/include/strings.h:
+stdlib.h:
+/usr/include/stdlib.h:
+alloca.h:
+unistd.h:
+/usr/include/unistd.h:
+/usr/include/bits/posix.h:
+/usr/include/langinfo.h:
+/usr/include/nl_types.h:
+configmake.h:

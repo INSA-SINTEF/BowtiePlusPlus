@@ -1,0 +1,12 @@
+rawmemchr.o: ../.././gnulib/import/rawmemchr.c /usr/include/stdc-predef.h \
+ ../config.h string.h /usr/include/string.h /usr/include/features.h \
+ /usr/include/bits/alltypes.h /usr/include/strings.h \
+ /usr/include/stddef.h
+/usr/include/stdc-predef.h:
+../config.h:
+string.h:
+/usr/include/string.h:
+/usr/include/features.h:
+/usr/include/bits/alltypes.h:
+/usr/include/strings.h:
+/usr/include/stddef.h:

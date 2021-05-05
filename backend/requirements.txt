@@ -15,4 +15,5 @@ qrcode<=6.1
 django-cors-headers<=3.7.0
 Pillow>=8.0
 pytz<=2020.1
+gunicorn
 coverage

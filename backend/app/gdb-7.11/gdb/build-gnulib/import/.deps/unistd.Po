@@ -1,0 +1,21 @@
+unistd.o: ../.././gnulib/import/unistd.c /usr/include/stdc-predef.h \
+ ../config.h unistd.h /usr/include/unistd.h /usr/include/features.h \
+ /usr/include/bits/alltypes.h /usr/include/bits/posix.h \
+ /usr/include/stddef.h stdlib.h /usr/include/stdlib.h alloca.h \
+ sys/types.h /usr/include/sys/types.h /usr/include/endian.h \
+ /usr/include/sys/select.h
+/usr/include/stdc-predef.h:
+../config.h:
+unistd.h:
+/usr/include/unistd.h:
+/usr/include/features.h:
+/usr/include/bits/alltypes.h:
+/usr/include/bits/posix.h:
+/usr/include/stddef.h:
+stdlib.h:
+/usr/include/stdlib.h:
+alloca.h:
+sys/types.h:
+/usr/include/sys/types.h:
+/usr/include/endian.h:
+/usr/include/sys/select.h:

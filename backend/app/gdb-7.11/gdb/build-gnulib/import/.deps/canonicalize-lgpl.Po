@@ -1,0 +1,48 @@
+canonicalize-lgpl.o: ../.././gnulib/import/canonicalize-lgpl.c \
+ /usr/include/stdc-predef.h ../config.h stdlib.h /usr/include/stdlib.h \
+ /usr/include/features.h /usr/include/bits/alltypes.h alloca.h \
+ /usr/include/stddef.h string.h /usr/include/string.h \
+ /usr/include/strings.h unistd.h /usr/include/unistd.h \
+ /usr/include/bits/posix.h sys/types.h /usr/include/sys/types.h \
+ /usr/include/endian.h /usr/include/sys/select.h /usr/include/limits.h \
+ /usr/include/bits/limits.h /usr/include/sys/param.h \
+ /usr/include/sys/resource.h sys/time.h /usr/include/sys/time.h \
+ /usr/include/bits/resource.h sys/stat.h time.h /usr/include/time.h \
+ /usr/include/sys/stat.h /usr/include/bits/stat.h /usr/include/errno.h \
+ /usr/include/bits/errno.h ../.././gnulib/import/pathmax.h \
+ ../.././gnulib/import/malloca.h ../.././gnulib/import/dosname.h
+/usr/include/stdc-predef.h:
+../config.h:
+stdlib.h:
+/usr/include/stdlib.h:
+/usr/include/features.h:
+/usr/include/bits/alltypes.h:
+alloca.h:
+/usr/include/stddef.h:
+string.h:
+/usr/include/string.h:
+/usr/include/strings.h:
+unistd.h:
+/usr/include/unistd.h:
+/usr/include/bits/posix.h:
+sys/types.h:
+/usr/include/sys/types.h:
+/usr/include/endian.h:
+/usr/include/sys/select.h:
+/usr/include/limits.h:
+/usr/include/bits/limits.h:
+/usr/include/sys/param.h:
+/usr/include/sys/resource.h:
+sys/time.h:
+/usr/include/sys/time.h:
+/usr/include/bits/resource.h:
+sys/stat.h:
+time.h:
+/usr/include/time.h:
+/usr/include/sys/stat.h:
+/usr/include/bits/stat.h:
+/usr/include/errno.h:
+/usr/include/bits/errno.h:
+../.././gnulib/import/pathmax.h:
+../.././gnulib/import/malloca.h:
+../.././gnulib/import/dosname.h:

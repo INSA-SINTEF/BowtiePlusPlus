@@ -1,0 +1,50 @@
+cpu-plugin.lo: cpu-plugin.c /usr/include/stdc-predef.h sysdep.h config.h \
+ ../include/ansidecl.h /usr/include/stddef.h /usr/include/bits/alltypes.h \
+ /usr/include/stdio.h /usr/include/features.h /usr/include/sys/types.h \
+ /usr/include/endian.h /usr/include/sys/select.h /usr/include/sys/stat.h \
+ /usr/include/bits/stat.h /usr/include/errno.h /usr/include/bits/errno.h \
+ /usr/include/string.h /usr/include/strings.h /usr/include/stdlib.h \
+ /usr/include/alloca.h /usr/include/sys/time.h /usr/include/time.h \
+ /usr/include/unistd.h /usr/include/bits/posix.h \
+ /usr/include/sys/resource.h /usr/include/bits/resource.h \
+ ../include/fopen-same.h /usr/include/fcntl.h /usr/include/bits/fcntl.h \
+ ../include/filenames.h ../include/hashtab.h ../include/ansidecl.h \
+ ../intl/libintl.h /usr/include/locale.h bfd.h ../include/symcat.h \
+ libbfd.h ../include/hashtab.h
+/usr/include/stdc-predef.h:
+sysdep.h:
+config.h:
+../include/ansidecl.h:
+/usr/include/stddef.h:
+/usr/include/bits/alltypes.h:
+/usr/include/stdio.h:
+/usr/include/features.h:
+/usr/include/sys/types.h:
+/usr/include/endian.h:
+/usr/include/sys/select.h:
+/usr/include/sys/stat.h:
+/usr/include/bits/stat.h:
+/usr/include/errno.h:
+/usr/include/bits/errno.h:
+/usr/include/string.h:
+/usr/include/strings.h:
+/usr/include/stdlib.h:
+/usr/include/alloca.h:
+/usr/include/sys/time.h:
+/usr/include/time.h:
+/usr/include/unistd.h:
+/usr/include/bits/posix.h:
+/usr/include/sys/resource.h:
+/usr/include/bits/resource.h:
+../include/fopen-same.h:
+/usr/include/fcntl.h:
+/usr/include/bits/fcntl.h:
+../include/filenames.h:
+../include/hashtab.h:
+../include/ansidecl.h:
+../intl/libintl.h:
+/usr/include/locale.h:
+bfd.h:
+../include/symcat.h:
+libbfd.h:
+../include/hashtab.h:

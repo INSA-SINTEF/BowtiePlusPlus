@@ -1,0 +1,24 @@
+wctype-h.o: ../.././gnulib/import/wctype-h.c /usr/include/stdc-predef.h \
+ ../config.h wctype.h /usr/include/stddef.h /usr/include/bits/alltypes.h \
+ stdio.h /usr/include/stdio.h /usr/include/features.h \
+ /usr/include/stdarg.h sys/types.h /usr/include/sys/types.h \
+ /usr/include/endian.h /usr/include/sys/select.h time.h \
+ /usr/include/time.h wchar.h /usr/include/wchar.h /usr/include/wctype.h
+/usr/include/stdc-predef.h:
+../config.h:
+wctype.h:
+/usr/include/stddef.h:
+/usr/include/bits/alltypes.h:
+stdio.h:
+/usr/include/stdio.h:
+/usr/include/features.h:
+/usr/include/stdarg.h:
+sys/types.h:
+/usr/include/sys/types.h:
+/usr/include/endian.h:
+/usr/include/sys/select.h:
+time.h:
+/usr/include/time.h:
+wchar.h:
+/usr/include/wchar.h:
+/usr/include/wctype.h:

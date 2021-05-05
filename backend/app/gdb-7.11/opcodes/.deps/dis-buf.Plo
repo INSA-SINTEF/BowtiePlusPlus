@@ -1,0 +1,28 @@
+dis-buf.lo: dis-buf.c /usr/include/stdc-predef.h sysdep.h config.h \
+ ../include/ansidecl.h /usr/include/stdlib.h /usr/include/features.h \
+ /usr/include/bits/alltypes.h /usr/include/alloca.h /usr/include/string.h \
+ /usr/include/strings.h ../include/dis-asm.h /usr/include/stdio.h \
+ ../bfd/bfd.h ../include/symcat.h /usr/include/sys/stat.h \
+ /usr/include/bits/stat.h /usr/include/errno.h /usr/include/bits/errno.h \
+ opintl.h ../intl/libintl.h /usr/include/locale.h
+/usr/include/stdc-predef.h:
+sysdep.h:
+config.h:
+../include/ansidecl.h:
+/usr/include/stdlib.h:
+/usr/include/features.h:
+/usr/include/bits/alltypes.h:
+/usr/include/alloca.h:
+/usr/include/string.h:
+/usr/include/strings.h:
+../include/dis-asm.h:
+/usr/include/stdio.h:
+../bfd/bfd.h:
+../include/symcat.h:
+/usr/include/sys/stat.h:
+/usr/include/bits/stat.h:
+/usr/include/errno.h:
+/usr/include/bits/errno.h:
+opintl.h:
+../intl/libintl.h:
+/usr/include/locale.h:

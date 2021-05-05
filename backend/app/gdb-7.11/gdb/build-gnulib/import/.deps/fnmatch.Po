@@ -1,0 +1,42 @@
+fnmatch.o: ../.././gnulib/import/fnmatch.c /usr/include/stdc-predef.h \
+ ../config.h fnmatch.h alloca.h /usr/include/assert.h \
+ /usr/include/features.h /usr/include/ctype.h \
+ /usr/include/bits/alltypes.h /usr/include/errno.h \
+ /usr/include/bits/errno.h /usr/include/stddef.h /usr/include/stdbool.h \
+ stdlib.h /usr/include/stdlib.h string.h /usr/include/string.h \
+ /usr/include/strings.h wctype.h stdio.h /usr/include/stdio.h \
+ /usr/include/stdarg.h sys/types.h /usr/include/sys/types.h \
+ /usr/include/endian.h /usr/include/sys/select.h time.h \
+ /usr/include/time.h wchar.h /usr/include/wchar.h /usr/include/wctype.h \
+ ../.././gnulib/import/fnmatch_loop.c
+/usr/include/stdc-predef.h:
+../config.h:
+fnmatch.h:
+alloca.h:
+/usr/include/assert.h:
+/usr/include/features.h:
+/usr/include/ctype.h:
+/usr/include/bits/alltypes.h:
+/usr/include/errno.h:
+/usr/include/bits/errno.h:
+/usr/include/stddef.h:
+/usr/include/stdbool.h:
+stdlib.h:
+/usr/include/stdlib.h:
+string.h:
+/usr/include/string.h:
+/usr/include/strings.h:
+wctype.h:
+stdio.h:
+/usr/include/stdio.h:
+/usr/include/stdarg.h:
+sys/types.h:
+/usr/include/sys/types.h:
+/usr/include/endian.h:
+/usr/include/sys/select.h:
+time.h:
+/usr/include/time.h:
+wchar.h:
+/usr/include/wchar.h:
+/usr/include/wctype.h:
+../.././gnulib/import/fnmatch_loop.c:
