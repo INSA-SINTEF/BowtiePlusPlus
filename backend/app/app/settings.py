@@ -51,7 +51,8 @@ API_SERVER_HOST = env('API_SERVER_HOST')
 ALLOWED_HOSTS = [
     'testserver',
     'localhost',
-    API_SERVER_HOST,
+    '0.0.0.0',
+     API_SERVER_HOST,
 ]
 
 CORS_ORIGIN_WHITELIST = (
@@ -59,9 +60,7 @@ CORS_ORIGIN_WHITELIST = (
     'https://localhost',
     'http://localhost',
 )
-# CORS_ORIGIN_WHITELIST = (
-#     '.localhost', '127.0.0.1', '[::1]',
-# )
+
 
 # Tokens valdity
 PASSWORD_RESET_TIMEOUT = env('PASSWORD_RESET_TIMEOUT')  # client requirement
@@ -251,15 +250,8 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
-STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
-
-STATIC_URL = '/static/'
-
-STATICFILES_DIRS = [
-
-    os.path.join(BASE_DIR, 'static'),
-
-]
+STATIC_URL = "/staticfiles/"
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 AUTH_USER_MODEL = 'core.User'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

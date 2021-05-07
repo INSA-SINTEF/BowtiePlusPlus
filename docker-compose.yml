@@ -7,29 +7,47 @@ services:
     volumes:
       - ./frontend/nginx/templates:/etc/nginx/templates
       - ./frontend/webapp:/app
-    ports:
-      - "8080:80"
+    expose:
+            - 80
     image: bowtietool_static
     environment: 
       - NGINX_HOST=localhost
       - NGINX_PORT=80
+    depends_on:
+            - nginx-reverse
+  nginx-reverse:
+    build: ./nginx
+    ports: 
+        - 80:80
+        - 443:443
+    volumes:
+            - static_volume:/home/app/staticfiles
+            - ./nginx/certs:/etc/nginx/certs
+            - ./nginx/keys:/etc/nginx/keys
+            - ./nginx/dh:/etc/nginx/dh
   app:
     build:
       context: ./backend
-    ports:
-      - "8000:8000"
+      dockerfile: Dockerfile
+    expose:
+      - 8000
     volumes:
       - ./backend/app:/app
+      - static_volume:/app/staticfiles
     command: >
-      sh -c "python manage.py wait_for_db &&
+      sh -c "
              python manage.py makemigrations &&
              python manage.py migrate &&
-             python manage.py runserver 0.0.0.0:8000"
+             python manage.py collectstatic --noinput &&  
+             gunicorn app.wsgi:application --bind 0.0.0.0:8000"
     depends_on:
       - db
+      - nginx-reverse
   db:
     image: postgres:10-alpine
     environment:
       - POSTGRES_DB=app
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=789456123
+volumes:
+          static_volume:

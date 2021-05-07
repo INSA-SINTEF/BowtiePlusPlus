@@ -9,7 +9,8 @@ mkdir -p backend/app/media/QR
 mkdir -p backend/app/logs
 
 if [ "$#" = 0 ]; then
-    docker-compose up
+    	docker-compose down -v;
+        docker-compose up --build
 elif [ "$#" = 1 ]; then
     if [ "$1" = "-h" -o "$1" = "--help" ]; then
         echo "$help_message"
