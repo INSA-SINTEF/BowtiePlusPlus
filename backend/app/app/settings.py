@@ -62,6 +62,7 @@ CORS_ORIGIN_WHITELIST = (
 )
 
 
+
 # Tokens valdity
 PASSWORD_RESET_TIMEOUT = env('PASSWORD_RESET_TIMEOUT')  # client requirement
 TOTP_CONFIRM_RESET_TIMEOUT = env('TOTP_CONFIRM_RESET_TIMEOUT')
@@ -104,6 +105,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -111,7 +113,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
     'reversion.middleware.RevisionMiddleware',
 ]
 
