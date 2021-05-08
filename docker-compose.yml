@@ -13,10 +13,11 @@ services:
     environment: 
       - NGINX_HOST=localhost
       - NGINX_PORT=80
-    depends_on:
-            - nginx-reverse
   nginx-reverse:
     build: ./nginx
+    depends_on:
+            - app
+            - web
     ports: 
         - 80:80
         - 443:443
@@ -41,7 +42,6 @@ services:
              gunicorn app.wsgi:application --bind 0.0.0.0:8000"
     depends_on:
       - db
-      - nginx-reverse
   db:
     image: postgres:10-alpine
     environment:
