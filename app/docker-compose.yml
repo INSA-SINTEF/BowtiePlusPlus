@@ -7,7 +7,6 @@ services:
     volumes:
       - ./frontend/nginx/templates:/etc/nginx/templates
       - ./frontend/webapp:/app
-<<<<<<< HEAD:docker-compose.yml
     expose:
             - 80
     image: bowtietool_static
@@ -28,16 +27,6 @@ services:
             - ./nginx/keys:/etc/nginx/keys
             - ./nginx/dh:/etc/nginx/dh
   app:
-=======
-    ports:
-      - "8080:80"
-    image: nginx-bowtie-web
-    environment: 
-      - NGINX_HOST=localhost
-      - NGINX_PORT=80
-    container_name: bowtie_web
-  api:
->>>>>>> b8ed784da41838ebd94d69e7ccbdb15325426f81:app/docker-compose.yml
     build:
       context: ./backend
       dockerfile: Dockerfile
@@ -45,29 +34,19 @@ services:
       - 8000
     volumes:
       - ./backend/app:/app
-<<<<<<< HEAD:docker-compose.yml
       - static_volume:/app/staticfiles
     command: >
-=======
-    command:
->>>>>>> b8ed784da41838ebd94d69e7ccbdb15325426f81:app/docker-compose.yml
       sh -c "python manage.py wait_for_db &&
              python manage.py makemigrations &&
              python manage.py migrate &&
              gunicorn app.wsgi:application --bind 0.0.0.0:8000"
     depends_on:
       - db
-    image: django-bowtie-api
-    container_name: bowtie_api
   db:
     image: postgres:10-alpine
     environment:
       - POSTGRES_DB=app
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=789456123
-<<<<<<< HEAD:docker-compose.yml
 volumes:
           static_volume:
-=======
-    container_name: bowtie_db
->>>>>>> b8ed784da41838ebd94d69e7ccbdb15325426f81:app/docker-compose.yml

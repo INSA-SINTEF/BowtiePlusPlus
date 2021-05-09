@@ -21,21 +21,15 @@ RUN apk add --update --no-cache \
 RUN pip3 install -r /requirements.txt
 RUN apk del .tmp-build-deps
 
-<<<<<<< HEAD:backend/Dockerfile
 
 
 RUN mkdir /app
 WORKDIR /app
 COPY ./app /app
 RUN adduser -D user
-=======
-RUN mkdir -p /app/app && mkdir /app/user
-RUN ln -s /app/app/.env /app/user/.env
+
+#RUN mkdir -p /app/app && mkdir /app/user
+#RUN ln -s /app/app/.env /app/user/.env
 
 WORKDIR /app
-
-RUN adduser -D user
-RUN chown -R root:user /app
-RUN chmod 755 /app
->>>>>>> b8ed784da41838ebd94d69e7ccbdb15325426f81:app/backend/Dockerfile
 USER user

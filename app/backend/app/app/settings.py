@@ -54,8 +54,7 @@ ALLOWED_HOSTS = [
     '0.0.0.0',
      API_SERVER_HOST,
 ]
-<<<<<<< HEAD:backend/app/app/settings.py
- 
+
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:8080',
     'https://localhost',
@@ -63,16 +62,6 @@ CORS_ORIGIN_WHITELIST = (
 )
 
 
-=======
-
-
-CORS_ORIGIN_WHITELIST = [
-    'http://localhost:8080',
-]
-# CORS_ORIGIN_WHITELIST = (
-#     '.localhost', '127.0.0.1', '[::1]',
-# )
->>>>>>> b8ed784da41838ebd94d69e7ccbdb15325426f81:app/backend/app/app/settings.py
 
 # Tokens valdity
 PASSWORD_RESET_TIMEOUT = env('PASSWORD_RESET_TIMEOUT')  # client requirement
