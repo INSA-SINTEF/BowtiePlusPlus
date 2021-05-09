@@ -21,15 +21,8 @@ RUN apk add --update --no-cache \
 RUN pip3 install -r /requirements.txt
 RUN apk del .tmp-build-deps
 
-
-
 RUN mkdir /app
 WORKDIR /app
-COPY ./app /app
+
 RUN adduser -D user
-
-#RUN mkdir -p /app/app && mkdir /app/user
-#RUN ln -s /app/app/.env /app/user/.env
-
-WORKDIR /app
 USER user
