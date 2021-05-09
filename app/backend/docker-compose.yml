@@ -1,0 +1,34 @@
+services:
+  api:
+    build:
+      context: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./app:/app
+    command: >
+<<<<<<< HEAD:backend/docker-compose.yml
+      sh -c "
+             python manage.py makemigrations && python manage.py migrate && 
+             python3 manage.py runserver  0.0.0.0:8000"
+=======
+      sh -c "python manage.py wait_for_db &&
+             python manage.py makemigrations &&
+             python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8000"
+>>>>>>> b8ed784da41838ebd94d69e7ccbdb15325426f81:app/backend/docker-compose.yml
+    depends_on:
+      - db
+    image: django-bowtie-api
+    container_name: bowtie_back_api
+  db:
+    image: postgres:10-alpine
+    environment:
+      - POSTGRES_DB=app
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=789456123
+<<<<<<< HEAD:backend/docker-compose.yml
+
+=======
+    container_name: bowtie_back_db
+>>>>>>> b8ed784da41838ebd94d69e7ccbdb15325426f81:app/backend/docker-compose.yml
