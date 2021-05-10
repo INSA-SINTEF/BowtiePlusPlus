@@ -22,7 +22,8 @@ RUN pip3 install -r /requirements.txt
 RUN apk del .tmp-build-deps
 
 RUN mkdir /app
+COPY ./app /app
 WORKDIR /app
-
+RUN python3 manage.py collectstatic --noinput
 RUN adduser -D user
 USER user
