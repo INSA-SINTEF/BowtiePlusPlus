@@ -28,8 +28,5 @@ WORKDIR /app
 COPY ./app /app
 RUN adduser -D user
 
-#RUN mkdir -p /app/app && mkdir /app/user
-#RUN ln -s /app/app/.env /app/user/.env
-
 WORKDIR /app
 USER user
