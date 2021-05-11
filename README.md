@@ -8,8 +8,7 @@ Bowtie++ is a **Web application** made for creating and editing bowtie risk anal
 
 ```
 /
- |-- app             # The application itself
- |-- website         # Website that presents Bowtie++ features
+ |-- app             # The application to use in production
  |-- docs            # Documentation
  `-- README.md
 ```
@@ -18,4 +17,4 @@ A **user manual** and a **technical documentation** can be found inside the `doc
 
 ## Installation
 
-Please, refer to `docs/wiki.md`.
+Please, refer to `docs/wiki.md`, section `Installation > Deployment mode`.
