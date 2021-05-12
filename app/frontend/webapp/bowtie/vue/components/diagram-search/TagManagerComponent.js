@@ -32,8 +32,7 @@ let TagManagerComponent = {
     },
     computed: {
         all_tags: function () {
-            // Even though it's definitely how we use it, we cannot create bellow 'tags' as a Map
-            // Because it is not well implemented in JS and more importantly not supported by Vue
+            //Forced to use an Array since Maps are not well implemented in JS and more importantly not supported by Vue
             tags = []
             var not_found = true;
             for (const diag of this.all_diagrams) {
@@ -57,7 +56,6 @@ let TagManagerComponent = {
                     }
                 }
             }
-
             return tags
         },
     },

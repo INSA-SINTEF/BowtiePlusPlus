@@ -602,26 +602,6 @@ var FilenameDialog = function (editorUi, filename, buttonText, fn, label, valida
     icon.setAttribute("style", "width:15px;margin-top:2px;")
     tags_td.appendChild(icon)
 
-
-    // var info_div = document.createElement("div")
-    // info_div.setAttribute("class", "info")
-
-    /* let info_span = document.createElement("div")
-    info_span.setAttribute("class", "extra-info")
-    info_span.innerText = "Tags are used as keywords for diagrams." +
-        "You can enter as much as you want separated by a comma."
-    info_div.appendChild(icon)
-    info_div.appendChild(info_span)
-    tags_td.appendChild(info_div)*/
-    /*var info_canvas = document.createElement("canvas")
-    info_canvas.setAttribute("id","canvas")
-    info_canvas.setAttribute("width","50")
-    info_canvas.setAttribute("height","50")
-    info_canvas.setAttribute("font-family","fontawesome")
-    var ctx = info_canvas.getContext('2d')
-    ctx.font = '20px FontAwesome' //0xe086
-    ctx.fillText(String.fromCharCode('\uF047'), 10, 50);
-    tags_td.appendChild(info_canvas)*/
     tags_row.appendChild(tags_td);
     var tags_td_input = document.createElement('td')
     var tags_input = document.createElement('input')
@@ -1684,6 +1664,7 @@ ExportDialog.showXmlOption = true;
 ExportDialog.exportFile = function (editorUi, name, format, bg, s, b) {
     var graph = editorUi.editor.graph;
 
+    // Generic method to download datas converted to blob
     function download(data) {
         var file = new Blob([data], {type: format});
         if (window.navigator.msSaveOrOpenBlob) // IE10+
@@ -1749,11 +1730,9 @@ ExportDialog.exportFile = function (editorUi, name, format, bg, s, b) {
         //Append dataXml to the graph xml and embed it inside a root diagram xml tag
         xml = "<diagram>" + xml + dataXml + "</diagram>";
         download(xml);
-        //ExportDialog.saveLocalFile(editorUi, mxUtils.getXml(editorUi.editor.getGraphXml()), name, format);
     } else if (format === 'svg') {
         svg = mxUtils.getXml(graph.getSvg(bg, s, b));
         download(svg);
-        //ExportDialog.saveLocalFile(editorUi, mxUtils.getXml(graph.getSvg(bg, s, b)), name, format);
     } else if (format === 'png' || format === 'jpg') {
         const svg = mxUtils.getXml(graph.getSvg(bg, s, b));
 
@@ -1772,11 +1751,8 @@ ExportDialog.exportFile = function (editorUi, name, format, bg, s, b) {
         }
 
         function svgUrlToFormat(svgUrl, callback) {
-            // console.log(svgUrl)
             const svgImage = new Image();
             svgImage.crossOrigin = "*";
-            // imgPreview.style.position = 'absolute';
-            // imgPreview.style.top = '-9999px';
             document.body.appendChild(svgImage);
             svgImage.onload = function () {
                 const canvas = document.createElement('canvas');
@@ -1803,6 +1779,7 @@ ExportDialog.exportFile = function (editorUi, name, format, bg, s, b) {
             svgImage.src = svgUrl;
         }
 
+        // Call to export diagram to Png
         svgToPng(svg, (imgData) => {
             const pngImage = document.createElement('img');
             document.body.appendChild(pngImage);
@@ -1819,48 +1796,6 @@ ExportDialog.exportFile = function (editorUi, name, format, bg, s, b) {
             }, 0);
 
         });
-
-        /*
-
-        var bounds = graph.getGraphBounds();
-
-        // New image export
-        var xmlDoc = mxUtils.createXmlDocument();
-        var root = xmlDoc.createElement('output');
-        xmlDoc.appendChild(root);
-
-        // Renders graph. Offset will be multiplied with state's scale when painting state.
-        var xmlCanvas = new mxXmlCanvas2D(root);
-        xmlCanvas.translate(Math.floor((b / s - bounds.x) / graph.view.scale),
-            Math.floor((b / s - bounds.y) / graph.view.scale));
-        xmlCanvas.scale(s / graph.view.scale);
-
-        var imgExport = new mxImageExport()
-
-        imgExport.drawState(graph.getView().getState(graph.model.root), xmlCanvas);
-
-        // Puts request data together
-        var param = 'xml=' + encodeURIComponent(mxUtils.getXml(root));
-        var w = Math.ceil(bounds.width * s / graph.view.scale + 2 * b);
-        var h = Math.ceil(bounds.height * s / graph.view.scale + 2 * b);
-
-        // Requests image if request is valid
-        if (param.length <= MAX_REQUEST_SIZE && w * h < MAX_AREA)
-        {
-            mxClient.NO_FO = true
-            editorUi.hideDialog();
-            var req = new mxXmlRequest(EXPORT_URL, 'format=' + format +
-                '&filename=' + encodeURIComponent(name) +
-                '&bg=' + ((bg != null) ? bg : 'none') +
-                '&w=' + w + '&h=' + h + '&' + param);
-            req.simulate(document, '_blank');
-        }
-        else
-        {
-            mxUtils.alert(mxResources.get('drawingTooLarge'));
-        }
-
-         */
     } else if (format === 'pdf' || 'gif') {
         alert("Those parameters are not yet supported")
     }

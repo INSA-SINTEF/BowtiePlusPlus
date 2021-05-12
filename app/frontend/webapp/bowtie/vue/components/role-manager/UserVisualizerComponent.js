@@ -14,7 +14,6 @@ export const UserVisualizerComponent = {
     },
     methods: {
         removeReader(email) {
-
             const params = {role: "reader", email: email}
             axios.delete(window.API_SHARE_DIAGRAM + this.graphid, {
                 data: params,

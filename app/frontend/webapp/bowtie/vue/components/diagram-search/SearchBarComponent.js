@@ -1,19 +1,17 @@
 class prefixTree {
+    "Class to build the prefix tree that is used for autocompletion"
     constructor() {
         this.prefixTree = null;
         this.suggestions = [];
     }
-
     newNode() {
         return {
             isLeaf: false,
             children: {}
         }
     }
-
     add(word) {
         if (!this.prefixTree) this.prefixTree = this.newNode();
-
         let root = this.prefixTree;
         for (const letter of word) {
             if (!(letter in root.children)) {
@@ -23,7 +21,6 @@ class prefixTree {
         }
         root.isLeaf = true;
     }
-
     find(word) {
         let root = this.prefixTree;
         for (const letter of word) {
@@ -33,10 +30,8 @@ class prefixTree {
                 return null;
             }
         }
-
         return root;
     }
-
     traverse(root, word) {
         if (root.isLeaf) {
             this.suggestions.push(word);
@@ -47,30 +42,22 @@ class prefixTree {
             this.traverse(root.children[letter], word + letter);
         }
     }
-
     complete(word, CHILDREN = null) {
         const root = this.find(word);
-
         if (!root) return this.suggestions; // cannot suggest anything
-
         const children = root.children;
-
         let spread = 0;
-
         for (const letter in children) {
             this.traverse(children[letter], word + letter);
             spread++;
 
             if (CHILDREN && spread === CHILDREN) break;
         }
-
         return this.suggestions;
     }
-
     clear() {
         this.suggestions = [];
     }
-
     print() {
         console.log(this.prefixTree);
     }
@@ -92,7 +79,6 @@ let SearchBarComponent = {
         }
     },
     methods: {
-        //My functions
         publicChange: function (value) {
             this.is_public = value
             this.$emit('update_diagrams', ["", this.is_public])
