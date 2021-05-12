@@ -111,7 +111,8 @@ class DiagramDetail(APIView):
         return response
 
     def put(self, request, pk):
-        """Update diagram"""
+        """Update diagram, taking into account if the user is the owner, or if the diagram is public or if it's shared
+        with the current user as writer"""
         diagramModel = Diagram.objects.get(pk=pk)
         # Checks that the current user as the rights to update specified diagram
         serializer = serializers.DiagramSerializer(data=request.data)
