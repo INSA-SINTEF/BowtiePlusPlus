@@ -1,7 +1,0 @@
-import { Vue } from 'vue-property-decorator';
-export default class RepoMixin extends Vue {
-    slug: string;
-    showCount: boolean;
-    count: number;
-    readonly isLoading: boolean;
-}

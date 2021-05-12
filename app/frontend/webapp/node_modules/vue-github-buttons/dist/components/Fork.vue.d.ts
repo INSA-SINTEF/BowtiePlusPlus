@@ -1,8 +1,0 @@
-import { getCountMixin, repoMixin } from '../mixins';
-declare const GitHubButtonFork_base: import("vue-class-component/lib/declarations").VueClass<getCountMixin & repoMixin>;
-export default class GitHubButtonFork extends GitHubButtonFork_base {
-    loadCount(): Promise<void>;
-    created(): Promise<void>;
-    updated(): Promise<void>;
-}
-export {};
