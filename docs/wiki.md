@@ -2,19 +2,20 @@
 
 Bowtie++ is a **Web application** supporting security and safety risk analysis using bowtie diagrams.
 
-- [Bowtie++ wiki](#Bowtie++-wiki)
-    - [Project's background](#Project%E2%80%99s-background)
-    - [Requirements](#Requirements)
-    - [Installation](#Installation)
-        - [Development mode](#Development-mode)
-        - [Deployment mode](#Deployment-mode)
-    - [Installation on other types of processors](/uYcJUkHTRL2xvk34Hb4m9w)
-        - [Example for the raspberry PI (AMR32)](#Example-for-the-raspberry-PI-(ARM32))
-    - [Technical documentation](#Technical-documentation)
-        - [Software architecture](#Software-architecture)
-            - [test](#app-module)
-        - [Frontend](#Frontend)
-        - [Backend](#Backend)
+- [Bowtie++ wiki](#bowtie++-wiki)
+    - [Project's background](#projects-background)
+    - [Requirements](#requirements)
+    - [Installation](#installation)
+    - [Deployment](#deployment)
+    - [Installation on other types of processors](#installation-on-other-types-of-processors)
+        - [Example for the raspberry PI (AMR32)](#example-for-the-raspberry-pi-ARM32)
+    - [Technical documentation](#technical-documentation)
+        - [Software architecture](#software-architecture)
+        - [Front-end](#front-end)
+        - [Back-end](#back-end)
+    - [Licenses](#Licenses)
+        - [Front-end](#front-end-2)
+        - [Back-end](#back-end-1)
 
 ## Project's background
 
@@ -30,7 +31,7 @@ Bowtie++ is an evolution of Bowtie+ which was mainly based on [grapheditor](#Lic
 
 ## Installation
 
-### Development mode
+**branches**: `master` or `dev`.
 
 <span style="color: #dc3545">WARNING:</span> only for development puposes, DO NOT use this configuration as a deployment model.
 
@@ -43,7 +44,7 @@ cd BowtieTool
 
 The Django REST API requires an environment file located at `backend/app/app/.env`. This file contains sentivive data, such as secret keys. **Be sure to make it accessible only to authorized persons**. An example of a typical `.env` file is given at `backend/app/app/.env.example`.
 
-If you need more information about how to fill in this file, check the [technical documentaion](#app-module).
+If you need more information about how to fill in this file, check the [technical documentation](#app-module).
 
 **Configuring server ip addresses**
 
@@ -69,7 +70,7 @@ CORS_ORIGIN_WHITELIST = [
 
 In `frontend/webapp/bowtie/js/env.js`, update the following variables to match the server ip on which the backend is installed and the port it listens to.
 
-```javascript=2
+```javascript
 const API_SERVER_HOST = 'localhost';
 const API_SERVER_PORT = '8000';
 ```
@@ -100,9 +101,93 @@ You can stop the app with the `stop.sh` script. At the root of the project:
 
 The script simply uses `docker container kill` to stop the containers.
 
-### Deployment mode
+
+## Deployment 
+
+**branch**: `deploy`.
+
+An example of deployment for Bowtie++ can be found on the branch `deploy` of this repository. This deployment uses 4 servers, each one encapsulated in a Docker container. Here is a picture of the deployment infrastructure: 
+
+![](images/q7xnIFr.png)
+
+These 4 servers have been created to make the different components of the application independent. In a real deployment scenario, it's suggested to use the nginx reverse proxy server to deliver the static content from the front-end part ("static resources" in the picture) for better performance. It's also recommended to make the database run directly on a virtual machine other than a container in order to preserve the integrity of the data.
+
+The reverse proxy communicates to the user using HTTPS protocol, and the other servers aren't directly connected to the external network. In order to establish a secure connection between all of the components of the application we suggest developing a separate public key infrastructure or using additional SSL/TLS certificates.
+
+### Back-end (REST API)
+**Gunicorn** is used as a CGI HTTP server. However Gunicorn can't serve the static content used by Django's admin panel. In order to serve the static files related to it, a volume shared by the reverse proxy container and the API server container has been created. The volume name is `static_volume` and can be found in the `docker-compos.yml` file. It's important  to add in the *nginx.conf* of the nginx-reverse proxy container the directory *staticfiles* as the location from where the server serves the HTML, CSS and JS files. In this directory are copied all the static files used by the django administration console when the containers are started from the docker-compose file. Without this volume and the configuration of the reverse proxy, the static files of the Django administration console could not be served to admin users.
+
+### Environment file specifics
+
+<span style="color: #dc3545">-- WARNING --</span>
+
+The `.env` file **must** be placed under the two following directories:
+
+- `PROJECT_ROOT/app/backend/app/app`
+- `PROJECT_ROOT/app/backend/app/user`
+
+Some of the environment variables contained in the `.env` file must be set differently compared to the installation for development purposes. 
+```
+DEBUG=False
+STATIC_SERVER_HOST=localhost
+STATIC_SERVER_PORT=443
+API_SERVER_HOST=localhost
+API_SERVER_PORT=8000
+WEB_PROTOCOL=https
+```
+The debug mode for Django is set to false. The port for the static server must be 443 (default https port).
+
+### Front-end
+
+#### Js environment variables
+
+The javascript environment file located at `PROJECT_ROOT/app/frontend/webapp/bowtie/js/env.js` now looks like this:
+```javascript
+const PROTOCOL = 'https';
+const API_SERVER_HOST = 'localhost';
+const API_SERVER_PORT = '';
+const API_SERVER_URL = PROTOCOL + '://' + API_SERVER_HOST + ':' + API_SERVER_PORT;
+```
+The protocol is set to *https* and the API_SERVER_PORT is an empty string because the port 443 will be automatically used by axios when fetching the REST API.
+
+#### Js libraries
+
+**All external libraries have been downloaded locally**. This may help people who need to deploy Bowtie++ on an infrastructure that does not have internet access. In addition to mxgraph which was already present locally, the downloaded libraries are:
+- Axios
+- Vue (+ Vuex and Vue-router)
+- Vue-material
+- Boostrap
+- Some fonts from fonts.googleapi
+
+### Nginx reverse-proxy
+Nginx is used as a reverse proxy in order to navigate traffic to the WEB container (frontend) and the API container (backend). The server is encapsulated in a container as shown in the picture of the architecture above. In the configuration file `nginx.conf` installed in the container  have to be defined the servers (**docker service names and ports defined in the main docker-compose-file**) to which the Nginx container is going to proxy the incoming requests. All additional configuration has to be added in the configuration file of the nginx server. You can find more information on how to set up this file on the nginx official documentation page.
+
+#### SSL configuration for the reverse-proxy server
+SSL/TLS certificate is set and used by the reverse proxy in order to establish a secure connexion via https. You can find more information on how to generate SSL/TLS certificates in the link from *DigitalOcean* below. Certificates, keys and Diffie-Hellman parameters have to be generated and placed in the directories ***certs, dh, keys*** which can be found in the nginx folder. The folders contents are mounted to **etc/nginx/snippets*** directory in the docker container. We suggest copying them into the container when creating it. In this way a change inside of the container or on the host machine will not affect the files in the other location. The necessary instructions are placed in the Docker file of the reverse-proxy server (situated in the nginx folder). We strongly recommend generating new SSL/TLS parameters before making the application public as the ones used now can be found in the github repository.
+
+### Launch the deployment configuration
 
 
+```bash
+git clone https://github.com/bmoulkaf/BowtieTool
+cd BowtieTool
+git checkout deploy
+```
+
+Create the `.env` file and move it to the right locations as mentioned [here](#Environment-file-specifics). Then, run:
+
+
+```bash
+cd app
+docker-compose up
+```
+
+Useful information:
+- https://testdriven.io/blog/dockerizing-django-with-postgres-gunicorn-and-nginx/
+- https://gunicorn.org/
+- https://www.digitalocean.com/community/tutorials/how-to-create-a-self-signed-ssl-certificate-for-nginx-in-ubuntu-18-04
+- https://faun.pub/setting-up-ssl-certificates-for-nginx-in-docker-environ-e7eec5ebb418
+- https://www.nginx.com/resources/library/nginx-cookbook-2019-edition/
 
 ## Installation on other types of processors
 
@@ -115,28 +200,29 @@ Base docker images used for Bowtie++ have their equivalent for other types of pr
 
 **Update the Dockerfiles**
 
-All given path are relative to the `app` directory in the project root folder.
+All given path are relative to the `app` directory in the project root folder of the `dev` or `master` branches.<br>
+For the `deploy` branch, there is only one main `docker-compose.yml` and 2 Dockerfiles (for the front-end and the back-end): update these.
 
 `frontend/Dockerfile`
-```dockerfile=
+```dockerfile
 FROM arm32v7/nginx:stable-alpine
 ```
 
 `backend/Dockerfile`
-```dockerfile=
+```dockerfile
 FROM arm32v7/python:3.7-alpine
 ```
 
 **Update the docker-compose.yml files**
 
 `backend/docker-compose.yml`
-```yaml=16
+```yaml
   db:
     image: arm32v7/postgres:10-alpine
 ```
 
 `docker-compose.yml`
-```yaml=30
+```yaml
   db:
     image: arm32v7/postgres:10-alpine
 ```
@@ -152,10 +238,10 @@ Bowtie++ is composed of two main parts:
 
 The following image represents the software architecture of the application.
 
-![](https://i.imgur.com/CsTOhUD.png)
+![](images/CsTOhUD.png)
 
 
-### Frontend
+### Front-end
 
 As mentionned previoulsy, [grapheditor](#Licenses) is the foundation of Bowtie++. Grapheditor is a complex application mainly made with javascript to build the diagram editor (no real HTML file that describes the UI), which makes it hard to get into, maintain and upgrade.
 
@@ -167,7 +253,7 @@ Bowtie++ wrap the diagram editor into an SPA (*Single Page Application*)  to spe
 
 A Vue component defines the home page and contains the diagram editor thanks to an `<iframe>` html tag. This component is always displayed so that the state of the editor is saved and never reloaded while the user is navigating though the application. Components managed by Vue-router that represents independant pages (login, register, etc.) are displayed at the top of the home one. The same applies to the navigation bar. You can think of the display layout as being composed of 3 main layers:
 
-![](https://i.imgur.com/ICYyr3Q.png)
+![](images/ICYyr3Q.png)
 
 **Layer 1** : home page that integrates the diagram editor in an `<iframe>` html tag.
 **Layer 2** : Pages managed by Vue-router.
@@ -202,16 +288,16 @@ A part of the frontend file structure is describes by the following image.
 
 As the main Vue instance, AppVue is mounted on the `index.html` and manages the app logic with the router and the Vuex store object.
 
-![](https://i.imgur.com/fEEecoL.png)
+![](images/fEEecoL.png)
 
-### Backend
+### Back-end
 
 For the backend of BowTie++, we opted for a REST API for a maximum of flexibility and reusability. In the REST API, data is not tied to resources or methods, so REST can handle multiple types of calls, return different data formats. This allows us to meet the needs of our primary client, but also the needs of all potential users of the open-source project. It also eases the remake of the Frontend service, or the addition of a new one on top of our web application, such as a Desktop or mobile applications.
 
 Django and Django REST framework (DRF) were chosen for backend frameworks, as they are "Hard to learn, easy to use". They provide many handful tools that make the developer's life a lot easier.
 One of the main features of this choice is the easy  serialization: when Django and DRF are coupled with Django's ORM, serialization becomes the matter of just a few lines of code.
 
-![](https://imgur.com/V3011X6.png)
+![](images/V3011X6.png)
 
 The 3 main features of the application are separated in different modules also known as "applications" in Django. Each of these applications have a directory containing the tests of the implementation logic. The configuration for the project was also encapsulated in an application. 
 
@@ -335,7 +421,7 @@ Two librairies are used for this module:
 
 ## Licenses
 
-### Frontend
+### Front-end
 
 - axios: https://github.com/axios/axios
 - Vuejs: https://vuejs.org/
@@ -343,7 +429,7 @@ Two librairies are used for this module:
 - Vue Material: https://vuematerial.io/
 - mxGraph (and grapheditor): https://github.com/jgraph/mxgraph
 
-### Backend 
+### Back-end 
 
 - Django REST: https://www.django-rest-framework.org/
 - PostreSQL: https://www.postgresql.org/
