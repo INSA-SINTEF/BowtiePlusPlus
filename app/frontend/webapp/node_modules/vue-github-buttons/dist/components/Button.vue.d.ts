@@ -1,0 +1,13 @@
+import { Vue } from 'vue-property-decorator';
+export default class GitHubButton extends Vue {
+    icon: string;
+    link: string;
+    isLoading: boolean;
+    count: number;
+    countLink: string;
+    readonly iconComponentName: string;
+    readonly hasCount: boolean;
+    readonly hasCountLink: boolean;
+    readonly fullLink: string;
+    readonly fullCountLink: string;
+}

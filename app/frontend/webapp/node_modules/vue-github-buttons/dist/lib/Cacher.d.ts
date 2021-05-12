@@ -1,0 +1,115 @@
+/**
+ * Vue GitHub Buttons cacher.
+ *
+ * @export
+ * @class Cacher
+ */
+export default class Cacher {
+    /**
+     * Cache name constant
+     *
+     * @readonly
+     * @static
+     *
+     * @memberOf Cacher
+     */
+    static readonly CACHE_NAME: string;
+    /**
+     * Check session storage API support.
+     *
+     * @static
+     * @returns {boolean}
+     *
+     * @memberOf Cacher
+     */
+    static supportSession(): boolean;
+    /**
+     * Automatically commit cache to session storage.
+     *
+     * @private
+     * @type {boolean}
+     * @memberof Cacher
+     */
+    private autoCommit;
+    /**
+     * Cache
+     *
+     * @private
+     * @type {Cache}
+     * @memberof Cacher
+     */
+    private cache;
+    /**
+     * Creates an instance of `Cacher`.
+     *
+     * @param {boolean} [autoCommit=true] Automatically commit cache to session storage
+     * @memberof Cacher
+     */
+    constructor(autoCommit?: boolean);
+    /**
+     * Check cache existence in session storage.
+     *
+     * @returns {boolean}
+     *
+     * @memberOf Cacher
+     */
+    exist(): boolean;
+    /**
+     * Write cache data to session storage.
+     *
+     * @returns {boolean} Commit result.
+     *
+     * @memberOf Cacher
+     */
+    commit(): boolean;
+    /**
+     * Retrieve cache data from session storage.
+     *
+     *
+     * @memberOf Cacher
+     */
+    retrieve(): void;
+    /**
+     * Clear cache.
+     *
+     *
+     * @memberOf Cacher
+     */
+    clear(): void;
+    /**
+     * Get repository data from cache.
+     *
+     * @param {string} slug GitHub slug.
+     * @returns {any}
+     *
+     * @memberOf Cacher
+     */
+    getRepo(slug: string): any;
+    /**
+     * Set repository data to cache.
+     *
+     * @param {string} slug GitHub slug.
+     * @param {any} data Repository data.
+     *
+     * @memberOf Cacher
+     */
+    setRepo(slug: string, data: any): void;
+    /**
+     * Get user data from cache.
+     *
+     * @param {string} username GitHub user's name.
+     * @returns {any}
+     *
+     * @memberOf Cacher
+     */
+    getUser(username: string): any;
+    /**
+     * Set user data to cache.
+     *
+     * @param {string} username GitHub user's name.
+     * @param {any} data User data.
+     *
+     * @memberOf Cacher
+     */
+    setUser(username: string, data: any): void;
+}

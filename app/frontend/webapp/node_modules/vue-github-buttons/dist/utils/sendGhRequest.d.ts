@@ -1,0 +1,10 @@
+export declare type Middleware = (data: any) => void;
+/**
+ * Send GET request to GitHub API.
+ *
+ * @export
+ * @param {string} path Request relative path
+ * @param {Middleware} [middleware=() => {}] Middleware
+ * @returns {Promise<any>} GitHub API data
+ */
+export default function sendGhRequest(path: string, middleware?: Middleware): Promise<any>;

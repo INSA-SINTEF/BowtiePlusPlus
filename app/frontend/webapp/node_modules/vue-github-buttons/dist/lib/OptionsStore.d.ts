@@ -1,0 +1,41 @@
+import Options from '../types/Options';
+/**
+ * Vue GitHub buttons options store.
+ *
+ * @export
+ * @class OptionsStore
+ */
+export declare class OptionsStore {
+    private _options;
+    constructor();
+    /**
+     * Options value
+     *
+     * @type {Options}
+     * @memberof OptionsStore
+     */
+    value: Options;
+    /**
+     * Get an option value.
+     *
+     * @template K Type of option
+     * @param {K} optionName Option name
+     * @returns {Options[K]}
+     * @memberof OptionsStore
+     */
+    getOption<K extends keyof Options>(optionName: K): Options[K];
+    /**
+     * Set an option value.
+     *
+     * @template K Type of option
+     * @param {K} optionName Option name
+     * @param {Options[K]} optionValue New option value
+     * @memberof OptionsStore
+     */
+    setOption<K extends keyof Options>(optionName: K, optionValue: Options[K]): void;
+}
+/**
+ * Vue GitHub buttons global options store.
+ */
+declare const optionsStore: OptionsStore;
+export default optionsStore;

@@ -1,0 +1,14 @@
+import EyeIcon from './components/icons/EyeIcon.vue';
+declare const _default: () => {
+    EyeIcon: import("vue").VueConstructor<EyeIcon>;
+    MarkGithubIcon: import("vue").VueConstructor<EyeIcon>;
+    RepoForkedIcon: import("vue").VueConstructor<EyeIcon>;
+    StarIcon: import("vue").VueConstructor<EyeIcon>;
+    SyncIcon: import("vue").VueConstructor<EyeIcon>;
+};
+/**
+ * Get all SVG icons as component.
+ *
+ * @export
+ */
+export default _default;

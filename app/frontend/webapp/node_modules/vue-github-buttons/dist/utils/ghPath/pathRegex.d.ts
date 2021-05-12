@@ -1,0 +1,8 @@
+/**
+ * Repo path RegEx.
+ */
+export declare const repo: RegExp;
+/**
+ * User path RegEx.
+ */
+export declare const user: RegExp;

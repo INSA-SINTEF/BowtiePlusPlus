@@ -1,0 +1,13 @@
+import { Vue } from 'vue-property-decorator';
+export default class GetCountMixin extends Vue {
+    /**
+     * Get button count via GitHub API.
+     *
+     * @param {string} path Request path
+     * @param {string} key The property of response that contain count result
+     * @param {boolean} [useCache=true] Enable caching
+     * @returns {Promise<number>}
+     * @memberof GetCountMixin
+     */
+    getCount(path: string, key: string, useCache?: boolean): Promise<number>;
+}

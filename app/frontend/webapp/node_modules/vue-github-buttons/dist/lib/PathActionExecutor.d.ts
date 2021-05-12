@@ -1,0 +1,49 @@
+export declare type RepoAction = (slug: string, data?: any) => void;
+export declare type UserAction = (username: string, data?: any) => void;
+/**
+ * Path action executor.
+ *
+ * @export
+ * @class PathActionExecutor
+ */
+export default class PathActionExecutor {
+    private path;
+    private repoAction;
+    private userAction;
+    /**
+     * Creates an instance of `PathActionExecutor`.
+     *
+     * @param {string} path GitHub API relative path
+     * @memberof PathActionExecutor
+     */
+    constructor(path: string);
+    /**
+     * Define repo action.
+     *
+     * @param {RepoAction} action An action
+     * @returns {this}
+     * @memberof PathActionExecutor
+     */
+    repo(action: RepoAction): this;
+    /**
+     * Define user action.
+     *
+     * @param {UserAction} action An action
+     * @returns {this}
+     * @memberof PathActionExecutor
+     */
+    user(action: UserAction): this;
+    /**
+     * Clear actions.
+     *
+     * @memberof PathActionExecutor
+     */
+    clear(): void;
+    /**
+     * Execute an appropriate action.
+     *
+     * @param {any} [payload] Payload
+     * @memberof PathActionExecutor
+     */
+    execute(payload?: any): void;
+}

@@ -1,0 +1,8 @@
+import { getCountMixin, repoMixin } from '../mixins';
+declare const GitHubButtonStar_base: import("vue-class-component/lib/declarations").VueClass<getCountMixin & repoMixin>;
+export default class GitHubButtonStar extends GitHubButtonStar_base {
+    loadCount(): Promise<void>;
+    created(): Promise<void>;
+    updated(): Promise<void>;
+}
+export {};

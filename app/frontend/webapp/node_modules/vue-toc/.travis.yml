@@ -1,0 +1,13 @@
+
+language: node_js
+node_js:
+  - "stable"
+cache:
+  directories:
+  - node_modules
+install:
+  - yarn global add codecov
+  - yarn
+script:
+  - yarn build
+  - codecov
