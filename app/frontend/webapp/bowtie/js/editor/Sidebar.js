@@ -1193,7 +1193,7 @@ Sidebar.prototype.addBranchPalette = function(dir, expand)
 			this.createVertexTemplateEntry('Threat','shape=mxgraph.bowtie.threat;html=1;whiteSpace=wrap;fontSize=16;aspect=fixed', 120, 80, 'Threat', 'Threat', null, null, 'bowtie threat'),
             this.createVertexTemplateEntry('Consequence','shape=mxgraph.bowtie.consequence;html=1;whiteSpace=wrap;fontSize=16;aspect=fixed', 120, 80, 'Consequence', 'Consequence', null, null, 'bowtie consequence'),
             this.createVertexTemplateEntry('Cause','shape=mxgraph.bowtie.cause;html=1;whiteSpace=wrap;fontSize=16;aspect=fixed', 120, 80, 'Cause', 'Cause', null, null, 'bowtie cause'),
-            this.createVertexTemplateEntry('Escalation Factor','shape=mxgraph.bowtie.escalationfactor;html=1;whiteSpace=wrap;fontSize=16;aspect=fixed', 120, 80, 'Escalation Factor', 'Escalation Factor', null, null, 'bowtie escalation factor'),
+            this.createVertexTemplateEntry('Escalation Factor','shape=mxgraph.bowtie.escalationfactor;html=1;whiteSpace=wrap;fontSize=14;aspect=fixed', 120, 80, 'Escalation\nFactor', 'Escalation Factor', null, null, 'bowtie escalation factor'),
 		];
 
     this.addPaletteFunctions('Bowtie Branch', mxResources.get('bowtiebranch'), expand, fns);

@@ -371,24 +371,31 @@
 			<stroke></stroke>
 		</foreground>
 	</shape>
-	<shape name="escalationfactor" h="80" w="120" aspect="fixed" strokewidth="inherit">
+	<shape name="escalationfactor" h="80" w="120">
 		<connections>
-			<constraint x="1" y="0.5" perimeter="0" name="E"></constraint>
+			<constraint x="0.5" y="0" perimeter="0" name="E"></constraint>
 		</connections>
-		<background>
-			<stroke></stroke>
-			<fillcolor color="#f9fb3c"></fillcolor>
-			<roundrect x="0" y="0" w="120" h="80" arcsize="6"></roundrect>
-			<fillstroke></fillstroke>
-		</background>
 		<foreground>
-			<stroke></stroke>
+			<stroke>
+			</stroke>
 			<fillcolor color="#FFFFFF"></fillcolor>
 			<path>
-				<roundrect x="5" y="5" h="70" w="110" arcsize="6"></roundrect></path>
+				<move x="0" y="40"/>
+				<line x="60" y="0"/>
+				<line x="120" y="40"/>
+				<line x="60" y="80"/>
+				<close/>
+			</path>
+			<fillstroke></fillstroke><stroke/>
+		</foreground>
+		<background>
+			<stroke></stroke>
+			<fillcolor color="#27e1d9"></fillcolor>
+			<path>
+				<roundrect x="5" y="5" h="30" w="110" arcsize="6"></roundrect></path>
 			<fillstroke></fillstroke>
 			<stroke></stroke>
-		</foreground>
+		</background>
 	</shape>
   	<shape aspect="fixed" h="80" name="hazard" strokewidth="1" w="120">
     <connections>
