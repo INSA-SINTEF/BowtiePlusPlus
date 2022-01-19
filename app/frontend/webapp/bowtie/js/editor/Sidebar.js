@@ -1188,7 +1188,8 @@ Sidebar.prototype.addBranchPalette = function(dir, expand)
     /* It might be necessary to use addEntry directly to make them collapseable. Take a look at the UML library below.*/
     var fns =
         [
-            this.createVertexTemplateEntry('Barrier','shape=mxgraph.bowtie.barrier;whiteSpace=wrap;html=1;verticalAlign=bottom;fontSize=16;aspect=fixed', 120, 80, 'Barrier', 'Barrier', null, null, 'bowtie barrier'),
+            this.createVertexTemplateEntry('Barrier','shape=mxgraph.bowtie.barrier_prev;whiteSpace=wrap;html=1;verticalAlign=bottom;fontSize=16;aspect=fixed', 120, 80, 'Preventive Barrier', 'Preventive Barrier', null, null, 'bowtie barrier'),
+			this.createVertexTemplateEntry('Barrier','shape=mxgraph.bowtie.barrier_react;whiteSpace=wrap;html=1;verticalAlign=bottom;fontSize=16;aspect=fixed', 120, 80, 'Reactive Barrier', 'Reactive Barrier', null, null, 'bowtie barrier'),
             this.createVertexTemplateEntry('Security Control','shape=mxgraph.bowtie.control;whiteSpace=wrap;html=1;verticalAlign=bottom;fontSize=16;aspect=fixed', 120, 80, 'Security Control', 'Security Control', null, null, 'bowtie security control'),
 			this.createVertexTemplateEntry('Threat','shape=mxgraph.bowtie.threat;html=1;whiteSpace=wrap;fontSize=16;aspect=fixed', 120, 80, 'Threat', 'Threat', null, null, 'bowtie threat'),
             this.createVertexTemplateEntry('Consequence','shape=mxgraph.bowtie.consequence;html=1;whiteSpace=wrap;fontSize=16;aspect=fixed', 120, 80, 'Consequence', 'Consequence', null, null, 'bowtie consequence'),

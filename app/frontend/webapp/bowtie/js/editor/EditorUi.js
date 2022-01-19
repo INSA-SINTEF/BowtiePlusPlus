@@ -45,12 +45,13 @@ EditorUi = function (editor, container, lightbox) {
                     if (target.customID != 'Security Control' &&
                         target.customID != 'Event' &&
                         target.customID != 'Barrier' &&
+                        target.customID != 'Barrier_react' &&
                         target.customID != 'Consequence') {
                         return 'A ' + source.customID + ' element can only connect to the following elements: itself, Event, Barrier , Consequence';
                     }
                     break;
                 case 'Cause':
-                    if (target.customID !== 'Barrier' && target.customID !== 'Event') {
+                    if (target.customID !== 'Barrier' && target.customID !== 'Barrier_react' &&target.customID !== 'Event') {
                         return 'A ' + source.customID + ' element can only connect to the following elements: Barrier, Event';
                     }
                     break;
@@ -63,12 +64,14 @@ EditorUi = function (editor, container, lightbox) {
                     if (target.customID !== 'Event' &&
                         target.customID !== 'Security Control' &&
                         target.customID !== 'Consequence' &&
+                        target.customID !== 'Barrier_react' &&
                         target.customID !== 'Barrier') {
                         return 'A ' + source.customID + ' element can only connect to the following elements: Event, a Security Control, a Consequence or itself';
                     }
                     break;
                 case 'Event':
                     if (target.customID !== 'Barrier' &&
+                        target.customID !== 'Barrier_react' &&
                         target.customID !== 'Security Control' &&
                         target.customID !== 'Consequence') {
                         return 'A ' + source.customID + ' element can only connect to the following elements: Barrier, Security Control, Consequence ';
@@ -80,7 +83,8 @@ EditorUi = function (editor, container, lightbox) {
                     }
                     break;
                 case 'Escalation Factor':
-                    if (target.customID !== 'Barrier') {
+                    if (target.customID !== 'Barrier' &&
+                        target.customID !== 'Barrier_react') {
                         return 'A ' + source.customID + ' element can only connect to the following elements: a Barrier';
                     }
                     break;
