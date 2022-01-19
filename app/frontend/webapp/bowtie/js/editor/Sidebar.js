@@ -3330,7 +3330,7 @@ Sidebar.prototype.createVertexTemplate = function(customID,style, width, height,
 	var cells = [new mxCell((value != null) ? value : '', new mxGeometry(0, 0, width, height), style)];
 	cells[0].vertex = true;
 	cells[0].customID = customID;
-	console.log(cells[0].customID);
+	//console.log(cells[0].customID);
 	return this.createVertexTemplateFromCells(cells, width, height, title, showLabel, showTitle, allowCellsInserted);
 };
 

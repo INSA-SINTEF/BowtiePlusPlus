@@ -1717,7 +1717,11 @@ ExportDialog.exportFile = function (editorUi, name, format, bg, s, b) {
             editorUi.editor.graph.threats.forEach(threat => {
                 threatObject = {...threat};
                 barriersObjects = [];
+                escalfactorsObjetcs = [];
                 threat.barriers.forEach(barrier => {
+                    barrier.escalfactors.forEach(factor =>{
+                        escalfactorsObjetcs.push({...factor})
+                    })
                     barriersObjects.push({...barrier})
                 });
                 threatObject._barriers = barriersObjects;
@@ -1734,7 +1738,11 @@ ExportDialog.exportFile = function (editorUi, name, format, bg, s, b) {
             editorUi.editor.graph.consequences.forEach(consequence => {
                 consequenceObject = {...consequence};
                 barriersObjects = [];
+                escalfactorsObjetcs = [];
                 consequence.barriers.forEach(barrier => {
+                    barrier.escalfactors.forEach(factor =>{
+                        escalfactorsObjetcs.push({...factor})
+                    })
                     barriersObjects.push({...barrier})
                 });
                 consequenceObject._barriers = barriersObjects;

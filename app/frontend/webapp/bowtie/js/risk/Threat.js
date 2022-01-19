@@ -74,8 +74,12 @@ class Threat {
             return ('Missing parameters');
         }else{
             let barriersFailureProbability = 1;
+            let escalationFactorProbability = 1;
             this.barriers.forEach(barrier => {
-                barriersFailureProbability *= barrier.failureProbability;
+                barrier.escalfactors.forEach(e => {
+                    escalationFactorProbability *= (1-e.probability);
+                })
+                barriersFailureProbability *= 1-(barrier.failureProbability * escalationFactorProbability);
             })
             return ((this.getMeanValue()/10) * barriersFailureProbability);
         }
@@ -203,5 +207,11 @@ class Threat {
 
     set barriers(value) {
         this._barriers = value;
+    }
+
+    get barriers_escalfactors() {
+        let res = [];
+        this._barriers.forEach(b => b.escalfactors.forEach(e => res.push(e)));
+        return res;
     }
 }

@@ -124,4 +124,10 @@ class Consequence{
         this._indicator = value;
         this.updateStyle();
     }
+
+    get barriers_escalfactors() {
+        let res = [];
+        this._barriers.forEach(b => b.escalfactors.forEach(e => res.push(e)));
+        return res;
+    }
 }

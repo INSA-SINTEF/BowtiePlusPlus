@@ -2372,6 +2372,50 @@ Graph.prototype.updateThreatBarriers = function(cell, threat) {
 /**
  * Bowtie++ feature
  * Recursive function
+ * Check if an escalation factor is linked to given cell, and append it to parameter escalfactors.
+ * Call it with the barrier's cell and barrier object
+ * @param cell
+ * @param barrier
+ * @returns {escalfators}
+ */
+Graph.prototype.updateBarrierEscalFactors = function(cell, barrier) {
+    let lastEscalfactor = true;
+    if(cell.edges != null && cell.edges.length > 0){
+        for (const edge of Object.values(cell.edges)) {
+            //delete the case in which the source is the cell itself
+            if (edge.target.id === cell.id){
+                //check if a edge is coming from an escalation factor
+                if (edge.source.customID === 'Escalation Factor'){
+                    let foundFactor = barrier.escalfactors.find(factor => factor.cell === edge.source.id);
+                    // check if the factor was not found in the barrier to add it
+                    if(foundFactor === undefined){
+                        barrier.escalfactors.push(new EscalationFactor(edge.source));
+                    }else{
+                        foundFactor.name = edge.source.value;
+                    }
+                    this.updateBarrierEscalFactors(edge.source, barrier);
+                    lastEscalfactor = false;
+                    break;
+                }
+            }
+        }
+    }
+    if(lastEscalfactor){
+        let newFactorsArray = [];
+        // only add the factors that are on the diagram
+        barrier.escalfactors.forEach(factor => {
+            if(this.model.getCell(factor.cell) != null){
+                newFactorsArray.push(factor);
+            }
+        });
+        barrier.escalfactors = newFactorsArray;
+        barrier.escalfactors.reverse();
+    }
+}
+
+/**
+ * Bowtie++ feature
+ * Recursive function
  * Check if a barrier is linked to given cell, and append it to parameter barriers.
  * Call it with the consequence's cell and consequence object
  * @param cell
@@ -2444,8 +2488,14 @@ Graph.prototype.updateAllThreats = function () {
             newThreatsArray.push(threat);
         }
     });
-    //update threats barriers
-    newThreatsArray.forEach(threat => this.updateThreatBarriers(this.model.getCell(threat.cell), threat));
+    //update threats barriers and their escalation factors
+    newThreatsArray.forEach(threat => {
+        console.log(threat.barriers);
+        this.updateThreatBarriers(this.model.getCell(threat.cell), threat);
+        console.log(threat.barriers);
+        threat.barriers.forEach(barrier => this.updateBarrierEscalFactors(this.model.getCell(barrier.cell), barrier));
+        threat.barriers.forEach(b => console.log(b.escalfactors));
+    });
     this.setThreats(newThreatsArray);
 
     // Alphabetically sort this.threats
@@ -2512,8 +2562,11 @@ Graph.prototype.updateAllConsequences = function() {
             newConsequencesArray.push(consequence);
         }
     });
-    //update consequences barriers
-    newConsequencesArray.forEach(consequence => this.updateConsequenceBarriers(this.model.getCell(consequence.cell), consequence));
+    //update consequences barriers and their escalation factors
+    newConsequencesArray.forEach(consequence => {
+        this.updateConsequenceBarriers(this.model.getCell(consequence.cell), consequence);
+        consequence.barriers.forEach(barrier => this.updateBarrierEscalFactors(this.model.getCell(barrier.cell), barrier));
+    });
     this.setConsequences(newConsequencesArray);
 
     //Alphabetically sort this.consequences
