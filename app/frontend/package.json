@@ -1,0 +1,7 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "dependencies": {
+    "pdfmake": "^0.2.4"
+  }
+}

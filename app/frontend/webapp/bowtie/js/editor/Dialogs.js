@@ -1401,12 +1401,12 @@ var ExportDialog = function (editorUi) {
     jpgOption.setAttribute('value', 'jpg');
     mxUtils.write(jpgOption, mxResources.get('formatJpg'));
     imageFormatSelect.appendChild(jpgOption);
-    /*
+
     var pdfOption = document.createElement('option');
     pdfOption.setAttribute('value', 'pdf');
     mxUtils.write(pdfOption, mxResources.get('formatPdf'));
     imageFormatSelect.appendChild(pdfOption);
-    */
+
     var svgOption = document.createElement('option');
     svgOption.setAttribute('value', 'svg');
     mxUtils.write(svgOption, mxResources.get('formatSvg'));
@@ -1417,6 +1417,10 @@ var ExportDialog = function (editorUi) {
         xmlOption.setAttribute('value', 'xml');
         mxUtils.write(xmlOption, mxResources.get('formatXml'));
         imageFormatSelect.appendChild(xmlOption);
+    }
+
+    if (ExportDialog.showPdfOption){
+        //TODO add an option to select or not elements' info to generate the pdf
     }
 
     td = document.createElement('td');
@@ -1495,6 +1499,8 @@ var ExportDialog = function (editorUi) {
     td = document.createElement('td');
     td.appendChild(transparentCheckbox);
     mxUtils.write(td, mxResources.get('transparent'));
+
+    row.appendChild(td);
 
     row.appendChild(td);
 
@@ -1676,6 +1682,11 @@ ExportDialog.showGifOption = true;
 ExportDialog.showXmlOption = true;
 
 /**
+ * Global switches for the export dialog.
+ */
+ExportDialog.showPdfOption = true;
+
+/**
  * Hook for getting the export format. Returns null for the default
  * intermediate XML export format or a function that returns the
  * parameter and value to be used in the request in the form
@@ -1733,7 +1744,7 @@ ExportDialog.exportFile = function (editorUi, name, format, bg, s, b) {
 
         if (editorUi.editor.graph.consequences.length > 0) {
 
-            // Convert threats object into generic javascript Object
+            // Convert consequence object into generic javascript Object
             let consequencesObjects = [];
             editorUi.editor.graph.consequences.forEach(consequence => {
                 consequenceObject = {...consequence};
@@ -1758,10 +1769,12 @@ ExportDialog.exportFile = function (editorUi, name, format, bg, s, b) {
         xml = "<diagram>" + xml + dataXml + "</diagram>";
         download(xml);
         //ExportDialog.saveLocalFile(editorUi, mxUtils.getXml(editorUi.editor.getGraphXml()), name, format);
+
     } else if (format === 'svg') {
         svg = mxUtils.getXml(graph.getSvg(bg, s, b));
         download(svg);
         //ExportDialog.saveLocalFile(editorUi, mxUtils.getXml(graph.getSvg(bg, s, b)), name, format);
+
     } else if (format === 'png' || format === 'jpg') {
         const svg = mxUtils.getXml(graph.getSvg(bg, s, b));
 
@@ -1817,9 +1830,11 @@ ExportDialog.exportFile = function (editorUi, name, format, bg, s, b) {
             pngImage.src = imgData;
             var a = document.createElement("a"),
                 url = imgData;
+
             a.href = url;
             a.download = name;
             document.body.appendChild(a);
+            console.log(pngImage);
             a.click();
             setTimeout(function () {
                 document.body.removeChild(a);
@@ -1869,8 +1884,23 @@ ExportDialog.exportFile = function (editorUi, name, format, bg, s, b) {
         }
 
          */
-    } else if (format === 'pdf' || 'gif') {
+    } else if (format === 'gif') {
         alert("Those parameters are not yet supported")
+
+
+    } else if (format === 'pdf') {
+
+        svgContent = mxUtils.getXml(graph.getSvg(bg, s, b));
+
+        var docDefinition = {
+            content: [
+                {
+                    // you'll most often use dataURI images on the browser side
+                    // if no width/height/fit is provided, the original size will be used
+                    svg: svgContent
+                }]};
+
+        pdfMake.createPdf(docDefinition).download();
     }
 };
 
