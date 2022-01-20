@@ -1775,7 +1775,7 @@ ExportDialog.exportFile = function (editorUi, name, format, bg, s, b) {
         download(svg);
         //ExportDialog.saveLocalFile(editorUi, mxUtils.getXml(graph.getSvg(bg, s, b)), name, format);
 
-    } else if (format === 'png' || format === 'jpg') {
+    } else if (format === 'png' || format === 'jpg' || format === 'pdf') {
         const svg = mxUtils.getXml(graph.getSvg(bg, s, b));
 
         function svgToPng(svg, callback) {
@@ -1828,19 +1828,33 @@ ExportDialog.exportFile = function (editorUi, name, format, bg, s, b) {
             const pngImage = document.createElement('img');
             document.body.appendChild(pngImage);
             pngImage.src = imgData;
+
+            if (format === 'pdf') {
+
+                //Here we fill all PDF content, relative to the pdfMake documentation
+                //TODO there is the png image of the diagram integrated into the PDF,
+                //TODO now we want header, information about the user, the date, title, and all informations
+                //TODO links to the elements. See the XML just above, informations are display into the xml representation
+                var docDefinition = {
+                    content: [
+                        {
+                            image: imgData
+                        }]
+                };
+
+                pdfMake.createPdf(docDefinition).download();
+            }
             var a = document.createElement("a"),
                 url = imgData;
 
             a.href = url;
             a.download = name;
             document.body.appendChild(a);
-            console.log(pngImage);
             a.click();
             setTimeout(function () {
                 document.body.removeChild(a);
                 window.URL.revokeObjectURL(url);
             }, 0);
-
         });
 
         /*
@@ -1886,23 +1900,7 @@ ExportDialog.exportFile = function (editorUi, name, format, bg, s, b) {
          */
     } else if (format === 'gif') {
         alert("Those parameters are not yet supported")
-
-
-    } else if (format === 'pdf') {
-
-        svgContent = mxUtils.getXml(graph.getSvg(bg, s, b));
-
-        var docDefinition = {
-            content: [
-                {
-                    // you'll most often use dataURI images on the browser side
-                    // if no width/height/fit is provided, the original size will be used
-                    svg: svgContent
-                }]};
-
-        pdfMake.createPdf(docDefinition).download();
-    }
-};
+}};
 
 /**
  * Hook for getting the export format. Returns null for the default
