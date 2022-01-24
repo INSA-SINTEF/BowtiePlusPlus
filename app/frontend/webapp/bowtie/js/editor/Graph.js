@@ -2490,11 +2490,8 @@ Graph.prototype.updateAllThreats = function () {
     });
     //update threats barriers and their escalation factors
     newThreatsArray.forEach(threat => {
-        console.log(threat.barriers);
         this.updateThreatBarriers(this.model.getCell(threat.cell), threat);
-        console.log(threat.barriers);
         threat.barriers.forEach(barrier => this.updateBarrierEscalFactors(this.model.getCell(barrier.cell), barrier));
-        threat.barriers.forEach(b => console.log(b.escalfactors));
     });
     this.setThreats(newThreatsArray);
 

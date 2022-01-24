@@ -1,7 +1,7 @@
 class EscalationFactor{
     constructor(cell){
         this._cell = cell.id;
-        this._probability = 1;
+        this._probability = 0;
         this._name = cell.value;
     }
 
@@ -30,7 +30,7 @@ class EscalationFactor{
 
     set probability(value) {
         if (isNaN(value) || value < 0 || value > 1 || value === ""){
-            this._probability = 1;
+            this._probability = 0;
         }else{
             this._probability = value;
         }

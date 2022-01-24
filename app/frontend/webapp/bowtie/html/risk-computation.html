@@ -86,7 +86,7 @@
                             <md-table-cell class="escalfactors" v-if="threat.barriers_escalfactors.length == 0">No escalation factors defined</md-table-cell>
                             <md-table-cell class="escalfactors"v-else>
                                 <md-menu md-size="auto">
-                                    <md-button md-menu-trigger>Edit Escalation Factors' probability</md-button>
+                                    <md-button md-menu-trigger>Edit Escalation Factors' impact</md-button>
                                     <md-menu-content class="factors_menu">
                                         <md-menu-item v-for="factor in threat.barriers_escalfactors" v-bind:key="factor.cell">
                                             <div class="factor_detail_name_div">{{factor.name}} : </div><span class="factor_detail_field_span"><md-field class="factor_detail_field"><md-input class="numeric_input" v-model="factor.probability" v-on:change="emitThreats()" type="number" min ="0" max="1" step="0.01"></md-input></md-field></span>

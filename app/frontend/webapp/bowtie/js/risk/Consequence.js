@@ -17,8 +17,12 @@ class Consequence{
     getProduct(){
         if(this.allDefined()){
             let barriersFailureProbability = 1;
+            let escalationFactorProbability = 1;
             this.barriers.forEach(barrier => {
-                barriersFailureProbability *= barrier.failureProbability;
+                barrier.escalfactors.forEach(e => {
+                    escalationFactorProbability *= (1-e.probability);
+                })
+                barriersFailureProbability *= 1-(barrier.failureProbability * escalationFactorProbability);
             })
             return (this.impactValue * this.probability * barriersFailureProbability);
         }
