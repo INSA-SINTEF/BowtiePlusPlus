@@ -22,19 +22,19 @@ class Validator(ABC):
 class LowercaseValidator(Validator):
     """Test class for lowercase letter in password """
 
-
     def validate(self, data, user=None):
         """Validate password"""
         if not re.findall('[a-z]', data):
             raise ValidationError(dict(password=
-                "The password must contain at least 1 lowercase letter, a-z."),
-                code='password_no_lower')
+                                       "The password must contain at least 1 lowercase letter, a-z."),
+                                  code='password_no_lower')
 
     def get_help_text(self):
         """Help message"""
-        return(
+        return (
             "Your password must contain at least 1 lowercase letter, a-z."
         )
+
 
 class UppercaseValidator(Validator):
     """Validation for uppercase in password"""
@@ -43,14 +43,15 @@ class UppercaseValidator(Validator):
         """Validate password"""
         if not re.findall('[A-Z]', data):
             raise ValidationError(dict(
-                    password="The password must contain at least 1 uppercase letter, A-Z."),
-                    code='password_no_upper')
+                password="The password must contain at least 1 uppercase letter, A-Z."),
+                code='password_no_upper')
 
     def get_help_text(self):
         """ Help message """
-        return(
-                "Your password must contain at least 1 uppercase letter, A-Z."
-            )
+        return (
+            "Your password must contain at least 1 uppercase letter, A-Z."
+        )
+
 
 class SymbolValidator(Validator):
     """Synbol Validator """
@@ -60,17 +61,16 @@ class SymbolValidator(Validator):
         regex_validator = r"[()[\]{}|\\`~!@#$%^&*_\-+=;:\'\",<>./?]"
         if not re.findall(regex_validator, data):
             raise ValidationError(dict(password=
-                r"The password must contain at least 1 symbol: " +
-                  "()[]{}|`~!@#$%^&*_-+=;:'\",<>./?"), code='password_no_symbol')
+                                       r"The password must contain at least 1 symbol: " +
+                                       "()[]{}|`~!@#$%^&*_-+=;:'\",<>./?"), code='password_no_symbol')
 
     def get_help_text(self):
         """Helper function"""
-        return(
-            r"Your password must contain at least 1 symbol: " +
-            "()[]{}|`~!@#$%^&*_-+=;:'\",<>./?"
-            "Your password must contain at least 1 symbol: " +
-            r"()[]{}|\`~!@#$%^&*_-+=;:'\",<>./?")
-
+        return (
+                r"Your password must contain at least 1 symbol: " +
+                "()[]{}|`~!@#$%^&*_-+=;:'\",<>./?"
+                "Your password must contain at least 1 symbol: " +
+                r"()[]{}|\`~!@#$%^&*_-+=;:'\",<>./?")
 
 
 class DigitValidator(Validator):
@@ -80,13 +80,13 @@ class DigitValidator(Validator):
         """Validate password"""
         if not re.findall('[0-9]', data):
             raise ValidationError(dict(password="The password must contain at least 1 digit, 1-9."),
-                    code='password_no_digit')
+                                  code='password_no_digit')
 
     def get_help_text(self):
         """ Help message """
-        return(
-                "Your password must contain at least 1 digit"
-            )
+        return (
+            "Your password must contain at least 1 digit"
+        )
 
 
 class UserNameValidator(Validator):
@@ -95,11 +95,10 @@ class UserNameValidator(Validator):
         """Validate password"""
         if len(re.findall('[0-9A-Za-z_-]', data)) != len(data):
             raise ValidationError(dict(username="The username must contain only letters, digits and undescores"),
-                    code='invalid-username')
+                                  code='invalid-username')
 
     def get_help_text(self):
         """ Help message """
-        return(
-                "The username must contain only letters, diggits and undescores"
-            )
-
+        return (
+            "The username must contain only letters, diggits and undescores"
+        )
