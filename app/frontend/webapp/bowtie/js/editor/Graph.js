@@ -1771,9 +1771,9 @@ Graph.prototype.getCellStyle = function (cell) {
                         case 'VUL':
                             cell.setValue('Vulnerabilities')
                             break;
-                        case 'SEC':
+                        /*case 'SEC':
                             cell.setValue('Security control')
-                            break;
+                            break;*/
                         case 'IND':
                             cell.setValue('Individual')
                             break;
@@ -1804,9 +1804,9 @@ Graph.prototype.getCellStyle = function (cell) {
                     case 'Vulnerabilities':
                         cell.setValue('VUL')
                         break;
-                    case 'Security control':
+                    /*case 'Security control':
                         cell.setValue('SEC')
-                        break;
+                        break;*/
                     case 'Individual':
                         cell.setValue('IND')
                         break;
@@ -2340,8 +2340,8 @@ Graph.prototype.updateThreatBarriers = function(cell, threat) {
         for (const edge of Object.values(cell.edges)) {
             //delete the case in which the target is the cell itself
             if(edge.source.id === cell.id){
-                //check if a edge is toward a barrier
-                if (edge.target.customID === 'Security Control' || edge.target.customID === 'Barrier'){
+                //check if a edge is toward/coming from a barrier
+                if (/*edge.target.customID === 'Security Control' ||*/ edge.target.customID === 'Barrier' /*|| edge.source.customID === 'Barrier'*/){
                     let foundBarrier = threat.barriers.find(barrier => barrier.cell === edge.target.id);
                     // check if the barrier was not found in the threat to add it
                     if(foundBarrier === undefined){
@@ -2429,7 +2429,7 @@ Graph.prototype.updateConsequenceBarriers = function(cell, consequence) {
             //delete the case in which the source is the cell itself
             if (edge.target.id === cell.id){
                 //check if a edge is coming from a barrier
-                if (edge.source.customID === 'Security Control' || edge.source.customID === 'Barrier'){
+                if (/*edge.source.customID === 'Security Control' ||*/ edge.source.customID === 'Barrier'){
                     let foundBarrier = consequence.barriers.find(barrier => barrier.cell === edge.source.id);
                     // check if the barrier was not found in the consequence to add it
                     if(foundBarrier === undefined){
