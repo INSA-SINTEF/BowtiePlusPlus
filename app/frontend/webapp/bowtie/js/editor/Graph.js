@@ -132,18 +132,23 @@ Graph = function (container, model, renderHint, stylesheet, themes) {
                 switch (c) {
                     case 5:
                         var fill = "#00ff06";
+                        var impact_ind = 0.5;
                         break;
                     case 4:
                         var fill = "#a7ec67";
+                        var impact_ind = 2.5;
                         break;
                     case 3:
                         var fill = "#fffe00";
+                        var impact_ind = 4.5;
                         break;
                     case 2:
                         var fill = "#fe773d";
+                        var impact_ind = 6.5;
                         break;
                     case 1:
                         var fill = "#ff0000";
+                        var impact_ind = 9;
                         break;
                     default:
                     case 0:
@@ -154,11 +159,39 @@ Graph = function (container, model, renderHint, stylesheet, themes) {
                 //set color of cell
                 var s = 'ellipse;' + 'fillColor=' + fill + ';'
                 cell.setStyle(s)
-
+                this.updateAllConsequences();
                 this.updateAllThreats();
                 // If the matrix is connected to a threat, update the color of the threat
                 if (cell.getParent().getParent().edges != null && cell.getParent().getParent().edges.length > 0) {
-                    if (cell.getParent().getParent().edges[0].source.customID = 'Threat') {
+                    if (cell.getParent().getParent().edges[0].source.customID === 'Consequence') {
+                        this.consequences.forEach(cons => {
+                            if (cons.cell === cell.getParent().getParent().edges[0].source.id){
+                                switch(cell.getParent().value){
+                                    case("COM"):
+                                        cons.indicator += impact_ind;
+                                        cons._com = true;
+                                        break;
+
+                                    case("REP"):
+                                        cons.indicator += impact_ind;
+                                        cons._rep = true;
+                                        break;
+
+                                    case("ENV"):
+                                        cons.indicator += impact_ind;
+                                        cons._env = true;
+                                        break;
+
+                                    case("IND"):
+                                        cons.indicator += impact_ind;
+                                        cons._ind = true;
+                                        break;
+                                }
+                                cons.updateStyle();
+                            }
+                        });
+                    }
+                    if (cell.getParent().getParent().edges[0].source.customID === 'Threat') {
                         this.threats.forEach(threat => {
                             if (threat.cell === cell.getParent().getParent().edges[0].source.id){
                                 let value = threat.convertColorToValue(fill);
