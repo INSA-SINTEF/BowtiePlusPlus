@@ -2340,8 +2340,8 @@ Graph.prototype.updateThreatBarriers = function(cell, threat) {
         for (const edge of Object.values(cell.edges)) {
             //delete the case in which the target is the cell itself
             if(edge.source.id === cell.id){
-                //check if a edge is toward/coming from a barrier
-                if (/*edge.target.customID === 'Security Control' ||*/ edge.target.customID === 'Barrier' /*|| edge.source.customID === 'Barrier'*/){
+                //check if a edge is toward a barrier
+                if (edge.target.customID === 'Barrier'){
                     let foundBarrier = threat.barriers.find(barrier => barrier.cell === edge.target.id);
                     // check if the barrier was not found in the threat to add it
                     if(foundBarrier === undefined){
@@ -2351,9 +2351,23 @@ Graph.prototype.updateThreatBarriers = function(cell, threat) {
                     }
                     this.updateThreatBarriers(edge.target, threat);
                     lastBarrier = false;
-                    break;
+                    //break;
                 }
             }
+            /*else {
+                if (edge.source.customID === 'Barrier'){
+                    let foundBarrier = threat.barriers.find(barrier => barrier.cell === edge.source.id);
+                    // check if the barrier was not found in the threat to add it
+                    if(foundBarrier === undefined){
+                        threat.barriers.push(new Barrier(edge.source));
+                    }else{
+                        foundBarrier.name = edge.source.value;
+                    }
+                    this.updateThreatBarriers(edge.source, threat);
+                    lastBarrier = false;
+                    break;
+                }
+            }*/
 
         }
     }
