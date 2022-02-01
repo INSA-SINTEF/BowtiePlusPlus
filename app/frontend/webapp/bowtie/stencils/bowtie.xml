@@ -5,7 +5,11 @@
 			<constraint x="0.6" y="0.25" perimeter="0" name="E"></constraint>
 		</connections>
 	<background>
-		<roundrect x="0" y="40" w="120" h="40" arcsize="6"></roundrect>
+		<roundrect x="0" y="50" w="120" h="30" arcsize="6">
+		</roundrect>
+		<stroke>
+		</stroke>
+		<fillcolor color="#FFFFFF"></fillcolor>
 	</background>
 	<foreground>
 		<stroke>
@@ -13,10 +17,10 @@
 		<fillcolor color="#9d99b4"></fillcolor>
 		<path>
 		<move x="50" y="0"/>
-		<line x="50" y="40"/>
-		<arc rx="5" ry="5" x-axis-rotation="0" large-arc-flag="0" sweep-flag="1" x="50" y="40"></arc>
-		<line x="70" y="40"/>
-		<arc rx="5" ry="5" x-axis-rotation="0" large-arc-flag="0" sweep-flag="1" x="70" y="40"/>
+		<line x="50" y="50"/>
+		<arc rx="5" ry="5" x-axis-rotation="0" large-arc-flag="0" sweep-flag="1" x="50" y="50"></arc>
+		<line x="70" y="50"/>
+		<arc rx="5" ry="5" x-axis-rotation="0" large-arc-flag="0" sweep-flag="1" x="70" y="50"/>
 		<line x="70" y="0"/>
 		<arc rx="5" ry="5" x-axis-rotation="0" large-arc-flag="0" sweep-flag="1" x="70" y="0"/>
 		<line x="50" y="0"></line>
@@ -690,6 +694,18 @@
 			</stroke>
 			<fillcolor color="#FFFFFF"></fillcolor>
 			<path>
+				<move x="5" y="40"/>
+				<line x="60" y="5"/>
+				<line x="115" y="40"/>
+				<line x="60" y="75"/>
+				<close/>
+			</path>
+			<fillstroke></fillstroke><stroke/>
+		</foreground>
+		<background>
+			<stroke></stroke>
+			<fillcolor color="#9d99b4"></fillcolor>
+			<path>
 				<move x="0" y="40"/>
 				<line x="60" y="0"/>
 				<line x="120" y="40"/>
@@ -697,14 +713,6 @@
 				<close/>
 			</path>
 			<fillstroke></fillstroke><stroke/>
-		</foreground>
-		<background>
-			<stroke></stroke>
-			<fillcolor color="#27e1d9"></fillcolor>
-			<path>
-				<roundrect x="5" y="5" h="30" w="110" arcsize="6"></roundrect></path>
-			<fillstroke></fillstroke>
-			<stroke></stroke>
 		</background>
 	</shape>
   	<shape aspect="fixed" h="80" name="hazard" strokewidth="1" w="120">
