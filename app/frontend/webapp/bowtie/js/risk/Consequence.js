@@ -4,12 +4,21 @@ class Consequence{
         this._cell = cell.id;
         this._impactValue =  "";
         this._probability =  "";
-        this._indicator = "";
+        this._indicator = 0;
         this._barriers = [];
         this._name = cell.value;
         this._isHighest = false;
+        this._com = false;
+        this._rep = false;
+        this._env = false;
+        this._ind = false;
         this.updateStyle();
     }
+
+    impactDefined(){
+        return this._ind && this._com && this._env && this._rep;
+    }
+
     allDefined(){
         return (this._impactValue !== "") && (this._probability !== "");
     }
@@ -17,43 +26,51 @@ class Consequence{
     getProduct(){
         if(this.allDefined()){
             let barriersFailureProbability = 1;
+            let escalationFactorProbability = 1;
             this.barriers.forEach(barrier => {
-                barriersFailureProbability *= barrier.failureProbability;
+                barrier.escalfactors.forEach(e => {
+                    escalationFactorProbability *= (1-e.probability);
+                })
+                barriersFailureProbability *= 1-(barrier.failureProbability * escalationFactorProbability);
             })
             return (this.impactValue * this.probability * barriersFailureProbability);
         }
     }
     updateStyle(){
-        let cell = window.currentUI.editor.graph.model.getCell(this.cell);
-        if(this.isHighest){
-            cell.setStyle('shape=mxgraph.bowtie.highestconsequence;whiteSpace=wrap;html=1;fontSize=16;aspect=fixed');
-        }else{
-            if (this.indicator == ""){
-                cell.setStyle('shape=mxgraph.bowtie.consequence;whiteSpace=wrap;html=1;fontSize=16;aspect=fixed');
+        if(this.impactDefined()){
+            let cell = window.currentUI.editor.graph.model.getCell(this.cell);
+            this._indicator = this._indicator/4;
+            if(this.isHighest){
+                cell.setStyle('shape=mxgraph.bowtie.highestconsequence;whiteSpace=wrap;html=1;fontSize=16;aspect=fixed');
             }else{
-                switch(true){
-                    case this.indicator < 1.5:
-                        cell.setStyle('shape=mxgraph.bowtie.verylowconsequence;whiteSpace=wrap;html=1;fontSize=16;aspect=fixed');
-                        break;
-                    case this.indicator < 3.5:
-                        cell.setStyle('shape=mxgraph.bowtie.lowconsequence;whiteSpace=wrap;html=1;fontSize=16;aspect=fixed');
-                        break;
-                    case this.indicator < 5.5:
-                        cell.setStyle('shape=mxgraph.bowtie.mediumconsequence;whiteSpace=wrap;html=1;fontSize=16;aspect=fixed');
-                        break;
-                    case this.indicator < 7.5:
-                        cell.setStyle('shape=mxgraph.bowtie.highconsequence;whiteSpace=wrap;html=1;fontSize=16;aspect=fixed');
-                        break;
-                    case this.indicator <= 10.0:
-                        cell.setStyle('shape=mxgraph.bowtie.highconsequence;whiteSpace=wrap;html=1;fontSize=16;aspect=fixed');
-                        break;
-                    default:
-                        cell.setStyle('shape=mxgraph.bowtie.consequence;whiteSpace=wrap;html=1;fontSize=16;aspect=fixed');
+                if (this.indicator === 0){
+                    cell.setStyle('shape=mxgraph.bowtie.consequence;whiteSpace=wrap;html=1;fontSize=16;aspect=fixed');
+                }else{
+                    switch(true){
+                        case this.indicator < 1.5:
+                            cell.setStyle('shape=mxgraph.bowtie.verylowconsequence;whiteSpace=wrap;html=1;fontSize=16;aspect=fixed');
+                            break;
+                        case this.indicator < 3.5:
+                            cell.setStyle('shape=mxgraph.bowtie.lowconsequence;whiteSpace=wrap;html=1;fontSize=16;aspect=fixed');
+                            break;
+                        case this.indicator < 5.5:
+                            cell.setStyle('shape=mxgraph.bowtie.mediumconsequence;whiteSpace=wrap;html=1;fontSize=16;aspect=fixed');
+                            break;
+                        case this.indicator < 7.5:
+                            cell.setStyle('shape=mxgraph.bowtie.highconsequence;whiteSpace=wrap;html=1;fontSize=16;aspect=fixed');
+                            break;
+                        case this.indicator <= 10.0:
+                            cell.setStyle('shape=mxgraph.bowtie.highconsequence;whiteSpace=wrap;html=1;fontSize=16;aspect=fixed');
+                            break;
+                        default:
+                            cell.setStyle('shape=mxgraph.bowtie.consequence;whiteSpace=wrap;html=1;fontSize=16;aspect=fixed');
+                    }
                 }
-            }
 
+            }
+            window.currentUI.editor.graph.refresh();
         }
-        window.currentUI.editor.graph.refresh();
+
     }
 
     get cell() {
@@ -122,6 +139,12 @@ class Consequence{
 
     set indicator(value) {
         this._indicator = value;
-        this.updateStyle();
+        //this.updateStyle();
+    }
+
+    get barriers_escalfactors() {
+        let res = [];
+        this._barriers.forEach(b => b.escalfactors.forEach(e => res.push(e)));
+        return res;
     }
 }

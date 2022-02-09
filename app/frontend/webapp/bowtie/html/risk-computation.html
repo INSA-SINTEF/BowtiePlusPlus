@@ -21,6 +21,7 @@
     <script type="text/javascript" src="../js/risk/Consequence.js"></script>
     <script type="text/javascript" src="../js/risk/Matrix.js"></script>
     <script type="text/javascript" src="../js/risk/Barrier.js"></script>
+    <script type="text/javascript" src="../js/risk/EscalationFactor.js"></script>
     <script type="text/javascript" src="../lib/mxgraph/src/js/mxClient.js"></script>
 
     <!-- Remote styles -->
@@ -63,6 +64,7 @@
                         <md-table-head class="threat_description">Threat T<sub>i</sub></md-table-head>
                         <md-table-head class="indicator">Indicator</md-table-head>
                         <md-table-head class="barriers">Barriers</md-table-head>
+                        <md-table-head class="escalfactors">Escalation Factors</md-table-head>
                         <md-table-head class="probability" >Probability p(T<sub>i</sub>)</md-table-head>
                         <md-table-head class="details">Parameters</md-table-head>
                     </md-table-row >
@@ -75,8 +77,19 @@
                                 <md-menu md-size="auto">
                                     <md-button md-menu-trigger>Edit Barriers' failure probability</md-button>
                                     <md-menu-content class="barriers_menu">
-                                        <md-menu-item v-for="barrier in threat.barriers" v-bind:key="barrier.cell">
+                                        <md-menu-item  v-for="barrier in threat.barriers" v-bind:key="barrier.cell">
                                             <div class="barrier_detail_name_div">{{barrier.name}} : </div><span class="barrier_detail_field_span"><md-field class="barrier_detail_field"><md-input class="numeric_input" v-model="barrier.failureProbability" v-on:change="emitThreats()" type="number" min ="0" max="1" step="0.01"></md-input></md-field></span>
+                                        </md-menu-item>
+                                    </md-menu-content>
+                                </md-menu>
+                            </md-table-cell>
+                            <md-table-cell class="escalfactors" v-if="threat.barriers_escalfactors.length == 0">No escalation factors defined</md-table-cell>
+                            <md-table-cell class="escalfactors"v-else>
+                                <md-menu md-size="auto">
+                                    <md-button md-menu-trigger>Edit Escalation Factors' impact</md-button>
+                                    <md-menu-content class="factors_menu">
+                                        <md-menu-item v-for="factor in threat.barriers_escalfactors" v-bind:key="factor.cell">
+                                            <div class="factor_detail_name_div">{{factor.name}} : </div><span class="factor_detail_field_span"><md-field class="factor_detail_field"><md-input class="numeric_input" v-model="factor.probability" v-on:change="emitThreats()" type="number" min ="0" max="1" step="0.01"></md-input></md-field></span>
                                         </md-menu-item>
                                     </md-menu-content>
                                 </md-menu>
@@ -116,6 +129,7 @@
                 <md-table-row>
                     <md-table-head class="consequence_description">Consequence C<sub>j</sub></md-table-head>
                     <md-table-head class="barriers">Barriers</md-table-head>
+                    <md-table-head class="escalfactors">Escal. Factors</md-table-head>
                     <md-table-head class="impact_value" md-numeric>Impact Value L<sub>C<sub>j</sub></sub></md-table-head>
                     <md-table-head class="consequence_probability" md-numeric>Probability p(C<sub>j</sub>)'</md-table-head>
                     <md-table-head class="risk_value" >Risk Value R(U)<sub>j</sub></md-table-head>
@@ -129,6 +143,17 @@
                             <md-menu-content class="barriers_menu">
                                 <md-menu-item v-for="barrier in consequence.barriers" v-bind:key="barrier.cell">
                                     <div class="barrier_detail_name_div">{{barrier.name}} : </div><span class="barrier_detail_field_span"><md-field class="barrier_detail_field"><md-input class="numeric_input" v-model="barrier.failureProbability" v-on:change="emitConsequences()" type="number" min ="0" max="1" step="0.01"></md-input></md-field></span>
+                                </md-menu-item>
+                            </md-menu-content>
+                        </md-menu>
+                    </md-table-cell>
+                    <md-table-cell class="escalfactors" v-if="consequence.barriers_escalfactors == 0">No escalation factors defined</md-table-cell>
+                    <md-table-cell class="escalfactors" v-else>
+                        <md-menu md-size="auto">
+                            <md-button md-menu-trigger>Edit Escal. Factors' failure probability</md-button>
+                            <md-menu-content class="factors_menu">
+                                <md-menu-item v-for="factor in consequence.barriers_escalfactors" v-bind:key="factor.cell">
+                                    <div class="factor_detail_name_div">{{factor.name}} : </div><span class="factor_detail_field_span"><md-field class="factor_detail_field"><md-input class="numeric_input" v-model="factor._probability" v-on:change="emitConsequences()" type="number" min ="0" max="1" step="0.01"></md-input></md-field></span>
                                 </md-menu-item>
                             </md-menu-content>
                         </md-menu>
@@ -182,9 +207,9 @@
                             <li><span class="notation_symbol">n </span> : &nbsp The number of threats</li>
                             <li><span class="notation_symbol">T<sub>i</sub> </span> : &nbsp The threat i</li>
                             <li><span class="notation_symbol">p(T<sub>i</sub>) </span> : &nbsp The probability that the threat i occurs</li>
-                            <li><span class="notation_symbol">p(T<sub>i</sub>)' </span> : &nbsp The probability that the threat i occurs without security controls</li>
-                            <li><span class="notation_symbol">P<sub>SC<sub>k</sub></sub> </span> : &nbsp The probability that the security control k fails</li>
-                            <li><span class="notation_symbol">nb<sub>SC</sub> </span> : &nbsp The number of security controls</li>
+                            <li><span class="notation_symbol">p(T<sub>i</sub>)' </span> : &nbsp The probability that the threat i occurs without barriers</li>
+                            <li><span class="notation_symbol">P<sub>SC<sub>k</sub></sub> </span> : &nbsp The probability that the barrier k fails</li>
+                            <li><span class="notation_symbol">nb<sub>SC</sub> </span> : &nbsp The number of barriers</li>
                             <li><span class="notation_symbol">w<sub>i</sub> </span> : &nbsp Average weight of the threat i</li>
                         </ul>
                         </p>

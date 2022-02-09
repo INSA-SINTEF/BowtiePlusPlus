@@ -1,22 +1,26 @@
 <shapes name="mxGraph.bowtie">
-	<shape name="barrier" h="80" w="120" aspect="fixed" strokewidth="inherit">
+	<shape name="barrier_prev" h="80" w="120" aspect="fixed" strokewidth="inherit">
 		<connections>
 			<constraint x="0.4" y="0.25" perimeter="0" name="W"></constraint>
 			<constraint x="0.6" y="0.25" perimeter="0" name="E"></constraint>
 		</connections>
 	<background>
-		<roundrect x="0" y="40" w="120" h="40" arcsize="6"></roundrect>
+		<roundrect x="0" y="50" w="120" h="30" arcsize="6">
+		</roundrect>
+		<stroke>
+		</stroke>
+		<fillcolor color="#FFFFFF"></fillcolor>
 	</background>
 	<foreground>
 		<stroke>
 		</stroke>
-		<fillcolor color="#8badae"></fillcolor>
+		<fillcolor color="#9d99b4"></fillcolor>
 		<path>
 		<move x="50" y="0"/>
-		<line x="50" y="40"/>
-		<arc rx="5" ry="5" x-axis-rotation="0" large-arc-flag="0" sweep-flag="1" x="50" y="40"></arc>
-		<line x="70" y="40"/>
-		<arc rx="5" ry="5" x-axis-rotation="0" large-arc-flag="0" sweep-flag="1" x="70" y="40"/>
+		<line x="50" y="50"/>
+		<arc rx="5" ry="5" x-axis-rotation="0" large-arc-flag="0" sweep-flag="1" x="50" y="50"></arc>
+		<line x="70" y="50"/>
+		<arc rx="5" ry="5" x-axis-rotation="0" large-arc-flag="0" sweep-flag="1" x="70" y="50"/>
 		<line x="70" y="0"/>
 		<arc rx="5" ry="5" x-axis-rotation="0" large-arc-flag="0" sweep-flag="1" x="70" y="0"/>
 		<line x="50" y="0"></line>
@@ -25,6 +29,33 @@
 		</fillstroke>
 		<stroke/>
 	</foreground>
+	</shape>
+	<shape name="barrier_react" h="80" w="120" aspect="fixed" strokewidth="inherit">
+		<connections>
+			<constraint x="0.4" y="0.25" perimeter="0" name="W"></constraint>
+			<constraint x="0.6" y="0.25" perimeter="0" name="E"></constraint>
+		</connections>
+		<background>
+			<roundrect x="0" y="40" w="120" h="40" arcsize="6"></roundrect>
+		</background>
+		<foreground>
+			<stroke>
+			</stroke>
+			<fillcolor color="#4e4d58"></fillcolor>
+			<path>
+				<move x="50" y="0"/>
+				<line x="50" y="40"/>
+				<arc rx="5" ry="5" x-axis-rotation="0" large-arc-flag="0" sweep-flag="1" x="50" y="40"></arc>
+				<line x="70" y="40"/>
+				<arc rx="5" ry="5" x-axis-rotation="0" large-arc-flag="0" sweep-flag="1" x="70" y="40"/>
+				<line x="70" y="0"/>
+				<arc rx="5" ry="5" x-axis-rotation="0" large-arc-flag="0" sweep-flag="1" x="70" y="0"/>
+				<line x="50" y="0"></line>
+			</path>
+			<fillstroke>
+			</fillstroke>
+			<stroke/>
+		</foreground>
 	</shape>
 	<shape name="control" h="80" w="120" aspect="fixed" strokewidth="inherit">
 		<connections>
@@ -101,294 +132,588 @@
 	<shape name="threat" h="80" w="120" aspect="fixed" strokewidth="inherit">
 		<connections>
 			<constraint x="1" y="0.5" perimeter="0" name="E"></constraint>
+			<constraint x="0" y="0.5" perimeter="0" name="W"></constraint>
 			<constraint x="0.5" y="1" perimeter="0" name="S"></constraint>
 		</connections>
-		<background>
-			<stroke></stroke>
-			<fillcolor color="#f6c3b3"></fillcolor>
-			<roundrect x="0" y="0" w="120" h="80" arcsize="6"></roundrect>
-			<fillstroke></fillstroke>
-		</background>
-		<foreground>
-			<stroke></stroke>
-			<fillcolor color="#FFFFFF"></fillcolor>
-			<path><roundrect x="5" y="5" h="70" w="110" arcsize="6"></roundrect></path>
-			<fillstroke></fillstroke>
-			<stroke></stroke>
-		</foreground>
-	</shape>
-	<shape name="verylowthreat" h="80" w="120" aspect="fixed" strokewidth="inherit">
-	<connections>
-		<constraint x="1" y="0.5" perimeter="0" name="E"></constraint>
-		<constraint x="0.5" y="1" perimeter="0" name="S"></constraint>
-	</connections>
-	<background>
-		<stroke></stroke>
-		<fillcolor color="#00ff06"></fillcolor>
-		<roundrect x="0" y="0" w="120" h="80" arcsize="6"></roundrect>
-		<fillstroke></fillstroke>
-	</background>
-	<foreground>
-		<stroke></stroke>
-		<fillcolor color="#FFFFFF"></fillcolor>
-		<path><roundrect x="5" y="5" h="70" w="110" arcsize="6"></roundrect></path>
-		<fillstroke></fillstroke>
-		<stroke></stroke>
-	</foreground>
-	</shape>
-	<shape name="lowthreat" h="80" w="120" aspect="fixed" strokewidth="inherit">
-		<connections>
-			<constraint x="1" y="0.5" perimeter="0" name="E"></constraint>
-			<constraint x="0.5" y="1" perimeter="0" name="S"></constraint>
-		</connections>
-		<background>
-			<stroke></stroke>
-			<fillcolor color="#a7ec67"></fillcolor>
-			<roundrect x="0" y="0" w="120" h="80" arcsize="6"></roundrect>
-			<fillstroke></fillstroke>
-		</background>
-		<foreground>
-			<stroke></stroke>
-			<fillcolor color="#FFFFFF"></fillcolor>
-			<path><roundrect x="5" y="5" h="70" w="110" arcsize="6"></roundrect></path>
-			<fillstroke></fillstroke>
-			<stroke></stroke>
-		</foreground>
-	</shape>
-	<shape name="mediumthreat" h="80" w="120" aspect="fixed" strokewidth="inherit">
-		<connections>
-			<constraint x="1" y="0.5" perimeter="0" name="E"></constraint>
-			<constraint x="0.5" y="1" perimeter="0" name="S"></constraint>
-		</connections>
-		<background>
-			<stroke></stroke>
-			<fillcolor color="#fffe00"></fillcolor>
-			<roundrect x="0" y="0" w="120" h="80" arcsize="6"></roundrect>
-			<fillstroke></fillstroke>
-		</background>
-		<foreground>
-			<stroke></stroke>
-			<fillcolor color="#FFFFFF"></fillcolor>
-			<path><roundrect x="5" y="5" h="70" w="110" arcsize="6"></roundrect></path>
-			<fillstroke></fillstroke>
-			<stroke></stroke>
-		</foreground>
-	</shape>
-	<shape name="highthreat" h="80" w="120" aspect="fixed" strokewidth="inherit">
-		<connections>
-			<constraint x="1" y="0.5" perimeter="0" name="E"></constraint>
-			<constraint x="0.5" y="1" perimeter="0" name="S"></constraint>
-		</connections>
-		<background>
-			<stroke></stroke>
-			<fillcolor color="#fe773d"></fillcolor>
-			<roundrect x="0" y="0" w="120" h="80" arcsize="6"></roundrect>
-			<fillstroke></fillstroke>
-		</background>
-		<foreground>
-			<stroke></stroke>
-			<fillcolor color="#FFFFFF"></fillcolor>
-			<path><roundrect x="5" y="5" h="70" w="110" arcsize="6"></roundrect></path>
-			<fillstroke></fillstroke>
-			<stroke></stroke>
-		</foreground>
-	</shape>
-	<shape name="veryhighthreat" h="80" w="120" aspect="fixed" strokewidth="inherit">
-		<connections>
-			<constraint x="1" y="0.5" perimeter="0" name="E"></constraint>
-			<constraint x="0.5" y="1" perimeter="0" name="S"></constraint>
-		</connections>
-		<background>
-			<stroke></stroke>
-			<fillcolor color="#ff0000"></fillcolor>
-			<roundrect x="0" y="0" w="120" h="80" arcsize="6"></roundrect>
-			<fillstroke></fillstroke>
-		</background>
-		<foreground>
-			<stroke></stroke>
-			<fillcolor color="#FFFFFF"></fillcolor>
-			<path><roundrect x="5" y="5" h="70" w="110" arcsize="6"></roundrect></path>
-			<fillstroke></fillstroke>
-			<stroke></stroke>
-		</foreground>
-	</shape>
-	<shape name="cause" h="80" w="120" aspect="fixed" strokewidth="inherit">
-		<connections>
-			<constraint x="1" y="0.5" perimeter="0" name="E"></constraint>
-		</connections>
-		<background>
-			<stroke></stroke>
-			<fillcolor color="#8badae"></fillcolor>
-			<roundrect x="0" y="0" w="120" h="80" arcsize="6"></roundrect>
-			<fillstroke></fillstroke>
-		</background>
 		<foreground>
 			<stroke></stroke>
 			<fillcolor color="#FFFFFF"></fillcolor>
 			<path>
-				<roundrect x="5" y="5" h="70" w="110" arcsize="6"></roundrect></path>
+				<move x="60" y="0"/>
+				<line x="100" y="10"/>
+				<line x="100" y="40"/>
+				<line x="90" y="70"/>
+				<line x="60" y="80"/>
+				<line x="30" y="70"/>
+				<line x="20" y="40"/>
+				<line x="20" y="10"/>
+				<close/>
+			</path>
+			<fillstroke></fillstroke>
+		</foreground>
+		<background>
+			<stroke></stroke>
+			<fillcolor color="#f6c3b3"></fillcolor>
+			<path><roundrect x="2.5" y="2.5" h="75" w="115" arcsize="6"></roundrect></path>
 			<fillstroke></fillstroke>
 			<stroke></stroke>
+		</background>
+	</shape>
+	<shape name="verylowthreat" h="80" w="120" aspect="fixed" strokewidth="inherit">
+		<connections>
+			<constraint x="1" y="0.5" perimeter="0" name="E"></constraint>
+			<constraint x="0" y="0.5" perimeter="0" name="W"></constraint>
+			<constraint x="0.5" y="1" perimeter="0" name="S"></constraint>
+		</connections>
+		<foreground>
+			<stroke></stroke>
+			<fillcolor color="#FFFFFF"></fillcolor>
+			<path>
+				<move x="60" y="0"/>
+				<line x="100" y="10"/>
+				<line x="100" y="40"/>
+				<line x="90" y="70"/>
+				<line x="60" y="80"/>
+				<line x="30" y="70"/>
+				<line x="20" y="40"/>
+				<line x="20" y="10"/>
+				<close/>
+			</path>
+			<fillstroke></fillstroke>
 		</foreground>
+		<background>
+			<stroke></stroke>
+			<fillcolor color="#00ff06"></fillcolor>
+			<path><roundrect x="2.5" y="2.5" h="75" w="115" arcsize="6"></roundrect></path>
+			<fillstroke></fillstroke>
+			<stroke></stroke>
+		</background>
+	</shape>
+	<shape name="lowthreat" h="80" w="120" aspect="fixed" strokewidth="inherit">
+		<connections>
+			<constraint x="1" y="0.5" perimeter="0" name="E"></constraint>
+			<constraint x="0" y="0.5" perimeter="0" name="W"></constraint>
+			<constraint x="0.5" y="1" perimeter="0" name="S"></constraint>
+		</connections>
+		<foreground>
+			<stroke></stroke>
+			<fillcolor color="#FFFFFF"></fillcolor>
+			<path>
+				<move x="60" y="0"/>
+				<line x="100" y="10"/>
+				<line x="100" y="40"/>
+				<line x="90" y="70"/>
+				<line x="60" y="80"/>
+				<line x="30" y="70"/>
+				<line x="20" y="40"/>
+				<line x="20" y="10"/>
+				<close/>
+			</path>
+			<fillstroke></fillstroke>
+		</foreground>
+		<background>
+			<stroke></stroke>
+			<fillcolor color="#a7ec67"></fillcolor>
+			<path><roundrect x="2.5" y="2.5" h="75" w="115" arcsize="6"></roundrect></path>
+			<fillstroke></fillstroke>
+			<stroke></stroke>
+		</background>
+	</shape>
+	<shape name="mediumthreat" h="80" w="120" aspect="fixed" strokewidth="inherit">
+		<connections>
+			<constraint x="1" y="0.5" perimeter="0" name="E"></constraint>
+			<constraint x="0" y="0.5" perimeter="0" name="W"></constraint>
+			<constraint x="0.5" y="1" perimeter="0" name="S"></constraint>
+		</connections>
+		<foreground>
+			<stroke></stroke>
+			<fillcolor color="#FFFFFF"></fillcolor>
+			<path>
+				<move x="60" y="0"/>
+				<line x="100" y="10"/>
+				<line x="100" y="40"/>
+				<line x="90" y="70"/>
+				<line x="60" y="80"/>
+				<line x="30" y="70"/>
+				<line x="20" y="40"/>
+				<line x="20" y="10"/>
+				<close/>
+			</path>
+			<fillstroke></fillstroke>
+		</foreground>
+		<background>
+			<stroke></stroke>
+			<fillcolor color="#fffe00"></fillcolor>
+			<path><roundrect x="2.5" y="2.5" h="75" w="115" arcsize="6"></roundrect></path>
+			<fillstroke></fillstroke>
+			<stroke></stroke>
+		</background>
+	</shape>
+	<shape name="highthreat" h="80" w="120" aspect="fixed" strokewidth="inherit">
+		<connections>
+			<constraint x="1" y="0.5" perimeter="0" name="E"></constraint>
+			<constraint x="0" y="0.5" perimeter="0" name="W"></constraint>
+			<constraint x="0.5" y="1" perimeter="0" name="S"></constraint>
+		</connections>
+		<foreground>
+			<stroke></stroke>
+			<fillcolor color="#FFFFFF"></fillcolor>
+			<path>
+				<move x="60" y="0"/>
+				<line x="100" y="10"/>
+				<line x="100" y="40"/>
+				<line x="90" y="70"/>
+				<line x="60" y="80"/>
+				<line x="30" y="70"/>
+				<line x="20" y="40"/>
+				<line x="20" y="10"/>
+				<close/>
+			</path>
+			<fillstroke></fillstroke>
+		</foreground>
+		<background>
+			<stroke></stroke>
+			<fillcolor color="#fe773d"></fillcolor>
+			<path><roundrect x="2.5" y="2.5" h="75" w="115" arcsize="6"></roundrect></path>
+			<fillstroke></fillstroke>
+			<stroke></stroke>
+		</background>
+	</shape>
+	<shape name="veryhighthreat" h="80" w="120" aspect="fixed" strokewidth="inherit">
+		<connections>
+			<constraint x="1" y="0.5" perimeter="0" name="E"></constraint>
+			<constraint x="0" y="0.5" perimeter="0" name="W"></constraint>
+			<constraint x="0.5" y="1" perimeter="0" name="S"></constraint>
+		</connections>
+		<foreground>
+			<stroke></stroke>
+			<fillcolor color="#FFFFFF"></fillcolor>
+			<path>
+				<move x="60" y="0"/>
+				<line x="100" y="10"/>
+				<line x="100" y="40"/>
+				<line x="90" y="70"/>
+				<line x="60" y="80"/>
+				<line x="30" y="70"/>
+				<line x="20" y="40"/>
+				<line x="20" y="10"/>
+				<close/>
+			</path>
+			<fillstroke></fillstroke>
+		</foreground>
+		<background>
+			<stroke></stroke>
+			<fillcolor color="#ff0000"></fillcolor>
+			<path><roundrect x="2.5" y="2.5" h="75" w="115" arcsize="6"></roundrect></path>
+			<fillstroke></fillstroke>
+			<stroke></stroke>
+		</background>
+	</shape>
+	<shape name="cause" h="80" w="120" aspect="fixed" strokewidth="inherit">
+		<connections>
+			<constraint x="1" y="0.5" perimeter="0" name="E"></constraint>
+			<constraint x="0" y="0.5" perimeter="0" name="W"></constraint>
+		</connections>
+		<foreground>
+			<stroke></stroke>
+			<fillcolor color="#FFFFFF"></fillcolor>
+			<path>
+				<move x="35" y="0"/>
+				<line x="85" y="0"/>
+				<line x="85" y="20"/>
+				<line x="120" y="20"/>
+				<line x="120" y="60"/>
+				<line x="85" y="60"/>
+				<line x="85" y="80"/>
+				<line x="35" y="80"/>
+				<line x="35" y="60"/>
+				<line x="0" y="60"/>
+				<line x="0" y="20"/>
+				<line x="35" y="20"/>
+				<close/>
+			</path>
+			<fillstroke></fillstroke>
+		</foreground>
+		<background>
+			<stroke></stroke>
+			<fillcolor color="#8badae"></fillcolor>
+			<path><roundrect x="2.5" y="2.5" h="75" w="115" arcsize="6"></roundrect></path>
+			<fillstroke></fillstroke>
+			<stroke></stroke>
+		</background>
 	</shape>
 	<shape name="consequence" h="80" w="120" aspect="fixed" strokewidth="inherit">
 		<connections>
 			<constraint x="0" y="0.5" perimeter="0" name="W"></constraint>
 			<constraint x="0.5" y="1" perimeter="0" name="S"></constraint>
 		</connections>
-		<background>
-			<stroke></stroke>
-			<fillcolor color="#000000"></fillcolor>
-			<roundrect x="0" y="0" w="120" h="80" arcsize="6"></roundrect>
-			<fillstroke></fillstroke>
-		</background>
 		<foreground>
 			<stroke></stroke>
 			<fillcolor color="#FFFFFF"></fillcolor>
 			<path>
-				<roundrect x="5" y="5" h="70" w="110" arcsize="6"></roundrect></path>
+				<move x="20" y="0"/>
+				<line x="30" y="10"/>
+				<line x="40" y="0"/>
+				<line x="50" y="10"/>
+				<line x="60" y="0"/>
+				<line x="70" y="10"/>
+				<line x="80" y="0"/>
+				<line x="90" y="10"/>
+				<line x="100" y="0"/>
+				<line x="120" y="20"/>
+				<line x="110" y="30"/>
+				<line x="120" y="40"/>
+				<line x="110" y="50"/>
+				<line x="120" y="60"/>
+				<line x="100" y="80"/>
+				<line x="90" y="70"/>
+				<line x="80" y="80"/>
+				<line x="70" y="70"/>
+				<line x="60" y="80"/>
+				<line x="50" y="70"/>
+				<line x="40" y="80"/>
+				<line x="30" y="70"/>
+				<line x="20" y="80"/>
+				<line x="0" y="60"/>
+				<line x="10" y="50"/>
+				<line x="0" y="40"/>
+				<line x="10" y="30"/>
+				<line x="0" y="20"/>
+				<close/>
+			</path>
+			<fillstroke></fillstroke>
+		</foreground>
+		<background>
+			<stroke></stroke>
+			<fillcolor color="#000000"></fillcolor>
+			<path><roundrect x="2.5" y="2.5" h="75" w="115" arcsize="6"></roundrect></path>
 			<fillstroke></fillstroke>
 			<stroke></stroke>
-		</foreground>
+		</background>
 	</shape>
 	<shape name="verylowconsequence" h="80" w="120" aspect="fixed" strokewidth="inherit">
 		<connections>
 			<constraint x="0" y="0.5" perimeter="0" name="W"></constraint>
 			<constraint x="0.5" y="1" perimeter="0" name="S"></constraint>
 		</connections>
-		<background>
-			<stroke></stroke>
-			<fillcolor color="#00ff06"></fillcolor>
-			<roundrect x="0" y="0" w="120" h="80" arcsize="6"></roundrect>
-			<fillstroke></fillstroke>
-		</background>
 		<foreground>
 			<stroke></stroke>
 			<fillcolor color="#FFFFFF"></fillcolor>
 			<path>
-				<roundrect x="5" y="5" h="70" w="110" arcsize="6"></roundrect></path>
+				<move x="20" y="0"/>
+				<line x="30" y="10"/>
+				<line x="40" y="0"/>
+				<line x="50" y="10"/>
+				<line x="60" y="0"/>
+				<line x="70" y="10"/>
+				<line x="80" y="0"/>
+				<line x="90" y="10"/>
+				<line x="100" y="0"/>
+				<line x="120" y="20"/>
+				<line x="110" y="30"/>
+				<line x="120" y="40"/>
+				<line x="110" y="50"/>
+				<line x="120" y="60"/>
+				<line x="100" y="80"/>
+				<line x="90" y="70"/>
+				<line x="80" y="80"/>
+				<line x="70" y="70"/>
+				<line x="60" y="80"/>
+				<line x="50" y="70"/>
+				<line x="40" y="80"/>
+				<line x="30" y="70"/>
+				<line x="20" y="80"/>
+				<line x="0" y="60"/>
+				<line x="10" y="50"/>
+				<line x="0" y="40"/>
+				<line x="10" y="30"/>
+				<line x="0" y="20"/>
+				<close/>
+			</path>
+			<fillstroke></fillstroke>
+		</foreground>
+		<background>
+			<stroke></stroke>
+			<fillcolor color="#00ff06"></fillcolor>
+			<path><roundrect x="2.5" y="2.5" h="75" w="115" arcsize="6"></roundrect></path>
 			<fillstroke></fillstroke>
 			<stroke></stroke>
-		</foreground>
+		</background>
 	</shape>
 	<shape name="lowconsequence" h="80" w="120" aspect="fixed" strokewidth="inherit">
 		<connections>
 			<constraint x="0" y="0.5" perimeter="0" name="W"></constraint>
 			<constraint x="0.5" y="1" perimeter="0" name="S"></constraint>
 		</connections>
-		<background>
-			<stroke></stroke>
-			<fillcolor color="#a7ec67"></fillcolor>
-			<roundrect x="0" y="0" w="120" h="80" arcsize="6"></roundrect>
-			<fillstroke></fillstroke>
-		</background>
 		<foreground>
 			<stroke></stroke>
 			<fillcolor color="#FFFFFF"></fillcolor>
 			<path>
-				<roundrect x="5" y="5" h="70" w="110" arcsize="6"></roundrect></path>
+				<move x="20" y="0"/>
+				<line x="30" y="10"/>
+				<line x="40" y="0"/>
+				<line x="50" y="10"/>
+				<line x="60" y="0"/>
+				<line x="70" y="10"/>
+				<line x="80" y="0"/>
+				<line x="90" y="10"/>
+				<line x="100" y="0"/>
+				<line x="120" y="20"/>
+				<line x="110" y="30"/>
+				<line x="120" y="40"/>
+				<line x="110" y="50"/>
+				<line x="120" y="60"/>
+				<line x="100" y="80"/>
+				<line x="90" y="70"/>
+				<line x="80" y="80"/>
+				<line x="70" y="70"/>
+				<line x="60" y="80"/>
+				<line x="50" y="70"/>
+				<line x="40" y="80"/>
+				<line x="30" y="70"/>
+				<line x="20" y="80"/>
+				<line x="0" y="60"/>
+				<line x="10" y="50"/>
+				<line x="0" y="40"/>
+				<line x="10" y="30"/>
+				<line x="0" y="20"/>
+				<close/>
+			</path>
+			<fillstroke></fillstroke>
+		</foreground>
+		<background>
+			<stroke></stroke>
+			<fillcolor color="#a7ec67"></fillcolor>
+			<path><roundrect x="2.5" y="2.5" h="75" w="115" arcsize="6"></roundrect></path>
 			<fillstroke></fillstroke>
 			<stroke></stroke>
-		</foreground>
+		</background>
 	</shape>
 	<shape name="mediumconsequence" h="80" w="120" aspect="fixed" strokewidth="inherit">
 		<connections>
 			<constraint x="0" y="0.5" perimeter="0" name="W"></constraint>
 			<constraint x="0.5" y="1" perimeter="0" name="S"></constraint>
 		</connections>
-		<background>
-			<stroke></stroke>
-			<fillcolor color="#fffe00"></fillcolor>
-			<roundrect x="0" y="0" w="120" h="80" arcsize="6"></roundrect>
-			<fillstroke></fillstroke>
-		</background>
 		<foreground>
 			<stroke></stroke>
 			<fillcolor color="#FFFFFF"></fillcolor>
 			<path>
-				<roundrect x="5" y="5" h="70" w="110" arcsize="6"></roundrect></path>
+				<move x="20" y="0"/>
+				<line x="30" y="10"/>
+				<line x="40" y="0"/>
+				<line x="50" y="10"/>
+				<line x="60" y="0"/>
+				<line x="70" y="10"/>
+				<line x="80" y="0"/>
+				<line x="90" y="10"/>
+				<line x="100" y="0"/>
+				<line x="120" y="20"/>
+				<line x="110" y="30"/>
+				<line x="120" y="40"/>
+				<line x="110" y="50"/>
+				<line x="120" y="60"/>
+				<line x="100" y="80"/>
+				<line x="90" y="70"/>
+				<line x="80" y="80"/>
+				<line x="70" y="70"/>
+				<line x="60" y="80"/>
+				<line x="50" y="70"/>
+				<line x="40" y="80"/>
+				<line x="30" y="70"/>
+				<line x="20" y="80"/>
+				<line x="0" y="60"/>
+				<line x="10" y="50"/>
+				<line x="0" y="40"/>
+				<line x="10" y="30"/>
+				<line x="0" y="20"/>
+				<close/>
+			</path>
+			<fillstroke></fillstroke>
+		</foreground>
+		<background>
+			<stroke></stroke>
+			<fillcolor color="#fffe00"></fillcolor>
+			<path><roundrect x="2.5" y="2.5" h="75" w="115" arcsize="6"></roundrect></path>
 			<fillstroke></fillstroke>
 			<stroke></stroke>
-		</foreground>
+		</background>
 	</shape>
 	<shape name="highconsequence" h="80" w="120" aspect="fixed" strokewidth="inherit">
 		<connections>
 			<constraint x="0" y="0.5" perimeter="0" name="W"></constraint>
 			<constraint x="0.5" y="1" perimeter="0" name="S"></constraint>
 		</connections>
-		<background>
-			<stroke></stroke>
-			<fillcolor color="#fe773d"></fillcolor>
-			<roundrect x="0" y="0" w="120" h="80" arcsize="6"></roundrect>
-			<fillstroke></fillstroke>
-		</background>
 		<foreground>
 			<stroke></stroke>
 			<fillcolor color="#FFFFFF"></fillcolor>
 			<path>
-				<roundrect x="5" y="5" h="70" w="110" arcsize="6"></roundrect></path>
+				<move x="20" y="0"/>
+				<line x="30" y="10"/>
+				<line x="40" y="0"/>
+				<line x="50" y="10"/>
+				<line x="60" y="0"/>
+				<line x="70" y="10"/>
+				<line x="80" y="0"/>
+				<line x="90" y="10"/>
+				<line x="100" y="0"/>
+				<line x="120" y="20"/>
+				<line x="110" y="30"/>
+				<line x="120" y="40"/>
+				<line x="110" y="50"/>
+				<line x="120" y="60"/>
+				<line x="100" y="80"/>
+				<line x="90" y="70"/>
+				<line x="80" y="80"/>
+				<line x="70" y="70"/>
+				<line x="60" y="80"/>
+				<line x="50" y="70"/>
+				<line x="40" y="80"/>
+				<line x="30" y="70"/>
+				<line x="20" y="80"/>
+				<line x="0" y="60"/>
+				<line x="10" y="50"/>
+				<line x="0" y="40"/>
+				<line x="10" y="30"/>
+				<line x="0" y="20"/>
+				<close/>
+			</path>
+			<fillstroke></fillstroke>
+		</foreground>
+		<background>
+			<stroke></stroke>
+			<fillcolor color="#fe773d"></fillcolor>
+			<path><roundrect x="2.5" y="2.5" h="75" w="115" arcsize="6"></roundrect></path>
 			<fillstroke></fillstroke>
 			<stroke></stroke>
-		</foreground>
+		</background>
 	</shape>
 	<shape name="veryhighconsequence" h="80" w="120" aspect="fixed" strokewidth="inherit">
 		<connections>
 			<constraint x="0" y="0.5" perimeter="0" name="W"></constraint>
 			<constraint x="0.5" y="1" perimeter="0" name="S"></constraint>
 		</connections>
-		<background>
-			<stroke></stroke>
-			<fillcolor color="#ff0000"></fillcolor>
-			<roundrect x="0" y="0" w="120" h="80" arcsize="6"></roundrect>
-			<fillstroke></fillstroke>
-		</background>
 		<foreground>
 			<stroke></stroke>
 			<fillcolor color="#FFFFFF"></fillcolor>
 			<path>
-				<roundrect x="5" y="5" h="70" w="110" arcsize="6"></roundrect></path>
+				<move x="20" y="0"/>
+				<line x="30" y="10"/>
+				<line x="40" y="0"/>
+				<line x="50" y="10"/>
+				<line x="60" y="0"/>
+				<line x="70" y="10"/>
+				<line x="80" y="0"/>
+				<line x="90" y="10"/>
+				<line x="100" y="0"/>
+				<line x="120" y="20"/>
+				<line x="110" y="30"/>
+				<line x="120" y="40"/>
+				<line x="110" y="50"/>
+				<line x="120" y="60"/>
+				<line x="100" y="80"/>
+				<line x="90" y="70"/>
+				<line x="80" y="80"/>
+				<line x="70" y="70"/>
+				<line x="60" y="80"/>
+				<line x="50" y="70"/>
+				<line x="40" y="80"/>
+				<line x="30" y="70"/>
+				<line x="20" y="80"/>
+				<line x="0" y="60"/>
+				<line x="10" y="50"/>
+				<line x="0" y="40"/>
+				<line x="10" y="30"/>
+				<line x="0" y="20"/>
+				<close/>
+			</path>
+			<fillstroke></fillstroke>
+		</foreground>
+		<background>
+			<stroke></stroke>
+			<fillcolor color="#ff0000"></fillcolor>
+			<path><roundrect x="2.5" y="2.5" h="75" w="115" arcsize="6"></roundrect></path>
 			<fillstroke></fillstroke>
 			<stroke></stroke>
-		</foreground>
+		</background>
 	</shape>
 	<shape name="highestconsequence" h="80" w="120" aspect="fixed" strokewidth="inherit">
 		<connections>
 			<constraint x="0" y="0.5" perimeter="0" name="W"></constraint>
 			<constraint x="0.5" y="1" perimeter="0" name="S"></constraint>
 		</connections>
-		<background>
-			<stroke></stroke>
-			<fillcolor color="#ff0000"></fillcolor>
-			<roundrect x="0" y="0" w="120" h="80" arcsize="6"></roundrect>
-			<fillstroke></fillstroke>
-		</background>
 		<foreground>
 			<stroke></stroke>
 			<fillcolor color="#FFD5D5"></fillcolor>
 			<path>
-				<roundrect x="5" y="5" h="70" w="110" arcsize="6"></roundrect></path>
+				<move x="20" y="0"/>
+				<line x="30" y="10"/>
+				<line x="40" y="0"/>
+				<line x="50" y="10"/>
+				<line x="60" y="0"/>
+				<line x="70" y="10"/>
+				<line x="80" y="0"/>
+				<line x="90" y="10"/>
+				<line x="100" y="0"/>
+				<line x="120" y="20"/>
+				<line x="110" y="30"/>
+				<line x="120" y="40"/>
+				<line x="110" y="50"/>
+				<line x="120" y="60"/>
+				<line x="100" y="80"/>
+				<line x="90" y="70"/>
+				<line x="80" y="80"/>
+				<line x="70" y="70"/>
+				<line x="60" y="80"/>
+				<line x="50" y="70"/>
+				<line x="40" y="80"/>
+				<line x="30" y="70"/>
+				<line x="20" y="80"/>
+				<line x="0" y="60"/>
+				<line x="10" y="50"/>
+				<line x="0" y="40"/>
+				<line x="10" y="30"/>
+				<line x="0" y="20"/>
+				<close/>
+			</path>
 			<fillstroke></fillstroke>
-			<stroke></stroke>
 		</foreground>
-	</shape>
-	<shape name="escalationfactor" h="80" w="120" aspect="fixed" strokewidth="inherit">
-		<connections>
-			<constraint x="1" y="0.5" perimeter="0" name="E"></constraint>
-		</connections>
 		<background>
 			<stroke></stroke>
-			<fillcolor color="#f9fb3c"></fillcolor>
-			<roundrect x="0" y="0" w="120" h="80" arcsize="6"></roundrect>
+			<fillcolor color="#ff0000"></fillcolor>
+			<path><roundrect x="2.5" y="2.5" h="75" w="115" arcsize="6"></roundrect></path>
 			<fillstroke></fillstroke>
-		</background>
-		<foreground>
 			<stroke></stroke>
+		</background>
+	</shape>
+	<shape name="escalationfactor" h="80" w="120">
+		<connections>
+			<constraint x="0.5" y="0" perimeter="0" name="E"></constraint>
+		</connections>
+		<foreground>
+			<stroke>
+			</stroke>
 			<fillcolor color="#FFFFFF"></fillcolor>
 			<path>
-				<roundrect x="5" y="5" h="70" w="110" arcsize="6"></roundrect></path>
-			<fillstroke></fillstroke>
-			<stroke></stroke>
+				<move x="5" y="40"/>
+				<line x="60" y="5"/>
+				<line x="115" y="40"/>
+				<line x="60" y="75"/>
+				<close/>
+			</path>
+			<fillstroke></fillstroke><stroke/>
 		</foreground>
+		<background>
+			<stroke></stroke>
+			<fillcolor color="#9d99b4"></fillcolor>
+			<path>
+				<move x="0" y="40"/>
+				<line x="60" y="0"/>
+				<line x="120" y="40"/>
+				<line x="60" y="80"/>
+				<close/>
+			</path>
+			<fillstroke></fillstroke><stroke/>
+		</background>
 	</shape>
   	<shape aspect="fixed" h="80" name="hazard" strokewidth="1" w="120">
     <connections>

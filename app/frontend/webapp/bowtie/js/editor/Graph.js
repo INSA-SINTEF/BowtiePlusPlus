@@ -132,18 +132,23 @@ Graph = function (container, model, renderHint, stylesheet, themes) {
                 switch (c) {
                     case 5:
                         var fill = "#00ff06";
+                        var impact_ind = 0.5;
                         break;
                     case 4:
                         var fill = "#a7ec67";
+                        var impact_ind = 2.5;
                         break;
                     case 3:
                         var fill = "#fffe00";
+                        var impact_ind = 4.5;
                         break;
                     case 2:
                         var fill = "#fe773d";
+                        var impact_ind = 6.5;
                         break;
                     case 1:
                         var fill = "#ff0000";
+                        var impact_ind = 9;
                         break;
                     default:
                     case 0:
@@ -154,11 +159,39 @@ Graph = function (container, model, renderHint, stylesheet, themes) {
                 //set color of cell
                 var s = 'ellipse;' + 'fillColor=' + fill + ';'
                 cell.setStyle(s)
-
+                this.updateAllConsequences();
                 this.updateAllThreats();
                 // If the matrix is connected to a threat, update the color of the threat
                 if (cell.getParent().getParent().edges != null && cell.getParent().getParent().edges.length > 0) {
-                    if (cell.getParent().getParent().edges[0].source.customID = 'Threat') {
+                    if (cell.getParent().getParent().edges[0].source.customID === 'Consequence') {
+                        this.consequences.forEach(cons => {
+                            if (cons.cell === cell.getParent().getParent().edges[0].source.id){
+                                switch(cell.getParent().value){
+                                    case("COM"):
+                                        cons.indicator += impact_ind;
+                                        cons._com = true;
+                                        break;
+
+                                    case("REP"):
+                                        cons.indicator += impact_ind;
+                                        cons._rep = true;
+                                        break;
+
+                                    case("ENV"):
+                                        cons.indicator += impact_ind;
+                                        cons._env = true;
+                                        break;
+
+                                    case("IND"):
+                                        cons.indicator += impact_ind;
+                                        cons._ind = true;
+                                        break;
+                                }
+                                cons.updateStyle();
+                            }
+                        });
+                    }
+                    if (cell.getParent().getParent().edges[0].source.customID === 'Threat') {
                         this.threats.forEach(threat => {
                             if (threat.cell === cell.getParent().getParent().edges[0].source.id){
                                 let value = threat.convertColorToValue(fill);
@@ -1771,9 +1804,9 @@ Graph.prototype.getCellStyle = function (cell) {
                         case 'VUL':
                             cell.setValue('Vulnerabilities')
                             break;
-                        case 'SEC':
+                        /*case 'SEC':
                             cell.setValue('Security control')
-                            break;
+                            break;*/
                         case 'IND':
                             cell.setValue('Individual')
                             break;
@@ -1804,9 +1837,9 @@ Graph.prototype.getCellStyle = function (cell) {
                     case 'Vulnerabilities':
                         cell.setValue('VUL')
                         break;
-                    case 'Security control':
+                    /*case 'Security control':
                         cell.setValue('SEC')
-                        break;
+                        break;*/
                     case 'Individual':
                         cell.setValue('IND')
                         break;
@@ -2341,7 +2374,7 @@ Graph.prototype.updateThreatBarriers = function(cell, threat) {
             //delete the case in which the target is the cell itself
             if(edge.source.id === cell.id){
                 //check if a edge is toward a barrier
-                if (edge.target.customID === 'Security Control' || edge.target.customID === 'Barrier'){
+                if (edge.target.customID === 'Barrier'){
                     let foundBarrier = threat.barriers.find(barrier => barrier.cell === edge.target.id);
                     // check if the barrier was not found in the threat to add it
                     if(foundBarrier === undefined){
@@ -2351,9 +2384,23 @@ Graph.prototype.updateThreatBarriers = function(cell, threat) {
                     }
                     this.updateThreatBarriers(edge.target, threat);
                     lastBarrier = false;
-                    break;
+                    //break;
                 }
             }
+            /*else {
+                if (edge.source.customID === 'Barrier'){
+                    let foundBarrier = threat.barriers.find(barrier => barrier.cell === edge.source.id);
+                    // check if the barrier was not found in the threat to add it
+                    if(foundBarrier === undefined){
+                        threat.barriers.push(new Barrier(edge.source));
+                    }else{
+                        foundBarrier.name = edge.source.value;
+                    }
+                    this.updateThreatBarriers(edge.source, threat);
+                    lastBarrier = false;
+                    break;
+                }
+            }*/
 
         }
     }
@@ -2366,6 +2413,50 @@ Graph.prototype.updateThreatBarriers = function(cell, threat) {
             }
         });
         threat.barriers = newBarriersArray;
+    }
+}
+
+/**
+ * Bowtie++ feature
+ * Recursive function
+ * Check if an escalation factor is linked to given cell, and append it to parameter escalfactors.
+ * Call it with the barrier's cell and barrier object
+ * @param cell
+ * @param barrier
+ * @returns {escalfators}
+ */
+Graph.prototype.updateBarrierEscalFactors = function(cell, barrier) {
+    let lastEscalfactor = true;
+    if(cell.edges != null && cell.edges.length > 0){
+        for (const edge of Object.values(cell.edges)) {
+            //delete the case in which the source is the cell itself
+            if (edge.target.id === cell.id){
+                //check if a edge is coming from an escalation factor
+                if (edge.source.customID === 'Escalation Factor'){
+                    let foundFactor = barrier.escalfactors.find(factor => factor.cell === edge.source.id);
+                    // check if the factor was not found in the barrier to add it
+                    if(foundFactor === undefined){
+                        barrier.escalfactors.push(new EscalationFactor(edge.source));
+                    }else{
+                        foundFactor.name = edge.source.value;
+                    }
+                    this.updateBarrierEscalFactors(edge.source, barrier);
+                    lastEscalfactor = false;
+                    break;
+                }
+            }
+        }
+    }
+    if(lastEscalfactor){
+        let newFactorsArray = [];
+        // only add the factors that are on the diagram
+        barrier.escalfactors.forEach(factor => {
+            if(this.model.getCell(factor.cell) != null){
+                newFactorsArray.push(factor);
+            }
+        });
+        barrier.escalfactors = newFactorsArray;
+        barrier.escalfactors.reverse();
     }
 }
 
@@ -2385,7 +2476,7 @@ Graph.prototype.updateConsequenceBarriers = function(cell, consequence) {
             //delete the case in which the source is the cell itself
             if (edge.target.id === cell.id){
                 //check if a edge is coming from a barrier
-                if (edge.source.customID === 'Security Control' || edge.source.customID === 'Barrier'){
+                if (/*edge.source.customID === 'Security Control' ||*/ edge.source.customID === 'Barrier'){
                     let foundBarrier = consequence.barriers.find(barrier => barrier.cell === edge.source.id);
                     // check if the barrier was not found in the consequence to add it
                     if(foundBarrier === undefined){
@@ -2444,8 +2535,11 @@ Graph.prototype.updateAllThreats = function () {
             newThreatsArray.push(threat);
         }
     });
-    //update threats barriers
-    newThreatsArray.forEach(threat => this.updateThreatBarriers(this.model.getCell(threat.cell), threat));
+    //update threats barriers and their escalation factors
+    newThreatsArray.forEach(threat => {
+        this.updateThreatBarriers(this.model.getCell(threat.cell), threat);
+        threat.barriers.forEach(barrier => this.updateBarrierEscalFactors(this.model.getCell(barrier.cell), barrier));
+    });
     this.setThreats(newThreatsArray);
 
     // Alphabetically sort this.threats
@@ -2512,8 +2606,11 @@ Graph.prototype.updateAllConsequences = function() {
             newConsequencesArray.push(consequence);
         }
     });
-    //update consequences barriers
-    newConsequencesArray.forEach(consequence => this.updateConsequenceBarriers(this.model.getCell(consequence.cell), consequence));
+    //update consequences barriers and their escalation factors
+    newConsequencesArray.forEach(consequence => {
+        this.updateConsequenceBarriers(this.model.getCell(consequence.cell), consequence);
+        consequence.barriers.forEach(barrier => this.updateBarrierEscalFactors(this.model.getCell(barrier.cell), barrier));
+    });
     this.setConsequences(newConsequencesArray);
 
     //Alphabetically sort this.consequences

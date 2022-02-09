@@ -3,6 +3,7 @@ class Barrier{
         this._cell = cell.id;
         this._failureProbability = 1;
         this._name = cell.value;
+        this._escalfactors = [];
     }
 
     get cell() {
@@ -23,6 +24,23 @@ class Barrier{
             .replaceAll(/<\/h[0-9]>/g,"").replaceAll(/<pre>/g,"")
             .replaceAll(/<\/pre>/g,"");
     }
+
+    get escalfactors() {
+        return this._escalfactors;
+    }
+
+    set escalfactors(value) {
+        this._escalfactors = value;
+    }
+
+    /*get failureProbability(){
+        let escalfactorsProbability = 1;
+        this.escalfactors.forEach(e => {
+                escalfactorsProbability *= e.probability;
+        })
+        return this._failureProbability * escalfactorsProbability;
+    }*/
+
 
     get failureProbability() {
         return this._failureProbability;

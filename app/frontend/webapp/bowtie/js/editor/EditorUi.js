@@ -37,20 +37,20 @@ EditorUi = function (editor, container, lightbox) {
             switch (source.customID) {
 
                 case 'Threat':
-                    if (target.customID !== 'Security Control' && target.customID !== 'Likelihood' && target.customID !== 'Event') {
-                        return 'A ' + source.customID + ' element can only connect to the following elements: Security Control, Event, likelihood.';
+                    if (target.customID !== 'Barrier' && target.customID !== 'Likelihood' && target.customID !== 'Event') {
+                        return 'A ' + source.customID + ' element can only connect to the following elements: Barrier, Event, likelihood.';
                     }
                     break;
-                case 'Security Control':
+                /*case 'Security Control':
                     if (target.customID != 'Security Control' &&
                         target.customID != 'Event' &&
                         target.customID != 'Barrier' &&
                         target.customID != 'Consequence') {
                         return 'A ' + source.customID + ' element can only connect to the following elements: itself, Event, Barrier , Consequence';
                     }
-                    break;
+                    break;*/
                 case 'Cause':
-                    if (target.customID !== 'Barrier' && target.customID !== 'Event') {
+                    if (target.customID !== 'Barrier' &&target.customID !== 'Event') {
                         return 'A ' + source.customID + ' element can only connect to the following elements: Barrier, Event';
                     }
                     break;
@@ -61,17 +61,19 @@ EditorUi = function (editor, container, lightbox) {
                     break;
                 case 'Barrier':
                     if (target.customID !== 'Event' &&
-                        target.customID !== 'Security Control' &&
+                        //target.customID !== 'Security Control' &&
                         target.customID !== 'Consequence' &&
+                        //target.customID !== 'Cause' &&
+                        //target.customID !== 'Threat' &&
                         target.customID !== 'Barrier') {
-                        return 'A ' + source.customID + ' element can only connect to the following elements: Event, a Security Control, a Consequence or itself';
+                        return 'A ' + source.customID + ' element can only connect to the following elements: Event, Consequence, Cause, Threat or itself';
                     }
                     break;
                 case 'Event':
                     if (target.customID !== 'Barrier' &&
-                        target.customID !== 'Security Control' &&
+                        //target.customID !== 'Security Control' &&
                         target.customID !== 'Consequence') {
-                        return 'A ' + source.customID + ' element can only connect to the following elements: Barrier, Security Control, Consequence ';
+                        return 'A ' + source.customID + ' element can only connect to the following elements: Barrier or Consequence ';
                     }
                     break;
                 case 'Consequence':
@@ -81,7 +83,7 @@ EditorUi = function (editor, container, lightbox) {
                     break;
                 case 'Escalation Factor':
                     if (target.customID !== 'Barrier') {
-                        return 'A ' + source.customID + ' element can only connect to the following elements: a Barrier';
+                        return 'A ' + source.customID + ' element can only connect to the following elements: Barrier';
                     }
                     break;
                 case 'Likelihood':
@@ -3085,7 +3087,11 @@ EditorUi.prototype.save = function (name, tags) {
             this.editor.graph.threats.forEach(threat => {
                 threatObject = {...threat};
                 barriersObjects = [];
+                escalfactorsObjetcs = [];
                 threat.barriers.forEach(barrier => {
+                    barrier.escalfactors.forEach(factor =>{
+                        escalfactorsObjetcs.push({...factor})
+                    })
                     barriersObjects.push({...barrier})
                 });
                 threatObject._barriers = barriersObjects;
@@ -3102,7 +3108,11 @@ EditorUi.prototype.save = function (name, tags) {
             this.editor.graph.consequences.forEach(consequence => {
                 consequenceObject = {...consequence};
                 barriersObjects = [];
+                escalfactorsObjetcs = [];
                 consequence.barriers.forEach(barrier => {
+                    barrier.escalfactors.forEach(factor =>{
+                        escalfactorsObjetcs.push({...factor})
+                    })
                     barriersObjects.push({...barrier})
                 });
                 consequenceObject._barriers = barriersObjects;

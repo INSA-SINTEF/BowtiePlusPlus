@@ -572,6 +572,13 @@ Editor.prototype.setGraphValues = function(dataObjectXml){
 				let barrierCell = this.graph.model.getCell(barrier._cell);
 				let bar = new Barrier(barrierCell);
 				bar.failureProbability = barrier._failureProbability;
+				bar.escalfactors = [];
+				barrier.escalfactors.forEach(factor => {
+					let factorCell = this.graph.model.getCell(factor._cell);
+					let fact = new EscalationFactor(factorCell);
+					fact.probability = factor._probability;
+					bar.escalfactors.push(fact);
+				})
 				barriers.push(bar);
 			})
 			thr.barriers = barriers;
@@ -593,6 +600,13 @@ Editor.prototype.setGraphValues = function(dataObjectXml){
 				let bar = new Barrier(barrierCell);
 				bar.failureProbability = barrier._failureProbability;
 				bar.name = barrier._name;
+				bar.escalfactors = [];
+				barrier.escalfactors.forEach(factor => {
+					let factorCell = this.graph.model.getCell(factor._cell);
+					let fact = new EscalationFactor(factorCell);
+					fact.probability = factor._probability;
+					bar.escalfactors.push(fact);
+				})
 				barriers.push(bar);
 			})
 			cons.barriers = barriers;

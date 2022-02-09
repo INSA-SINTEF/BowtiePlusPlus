@@ -1188,12 +1188,13 @@ Sidebar.prototype.addBranchPalette = function(dir, expand)
     /* It might be necessary to use addEntry directly to make them collapseable. Take a look at the UML library below.*/
     var fns =
         [
-            this.createVertexTemplateEntry('Barrier','shape=mxgraph.bowtie.barrier;whiteSpace=wrap;html=1;verticalAlign=bottom;fontSize=16;aspect=fixed', 120, 80, 'Barrier', 'Barrier', null, null, 'bowtie barrier'),
-            this.createVertexTemplateEntry('Security Control','shape=mxgraph.bowtie.control;whiteSpace=wrap;html=1;verticalAlign=bottom;fontSize=16;aspect=fixed', 120, 80, 'Security Control', 'Security Control', null, null, 'bowtie security control'),
-			this.createVertexTemplateEntry('Threat','shape=mxgraph.bowtie.threat;html=1;whiteSpace=wrap;fontSize=16;aspect=fixed', 120, 80, 'Threat', 'Threat', null, null, 'bowtie threat'),
+            this.createVertexTemplateEntry('Barrier','shape=mxgraph.bowtie.barrier_prev;whiteSpace=wrap;html=1;verticalAlign=bottom;fontSize=16;aspect=fixed', 120, 80, 'Barrier', 'Barrier', null, null, 'bowtie barrier'),
+			//this.createVertexTemplateEntry('Barrier','shape=mxgraph.bowtie.barrier_react;whiteSpace=wrap;html=1;verticalAlign=bottom;fontSize=16;aspect=fixed', 120, 80, 'Reactive Barrier', 'Reactive Barrier', null, null, 'bowtie barrier'),
+            //this.createVertexTemplateEntry('Security Control','shape=mxgraph.bowtie.control;whiteSpace=wrap;html=1;verticalAlign=bottom;fontSize=16;aspect=fixed', 120, 80, 'Security Control', 'Security Control', null, null, 'bowtie security control'),
+			this.createVertexTemplateEntry('Threat','shape=mxgraph.bowtie.threat;html=1;whiteSpace=wrap;fontSize=16;aspect=fixed', 120, 80, 'Security\nThreat', 'Security Threat', null, null, 'bowtie threat'),
             this.createVertexTemplateEntry('Consequence','shape=mxgraph.bowtie.consequence;html=1;whiteSpace=wrap;fontSize=16;aspect=fixed', 120, 80, 'Consequence', 'Consequence', null, null, 'bowtie consequence'),
-            this.createVertexTemplateEntry('Cause','shape=mxgraph.bowtie.cause;html=1;whiteSpace=wrap;fontSize=16;aspect=fixed', 120, 80, 'Cause', 'Cause', null, null, 'bowtie cause'),
-            this.createVertexTemplateEntry('Escalation Factor','shape=mxgraph.bowtie.escalationfactor;html=1;whiteSpace=wrap;fontSize=16;aspect=fixed', 120, 80, 'Escalation Factor', 'Escalation Factor', null, null, 'bowtie escalation factor'),
+            this.createVertexTemplateEntry('Cause','shape=mxgraph.bowtie.cause;html=1;whiteSpace=wrap;fontSize=16;aspect=fixed', 120, 80, 'Safety\nCause', 'Safety Cause', null, null, 'bowtie cause'),
+            this.createVertexTemplateEntry('Escalation Factor','shape=mxgraph.bowtie.escalationfactor;html=1;whiteSpace=wrap;fontSize=14;aspect=fixed', 120, 80, 'Escalation\nFactor', 'Escalation Factor', null, null, 'bowtie escalation factor'),
 		];
 
     this.addPaletteFunctions('Bowtie Branch', mxResources.get('bowtiebranch'), expand, fns);
@@ -3329,7 +3330,7 @@ Sidebar.prototype.createVertexTemplate = function(customID,style, width, height,
 	var cells = [new mxCell((value != null) ? value : '', new mxGeometry(0, 0, width, height), style)];
 	cells[0].vertex = true;
 	cells[0].customID = customID;
-	console.log(cells[0].customID);
+	//console.log(cells[0].customID);
 	return this.createVertexTemplateFromCells(cells, width, height, title, showLabel, showTitle, allowCellsInserted);
 };
 

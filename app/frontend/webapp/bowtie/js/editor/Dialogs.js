@@ -1401,12 +1401,12 @@ var ExportDialog = function (editorUi) {
     jpgOption.setAttribute('value', 'jpg');
     mxUtils.write(jpgOption, mxResources.get('formatJpg'));
     imageFormatSelect.appendChild(jpgOption);
-    /*
+
     var pdfOption = document.createElement('option');
     pdfOption.setAttribute('value', 'pdf');
     mxUtils.write(pdfOption, mxResources.get('formatPdf'));
     imageFormatSelect.appendChild(pdfOption);
-    */
+
     var svgOption = document.createElement('option');
     svgOption.setAttribute('value', 'svg');
     mxUtils.write(svgOption, mxResources.get('formatSvg'));
@@ -1417,6 +1417,10 @@ var ExportDialog = function (editorUi) {
         xmlOption.setAttribute('value', 'xml');
         mxUtils.write(xmlOption, mxResources.get('formatXml'));
         imageFormatSelect.appendChild(xmlOption);
+    }
+
+    if (ExportDialog.showPdfOption){
+        //TODO add an option to select or not elements' info to generate the pdf
     }
 
     td = document.createElement('td');
@@ -1495,6 +1499,8 @@ var ExportDialog = function (editorUi) {
     td = document.createElement('td');
     td.appendChild(transparentCheckbox);
     mxUtils.write(td, mxResources.get('transparent'));
+
+    row.appendChild(td);
 
     row.appendChild(td);
 
@@ -1676,6 +1682,11 @@ ExportDialog.showGifOption = true;
 ExportDialog.showXmlOption = true;
 
 /**
+ * Global switches for the export dialog.
+ */
+ExportDialog.showPdfOption = true;
+
+/**
  * Hook for getting the export format. Returns null for the default
  * intermediate XML export format or a function that returns the
  * parameter and value to be used in the request in the form
@@ -1717,7 +1728,11 @@ ExportDialog.exportFile = function (editorUi, name, format, bg, s, b) {
             editorUi.editor.graph.threats.forEach(threat => {
                 threatObject = {...threat};
                 barriersObjects = [];
+                escalfactorsObjetcs = [];
                 threat.barriers.forEach(barrier => {
+                    barrier.escalfactors.forEach(factor =>{
+                        escalfactorsObjetcs.push({...factor})
+                    })
                     barriersObjects.push({...barrier})
                 });
                 threatObject._barriers = barriersObjects;
@@ -1729,12 +1744,16 @@ ExportDialog.exportFile = function (editorUi, name, format, bg, s, b) {
 
         if (editorUi.editor.graph.consequences.length > 0) {
 
-            // Convert threats object into generic javascript Object
+            // Convert consequence object into generic javascript Object
             let consequencesObjects = [];
             editorUi.editor.graph.consequences.forEach(consequence => {
                 consequenceObject = {...consequence};
                 barriersObjects = [];
+                escalfactorsObjetcs = [];
                 consequence.barriers.forEach(barrier => {
+                    barrier.escalfactors.forEach(factor =>{
+                        escalfactorsObjetcs.push({...factor})
+                    })
                     barriersObjects.push({...barrier})
                 });
                 consequenceObject._barriers = barriersObjects;
@@ -1750,11 +1769,13 @@ ExportDialog.exportFile = function (editorUi, name, format, bg, s, b) {
         xml = "<diagram>" + xml + dataXml + "</diagram>";
         download(xml);
         //ExportDialog.saveLocalFile(editorUi, mxUtils.getXml(editorUi.editor.getGraphXml()), name, format);
+
     } else if (format === 'svg') {
         svg = mxUtils.getXml(graph.getSvg(bg, s, b));
         download(svg);
         //ExportDialog.saveLocalFile(editorUi, mxUtils.getXml(graph.getSvg(bg, s, b)), name, format);
-    } else if (format === 'png' || format === 'jpg') {
+
+    } else if (format === 'png' || format === 'jpg' || format === 'pdf') {
         const svg = mxUtils.getXml(graph.getSvg(bg, s, b));
 
         function svgToPng(svg, callback) {
@@ -1807,8 +1828,25 @@ ExportDialog.exportFile = function (editorUi, name, format, bg, s, b) {
             const pngImage = document.createElement('img');
             document.body.appendChild(pngImage);
             pngImage.src = imgData;
+
+            if (format === 'pdf') {
+
+                //Here we fill all PDF content, relative to the pdfMake documentation
+                //TODO there is the png image of the diagram integrated into the PDF,
+                //TODO now we want header, information about the user, the date, title, and all informations
+                //TODO links to the elements. See the XML just above, informations are display into the xml representation
+                var docDefinition = {
+                    content: [
+                        {
+                            image: imgData
+                        }]
+                };
+
+                pdfMake.createPdf(docDefinition).download();
+            }
             var a = document.createElement("a"),
                 url = imgData;
+
             a.href = url;
             a.download = name;
             document.body.appendChild(a);
@@ -1817,7 +1855,6 @@ ExportDialog.exportFile = function (editorUi, name, format, bg, s, b) {
                 document.body.removeChild(a);
                 window.URL.revokeObjectURL(url);
             }, 0);
-
         });
 
         /*
@@ -1861,10 +1898,9 @@ ExportDialog.exportFile = function (editorUi, name, format, bg, s, b) {
         }
 
          */
-    } else if (format === 'pdf' || 'gif') {
+    } else if (format === 'gif') {
         alert("Those parameters are not yet supported")
-    }
-};
+}};
 
 /**
  * Hook for getting the export format. Returns null for the default
