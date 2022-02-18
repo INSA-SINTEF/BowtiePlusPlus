@@ -15,7 +15,7 @@ export const app = new Vue({
     },
     components: {
         'home': HomePage,
-        'navbar': TheNavbarComponent
+        'navbar': TheNavbarComponent,
     },
     methods: {
         showNavbar: function() {

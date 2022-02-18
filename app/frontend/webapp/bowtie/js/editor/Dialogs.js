@@ -1830,7 +1830,6 @@ ExportDialog.exportFile = function (editorUi, name, format, bg, s, b) {
             pngImage.src = imgData;
 
             if (format === 'pdf') {
-
                 //Here we fill all PDF content, relative to the pdfMake documentation
                 //TODO there is the png image of the diagram integrated into the PDF,
                 //TODO now we want header, information about the user, the date, title, and all informations

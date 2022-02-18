@@ -160,6 +160,9 @@ EditorUi = function (editor, container, lightbox) {
         this.sidebarContainer.onmousedown = textEditing;
         this.formatContainer.onselectstart = textEditing;
         this.formatContainer.onmousedown = textEditing;
+        //RONAN
+        this.tutoContainer.onselectstart = textEditing;
+        this.tutoContainer.onmousedown = textEditing;
         this.footerContainer.onselectstart = textEditing;
         this.footerContainer.onmousedown = textEditing;
 
@@ -2483,6 +2486,8 @@ EditorUi.prototype.createDivs = function () {
     this.toolbarContainer = this.createDiv('geToolbarContainer');
     this.sidebarContainer = this.createDiv('geSidebarContainer');
     this.formatContainer = this.createDiv('geSidebarContainer');
+    //RONAN
+    this.tutoContainer = this.createDiv('geSidebarContainer');
     this.diagramContainer = this.createDiv('geDiagramContainer');
     this.footerContainer = this.createDiv('geFooterContainer');
     this.hsplit = this.createDiv('geHsplit');
@@ -2509,6 +2514,12 @@ EditorUi.prototype.createDivs = function () {
     this.formatContainer.style.overflowX = 'hidden';
     this.formatContainer.style.overflowY = 'auto';
     this.formatContainer.style.fontSize = '12px';
+
+    //RONAN
+    this.tutoContainer.style.backgroundColor = 'whiteSmoke';
+    this.tutoContainer.style.overflowX = 'hidden';
+    this.tutoContainer.style.overflowY = 'auto';
+    this.tutoContainer.style.fontSize = '12px';
 
     this.sidebarFooterContainer = this.createSidebarFooterContainer();
 
