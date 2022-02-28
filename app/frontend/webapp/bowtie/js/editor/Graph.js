@@ -2311,6 +2311,23 @@ Graph.prototype.getUnwantedEventName = function () {
 }
 
 /**
+ * Adds event if grid size is changed.
+ */
+Graph.prototype.filledElement = function () {
+    let threatsCells = this.getAllThreatsCells();
+    //Add new threats from the diagram to this.threats
+    threatsCells.forEach(cell => {
+        let threat = this.threats.find(elem => elem.cell === cell.id);
+
+        //update design if a comment has be done
+        tmp = cell.value.getAttribute('infoDesc');
+        if (tmp != null){
+            threat.updateThreatCellDesign();
+        }
+    })
+}
+
+/**
  *	Bowtie++ feature
  *	returns the threats cells
  */
@@ -2513,6 +2530,7 @@ Graph.prototype.updateAllThreats = function () {
     //Add new threats from the diagram to this.threats
     threatsCells.forEach(cell => {
         let threat = this.threats.find(elem => elem.cell === cell.id);
+
         if (threat !== undefined) {
             //update name in case of rename, without taking html tags
             threat.name = cell.value;

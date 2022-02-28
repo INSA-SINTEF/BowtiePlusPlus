@@ -1,0 +1,19 @@
+#tuto {
+    position: absolute;
+    width: 235px;
+    height: 450px;
+    top: 375px;
+    right: 4px;
+    overflow: auto;
+}
+
+.alert{
+    margin: 4px;
+    font-size: small;
+}
+
+.unused{
+    background-color: #8C8C8C;
+    opacity: 0.2;
+    color: black;
+}

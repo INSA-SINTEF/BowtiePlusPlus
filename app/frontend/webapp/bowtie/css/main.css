@@ -3,6 +3,7 @@
 @import "navbar.css";
 @import "statistics.css";
 @import "account.css";
+@import "tuto.css";
 
 #app {
     width: 100%;
