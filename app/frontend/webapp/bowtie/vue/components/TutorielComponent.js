@@ -43,7 +43,8 @@ export const TutorielComponent = {
     </div>
 </div>
      `,
-    methods: {}
+    methods: {
+    }
 
 
 }

@@ -21,19 +21,6 @@ class Threat {
         this.updateThreatCellDesign();
     }
 
-    /*
-    update threat cell design to add the graphical description presence alert
-     */
-    updateThreatCellDesign(){
-        //console.log("APPEL FONCTION");
-        let threatCell = window.currentUI.editor.graph.model.getCell(this._cell);
-        //threatCell.setStyle('shape=mxgraph.bowtie.threatFilled;whiteSpace=wrap;html=1;fontSize=16;aspect=fixed');
-        threatCell.setStyle('shape=mxgraph.bowtie.veryhighthreat;whiteSpace=wrap;html=1;fontSize=16;aspect=fixed');
-
-        window.currentUI.editor.graph.refresh();
-
-    }
-
     updateThreatCellColor(){
         let threatCell = window.currentUI.editor.graph.model.getCell(this._cell);
         if (this.allDefined()) {

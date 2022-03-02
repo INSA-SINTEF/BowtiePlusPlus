@@ -1159,11 +1159,14 @@ var InfoTextDialog = function (editorUi, title, title1, url, url1, fn, cancelFn,
 
     if (fn != null) {
         var genericBtn = mxUtils.button(applyTitle || mxResources.get('apply'), function () {
+
             if (!noHide) {
                 editorUi.hideDialog();
             }
 
             fn(nameInput.value, nameInput1.value);
+
+           //If there
         });
 
         genericBtn.className = 'geBtn gePrimaryBtn';

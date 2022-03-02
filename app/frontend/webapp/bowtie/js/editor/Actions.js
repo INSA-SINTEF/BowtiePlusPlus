@@ -358,8 +358,21 @@ Actions.prototype.init = function () {
 
             var dlg = new InfoTextDialog(ui, "Title" + ':', "Description :", info, info1, function (newValue, newValue1) {
                 graph.labelChanged(cell, newValue);
-
                 graph.setInfoDescForCell(cell, newValue1);
+
+
+                //CODERONAN
+                if (newValue1 != ""){
+                    //Set the style depending on the type of the cell
+                    if(cell.customID == "Barrier"){cell.setStyle('shape=mxgraph.bowtie.'+cell.customID.replace(/\s+/g, '').toLowerCase()+'_filled;whiteSpace=wrap;verticalAlign=bottom;html=1;fontSize=16;aspect=fixed');
+                    } else { cell.setStyle('shape=mxgraph.bowtie.'+cell.customID.replace(/\s+/g, '').toLowerCase()+'_filled;whiteSpace=wrap;html=1;fontSize=16;aspect=fixed');
+                    }
+                } else { //To reset the initial style if there isn't a comment anymore
+                    if(cell.customID == "Barrier"){cell.setStyle('shape=mxgraph.bowtie.'+cell.customID.replace(/\s+/g, '').toLowerCase()+'_prev;whiteSpace=wrap;verticalAlign=bottom;html=1;fontSize=16;aspect=fixed');
+                    } else { cell.setStyle('shape=mxgraph.bowtie.'+cell.customID.replace(/\s+/g, '').toLowerCase()+';whiteSpace=wrap;html=1;fontSize=16;aspect=fixed');
+                    }
+                }
+                window.currentUI.editor.graph.refresh();
 
             }, null, null, 400, 350);
 
