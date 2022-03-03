@@ -132,23 +132,23 @@ Graph = function (container, model, renderHint, stylesheet, themes) {
                 switch (c) {
                     case 5:
                         var fill = "#00ff06";
-                        var impact_ind = 0.5;
+                        //var impact_ind = 0.5;
                         break;
                     case 4:
                         var fill = "#a7ec67";
-                        var impact_ind = 2.5;
+                        //var impact_ind = 2.5;
                         break;
                     case 3:
                         var fill = "#fffe00";
-                        var impact_ind = 4.5;
+                        //var impact_ind = 4.5;
                         break;
                     case 2:
                         var fill = "#fe773d";
-                        var impact_ind = 6.5;
+                        //var impact_ind = 6.5;
                         break;
                     case 1:
                         var fill = "#ff0000";
-                        var impact_ind = 9;
+                        //var impact_ind = 9;
                         break;
                     default:
                     case 0:
@@ -161,33 +161,31 @@ Graph = function (container, model, renderHint, stylesheet, themes) {
                 cell.setStyle(s)
                 this.updateAllConsequences();
                 this.updateAllThreats();
-                // If the matrix is connected to a threat, update the color of the threat
+                // If the matrix is connected to a threat or a consequence, update the color
                 if (cell.getParent().getParent().edges != null && cell.getParent().getParent().edges.length > 0) {
                     if (cell.getParent().getParent().edges[0].source.customID === 'Consequence') {
-                        this.consequences.forEach(cons => {
-                            if (cons.cell === cell.getParent().getParent().edges[0].source.id){
+                        this.consequences.forEach(consequence => {
+                            if (consequence.cell === cell.getParent().getParent().edges[0].source.id){
+                                let value = consequence.convertColorToValue(fill);
                                 switch(cell.getParent().value){
                                     case("COM"):
-                                        cons.indicator += impact_ind;
-                                        cons._com = true;
+                                        consequence.com = value;
                                         break;
 
                                     case("REP"):
-                                        cons.indicator += impact_ind;
-                                        cons._rep = true;
+                                        consequence.rep = value;
                                         break;
 
                                     case("ENV"):
-                                        cons.indicator += impact_ind;
-                                        cons._env = true;
+                                        consequence.env = value;
                                         break;
 
                                     case("IND"):
-                                        cons.indicator += impact_ind;
-                                        cons._ind = true;
+                                        consequence.ind = value;
                                         break;
+
                                 }
-                                cons.updateStyle();
+                                consequence.updateConsCellColor();
                             }
                         });
                     }
@@ -2318,12 +2316,6 @@ Graph.prototype.filledElement = function () {
     //Add new threats from the diagram to this.threats
     threatsCells.forEach(cell => {
         let threat = this.threats.find(elem => elem.cell === cell.id);
-
-        //update design if a comment has be done
-        tmp = cell.value.getAttribute('infoDesc');
-        if (tmp != null){
-            threat.updateThreatCellDesign();
-        }
     })
 }
 
@@ -2353,6 +2345,23 @@ Graph.prototype.getMatrix = function(cell) {
         for (const edge of Object.values(cell.edges)) {
             if (edge.target.customID === 'Likelihood'){
                 mat = new Matrix(edge.target);
+                break;
+            }
+        }
+    }
+    return mat;
+}
+/**
+ *	Bowtie++ feature
+ *	returns the matrix linked to the consequence cell given in parameter
+ *  returns default null matrix if no matrix is linked
+ */
+Graph.prototype.getMatrixImpact = function(cell) {
+    let mat = new MatrixImpact(null);
+    if(cell.edges != null && cell.edges.length > 0){
+        for (const edge of Object.values(cell.edges)) {
+            if (edge.target.customID === 'Impact'){
+                mat = new MatrixImpact(edge.target);
                 break;
             }
         }
@@ -2530,7 +2539,6 @@ Graph.prototype.updateAllThreats = function () {
     //Add new threats from the diagram to this.threats
     threatsCells.forEach(cell => {
         let threat = this.threats.find(elem => elem.cell === cell.id);
-
         if (threat !== undefined) {
             //update name in case of rename, without taking html tags
             threat.name = cell.value;
@@ -2611,8 +2619,14 @@ Graph.prototype.updateAllConsequences = function() {
         if (consequence !== undefined) {
             //update name in case of rename, without taking html tags
             consequence.name = cell.value;
+            let mat = this.getMatrixImpact(cell);
+            // update the matrix if it is not the same one
+            if(consequence.matrix.getMatrixCell() !== mat.getMatrixCell()){
+                consequence.matrix = this.getMatrix(cell);
+            }
         } else {
-            this.consequences.push(new Consequence(cell));
+            let matrix = this.getMatrix(cell);
+            this.consequences.push(new Consequence(cell, matrix));
         }
     });
 
@@ -2635,6 +2649,7 @@ Graph.prototype.updateAllConsequences = function() {
     this.consequences.sort(function (a, b) {
         return b.name.toString() < a.name.toString()
     });
+    this.refresh();
 }
 
 /**

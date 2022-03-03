@@ -66,7 +66,7 @@ let risk_vue = new Vue({
                     continue;
                 }
                 oneDefined = true;
-                let product =  this.consequences[i].getProduct();
+                let product =  this.consequences[i].getProbability();
                 if(product > maxProduct){
                     maxProduct = product;
                     indexMax = i;
@@ -74,21 +74,21 @@ let risk_vue = new Vue({
                 accumul += product;
             }
             // Set the highest consequence "highest" attribute to true and set the indicator
-            for(let i = 0; i < this.consequences.length; i++){
+            /*for(let i = 0; i < this.consequences.length; i++){
                 if(this.consequences[i].allDefined()){
                     if(indexMax == i){
                         this.consequences[i].isHighest = true;
                         this.consequences[i].indicator = 10.0;
                     }else{
                         this.consequences[i].isHighest = false;
-                        this.consequences[i].indicator = (this.consequences[i].getProduct() * 10) / maxProduct;
+                        this.consequences[i].indicator = (this.consequences[i].getProbability() * 10) / maxProduct;
                     }
                 }
                 else{
                     this.consequences[i].isHighest = false;
                     this.consequences[i].indicator = "";
                 }
-            }
+            }*/
 
             //Check if at least one consequence attributes are defined
             if(!oneDefined){

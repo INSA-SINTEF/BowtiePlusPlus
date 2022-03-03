@@ -1209,6 +1209,7 @@ Sidebar.prototype.addBranchPalette = function(dir, expand)
 
 		ellipsises = [];
 		likelihoodLanes = [];
+		impactLanes = [];
 
 		for (i = 0; i < 20; i++){
 			var y = 30+(30*Math.floor(i/5))
@@ -1230,6 +1231,7 @@ Sidebar.prototype.addBranchPalette = function(dir, expand)
 			lane.type = "horizontalLane"
 			lane.customID = 'lane';
 			likelihoodLanes.push(lane);
+			impactLanes.push(lane);
 		}
 
 	/* All relevant bowtie elements are made here using createVertexTemplateEntry using shape defined within resources/bowtie.xml. */
@@ -1304,8 +1306,9 @@ Sidebar.prototype.addBranchPalette = function(dir, expand)
 						title = 'No title found for lane ' + i.toString();
 						break;
 				}			
-				var lane = sb.cloneCell(likelihoodLanes[i], title)
+				var lane = sb.cloneCell(impactLanes[i], title)
 				lane.resizeParent = true;
+				lane.setConnectable(false)
 				for (j = 0; j < 5; j++){
 					var ellipse = sb.cloneCell(ellipsises[count], '')
 					ellipse.resizeParent = true;
