@@ -1148,6 +1148,19 @@ Actions.prototype.init = function () {
 
         //ui.fireEvent(new mxEventObject('layers'));
     }), null, null, Editor.ctrlKey + '+Shift+L');
+
+    //Help actions
+    this.addAction('likelihood', function () {
+        console.log('likelihood action');
+        //function(){
+        ui.showDialog(new LikelihoodDialog().container, 1000, (0.7*window.innerHeight), true, true);
+    });
+
+    this.addAction('impact', function () {
+        console.log('impact action');
+        ui.showDialog(new ImpactDialog().container, 1000, (0.7*window.innerHeight), true, true);
+    });
+
     action.setToggleAction(true);
     action.setSelectedCallback(mxUtils.bind(this, function () {
         return this.layersWindow != null && this.layersWindow.window.isVisible();

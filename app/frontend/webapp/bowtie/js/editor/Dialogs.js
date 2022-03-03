@@ -62,6 +62,51 @@ var RiskDialog = function () {
     iframe.setAttribute('src', RISK_DIALOG);
     this.container = iframe;
 }
+
+
+/**
+ * Bowtie++ feature
+ * Likelihood Dialog to show Likelihood help
+ */
+var LikelihoodDialog = function () {
+    var iframe = document.createElement('iframe');
+    iframe.style.backgroundColor = 'transparent';
+    iframe.allowTransparency = 'true';
+    iframe.style.borderStyle = 'none';
+    iframe.style.borderWidth = '0px';
+    iframe.style.overflow = 'hidden';
+    iframe.frameBorder = '0';
+    // Adds padding as a workaround for box model in older IE versions
+    var dx = (mxClient.IS_VML && (document.documentMode == null || document.documentMode < 8)) ? 20 : 0;
+
+    iframe.setAttribute('width', 1000 + 'px');
+    iframe.setAttribute('height', 750 + 'px');
+    iframe.setAttribute('src', LIKELIHOOD_HELP);
+    this.container = iframe;
+}
+
+/**
+ * Bowtie++ feature
+ * Impact Dialog to show Impact help
+ */
+var ImpactDialog = function () {
+    var iframe = document.createElement('iframe');
+    iframe.style.backgroundColor = 'transparent';
+    iframe.allowTransparency = 'true';
+    iframe.style.borderStyle = 'none';
+    iframe.style.borderWidth = '0px';
+    iframe.style.overflow = 'hidden';
+    iframe.frameBorder = '0';
+    // Adds padding as a workaround for box model in older IE versions
+    var dx = (mxClient.IS_VML && (document.documentMode == null || document.documentMode < 8)) ? 20 : 0;
+
+    iframe.setAttribute('width', 1000 + 'px');
+    iframe.setAttribute('height', 750 + 'px');
+    iframe.setAttribute('src', IMPACT_HELP);
+    this.container = iframe;
+}
+
+
 /**
  * Constructs a new color dialog.
  */
