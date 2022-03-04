@@ -2318,12 +2318,6 @@ Graph.prototype.filledElement = function () {
     //Add new threats from the diagram to this.threats
     threatsCells.forEach(cell => {
         let threat = this.threats.find(elem => elem.cell === cell.id);
-
-        //update design if a comment has be done
-        tmp = cell.value.getAttribute('infoDesc');
-        if (tmp != null){
-            threat.updateThreatCellDesign();
-        }
     })
 }
 
@@ -2564,6 +2558,7 @@ Graph.prototype.updateAllThreats = function () {
     this.threats.sort(function (a, b) {
         return b.name.toString() < a.name.toString()
     });
+
     this.refresh();
 }
 /**

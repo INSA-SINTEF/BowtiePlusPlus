@@ -18,7 +18,6 @@ class Threat {
         this._means == "" ? this._means = this.convertColorToValue(this._matrix.getMEA()) : this._matrix.setMEA(this._means);
         this._motivation == "" ? this._motivation = this.convertColorToValue(this._matrix.getMTV()) : this._matrix.setMTV(this._motivation);
         this.updateThreatCellColor();
-        this.updateThreatCellDesign();
     }
 
     updateThreatCellColor(){
