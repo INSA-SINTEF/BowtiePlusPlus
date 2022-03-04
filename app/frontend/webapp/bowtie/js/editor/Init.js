@@ -36,7 +36,8 @@ window.RISK_DIALOG = window.RISK_DIALOG || window.ROOT_PAGE + 'html/risk-computa
 window.DIAGRAM_SEARCH_DIALOG = window.DIAGRAM_SEARCH_DIALOG || window.ROOT_PAGE + 'html/diagram-search.html';
 window.VERSIONING_SEARCH = window.VERSIONING_SEARCH || window.ROOT_PAGE + 'html/versioning-search.html';
 window.ROLE_MANAGER_DIALOG = window.ROLE_MANAGER_DIALOG || window.ROOT_PAGE + 'html/role-manager.html';
-
+window.LIKELIHOOD_HELP = window.LIKELIHOOD_HELP || window.ROOT_PAGE + 'html/likelihood_help.html';
+window.IMPACT_HELP = window.IMPACT_HELP || window.ROOT_PAGE + 'html/impact_help.html';
 
 // Resources
 // Path is relative to the editor.html page
