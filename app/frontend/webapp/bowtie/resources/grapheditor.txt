@@ -338,3 +338,5 @@ zoomOut=Zoom Out
 bowtieroot=Bowtie Root Elements
 bowtiebranch=Bowtie Branch Elements
 bowtieindicators=Bowtie Indicators
+likelihood=Likelihood matrix
+impact=Impact matrix

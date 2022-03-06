@@ -2572,6 +2572,7 @@ Graph.prototype.updateAllThreats = function () {
     this.threats.sort(function (a, b) {
         return b.name.toString() < a.name.toString()
     });
+
     this.refresh();
 }
 /**

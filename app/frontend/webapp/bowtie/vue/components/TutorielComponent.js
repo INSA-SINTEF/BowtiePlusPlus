@@ -7,19 +7,41 @@
 
 export const TutorielComponent = {
     props: {
-        //variable link to the component
     },
+    data: function(){
+        return{
+            nbThreats: 0,
+            nbConsequences: 0,
+            nbBarriers: 0,
+            nbAssets : 0,
+            nbEscalationFactors : 0
+        }
+    },
+    mounted : function(){
+         },
+    updated : function(){
+        console.log("test");
+        this.nbThreats = document.getElementById('diagram-editor').children[1].contentWindow.currentUI.editor.graph.getAllThreats().length;
+    },
+    methods: {
+        //Réussir à l'appeler après qu'il ait été monté!
+        update : function (){
+            this.nbThreats = document.getElementById('diagram-editor').children[1].contentWindow.currentUI.editor.graph.getAllThreats().length;
+            this.nbConsequences = document.getElementById('diagram-editor').children[1].contentWindow.currentUI.editor.graph.getAllConsequences().length;
+
+        }
+    },
+
     template:
-    //HTML code corresponding to the componet
+    //HTML code corresponding to the component
         `
 <div id="tuto">
     <div class="alert alert-success" role="alert">
-        Etape 1:
-        Here will be describe what to do so far
+        Number of threats disposed : {{this.nbThreats}}
+      <button id="gostButtonTuto" v-on:click="update"> test </button>
     </div>
     <div class="alert alert-success " role="alert">
-        Etape 2:
-        Here will be describe what to do so far
+        Number of consequences disposed : {{this.nbConsequences}}
     </div>
     <div class="alert alert-danger" role="alert">
         Etape 3:
@@ -42,9 +64,6 @@ export const TutorielComponent = {
         Here will be describe what to do so far
     </div>
 </div>
-     `,
-    methods: {
-    }
-
+     `
 
 }

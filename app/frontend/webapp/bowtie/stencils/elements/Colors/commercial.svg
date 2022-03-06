@@ -1,0 +1,44 @@
+<svg id="threat_actor.svg" width="600" height="200" xmlns="http://www.w3.org/2000/svg">
+    <metadata id="metadata6064">image/svg+xml</metadata>
+    <g>
+        <g>
+            <title>background</title>
+            <rect fill="none" id="canvas_background" height="160" width="400" y="-1" x="-1"/>
+        </g>
+        <g>
+            <title>Threat actors</title>
+            <g opacity="0.7" id="layer1">
+                <text opacity="1" x="50" y="30" font-family="sans-serif" font-size="17px" fill="black">The consequence does not impact the commercial activities of the organisation</text>
+                <ellipse fill="#00ff06" stroke="#000000" stroke-width="0" stroke-linecap="round" stroke-miterlimit="4" ry="15" rx="15" cy="20" cx="20" id="r1c1"/>
+            </g>
+        </g>
+        <g>
+            <title>Window of opportunity</title>
+            <g opacity="0.7" id="layer2">
+                <text opacity="1" x="50" y="70" font-family="sans-serif" font-size="17px" fill="black">The impacts on the commercial activities of the organisation are insignificants</text>
+                <ellipse fill="#a7ec67" stroke="#000000" stroke-width="0" stroke-linecap="round" stroke-miterlimit="4" ry="15" rx="15" cy="58" cx="20" id="r2c2"/>
+            </g>
+        </g>
+        <g>
+            <title>Vulnerabilities</title>
+            <g opacity="0.7" id="layer3">
+                <text opacity="1" x="50" y="110" font-family="sans-serif" font-size="17px" fill="black">The commercial activities are impacted</text>
+                <ellipse fill="#fffe00" stroke="#000000" stroke-width="0" stroke-linecap="round" stroke-miterlimit="4" ry="15" rx="15" cy="96" cx="20" id="r3c3"/>
+            </g>
+        </g>
+        <g>
+            <title>Security control</title>
+            <g opacity="0.7" id="layer4">
+                <text opacity="1" x="50" y="150" font-family="sans-serif" font-size="17px" fill="black">The commercial activities of the organisation are quite impacted</text>
+                <ellipse fill="#fe773d" stroke="#000000" stroke-width="0" stroke-linecap="round" stroke-miterlimit="4" ry="15" rx="15" cy="134" cx="20" id="r4c4"/>
+            </g>
+        </g >
+        <g>
+            <title>Security control</title>
+            <g opacity="0.7" id="layer5">
+                <text opacity="1" x="50" y="190" font-family="sans-serif" font-size="17px" fill="black">The damages on the commercial activities of the organisation are critical</text>
+                <ellipse fill="#ff0000" stroke="#000000" stroke-width="0" stroke-linecap="round" stroke-miterlimit="4" ry="15" rx="15" cy="172" cx="20" id="r4c5"/>
+            </g>
+        </g>
+    </g>
+</svg>
