@@ -31,7 +31,7 @@ export const TutorielComponent = {
 
         }
     },
-
+git
     template:
     //HTML code corresponding to the component
         `
