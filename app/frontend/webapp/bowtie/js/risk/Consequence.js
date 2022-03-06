@@ -28,6 +28,28 @@ class Consequence{
         this.updateConsCellColor();
     }
 
+    convertColorToValue(color){
+        switch (color){
+            case '#00ff06':
+                return 0.5;
+
+            case '#a7ec67':
+                return 2.5;
+
+            case '#fffe00':
+                return 4.5;
+
+            case '#fe773d':
+                return 6.5;
+
+            case '#ff0000':
+                return 9.0;
+
+            default:
+                return "";
+        }
+    }
+
     updateConsCellColor(){
         let consCell = window.currentUI.editor.graph.model.getCell(this._cell);
         if (this.paramDefined()) {
@@ -113,7 +135,7 @@ class Consequence{
                 })
                 barriersFailureProbability *= 1-(barrier.failureProbability * escalationFactorProbability);
             })
-            return (this.impactValue * this.getMeanValue()/10 * barriersFailureProbability);
+            return (this.impactValue/10 * this.getMeanValue()/10 * barriersFailureProbability);
         }
     }
     /*updateStyle(){

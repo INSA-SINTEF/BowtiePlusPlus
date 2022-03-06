@@ -588,12 +588,18 @@ Editor.prototype.setGraphValues = function(dataObjectXml){
 
 	if(dataObject.consequences.length > 0){
 		dataObject.consequences.forEach(consequence => {
+			let matCell = this.graph.model.getCell(consequence._matrix.matrixCell);
+			let mat = new MatrixImpact(matCell);
 			let consequenceCell = this.graph.model.getCell(consequence._cell);
-			let cons = new Consequence(consequenceCell);
+			let cons = new Consequence(consequenceCell, mat);
+			cons.com = consequence._com;
+			cons.rep = consequence._rep;
+			cons.env = consequence._env;
+			cons.ind = consequence._ind;
 			cons.impactValue = consequence._impactValue;
-			cons.probability = consequence._probability;
-			consequence._isHighest == 0 ? cons.isHighest = false : cons.isHighest = true;
-			cons.indicator = consequence._indicator;
+			//cons.probability = consequence._probability;
+			//consequence._isHighest == 0 ? cons.isHighest = false : cons.isHighest = true;
+			//cons.indicator = consequence._indicator;
 			let barriers = [];
 			consequence._barriers.forEach(barrier =>{
 				let barrierCell = this.graph.model.getCell(barrier._cell);

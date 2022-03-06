@@ -1760,6 +1760,7 @@ ExportDialog.exportFile = function (editorUi, name, format, bg, s, b) {
                     barriersObjects.push({...barrier})
                 });
                 consequenceObject._barriers = barriersObjects;
+                consequenceObject._matrix = {...consequence._matrix};
                 consequencesObjects.push(consequenceObject);
             });
             dataObject.consequences = consequencesObjects;

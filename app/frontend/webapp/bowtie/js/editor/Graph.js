@@ -2622,10 +2622,10 @@ Graph.prototype.updateAllConsequences = function() {
             let mat = this.getMatrixImpact(cell);
             // update the matrix if it is not the same one
             if(consequence.matrix.getMatrixCell() !== mat.getMatrixCell()){
-                consequence.matrix = this.getMatrix(cell);
+                consequence.matrix = this.getMatrixImpact(cell);
             }
         } else {
-            let matrix = this.getMatrix(cell);
+            let matrix = this.getMatrixImpact(cell);
             this.consequences.push(new Consequence(cell, matrix));
         }
     });
