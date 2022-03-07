@@ -160,8 +160,6 @@ EditorUi = function (editor, container, lightbox) {
         this.sidebarContainer.onmousedown = textEditing;
         this.formatContainer.onselectstart = textEditing;
         this.formatContainer.onmousedown = textEditing;
-        this.footerContainer.onselectstart = textEditing;
-        this.footerContainer.onmousedown = textEditing;
 
         if (this.tabContainer != null) {
             // Mouse down is needed for drag and drop
@@ -2510,6 +2508,7 @@ EditorUi.prototype.createDivs = function () {
     this.formatContainer.style.overflowY = 'auto';
     this.formatContainer.style.fontSize = '12px';
 
+
     this.sidebarFooterContainer = this.createSidebarFooterContainer();
 
     if (this.sidebarFooterContainer) {
@@ -3116,6 +3115,7 @@ EditorUi.prototype.save = function (name, tags) {
                     barriersObjects.push({...barrier})
                 });
                 consequenceObject._barriers = barriersObjects;
+                consequenceObject._matrix = {...consequence._matrix};
                 consequencesObjects.push(consequenceObject);
             });
             dataObject.consequences = consequencesObjects;

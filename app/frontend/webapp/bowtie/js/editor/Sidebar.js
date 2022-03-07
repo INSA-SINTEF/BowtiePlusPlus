@@ -1188,8 +1188,8 @@ Sidebar.prototype.addBranchPalette = function(dir, expand)
     /* It might be necessary to use addEntry directly to make them collapseable. Take a look at the UML library below.*/
     var fns =
         [
+
             this.createVertexTemplateEntry('Barrier','shape=mxgraph.bowtie.barrier_prev;whiteSpace=wrap;html=1;verticalAlign=bottom;fontSize=16;aspect=fixed', 120, 80, 'Barrier', 'Barrier', null, null, 'bowtie barrier'),
-			//this.createVertexTemplateEntry('Barrier','shape=mxgraph.bowtie.barrier_react;whiteSpace=wrap;html=1;verticalAlign=bottom;fontSize=16;aspect=fixed', 120, 80, 'Reactive Barrier', 'Reactive Barrier', null, null, 'bowtie barrier'),
             //this.createVertexTemplateEntry('Security Control','shape=mxgraph.bowtie.control;whiteSpace=wrap;html=1;verticalAlign=bottom;fontSize=16;aspect=fixed', 120, 80, 'Security Control', 'Security Control', null, null, 'bowtie security control'),
 			this.createVertexTemplateEntry('Threat','shape=mxgraph.bowtie.threat;html=1;whiteSpace=wrap;fontSize=16;aspect=fixed', 120, 80, 'Security\nThreat', 'Security Threat', null, null, 'bowtie threat'),
             this.createVertexTemplateEntry('Consequence','shape=mxgraph.bowtie.consequence;html=1;whiteSpace=wrap;fontSize=16;aspect=fixed', 120, 80, 'Consequence', 'Consequence', null, null, 'bowtie consequence'),
@@ -1209,6 +1209,7 @@ Sidebar.prototype.addBranchPalette = function(dir, expand)
 
 		ellipsises = [];
 		likelihoodLanes = [];
+		impactLanes = [];
 
 		for (i = 0; i < 20; i++){
 			var y = 30+(30*Math.floor(i/5))
@@ -1230,6 +1231,7 @@ Sidebar.prototype.addBranchPalette = function(dir, expand)
 			lane.type = "horizontalLane"
 			lane.customID = 'lane';
 			likelihoodLanes.push(lane);
+			impactLanes.push(lane);
 		}
 
 	/* All relevant bowtie elements are made here using createVertexTemplateEntry using shape defined within resources/bowtie.xml. */
@@ -1304,8 +1306,9 @@ Sidebar.prototype.addBranchPalette = function(dir, expand)
 						title = 'No title found for lane ' + i.toString();
 						break;
 				}			
-				var lane = sb.cloneCell(likelihoodLanes[i], title)
+				var lane = sb.cloneCell(impactLanes[i], title)
 				lane.resizeParent = true;
+				lane.setConnectable(false)
 				for (j = 0; j < 5; j++){
 					var ellipse = sb.cloneCell(ellipsises[count], '')
 					ellipse.resizeParent = true;

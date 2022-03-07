@@ -1,30 +1,132 @@
 class Consequence{
 
-    constructor(cell){
+    constructor(cell,mat){
         this._cell = cell.id;
-        this._impactValue =  "";
-        this._probability =  "";
-        this._indicator = 0;
-        this._barriers = [];
         this._name = cell.value;
-        this._isHighest = false;
-        this._com = false;
-        this._rep = false;
-        this._env = false;
-        this._ind = false;
-        this.updateStyle();
+        this._impactValue =  "";
+        //this._probability =  "";
+        //this._indicator = 0;
+        this._barriers = [];
+
+        //this._isHighest = false;
+
+        this._matrix = mat;
+        this._com = "";
+        this._rep = "";
+        this._env = "";
+        this._ind = "";
+        this.setParameters();
+
+        //this.updateStyle();
     }
 
+    setParameters(){
+        this._com == "" ? this._com = this.convertColorToValue(this._matrix.getCOM()) : this._matrix.setCOM(this._com);
+        this._rep == "" ? this._rep = this.convertColorToValue(this._matrix.getREP()) : this._matrix.setREP(this._rep);
+        this._env == "" ? this._env = this.convertColorToValue(this._matrix.getENV()) : this._matrix.setENV(this._env);
+        this._ind == "" ? this._ind = this.convertColorToValue(this._matrix.getIND()) : this._matrix.setIND(this._ind);
+        this.updateConsCellColor();
+    }
+
+    convertColorToValue(color){
+        switch (color){
+            case '#00ff06':
+                return 0.5;
+
+            case '#a7ec67':
+                return 2.5;
+
+            case '#fffe00':
+                return 4.5;
+
+            case '#fe773d':
+                return 6.5;
+
+            case '#ff0000':
+                return 9.0;
+
+            default:
+                return "";
+        }
+    }
+
+    updateConsCellColor(){
+        let consCell = window.currentUI.editor.graph.model.getCell(this._cell);
+        if (this.paramDefined()) {
+            switch (this.getColorIndicator()) {
+                case '#00ff06':
+                    consCell.setStyle('shape=mxgraph.bowtie.verylowconsequence;whiteSpace=wrap;html=1;fontSize=16;aspect=fixed');
+                    break;
+                case '#a7ec67':
+                    consCell.setStyle('shape=mxgraph.bowtie.lowconsequence;whiteSpace=wrap;html=1;fontSize=16;aspect=fixed');
+                    break;
+                case '#fffe00':
+                    consCell.setStyle('shape=mxgraph.bowtie.mediumconsequence;whiteSpace=wrap;html=1;fontSize=16;aspect=fixed');
+                    break;
+                case '#fe773d':
+                    consCell.setStyle('shape=mxgraph.bowtie.highconsequence;whiteSpace=wrap;html=1;fontSize=16;aspect=fixed');
+                    break;
+                case '#ff0000':
+                    consCell.setStyle('shape=mxgraph.bowtie.veryhighconsequence;whiteSpace=wrap;html=1;fontSize=16;aspect=fixed');
+                    break;
+                default:
+                    break;
+            }
+        }else{
+            consCell.setStyle('shape=mxgraph.bowtie.consequence;whiteSpace=wrap;html=1;fontSize=16;aspect=fixed');
+        }
+        window.currentUI.editor.graph.refresh();
+    }
+
+    getMeanValue(){
+        if (!this.paramDefined()){
+            return ('Missing parameters');
+        }else{
+            return (this._com+this._rep+this._env+this._ind)/4;
+        }
+    }
+
+    getColorIndicator(){
+        const mean = this.getMeanValue();
+        switch(true){
+            case mean < 1.5:
+                return '#00ff06';
+
+            case mean < 3.5:
+                return '#a7ec67';
+
+            case mean < 5.5:
+                return '#fffe00'
+
+            case mean < 7.5:
+                return '#fe773d';
+
+            default:
+                return '#ff0000';
+        }
+    }
+
+
+
+
+    /*
     impactDefined(){
         return this._ind && this._com && this._env && this._rep;
+    }*/
+
+    paramDefined(){
+        return ((this._com !== "") && (this._rep !== "") && (this._env !== "") && (this._ind !== ""));
     }
+
 
     allDefined(){
-        return (this._impactValue !== "") && (this._probability !== "");
+        return (this._impactValue !== "") && this.paramDefined();
     }
 
-    getProduct(){
-        if(this.allDefined()){
+    getProbability(){
+        if(!this.allDefined()) {
+            return ('Missing parameters');
+        }else{
             let barriersFailureProbability = 1;
             let escalationFactorProbability = 1;
             this.barriers.forEach(barrier => {
@@ -33,10 +135,10 @@ class Consequence{
                 })
                 barriersFailureProbability *= 1-(barrier.failureProbability * escalationFactorProbability);
             })
-            return (this.impactValue * this.probability * barriersFailureProbability);
+            return (this.impactValue/10 * this.getMeanValue()/10 * barriersFailureProbability);
         }
     }
-    updateStyle(){
+    /*updateStyle(){
         if(this.impactDefined()){
             let cell = window.currentUI.editor.graph.model.getCell(this.cell);
             this._indicator = this._indicator/4;
@@ -71,7 +173,7 @@ class Consequence{
             window.currentUI.editor.graph.refresh();
         }
 
-    }
+    }*/
 
     get cell() {
         return this._cell;
@@ -90,7 +192,7 @@ class Consequence{
             .replaceAll(/<br>/g, "").replaceAll(/<h[0-9]>/g, "")
             .replaceAll(/<\/h[0-9]>/g,"").replaceAll(/<pre>/g,"")
             .replaceAll(/<\/pre>/g,"");
-        this.updateStyle();
+        this.updateConsCellColor();
     }
 
     get impactValue() {
@@ -105,7 +207,7 @@ class Consequence{
         }
     }
 
-    get probability() {
+    /*get probability() {
         return this._probability;
     }
 
@@ -115,6 +217,71 @@ class Consequence{
         }else{
             this._probability = value;
         }
+    }*/
+
+    get matrix(){
+        return this._matrix;
+    }
+
+    set matrix(newMatrix){
+        this._matrix = newMatrix;
+        this.setParameters();
+    }
+
+    get com() {
+        return this._com;
+    }
+
+    set com(value) {
+        //Check input validity
+        if (isNaN(value) || value < 0 || value > 10 || value == ""){
+            this._com = "";
+        }else{
+            this._com = parseFloat(value);
+        }
+        this._matrix.setCOM(this._com);
+    }
+
+    get rep() {
+        return this._rep;
+    }
+
+    set rep(value) {
+        //Check input validity
+        if (isNaN(value) || value < 0 || value > 10 || value == ""){
+            this._rep = "";
+        }else{
+            this._rep = parseFloat(value);
+        }
+        this._matrix.setREP(this._rep);
+    }
+
+    get env() {
+        return this._env;
+    }
+
+    set env(value) {
+        //Check input validity
+        if (isNaN(value) || value < 0 || value > 10 || value == ""){
+            this._env = "";
+        }else{
+            this._env = parseFloat(value);
+        }
+        this._matrix.setENV(this._env);
+    }
+
+    get ind() {
+        return this._ind;
+    }
+
+    set ind(value) {
+        //Check input validity
+        if (isNaN(value) || value < 0 || value > 10 || value == ""){
+            this._ind = "";
+        }else{
+            this._ind = parseFloat(value);
+        }
+        this._matrix.setIND(this._ind);
     }
 
     get barriers() {
@@ -125,14 +292,16 @@ class Consequence{
         this._barriers = value;
     }
 
+    /*
     get isHighest() {
         return this._isHighest;
     }
 
     set isHighest(value) {
         this._isHighest = value;
-        this.updateStyle();
+        this.updateConsCellColor();
     }
+
     get indicator() {
         return this._indicator;
     }
@@ -140,7 +309,7 @@ class Consequence{
     set indicator(value) {
         this._indicator = value;
         //this.updateStyle();
-    }
+    }*/
 
     get barriers_escalfactors() {
         let res = [];

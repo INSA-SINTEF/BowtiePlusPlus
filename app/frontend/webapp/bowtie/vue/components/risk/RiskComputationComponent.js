@@ -53,6 +53,7 @@ let ConsequencesComponent = {
     data: function() {
         return {
             consequences : [],
+            display_consequence : []
         }
     },
     beforeMount: function () {
@@ -60,6 +61,25 @@ let ConsequencesComponent = {
         this.consequences = window.parent.currentUI.editor.graph.getAllConsequences();
     },
     methods: {
+        display_detail : function(consequence){
+            const index = this.display_consequence.indexOf(consequence);
+            if (index >= 0){
+                this.display_consequence.splice(index,1);
+            } else {
+                this.display_consequence.push(consequence);
+            }
+        },
+        getDetailsButtonText(consequence){
+            if (this.display_consequence.includes(consequence)){
+                return "Hide Parameters";
+            }else{
+                return "Edit Parameters";
+            }
+        },
+        updateConsequence: function (consequence) {
+            consequence.updateConsCellColor();
+            this.emitConsequences();
+        },
         emitConsequences: function () {
             this.$emit("consequences", this.consequences);
         }

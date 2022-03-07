@@ -62,6 +62,51 @@ var RiskDialog = function () {
     iframe.setAttribute('src', RISK_DIALOG);
     this.container = iframe;
 }
+
+
+/**
+ * Bowtie++ feature
+ * Likelihood Dialog to show Likelihood help
+ */
+var LikelihoodDialog = function () {
+    var iframe = document.createElement('iframe');
+    iframe.style.backgroundColor = 'transparent';
+    iframe.allowTransparency = 'true';
+    iframe.style.borderStyle = 'none';
+    iframe.style.borderWidth = '0px';
+    iframe.style.overflow = 'hidden';
+    iframe.frameBorder = '0';
+    // Adds padding as a workaround for box model in older IE versions
+    var dx = (mxClient.IS_VML && (document.documentMode == null || document.documentMode < 8)) ? 20 : 0;
+
+    iframe.setAttribute('width', 1000 + 'px');
+    iframe.setAttribute('height', 750 + 'px');
+    iframe.setAttribute('src', LIKELIHOOD_HELP);
+    this.container = iframe;
+}
+
+/**
+ * Bowtie++ feature
+ * Impact Dialog to show Impact help
+ */
+var ImpactDialog = function () {
+    var iframe = document.createElement('iframe');
+    iframe.style.backgroundColor = 'transparent';
+    iframe.allowTransparency = 'true';
+    iframe.style.borderStyle = 'none';
+    iframe.style.borderWidth = '0px';
+    iframe.style.overflow = 'hidden';
+    iframe.frameBorder = '0';
+    // Adds padding as a workaround for box model in older IE versions
+    var dx = (mxClient.IS_VML && (document.documentMode == null || document.documentMode < 8)) ? 20 : 0;
+
+    iframe.setAttribute('width', 1000 + 'px');
+    iframe.setAttribute('height', 750 + 'px');
+    iframe.setAttribute('src', IMPACT_HELP);
+    this.container = iframe;
+}
+
+
 /**
  * Constructs a new color dialog.
  */
@@ -1159,11 +1204,14 @@ var InfoTextDialog = function (editorUi, title, title1, url, url1, fn, cancelFn,
 
     if (fn != null) {
         var genericBtn = mxUtils.button(applyTitle || mxResources.get('apply'), function () {
+
             if (!noHide) {
                 editorUi.hideDialog();
             }
 
             fn(nameInput.value, nameInput1.value);
+
+           //If there
         });
 
         genericBtn.className = 'geBtn gePrimaryBtn';
@@ -1757,6 +1805,7 @@ ExportDialog.exportFile = function (editorUi, name, format, bg, s, b) {
                     barriersObjects.push({...barrier})
                 });
                 consequenceObject._barriers = barriersObjects;
+                consequenceObject._matrix = {...consequence._matrix};
                 consequencesObjects.push(consequenceObject);
             });
             dataObject.consequences = consequencesObjects;
@@ -1830,7 +1879,6 @@ ExportDialog.exportFile = function (editorUi, name, format, bg, s, b) {
             pngImage.src = imgData;
 
             if (format === 'pdf') {
-
                 //Here we fill all PDF content, relative to the pdfMake documentation
                 //TODO there is the png image of the diagram integrated into the PDF,
                 //TODO now we want header, information about the user, the date, title, and all informations

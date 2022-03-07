@@ -17,7 +17,7 @@
     <g>
       <title>Induvidual</title>
       <g opacity="0.7" id="layer1">
-        <text opacity="1" x="220" y="30" font-family="sans-serif" font-size="17px" fill="black">Induvidual</text>
+        <text opacity="1" x="220" y="30" font-family="sans-serif" font-size="17px" fill="black">Comercial</text>
         <ellipse fill="#00ff06" stroke="#000000" stroke-width="0" stroke-linecap="round" stroke-miterlimit="4" ry="18" rx="18" cy="20" cx="20" id="r1c1"/>
         <ellipse fill="#a7ec67" stroke="#000000" stroke-width="0" stroke-linecap="round" stroke-miterlimit="4" ry="18" rx="18" cy="20" cx="58" id="r1c2"/>
         <ellipse fill="#fffe00" stroke="#000000" stroke-width="4" stroke-linecap="round" stroke-miterlimit="4" ry="18" rx="18" cy="20" cx="96" id="r1c3"/>
@@ -28,7 +28,7 @@
     <g>
       <title>Enviroment</title>
       <g opacity="0.7" id="layer2">
-        <text opacity="1" x="220" y="70" font-family="sans-serif" font-size="17px" fill="black">Enviroment</text>
+        <text opacity="1" x="220" y="70" font-family="sans-serif" font-size="17px" fill="black">Reputation</text>
         <ellipse fill="#00ff06" stroke="#000000" stroke-width="0" stroke-linecap="round" stroke-miterlimit="4" ry="18" rx="18" cy="60" cx="20" id="r2c1"/>
         <ellipse fill="#a7ec67" stroke="#000000" stroke-width="4" stroke-linecap="round" stroke-miterlimit="4" ry="18" rx="18" cy="60" cx="58" id="r2c2"/>
         <ellipse fill="#fffe00" stroke="#000000" stroke-width="0" stroke-linecap="round" stroke-miterlimit="4" ry="18" rx="18" cy="60" cx="96" id="r2c3"/>
@@ -39,7 +39,7 @@
     <g>
       <title>Repurtation</title>
       <g opacity="0.7" id="layer3">
-        <text opacity="1" x="220" y="110" font-family="sans-serif" font-size="17px" fill="black">Repurtation</text>
+        <text opacity="1" x="220" y="110" font-family="sans-serif" font-size="17px" fill="black">Enviroment</text>
         <ellipse fill="#00ff06" stroke="#000000" stroke-width="0" stroke-linecap="round" stroke-miterlimit="4" ry="18" rx="18" cy="100" cx="20" id="r3c1"/>
         <ellipse fill="#a7ec67" stroke="#000000" stroke-width="0" stroke-linecap="round" stroke-miterlimit="4" ry="18" rx="18" cy="100" cx="58" id="r3c2"/>
         <ellipse fill="#fffe00" stroke="#000000" stroke-width="0" stroke-linecap="round" stroke-miterlimit="4" ry="18" rx="18" cy="100" cx="96" id="r3c3"/>
@@ -50,7 +50,7 @@
     <g>
       <title>Comercial</title>
       <g opacity="0.7" id="layer4">
-        <text opacity="1" x="220" y="150" font-family="sans-serif" font-size="17px" fill="black">Comercial</text>
+        <text opacity="1" x="220" y="150" font-family="sans-serif" font-size="17px" fill="black">Induvidual</text>
         <ellipse fill="#00ff06" stroke="#000000" stroke-width="4" stroke-linecap="round" stroke-miterlimit="4" ry="18" rx="18" cy="140" cx="20" id="r4c1"/>
         <ellipse fill="#a7ec67" stroke="#000000" stroke-width="0" stroke-linecap="round" stroke-miterlimit="4" ry="18" rx="18" cy="140" cx="58" id="r4c2"/>
         <ellipse fill="#fffe00" stroke="#000000" stroke-width="0" stroke-linecap="round" stroke-miterlimit="4" ry="18" rx="18" cy="140" cx="96" id="r4c3"/>
