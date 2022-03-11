@@ -919,7 +919,9 @@
 
     <shape name="consequence" h="80" w="120" aspect="fixed" strokewidth="inherit">
         <connections>
+            <constraint x="0.5" y="0" perimeter="0" name="N"></constraint>
             <constraint x="0" y="0.5" perimeter="0" name="W"></constraint>
+            <constraint x="1" y="0.5" perimeter="0" name="E"></constraint>
             <constraint x="0.5" y="1" perimeter="0" name="S"></constraint>
         </connections>
         <foreground>
@@ -971,6 +973,8 @@
 
     <shape name="consequence_filled" h="80" w="120" aspect="fixed" strokewidth="inherit">
         <connections>
+            <constraint x="0.5" y="0" perimeter="0" name="N"></constraint>
+            <constraint x="1" y="0.5" perimeter="0" name="E"></constraint>
             <constraint x="0" y="0.5" perimeter="0" name="W"></constraint>
             <constraint x="0.5" y="1" perimeter="0" name="S"></constraint>
         </connections>
@@ -1036,6 +1040,8 @@
 
     <shape name="verylowconsequence" h="80" w="120" aspect="fixed" strokewidth="inherit">
         <connections>
+            <constraint x="0.5" y="0" perimeter="0" name="N"></constraint>
+            <constraint x="1" y="0.5" perimeter="0" name="E"></constraint>
             <constraint x="0" y="0.5" perimeter="0" name="W"></constraint>
             <constraint x="0.5" y="1" perimeter="0" name="S"></constraint>
         </connections>
@@ -1088,6 +1094,8 @@
 
     <shape name="verylowconsequence_filled" h="80" w="120" aspect="fixed" strokewidth="inherit">
         <connections>
+            <constraint x="0.5" y="0" perimeter="0" name="N"></constraint>
+            <constraint x="1" y="0.5" perimeter="0" name="E"></constraint>
             <constraint x="0" y="0.5" perimeter="0" name="W"></constraint>
             <constraint x="0.5" y="1" perimeter="0" name="S"></constraint>
         </connections>
@@ -1154,6 +1162,8 @@
 
     <shape name="lowconsequence" h="80" w="120" aspect="fixed" strokewidth="inherit">
         <connections>
+            <constraint x="0.5" y="0" perimeter="0" name="N"></constraint>
+            <constraint x="1" y="0.5" perimeter="0" name="E"></constraint>
             <constraint x="0" y="0.5" perimeter="0" name="W"></constraint>
             <constraint x="0.5" y="1" perimeter="0" name="S"></constraint>
         </connections>
@@ -1206,6 +1216,8 @@
 
     <shape name="lowconsequence_filled" h="80" w="120" aspect="fixed" strokewidth="inherit">
         <connections>
+            <constraint x="0.5" y="0" perimeter="0" name="N"></constraint>
+            <constraint x="1" y="0.5" perimeter="0" name="E"></constraint>
             <constraint x="0" y="0.5" perimeter="0" name="W"></constraint>
             <constraint x="0.5" y="1" perimeter="0" name="S"></constraint>
         </connections>
@@ -1271,6 +1283,8 @@
 
     <shape name="mediumconsequence" h="80" w="120" aspect="fixed" strokewidth="inherit">
         <connections>
+            <constraint x="0.5" y="0" perimeter="0" name="N"></constraint>
+            <constraint x="1" y="0.5" perimeter="0" name="E"></constraint>
             <constraint x="0" y="0.5" perimeter="0" name="W"></constraint>
             <constraint x="0.5" y="1" perimeter="0" name="S"></constraint>
         </connections>
@@ -1323,6 +1337,8 @@
 
     <shape name="mediumconsequence_filled" h="80" w="120" aspect="fixed" strokewidth="inherit">
         <connections>
+            <constraint x="0.5" y="0" perimeter="0" name="N"></constraint>
+            <constraint x="1" y="0.5" perimeter="0" name="E"></constraint>
             <constraint x="0" y="0.5" perimeter="0" name="W"></constraint>
             <constraint x="0.5" y="1" perimeter="0" name="S"></constraint>
         </connections>
@@ -1387,6 +1403,8 @@
 
     <shape name="highconsequence" h="80" w="120" aspect="fixed" strokewidth="inherit">
         <connections>
+            <constraint x="0.5" y="0" perimeter="0" name="N"></constraint>
+            <constraint x="1" y="0.5" perimeter="0" name="E"></constraint>
             <constraint x="0" y="0.5" perimeter="0" name="W"></constraint>
             <constraint x="0.5" y="1" perimeter="0" name="S"></constraint>
         </connections>
@@ -1439,6 +1457,8 @@
 
     <shape name="highconsequence_filled" h="80" w="120" aspect="fixed" strokewidth="inherit">
         <connections>
+            <constraint x="0.5" y="0" perimeter="0" name="N"></constraint>
+            <constraint x="1" y="0.5" perimeter="0" name="E"></constraint>
             <constraint x="0" y="0.5" perimeter="0" name="W"></constraint>
             <constraint x="0.5" y="1" perimeter="0" name="S"></constraint>
         </connections>
@@ -1504,6 +1524,8 @@
 
     <shape name="veryhighconsequence" h="80" w="120" aspect="fixed" strokewidth="inherit">
         <connections>
+            <constraint x="0.5" y="0" perimeter="0" name="N"></constraint>
+            <constraint x="1" y="0.5" perimeter="0" name="E"></constraint>
             <constraint x="0" y="0.5" perimeter="0" name="W"></constraint>
             <constraint x="0.5" y="1" perimeter="0" name="S"></constraint>
         </connections>
@@ -1556,6 +1578,8 @@
 
     <shape name="veryhighconsequence_filled" h="80" w="120" aspect="fixed" strokewidth="inherit">
         <connections>
+            <constraint x="0.5" y="0" perimeter="0" name="N"></constraint>
+            <constraint x="1" y="0.5" perimeter="0" name="E"></constraint>
             <constraint x="0" y="0.5" perimeter="0" name="W"></constraint>
             <constraint x="0.5" y="1" perimeter="0" name="S"></constraint>
         </connections>
@@ -1622,6 +1646,8 @@
 
     <shape name="highestconsequence" h="80" w="120" aspect="fixed" strokewidth="inherit">
         <connections>
+            <constraint x="0.5" y="0" perimeter="0" name="N"></constraint>
+            <constraint x="1" y="0.5" perimeter="0" name="E"></constraint>
             <constraint x="0" y="0.5" perimeter="0" name="W"></constraint>
             <constraint x="0.5" y="1" perimeter="0" name="S"></constraint>
         </connections>
@@ -1674,6 +1700,8 @@
 
     <shape name="highestconsequence_filled" h="80" w="120" aspect="fixed" strokewidth="inherit">
         <connections>
+            <constraint x="0.5" y="0" perimeter="0" name="N"></constraint>
+            <constraint x="1" y="0.5" perimeter="0" name="E"></constraint>
             <constraint x="0" y="0.5" perimeter="0" name="W"></constraint>
             <constraint x="0.5" y="1" perimeter="0" name="S"></constraint>
         </connections>

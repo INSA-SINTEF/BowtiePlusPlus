@@ -2049,7 +2049,10 @@ Sidebar.prototype.createItem = function(cells, title, showLabel, showTitle, widt
 	// Blocks default click action
 	mxEvent.addListener(elt, 'click', function(evt)
 	{
+		//eventcells = window.currentUI.editor.graph.getAllEventsCells();
+		//hazardcells = window.currentUI.editor.graph.getAllHazardsCells();
 		mxEvent.consume(evt);
+
 	});
 
 	this.createThumb(cells, this.thumbWidth, this.thumbHeight, elt, title, showLabel, showTitle, width, height);
