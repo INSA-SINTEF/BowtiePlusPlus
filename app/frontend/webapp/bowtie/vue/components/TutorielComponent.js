@@ -22,6 +22,7 @@ export const TutorielComponent = {
             nbUnwantedEvent: 0,
             nbCauses: 0,
             events : [],
+            state: 0
         }
     },
     methods: {
@@ -35,7 +36,18 @@ export const TutorielComponent = {
             this.nbHazard = this.editor.graph.getAllHazardsCells().length;
             this.nbUnwantedEvent = this.editor.graph.getAllEventsCells().length;
             this.nbAssets = this.editor.graph.getAllAssetsCells().length;
+            this.tutorialState();
             },
+
+        tutorialState : function () {
+            this.nbUnwantedEvent >= 1 ? this.state = 1 : '';
+            this.nbHazard >= 1 ? this.state = 2 : '';
+            this.nbAssets >= 3 ? this.state = 3 : '';
+            this.nbThreats + this.nbCauses >= 8 ? this.state = 4 : '';
+            this.nbBarriers >= 6 ? this.state = 5 : '';
+            this.nbEscalationFactors >= 3 ? this.state = 6 : '';
+            this.nbConsequences >= 4 ? this.state = 7 : '';
+        },
 
         //function that update the render of the tutoriel, if there is a modal open in the editor, then do not display tutoriel
         zIndex_hide : function () {
@@ -76,25 +88,25 @@ export const TutorielComponent = {
             `
 <div id="tuto" v-bind:style="{'z-index' : is_displayed}" >
 <button id="gostButtonTuto" v-on:click="update" v-on:click.once="initialisation"> <h3> Tutorial </h3> </button>
-    <div class="alert alert-success container" role="alert">
+    <div v-bind:class= "[this.nbUnwantedEvent >= 1 ? 'alert-success' : 'alert-danger', 'alert', 'container', this.state < 0 ? 'unused' : '']" role="alert">
         <div class="item"> UNWANTED EVENT </div> <div class="item"> <h3> {{this.nbUnwantedEvent}}/1 </h3> </div>
     </div>
-    <div class="alert alert-success container " role="alert">
+    <div v-bind:class= "[this.nbHazard >= 1 ? 'alert-success' : 'alert-danger', 'alert', 'container', this.state < 1 ? 'unused' : '']" role="alert">
       <div class="item"> HAZARD </div> <div class="item"> <h3> {{this.nbHazard}}/1 </h3> </div>
     </div>
-    <div class="alert alert-danger container" role="alert">
+    <div v-bind:class= "[this.nbAssets >= 3 ? 'alert-success' : 'alert-danger', 'alert', 'container', this.state < 2 ? 'unused' : '']" role="alert">
       <div class="item"> ASSETS </div> <div class="item"> <h3> {{this.nbAssets}}/3 </h3> </div>
     </div>
-    <div class="alert alert-danger unused container" role="alert">
+    <div v-bind:class= "[(this.nbThreats+this.nbCauses) >= 8 ? 'alert-success' : 'alert-danger', 'alert', 'container', this.state < 3 ? 'unused' : '']" role="alert">
       <div class="item"> THREATS & CAUSES </div> <div class="item"> <h3> {{this.nbThreats+this.nbCauses}}/8 </h3> </div>
     </div>
-    <div class="alert alert-danger unused container" role="alert">
+    <div v-bind:class= "[this.nbBarriers >= 6 ? 'alert-success' : 'alert-danger', 'alert', 'container', this.state < 4 ? 'unused' : '']" role="alert">
       <div class="item"> BARRIERS </div> <div class="item"> <h3> {{this.nbBarriers}}/6 </h3> </div>
     </div>
-    <div class="alert alert-danger unused container" role="alert">
+    <div v-bind:class= "[this.nbEscalationFactors >= 3 ? 'alert-success' : 'alert-danger', 'alert', 'container', this.state < 5 ? 'unused' : '']" role="alert">
       <div class="item"> ESC. FACTORS </div> <div class="item"> <h3> {{this.nbEscalationFactors}}/3 </h3> </div>
     </div>
-    <div class="alert alert-danger unused container" role="alert">
+    <div v-bind:class= "[this.nbConsequences >= 4 ? 'alert-success' : 'alert-danger', 'alert', 'container', this.state < 6 ? 'unused' : '']" role="alert">
       <div class="item"> CONSEQUENCES </div> <div class="item"> <h3> {{this.nbConsequences}}/4 </h3> </div>
     </div>
 </div>`,
