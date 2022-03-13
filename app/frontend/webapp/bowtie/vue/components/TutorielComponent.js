@@ -10,65 +10,92 @@ export const TutorielComponent = {
     },
     data: function(){
         return{
-            threats: [],
-            consequences: [],
+            //Deals with the z-index of the component
+            is_displayed : 1, //1 displayed , 0 hided
+            editor : null,
             nbThreats: 0,
             nbConsequences: 0,
             nbBarriers: 0,
             nbAssets : 0,
-            nbEscalationFactors : 0
+            nbEscalationFactors : 0,
+            nbHazard: 0,
+            nbUnwantedEvent: 0,
+            nbCauses: 0,
+            events : [],
         }
     },
     methods: {
         update : function (){
-            this.threats = document.getElementById('diagram-editor').children[1].contentWindow.currentUI.editor.graph.getAllThreats();
-            this.nbThreats = this.threats.length;
-            this.consequences = document.getElementById('diagram-editor').children[1].contentWindow.currentUI.editor.graph.getAllConsequences();
-            this.nbConsequences = this.consequences.length;
-            this.computeBarriers();
+            if (this.editor == null) this.editor = document.getElementById('diagram-editor').children[1].contentWindow.currentUI.editor;
+            this.nbThreats = this.editor.graph.getAllThreatsCells().length;
+            this.nbConsequences = this.editor.graph.getAllConsequences().length;
+            this.nbCauses = this.editor.graph.getAllCausesCells().length
+            this.nbBarriers = this.editor.graph.getAllBarriersCells().length;
+            this.nbEscalationFactors = this.editor.graph.getAllEscFactCells().length
+            this.nbHazard = this.editor.graph.getAllHazardsCells().length;
+            this.nbUnwantedEvent = this.editor.graph.getAllEventsCells().length;
+            this.nbAssets = this.editor.graph.getAllAssetsCells().length;
+            },
+
+        //function that update the render of the tutoriel, if there is a modal open in the editor, then do not display tutoriel
+        zIndex_hide : function () {
+            this.is_displayed = 0;
+            try {
+                let closeBtn = document.getElementById('diagram-editor').children[1].contentWindow.document.getElementsByClassName("geDialogClose")[0];
+                closeBtn.addEventListener('click',this.zIndex_show);
+            } catch (e) {
+                console.log(e);
+            }
+            },
+
+        //function that update the render of the tutoriel, if we close the modal then display tutoriel
+        zIndex_show : function () {
+            this.is_displayed = 1;
         },
-        computeBarriers : function(){
-            this.nbBarriers = 0;
-            this.nbEscalationFactors = 0;
-            this.threats.forEach( threat => {
-                this.nbBarriers+= threat.barriers.length;
-                this.nbEscalationFactors += threat.barriers.escalfactors.length;
-            });
-            this.consequences.forEach( cons => {
-                this.nbBarriers+= cons.barriers.length;
-                this.nbEscalationFactors += cons.barriers.escalfactors.length;
-            });
+
+        initialisation : function () {
+            let items = [];
+            items = document.getElementById('diagram-editor').children[1].contentWindow.document.getElementsByClassName("geItem");
+            for (let item of items) {
+                item.addEventListener('click',() => {
+                    let tmp = document.getElementById('diagram-editor').children[1].contentWindow.document.getElementsByClassName("mxPopupMenuItem");
+                    for (let test of tmp){
+                        test.addEventListener('mouseup',this.zIndex_hide);
+                    }
+                })
+            }
+            this.events.push(document.getElementById('diagram-editor').children[1].contentWindow.document.getElementById("riskButton"));
+            this.events.forEach(event => {
+                event.addEventListener('click',this.zIndex_hide)
+            })
+
         }
     },
     template:
         //HTML code corresponding to the component
             `
-<div id="tuto">
-    <div class="alert alert-success" role="alert">
-        Number of threats disposed : {{this.nbThreats}}
-      <button id="gostButtonTuto" v-on:click="update"> </button>
+<div id="tuto" v-bind:style="{'z-index' : is_displayed}" >
+<button id="gostButtonTuto" v-on:click="update" v-on:click.once="initialisation"> <h3> Tutorial </h3> </button>
+    <div class="alert alert-success container" role="alert">
+        <div class="item"> UNWANTED EVENT </div> <div class="item"> <h3> {{this.nbUnwantedEvent}}/1 </h3> </div>
     </div>
-    <div class="alert alert-success " role="alert">
-        Number of consequences disposed : {{this.nbConsequences}}
+    <div class="alert alert-success container " role="alert">
+      <div class="item"> HAZARD </div> <div class="item"> <h3> {{this.nbHazard}}/1 </h3> </div>
     </div>
-    <div class="alert alert-danger" role="alert">
-      Number of barriers disposed : {{this.nbBarriers}}
+    <div class="alert alert-danger container" role="alert">
+      <div class="item"> ASSETS </div> <div class="item"> <h3> {{this.nbAssets}}/3 </h3> </div>
     </div>
-    <div class="alert alert-danger unused" role="alert">
-        Etape 4:
-        Here will be describe what to do so far
+    <div class="alert alert-danger unused container" role="alert">
+      <div class="item"> THREATS & CAUSES </div> <div class="item"> <h3> {{this.nbThreats+this.nbCauses}}/8 </h3> </div>
     </div>
-    <div class="alert alert-danger unused" role="alert">
-        Etape 5:
-        Here will be describe what to do so far
+    <div class="alert alert-danger unused container" role="alert">
+      <div class="item"> BARRIERS </div> <div class="item"> <h3> {{this.nbBarriers}}/6 </h3> </div>
     </div>
-    <div class="alert alert-danger unused" role="alert">
-        Etape 6:
-        Here will be describe what to do so far
+    <div class="alert alert-danger unused container" role="alert">
+      <div class="item"> ESC. FACTORS </div> <div class="item"> <h3> {{this.nbEscalationFactors}}/3 </h3> </div>
     </div>
-    <div class="alert alert-danger unused" role="alert">
-        Etape 7:
-        Here will be describe what to do so far
+    <div class="alert alert-danger unused container" role="alert">
+      <div class="item"> CONSEQUENCES </div> <div class="item"> <h3> {{this.nbConsequences}}/4 </h3> </div>
     </div>
 </div>`,
 
