@@ -2319,6 +2319,41 @@ Graph.prototype.filledElement = function () {
     })
 }
 
+
+/**
+ *	Bowtie++ feature
+ *	returns all the barriers cells
+ */
+
+Graph.prototype.getAllBarriersCells = function() {
+    let allCells = this.model.cells;
+    let barriers = new Array();
+    for (const cell of Object.values(allCells)) {
+        if (cell.customID == 'Barrier') {
+            barriers.push(cell);
+        }
+    }
+    return barriers;
+}
+
+
+/**
+ *	Bowtie++ feature
+ *	returns all the Escalation factors cells
+ */
+
+Graph.prototype.getAllEscFactCells = function() {
+    let allCells = this.model.cells;
+    let esc = new Array();
+    for (const cell of Object.values(allCells)) {
+        if (cell.customID == 'Escalation Factor') {
+            esc.push(cell);
+        }
+    }
+    return esc;
+}
+
+
 /**
  *	Bowtie++ feature
  *	returns the threats cells
@@ -2334,6 +2369,73 @@ Graph.prototype.getAllThreatsCells = function() {
     }
     return threats;
 }
+
+
+/**
+ *	Bowtie++ feature
+ *	returns the causes cells
+ */
+
+Graph.prototype.getAllCausesCells = function() {
+    let allCells = this.model.cells;
+    let causes = new Array();
+    for (const cell of Object.values(allCells)) {
+        if (cell.customID == 'Cause') {
+            causes.push(cell);
+        }
+    }
+    return causes;
+}
+
+/**
+ *	Bowtie++ feature
+ *	returns the event cells
+ */
+
+Graph.prototype.getAllEventsCells = function() {
+    let allCells = this.model.cells;
+    let events = new Array();
+    for (const cell of Object.values(allCells)) {
+        if (cell.customID == 'Event') {
+            events.push(cell);
+        }
+    }
+    return events;
+}
+
+/**
+ *	Bowtie++ feature
+ *	returns the event cells
+ */
+
+Graph.prototype.getAllAssetsCells = function() {
+    let allCells = this.model.cells;
+    let assets = new Array();
+    for (const cell of Object.values(allCells)) {
+        if (cell.customID == 'Asset') {
+            assets.push(cell);
+        }
+    }
+    return assets;
+}
+
+/**
+ *	Bowtie++ feature
+ *	returns the hazard cells
+ */
+
+Graph.prototype.getAllHazardsCells = function() {
+    let allCells = this.model.cells;
+    let hazards = new Array();
+    for (const cell of Object.values(allCells)) {
+        if (cell.customID == 'Hazard') {
+            hazards.push(cell);
+        }
+    }
+    return hazards;
+}
+
+
 /**
  *	Bowtie++ feature
  *	returns the matrix linked to the threat cell given in parameter
@@ -2397,37 +2499,32 @@ Graph.prototype.updateThreatBarriers = function(cell, threat) {
     let lastBarrier = true;
     if(cell.edges != null && cell.edges.length > 0){
         for (const edge of Object.values(cell.edges)) {
-            //delete the case in which the target is the cell itself
-            if(edge.source.id === cell.id){
-                //check if a edge is toward a barrier
-                if (edge.target.customID === 'Barrier'){
-                    let foundBarrier = threat.barriers.find(barrier => barrier.cell === edge.target.id);
-                    // check if the barrier was not found in the threat to add it
-                    if(foundBarrier === undefined){
-                        threat.barriers.push(new Barrier(edge.target));
-                    }else{
-                        foundBarrier.name = edge.target.value;
-                    }
-                    this.updateThreatBarriers(edge.target, threat);
-                    lastBarrier = false;
-                    //break;
+            //Source is the barrier
+            if(edge.target.id === cell.id && edge.source.customID === 'Barrier') {
+                let foundBarrier = threat.barriers.find(barrier => barrier.cell === edge.source.id);
+                // check if the barrier was not found in the threat to add it
+                if(foundBarrier === undefined){
+                    threat.barriers.push(new Barrier(edge.source));
+                }else{
+                    foundBarrier.name = edge.source.value;
                 }
+                this.updateThreatBarriers(edge.source, threat);
+                lastBarrier = false;
+                //break;
             }
-            /*else {
-                if (edge.source.customID === 'Barrier'){
-                    let foundBarrier = threat.barriers.find(barrier => barrier.cell === edge.source.id);
-                    // check if the barrier was not found in the threat to add it
-                    if(foundBarrier === undefined){
-                        threat.barriers.push(new Barrier(edge.source));
-                    }else{
-                        foundBarrier.name = edge.source.value;
-                    }
-                    this.updateThreatBarriers(edge.source, threat);
-                    lastBarrier = false;
-                    break;
+            if(edge.source.id === cell.id && edge.target.customID === 'Barrier'){
+                //check if a edge is toward a barrier
+                let foundBarrier = threat.barriers.find(barrier => barrier.cell === edge.target.id);
+                // check if the barrier was not found in the threat to add it
+                if(foundBarrier === undefined){
+                    threat.barriers.push(new Barrier(edge.target));
+                }else{
+                    foundBarrier.name = edge.target.value;
                 }
-            }*/
-
+                this.updateThreatBarriers(edge.target, threat);
+                lastBarrier = false;
+                //break;
+            }
         }
     }
     if(lastBarrier){
@@ -2499,21 +2596,31 @@ Graph.prototype.updateConsequenceBarriers = function(cell, consequence) {
     let lastBarrier = true;
     if(cell.edges != null && cell.edges.length > 0){
         for (const edge of Object.values(cell.edges)) {
-            //delete the case in which the source is the cell itself
-            if (edge.target.id === cell.id){
-                //check if a edge is coming from a barrier
-                if (/*edge.source.customID === 'Security Control' ||*/ edge.source.customID === 'Barrier'){
-                    let foundBarrier = consequence.barriers.find(barrier => barrier.cell === edge.source.id);
-                    // check if the barrier was not found in the consequence to add it
-                    if(foundBarrier === undefined){
-                        consequence.barriers.push(new Barrier(edge.source));
-                    }else{
-                        foundBarrier.name = edge.source.value;
-                    }
-                    this.updateConsequenceBarriers(edge.source, consequence);
-                    lastBarrier = false;
-                    break;
+            //Target is the barrier
+            if (edge.source.id === cell.id && edge.target.customID === 'Barrier'){
+                let foundBarrier = consequence.barriers.find(barrier => barrier.cell === edge.target.id);
+                // check if the barrier was not found in the consequence to add it
+                if(foundBarrier === undefined){
+                    consequence.barriers.push(new Barrier(edge.target));
+                }else{
+                    foundBarrier.name = edge.target.value;
                 }
+                this.updateConsequenceBarriers(edge.target, consequence);
+                lastBarrier = false;
+                //break;
+
+            }
+            if (edge.target.id === cell.id && edge.source.customID === 'Barrier'){
+                let foundBarrier = consequence.barriers.find(barrier => barrier.cell === edge.source.id);
+                // check if the barrier was not found in the consequence to add it
+                if(foundBarrier === undefined){
+                    consequence.barriers.push(new Barrier(edge.source));
+                }else{
+                    foundBarrier.name = edge.source.value;
+                }
+                this.updateConsequenceBarriers(edge.source, consequence);
+                lastBarrier = false;
+                //break;
             }
         }
     }

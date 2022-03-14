@@ -46,6 +46,7 @@
     right: 0;
     bottom: 0;
     overflow: hidden;
+    z-index: 0;
 }
 
 .error-message {
@@ -68,4 +69,20 @@
 #toast {
     z-index: 500;
 }
+
+#tutoriel_component {
+    position: absolute;
+    width: 235px;
+    height: 450px;
+    top: 375px;
+    right: 4px;
+    overflow: auto;
+    z-index: 1;
+}
+
+#editor{
+    position: relative;
+    z-index : auto;
+}
+
 
