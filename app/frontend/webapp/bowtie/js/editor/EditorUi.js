@@ -63,10 +63,10 @@ EditorUi = function (editor, container, lightbox) {
                     if (target.customID !== 'Event' &&
                         //target.customID !== 'Security Control' &&
                         target.customID !== 'Consequence' &&
-                        target.customID !== 'Cause' &&
-                        target.customID !== 'Threat' &&
+                        //target.customID !== 'Cause' &&
+                        //target.customID !== 'Threat' &&
                         target.customID !== 'Barrier') {
-                        return 'A ' + source.customID + ' element can only connect to the following elements: Event, Cause, Threat, Consequence, or itself';
+                        return 'A ' + source.customID + ' element can only connect to the following elements: Event, Consequence, or itself';
                     }
                     break;
                 case 'Event':

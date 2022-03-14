@@ -2429,8 +2429,9 @@ Graph.prototype.updateThreatBarriers = function(cell, threat) {
     let lastBarrier = true;
     if(cell.edges != null && cell.edges.length > 0){
         for (const edge of Object.values(cell.edges)) {
-            //Source is the barrier
-            if(edge.target.id === cell.id && edge.source.customID === 'Barrier') {
+            //LEFTSIDE
+            //Target is the threat and source is a left barrier
+            /*if(edge.source.id !== cell.id && edge.source.customID === 'Barrier' && edge.target.customID === 'Threat'){
                 let foundBarrier = threat.barriers.find(barrier => barrier.cell === edge.source.id);
                 // check if the barrier was not found in the threat to add it
                 if(foundBarrier === undefined){
@@ -2438,12 +2439,29 @@ Graph.prototype.updateThreatBarriers = function(cell, threat) {
                 }else{
                     foundBarrier.name = edge.source.value;
                 }
+                //Other barriers to find
                 this.updateThreatBarriers(edge.source, threat);
                 lastBarrier = false;
-                //break;
+                break;
             }
+            //left then
+            if(edge.target.id === cell.id && edge.target.customID === 'Barrier' && edge.source.customID === 'Barrier'){
+                let foundBarrier = threat.barriers.find(barrier => barrier.cell === edge.source.id);
+                // check if the barrier was not found in the threat to add it
+                if(foundBarrier === undefined){
+                    threat.barriers.push(new Barrier(edge.source));
+                }else{
+                    foundBarrier.name = edge.source.value;
+                }
+                //Other barriers to find
+                this.updateThreatBarriers(edge.source, threat);
+                lastBarrier = false;
+                break;
+            }*/
+
+            //RIGHTSIDE
+            //Source is the threat and target is a right barrier
             if(edge.source.id === cell.id && edge.target.customID === 'Barrier'){
-                //check if a edge is toward a barrier
                 let foundBarrier = threat.barriers.find(barrier => barrier.cell === edge.target.id);
                 // check if the barrier was not found in the threat to add it
                 if(foundBarrier === undefined){
@@ -2453,7 +2471,7 @@ Graph.prototype.updateThreatBarriers = function(cell, threat) {
                 }
                 this.updateThreatBarriers(edge.target, threat);
                 lastBarrier = false;
-                //break;
+                break;
             }
         }
     }
@@ -2527,7 +2545,7 @@ Graph.prototype.updateConsequenceBarriers = function(cell, consequence) {
     if(cell.edges != null && cell.edges.length > 0){
         for (const edge of Object.values(cell.edges)) {
             //Target is the barrier
-            if (edge.source.id === cell.id && edge.target.customID === 'Barrier'){
+            /*if (edge.source.id === cell.id && edge.target.customID === 'Barrier'){
                 let foundBarrier = consequence.barriers.find(barrier => barrier.cell === edge.target.id);
                 // check if the barrier was not found in the consequence to add it
                 if(foundBarrier === undefined){
@@ -2539,7 +2557,7 @@ Graph.prototype.updateConsequenceBarriers = function(cell, consequence) {
                 lastBarrier = false;
                 //break;
 
-            }
+            }*/
             if (edge.target.id === cell.id && edge.source.customID === 'Barrier'){
                 let foundBarrier = consequence.barriers.find(barrier => barrier.cell === edge.source.id);
                 // check if the barrier was not found in the consequence to add it
@@ -2550,7 +2568,7 @@ Graph.prototype.updateConsequenceBarriers = function(cell, consequence) {
                 }
                 this.updateConsequenceBarriers(edge.source, consequence);
                 lastBarrier = false;
-                //break;
+                break;
             }
         }
     }
