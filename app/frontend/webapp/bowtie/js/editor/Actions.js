@@ -8,7 +8,7 @@ function Actions(editorUi) {
     this.editorUi = editorUi;
     this.actions = new Object();
     this.init();
-};
+}
 
 /**
  * Adds the default actions.
@@ -80,7 +80,11 @@ Actions.prototype.init = function () {
         });
     }).isEnabled = isGraphEnabled;
     this.addAction('openTemplate...', function () {
-        ui.openFromDb(window.TEMPLATE_GRAPHS);
+        console.log("je suis bien appelé (template)");
+        //ui.openFromDb(window.TEMPLATE_GRAPHS);
+        const width = 1250;
+        const height = 0.7*window.innerHeight;
+        ui.showDialog(new OpenTemplate(width,height).container,width,height,true,true);
     }).isEnabled = isLoggedIn;
     this.addAction('roles...', function () {
         /*window.openNew = true;
@@ -699,6 +703,12 @@ Actions.prototype.init = function () {
         const height = 0.7*window.innerHeight;
         ui.showDialog(new OpenFromDBDialog(width,height).container,width,height,true,true)
     });
+
+    /*this.addAction('showTemplateSearch', function(){
+        const width = 1250;
+        const height = 0.7*window.innerHeight;
+        ui.showDialog(new OpenTemplate(width,height).container,width,height,true,true)
+    });*/
 
     this.addAction('showVersionSearch',function (){
         const width = 1250;

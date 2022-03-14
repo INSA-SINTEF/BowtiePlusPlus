@@ -443,6 +443,31 @@ var OpenFromDBDialog = function (width, height) {
     this.container = iframe_holder;
 };
 
+/**
+ * New Bowtie++ OpenFromTemplateDataBase which launch new VueJs (DiagramSearchVue ??)
+ */
+var OpenTemplate = function (width, height) {
+
+    const iframe_holder = document.createElement('div')
+    iframe_holder.setAttribute("style", "background:url(../images/loading.gif) center center no-repeat;")
+
+    var iframe = document.createElement('iframe');
+    iframe.style.backgroundColor = 'transparent';
+    iframe.allowTransparency = 'true';
+    iframe.style.borderStyle = 'none';
+    iframe.style.borderWidth = '0px';
+    iframe.style.overflow = 'hidden';
+    iframe.frameBorder = '0';
+    // Adds padding as a workaround for box model in older IE versions
+    var dx = (mxClient.IS_VML && (document.documentMode == null || document.documentMode < 8)) ? 20 : 0;
+
+    iframe.setAttribute('width', width + 'px');
+    iframe.setAttribute('height', height + 'px');
+    iframe.setAttribute('src', TEMPLATE_SEARCH_DIALOG);
+    iframe_holder.appendChild(iframe)
+    this.container = iframe_holder;
+};
+
 var OpenVersioningDialog = function (width, height) {
 
 
