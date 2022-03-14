@@ -15,12 +15,12 @@
             <fillcolor color="#FFFFFF"></fillcolor>
 
             <path>
-                <ellipse h="12" w="12" x="-3" y="45">
+                <ellipse h="11" w="11" x="-3" y="45">
                 </ellipse>
                 <strokecolor color="#000000"></strokecolor>
                 <fillcolor color="#ffffff"></fillcolor>
                 <fillstroke></fillstroke>
-                <text str="c" y="43.5" x="0.5"></text>
+                <text str="+" y="45" x="-0.5"></text>
                 <close/>
             </path>
         </background>
@@ -129,12 +129,12 @@
             <roundrect x="0" y="40" w="120" h="40" arcsize="6"></roundrect>
 
             <path>
-                <ellipse h="12" w="12" x="-2.5" y="-2.5">
+                <ellipse h="11" w="11" x="-2.5" y="-2.5">
                 </ellipse>
                 <strokecolor color="#000000"></strokecolor>
                 <fillcolor color="#ffffff"></fillcolor>
                 <fillstroke></fillstroke>
-                <text str="c" y="-3" x="1"></text>
+                <text str="+" y="45" x="-0.5"></text>
                 <close/>
             </path>
 
@@ -197,12 +197,12 @@
             <roundrect x="0" y="40" w="120" h="40" arcsize="6"></roundrect>
 
             <path>
-                <ellipse h="12" w="12" x="-2.5" y="-2.5">
+                <ellipse h="11" w="11" x="-2.5" y="-2.5">
                 </ellipse>
                 <strokecolor color="#000000"></strokecolor>
                 <fillcolor color="#ffffff"></fillcolor>
                 <fillstroke></fillstroke>
-                <text str="c" y="-3" x="1"></text>
+                <text str="+" y="-3" x="-0.5"></text>
                 <close/>
             </path>
         </background>
@@ -263,12 +263,12 @@
             <stroke/>
 
             <path>
-                <ellipse h="12" w="12" x="-2.5" y="-2.5">
+                <ellipse h="11" w="11" x="3" y="12">
                 </ellipse>
                 <strokecolor color="#000000"></strokecolor>
                 <fillcolor color="#ffffff"></fillcolor>
                 <fillstroke></fillstroke>
-                <text str="c" y="-3" x="1"></text>
+                <text str="+" y="11.5" x="5.5"></text>
                 <close/>
             </path>
 
@@ -337,12 +337,12 @@
             <stroke/>
 
             <path>
-                <ellipse h="12" w="12" x="-2.5" y="-2.5">
+                <ellipse h="11" w="11" x="39" y="42">
                 </ellipse>
                 <strokecolor color="#000000"></strokecolor>
                 <fillcolor color="#ffffff"></fillcolor>
                 <fillstroke></fillstroke>
-                <text str="c" y="-3" x="1"></text>
+                <text str="+" y="41.5" x="41.5"></text>
                 <close/>
             </path>
 
@@ -386,12 +386,12 @@
             <fillstroke></fillstroke>
             <stroke></stroke>
             <path>
-                <ellipse h="12" w="12" x="-2.5" y="-2.5">
+                <ellipse h="11" w="11" x="-2.5" y="-2.5">
                 </ellipse>
                 <strokecolor color="#000000"></strokecolor>
                 <fillcolor color="#ffffff"></fillcolor>
                 <fillstroke></fillstroke>
-                <text str="c" y="-3" x="1"></text>
+                <text str="+" y="-3" x="0"></text>
                 <close/>
             </path>
             <fillstroke></fillstroke>
@@ -500,12 +500,12 @@
             <stroke></stroke>
 
             <path>
-                <ellipse h="12" w="12" x="-2.5" y="-2.5">
+                <ellipse h="11" w="11" x="-2.5" y="-2.5">
                 </ellipse>
                 <strokecolor color="#000000"></strokecolor>
                 <fillcolor color="#ffffff"></fillcolor>
                 <fillstroke></fillstroke>
-                <text str="c" y="-3" x="1"></text>
+                <text str="+" y="-3" x="0"></text>
                 <close/>
             </path>
 
@@ -580,12 +580,12 @@
             <stroke></stroke>
 
             <path>
-                <ellipse h="12" w="12" x="-2.5" y="-2.5">
+                <ellipse h="11" w="11" x="-2.5" y="-2.5">
                 </ellipse>
                 <strokecolor color="#000000"></strokecolor>
                 <fillcolor color="#ffffff"></fillcolor>
                 <fillstroke></fillstroke>
-                <text str="c" y="-3" x="1"></text>
+                <text str="+" y="-3" x="0"></text>
                 <close/>
             </path>
 
@@ -659,12 +659,12 @@
             <stroke></stroke>
 
             <path>
-                <ellipse h="12" w="12" x="-2.5" y="-2.5">
+                <ellipse h="11" w="11" x="-2.5" y="-2.5">
                 </ellipse>
                 <strokecolor color="#000000"></strokecolor>
                 <fillcolor color="#ffffff"></fillcolor>
                 <fillstroke></fillstroke>
-                <text str="c" y="-3" x="1"></text>
+                <text str="+" y="-3" x="0"></text>
                 <close/>
             </path>
 
@@ -738,12 +738,12 @@
             <stroke></stroke>
 
             <path>
-                <ellipse h="12" w="12" x="-2.5" y="-2.5">
+                <ellipse h="11" w="11" x="-2.5" y="-2.5">
                 </ellipse>
                 <strokecolor color="#000000"></strokecolor>
                 <fillcolor color="#ffffff"></fillcolor>
                 <fillstroke></fillstroke>
-                <text str="c" y="-3" x="1"></text>
+                <text str="+" y="-3" x="0"></text>
                 <close/>
             </path>
 
@@ -818,12 +818,12 @@
             <stroke></stroke>
 
             <path>
-                <ellipse h="12" w="12" x="-2.5" y="-2.5">
+                <ellipse h="11" w="11" x="-2.5" y="-2.5">
                 </ellipse>
                 <strokecolor color="#000000"></strokecolor>
                 <fillcolor color="#ffffff"></fillcolor>
                 <fillstroke></fillstroke>
-                <text str="c" y="-3" x="1"></text>
+                <text str="+" y="-3" x="0"></text>
                 <close/>
             </path>
 
@@ -903,12 +903,12 @@
             <stroke></stroke>
 
             <path>
-                <ellipse h="12" w="12" x="-2.5" y="-2.5">
+                <ellipse h="11" w="11" x="-2.5" y="-2.5">
                 </ellipse>
                 <strokecolor color="#000000"></strokecolor>
                 <fillcolor color="#ffffff"></fillcolor>
                 <fillstroke></fillstroke>
-                <text str="c" y="-3" x="1"></text>
+                <text str="+" y="-3" x="0"></text>
                 <close/>
             </path>
 
@@ -1024,12 +1024,12 @@
             <stroke></stroke>
 
             <path>
-                <ellipse h="12" w="12" x="-2.5" y="-2.5">
+                <ellipse h="11" w="11" x="-2.5" y="-2.5">
                 </ellipse>
                 <strokecolor color="#000000"></strokecolor>
                 <fillcolor color="#ffffff"></fillcolor>
                 <fillstroke></fillstroke>
-                <text str="c" y="-3" x="1"></text>
+                <text str="+" y="-3" x="0"></text>
                 <close/>
             </path>
 
@@ -1145,12 +1145,12 @@
             <stroke></stroke>
 
             <path>
-                <ellipse h="12" w="12" x="-2.5" y="-2.5">
+                <ellipse h="11" w="11" x="-2.5" y="-2.5">
                 </ellipse>
                 <strokecolor color="#000000"></strokecolor>
                 <fillcolor color="#ffffff"></fillcolor>
                 <fillstroke></fillstroke>
-                <text str="c" y="-3" x="1"></text>
+                <text str="+" y="-3" x="0"></text>
                 <close/>
             </path>
 
@@ -1267,12 +1267,12 @@
             <stroke></stroke>
 
             <path>
-                <ellipse h="12" w="12" x="-2.5" y="-2.5">
+                <ellipse h="11" w="11" x="-2.5" y="-2.5">
                 </ellipse>
                 <strokecolor color="#000000"></strokecolor>
                 <fillcolor color="#ffffff"></fillcolor>
                 <fillstroke></fillstroke>
-                <text str="c" y="-3" x="1"></text>
+                <text str="+" y="-3" x="0"></text>
                 <close/>
             </path>
 
@@ -1388,12 +1388,12 @@
             <stroke></stroke>
 
             <path>
-                <ellipse h="12" w="12" x="-2.5" y="-2.5">
+                <ellipse h="11" w="11" x="-2.5" y="-2.5">
                 </ellipse>
                 <strokecolor color="#000000"></strokecolor>
                 <fillcolor color="#ffffff"></fillcolor>
                 <fillstroke></fillstroke>
-                <text str="c" y="-3" x="1"></text>
+                <text str="+" y="-3" x="0"></text>
                 <close/>
             </path>
 
@@ -1508,12 +1508,12 @@
             <stroke></stroke>
 
             <path>
-                <ellipse h="12" w="12" x="-2.5" y="-2.5">
+                <ellipse h="11" w="11" x="-2.5" y="-2.5">
                 </ellipse>
                 <strokecolor color="#000000"></strokecolor>
                 <fillcolor color="#ffffff"></fillcolor>
                 <fillstroke></fillstroke>
-                <text str="c" y="-3" x="1"></text>
+                <text str="+" y="-3" x="0"></text>
                 <close/>
             </path>
 
@@ -1629,12 +1629,12 @@
             <stroke></stroke>
 
             <path>
-                <ellipse h="12" w="12" x="-2.5" y="-2.5">
+                <ellipse h="11" w="11" x="-2.5" y="-2.5">
                 </ellipse>
                 <strokecolor color="#000000"></strokecolor>
                 <fillcolor color="#ffffff"></fillcolor>
                 <fillstroke></fillstroke>
-                <text str="c" y="-3" x="1"></text>
+                <text str="+" y="-3" x="0"></text>
                 <close/>
             </path>
 
@@ -1751,12 +1751,12 @@
             <stroke></stroke>
 
             <path>
-                <ellipse h="12" w="12" x="-2.5" y="-2.5">
+                <ellipse h="11" w="11" x="-2.5" y="-2.5">
                 </ellipse>
                 <strokecolor color="#000000"></strokecolor>
                 <fillcolor color="#ffffff"></fillcolor>
                 <fillstroke></fillstroke>
-                <text str="c" y="-3" x="1"></text>
+                <text str="+" y="-3" x="0"></text>
                 <close/>
             </path>
         </background>
@@ -1830,12 +1830,12 @@
             <stroke/>
 
             <path>
-                <ellipse h="12" w="12" x="-2.5" y="25">
+                <ellipse h="12" w="12" x="54" y="75">
                 </ellipse>
                 <strokecolor color="#000000"></strokecolor>
                 <fillcolor color="#ffffff"></fillcolor>
                 <fillstroke></fillstroke>
-                <text str="c" y="23.5" x="1"></text>
+                <text str="+" y="74.5" x="56.5"></text>
                 <close/>
             </path>
         </background>
@@ -1865,12 +1865,12 @@
             <image src="../stencils/elements/hazard_128x128.png" x="0" y="0" w="120" h="80" flipH="0"/>
 
             <path>
-                <ellipse h="12" w="12" x="-2.5" y="-2.5">
+                <ellipse h="11" w="11" x="-2.5" y="-2.5">
                 </ellipse>
                 <strokecolor color="#000000"></strokecolor>
                 <fillcolor color="#ffffff"></fillcolor>
                 <fillstroke></fillstroke>
-                <text str="c" y="-3" x="1"></text>
+                <text str="+" y="-3" x="0"></text>
                 <close/>
             </path>
         </foreground>

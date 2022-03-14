@@ -6,6 +6,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" type="text/css" href="../css/grapheditor.css">
+    <link rel="stylesheet" type="text/css" href="../css/tuto.css">
 	<script type="text/javascript">
 		// Parses URL parameters. Supported parameters are:
 		// - lang=xy: Specifies the language of the user interface.
@@ -64,6 +65,8 @@
 	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body class="geEditor">
+    <div> <tuto></tuto></div>
+
 		<script type="text/javascript">
 			// Extends EditorUi to update I/O action states based on availability of backend
 			(function()
@@ -111,11 +114,14 @@
 					// Main
 					var editorUi = new EditorUi(new Editor(urlParams['chrome'] == '0', themes));
 					window.currentUI = editorUi;
+                    //For tutorial initialisation
+                    parent.document.getElementById("gostButtonTuto").click();
 				}, function()
 				{
 					document.body.innerHTML = '<center style="margin-top:10%;">Error loading resource files. Please check browser console.</center>';
 				});
 			})();
+
 		</script>
 </body>
 </html>

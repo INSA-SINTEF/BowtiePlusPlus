@@ -2319,6 +2319,41 @@ Graph.prototype.filledElement = function () {
     })
 }
 
+
+/**
+ *	Bowtie++ feature
+ *	returns all the barriers cells
+ */
+
+Graph.prototype.getAllBarriersCells = function() {
+    let allCells = this.model.cells;
+    let barriers = new Array();
+    for (const cell of Object.values(allCells)) {
+        if (cell.customID == 'Barrier') {
+            barriers.push(cell);
+        }
+    }
+    return barriers;
+}
+
+
+/**
+ *	Bowtie++ feature
+ *	returns all the Escalation factors cells
+ */
+
+Graph.prototype.getAllEscFactCells = function() {
+    let allCells = this.model.cells;
+    let esc = new Array();
+    for (const cell of Object.values(allCells)) {
+        if (cell.customID == 'Escalation Factor') {
+            esc.push(cell);
+        }
+    }
+    return esc;
+}
+
+
 /**
  *	Bowtie++ feature
  *	returns the threats cells
@@ -2333,6 +2368,23 @@ Graph.prototype.getAllThreatsCells = function() {
         }
     }
     return threats;
+}
+
+
+/**
+ *	Bowtie++ feature
+ *	returns the causes cells
+ */
+
+Graph.prototype.getAllCausesCells = function() {
+    let allCells = this.model.cells;
+    let causes = new Array();
+    for (const cell of Object.values(allCells)) {
+        if (cell.customID == 'Cause') {
+            causes.push(cell);
+        }
+    }
+    return causes;
 }
 
 /**
@@ -2353,6 +2405,22 @@ Graph.prototype.getAllEventsCells = function() {
 
 /**
  *	Bowtie++ feature
+ *	returns the event cells
+ */
+
+Graph.prototype.getAllAssetsCells = function() {
+    let allCells = this.model.cells;
+    let assets = new Array();
+    for (const cell of Object.values(allCells)) {
+        if (cell.customID == 'Asset') {
+            assets.push(cell);
+        }
+    }
+    return assets;
+}
+
+/**
+ *	Bowtie++ feature
  *	returns the hazard cells
  */
 
@@ -2366,6 +2434,8 @@ Graph.prototype.getAllHazardsCells = function() {
     }
     return hazards;
 }
+
+
 /**
  *	Bowtie++ feature
  *	returns the matrix linked to the threat cell given in parameter
