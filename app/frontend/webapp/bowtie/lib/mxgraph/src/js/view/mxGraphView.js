@@ -2591,8 +2591,6 @@ mxGraphView.prototype.installListeners = function()
 		{
 			if (this.isContainerEvent(evt))
 			{
-				//RONAN
-				parent.document.getElementById("gostButtonTuto").click();
 				graph.fireMouseEvent(mxEvent.MOUSE_UP, new mxMouseEvent(evt));
 			}
 		}));
@@ -2628,7 +2626,6 @@ mxGraphView.prototype.installListeners = function()
 				var pt = mxUtils.convertPoint(container, x, y);
 				state = graph.view.getState(graph.getCellAt(pt.x, pt.y));
 			}
-			
 			return state;
 		};
 		
@@ -2643,7 +2640,7 @@ mxGraphView.prototype.installListeners = function()
 				graph.popupMenuHandler.hideMenu();
 			},
 			mouseMove: function() { },
-			mouseUp: function() { }
+			mouseUp: function() {  }
 		});
 		
 		this.moveHandler = mxUtils.bind(this, function(evt)

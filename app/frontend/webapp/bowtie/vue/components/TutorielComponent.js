@@ -12,7 +12,8 @@ export const TutorielComponent = {
         return{
             //Deals with the z-index of the component
             is_displayed : 1, //1 displayed , 0 hided
-            editor : null,
+            window : null,
+            graph : null,
             nbThreats: 0,
             nbConsequences: 0,
             nbBarriers: 0,
@@ -27,15 +28,20 @@ export const TutorielComponent = {
     },
     methods: {
         update : function (){
-            if (this.editor == null) this.editor = document.getElementById('diagram-editor').children[1].contentWindow.currentUI.editor;
-            this.nbThreats = this.editor.graph.getAllThreatsCells().length;
-            this.nbConsequences = this.editor.graph.getAllConsequences().length;
-            this.nbCauses = this.editor.graph.getAllCausesCells().length
-            this.nbBarriers = this.editor.graph.getAllBarriersCells().length;
-            this.nbEscalationFactors = this.editor.graph.getAllEscFactCells().length
-            this.nbHazard = this.editor.graph.getAllHazardsCells().length;
-            this.nbUnwantedEvent = this.editor.graph.getAllEventsCells().length;
-            this.nbAssets = this.editor.graph.getAllAssetsCells().length;
+
+            //initialisation for the first update
+            if (this.window == null){
+                this.window = document.getElementById('diagram-editor').children[1].contentWindow;
+                this.graph = this.window.currentUI.editor.graph;
+            }
+            this.nbThreats = this.graph.getAllThreatsCells().length;
+            this.nbConsequences = this.graph.getAllConsequences().length;
+            this.nbCauses = this.graph.getAllCausesCells().length
+            this.nbBarriers = this.graph.getAllBarriersCells().length;
+            this.nbEscalationFactors = this.graph.getAllEscFactCells().length
+            this.nbHazard = this.graph.getAllHazardsCells().length;
+            this.nbUnwantedEvent = this.graph.getAllEventsCells().length;
+            this.nbAssets = this.graph.getAllAssetsCells().length;
             this.tutorialState();
             },
 
@@ -53,10 +59,10 @@ export const TutorielComponent = {
         zIndex_hide : function () {
             this.is_displayed = 0;
             try {
-                let closeBtn = document.getElementById('diagram-editor').children[1].contentWindow.document.getElementsByClassName("geDialogClose")[0];
+                let closeBtn = this.window.document.getElementsByClassName("geDialogClose")[0];
                 closeBtn.addEventListener('click',this.zIndex_show);
             } catch (e) {
-                console.log(e);
+                //console.log(e);
             }
             },
 
@@ -67,16 +73,16 @@ export const TutorielComponent = {
 
         initialisation : function () {
             let items = [];
-            items = document.getElementById('diagram-editor').children[1].contentWindow.document.getElementsByClassName("geItem");
+            items = this.window.document.getElementsByClassName("geItem");
             for (let item of items) {
                 item.addEventListener('click',() => {
-                    let tmp = document.getElementById('diagram-editor').children[1].contentWindow.document.getElementsByClassName("mxPopupMenuItem");
+                    let tmp = this.window.document.getElementsByClassName("mxPopupMenuItem");
                     for (let test of tmp){
                         test.addEventListener('mouseup',this.zIndex_hide);
                     }
                 })
             }
-            this.events.push(document.getElementById('diagram-editor').children[1].contentWindow.document.getElementById("riskButton"));
+            this.events.push(this.window.document.getElementById("riskButton"));
             this.events.forEach(event => {
                 event.addEventListener('click',this.zIndex_hide)
             })

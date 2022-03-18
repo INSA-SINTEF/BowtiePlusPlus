@@ -146,7 +146,6 @@ EditorUi = function (editor, container, lightbox) {
         if (evt == null) {
             evt = window.event;
         }
-
         return this.isSelectionAllowed(evt) || graph.isEditing();
     });
 
