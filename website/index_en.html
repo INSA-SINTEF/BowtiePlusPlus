@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Bowtie++</title>
+    <title>BowTie++</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -23,32 +23,58 @@
 <div class="wrapper smooth">
     <html>
     <body>
+
+
     <header class="header-2 skew-separator">
         <nav class="navbar navbar-expand-lg bg-white navbar-absolute">
-            <div class="container">
-                <div class="navbar-translate"><a class="navbar-brand" href="javascript:;">Bowtie++</a>
+            <div class="container" >
+                <div id="myNav2" class="navbar-translate"><a class="navbar-brand" href="javascript:;">BowTie++</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#example-header-2"
                             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span></button>
                 </div>
                 <div class="collapse navbar-collapse" id="example-header-2"></div>
-                <ul class="navbar-nav mx-auto">
+                <ul class="navbar-nav mx-auto" id="myNav">
                     <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#presentation">Presentation</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#objectif">Goal</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#fonctionnalites">Specifications</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#objectif">Objectives</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#en-savoir-plus">Study case</a></li>
                     <li class="nav-item"><a class="nav-link" href="#equipe">Team</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#en-savoir-plus">More information</a></li>
                     <li class="nav-item"><a class="nav-link" href="index.html">Français</a></li>
                 </ul>
             </div>
         </nav>
+
+        <script>
+            // When the user scrolls the page, execute myFunction
+            window.onscroll = function() {myFunction()};
+
+            // Get the header
+            var header = document.getElementById("myNav");
+            var header2 = document.getElementById("myNav2");
+
+            // Get the offset position of the navbar
+            var sticky = header.offsetTop;
+            var sticky2 = header2.offsetTop;
+
+            // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
+            function myFunction() {
+                if (window.pageYOffset > sticky && window.pageYOffset > sticky2) {
+                    header.classList.add("sticky");
+                    header2o.classList.remove("sticky");
+                } else {
+                    header.classList.remove("sticky");
+                    header2.classList.remove("sticky");
+                }
+            }
+        </script>
+
+
         <div id="home" class="page-header">
             <div class="page-header-image" style="background-image: url('image/fond.png')"></div>
             <div class="container pt-300">
                 <div class="row">
                     <div class="col-md-9 mx-auto text-center">
-                        <h2 class="display-2">Bowtie++</h2>
+                        <h2 class="display-2">BowTie++</h2>
                         <h3 class="display-3">Web application for risk visualization</h3>
                     </div>
                 </div>
@@ -59,9 +85,11 @@
                                     class="ni ni-tie-bow"></i></div>
                         </div>
                         <h2 class="lead text-white text-justify pt-5 px-5">
-                            Bowtie++ is an application for an easy creation of risk analysis diagrams, called Bowtie diagrams.
+                            BowTie++ is an application for an easy creation of risk analysis diagrams, called Bowtie diagrams.
                             Bowtie diagrams are used to quickly estimate the risk related to an unwanted event.
                             The causes and consequences of an unwanted event are displayed in order to implement a strategy to prevent, or, at least, limit, the damages it may cause.
+                            Risk analysis is an important stage of a project lifecycle. It allows to identify potential
+                            malicious actions, i.e., <b>security</b> threats, as well as possible <b>safety</b> issues related to accidental causes.
                         </h2>
                     </div>
                     <div class="row justify-content-center mt-4">
@@ -71,61 +99,6 @@
             </div>
         </div>
     </header>
-    <section id="presentation" class="section swap-color">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-10 ml-auto mr-auto text-center">
-                    <h3 class="display-3 swap-color-text">Project context</h3>
-                    <p class="lead text-justify swap-color-text">
-                        Risk analysis is an important stage of a project lifecycle. It allows to identify potential
-                        malicious actions, i.e., <b>security</b> threats, as well as possible <b>safety</b> issues related to accidental causes.
-                        The primary motivation of the Bowtie++ project was the lack of an open-source tool allowing to model and analyze in a uniform framework
-                        the safety and security risks.
-
-                    </p>
-                    <!--
-                    <div class="row justify-content-center mt-4">
-                        <a href="#safety_security" class="btn btn-success" role="button">More about the safety/security
-                            duality </a>
-                    </div>
-                    -->
-                    <div class="row">
-                        <div class="col-md-12 ml-auto mr-auto text-center my-5">
-                            <div class="p-4">
-                                <img class="rounded shadow transform-perspective-left" width="80%"
-                                     src="image/new_int.png">
-                            </div>
-                        </div>
-                    </div>
-
-                    <!--
-                    <p class="text-center">
-                    <hr class="line-white"/>
-                    </p>
-                    
-                    <h3 id="safety_security" class="display-3 swap-color-text">Safety/security duality</h3>
-                    <p class="lead text-justify text-white">
-                        The term <b>safety</b> covers the risks related to accidental causes, whereas <b>security</b>
-                        refers to those related to malicious actions.
-                    </p>
-                    
-                    <div class="row justify-content-center m-5">
-                        <div class="col-md-5 mr-3">
-                            <img class="rounded shadow" width="100%" src="image/safety_example.jpg">
-                            <h3 class="display-4 mt-3 text-white">Safety</h3>
-                        </div>
-
-                        <div class="col-md-5 ml-3">
-                            <img class="rounded shadow" width="100%" src="image/security_example.jpg">
-                            <h3 class="display-4 mt-3 text-white">Security</h3>
-                        </div>
-                    </div>
-                    -->
-                </div>
-            </div>
-
-        </div>
-    </section>
 
     <!-- OBJECTIF DU PROJET -->
     <section id="objectif" class="seection">
@@ -138,32 +111,16 @@
                         Indeed, our objective is to establish a risk analysis methodology using Bowtie diagrams. 
                         This methodology must be simple and effective to allow any user, expert or not, 
                         to easily model a risk analysis. The methodology is tested and improved through different 
-                        case studies belonging to various fields, then evaluated thanks to specific criteria and indicators. 
-                        At the same time, we must ensure that the methodology can be used with the BowTie++ tool. 
+                        case studies belonging to various fields, then evaluated thanks to specific criteria and indicators. This process pipeline is shown below.</p>
+
+                        <img class="obj" src="image/obj_en.png">
+
+                    <p class="lead text-justify">
+                        At the same time, we must ensure that the methodology can be used with the BowTie++ tool.
                         We are therefore working to improve the user experience and add features to the application. 
                         Finally, it is essential to guarantee a certain level of software security; this is why we carry out a 
                         search for vulnerabilities and apply possible fixes.
                     </p>
-                    <div class="row align-items-center">
-                        <div class="col-md-4 ml-auto mr-auto text-center my-5">
-                            <div class="p-2">
-                                <img class="rounded" height="100rem" src="image/logo/logo_Docker.png">
-                                <h5 class="mt-3 text-center">Docker Containers</h5>
-                            </div>
-                        </div>
-                        <div class="col-md-4 ml-auto mr-auto text-center my-5">
-                            <div class="p-4">
-                                <img class="rounded" height="100rem" src="image/logo/logo_VUEJS.png">
-                                <h5 class="mt-3 text-center">Vue.js Components</h5>
-                            </div>
-                        </div>
-                        <div class="col-md-4 ml-auto mr-auto text-center my-5">
-                            <div class="p-4">
-                                <img class="rounded" height="100rem" src="image/logo/logo_Django.png">
-                                <h5 class="mt-3 text-center">Django REST API</h5>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -206,10 +163,9 @@
                             </div>
                         </div>
                     </div>
-                    <h3 class="display-3 text-center">Functionalities</h3>
                     <div class="row">
 
-                        <!-- CREATION DE DIAGRAMMES -->
+                        <!-- METHODOLOGY -->
                         <div class="col-lg-4 col-md-4">
                             <div class="info text-left bg-info shadow">
                                 <div class="row align-items-center">
@@ -404,6 +360,125 @@
                     <video class="rounded shadow my-5" controls width="100%" autoplay="true" muted="true">
                         <source src="video/video.webm">
                     </video>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- EN SAVOIR PLUS -->
+    <section id="en-savoir-plus" class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 ml-auto mr-auto text-center">
+                    <h3 class="display-3 mb-3">Example of a study case</h3>
+
+                    <!-- DIAGRAMME BOWTIE -->
+                    
+                    <!-- <h4 id="diag_bowtie" class="text-left mt-3">Bowtie diagrams</h4>  -->
+                    <img class="p-5" width="100%" src="image/bowtie_element/en/study_case.png">
+                    <!--
+                    <p class="lead text-justify">
+                        A Bowtie diagram as its name suggests has the form of a bowtie. The
+                        center of the diagram describes an unwanted event. On its left side are
+                        situated the potential causes of the event and on its right side are
+                        situated its consequences. The most significant advantage of a Bowtie
+                        diagram compared to other risk analysis models is that it represents in
+                        a comprehensive and intuitive way the relation between causes and
+                        consequences of an unwanted event.
+                    </p>
+                -->
+                    <div class="row justify-content-center align-items-center">
+                        <div class="col-md-3 my-4">
+                            <img width="100%" src="image/bowtie_element/en/bowtie_hazard.png">
+                        </div>
+                        <div class="col-md-7">
+                            <p class="lead text-left">
+                                <b>Hazard</b>, the danger inherent to an activity.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center align-items-center">
+                        <div class="col-md-3 my-4">
+                            <img width="100%" src="image/bowtie_element/en/bowtie_unwanted-event_en.png">
+                        </div>
+                        <div class="col-md-7">
+                            <p class="lead text-left">
+                                <b>Unwanted event</b>, what we are trying to represent through this diagram.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center align-items-center">
+                        <div class="col-md-3 my-4">
+                            <img width="100%" src="image/bowtie_element/en/bowtie_asset_en.png">
+                        </div>
+                        <div class="col-md-7">
+                            <p class="lead text-left">
+                                <b>Resources</b>, all infrastructures linked to the unwanted event.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center align-items-center">
+                        <div class="col-md-3 my-4">
+                            <img width="100%" src="image/bowtie_element/en/threat.png">
+                        </div>
+                        <div class="col-md-7">
+                            <p class="lead text-left">
+                                <b>Threat</b>, security risk.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center align-items-center">
+                        <div class="col-md-3 my-4">
+                            <img width="100%" src="image/bowtie_element/en/cause.png">
+                        </div>
+                        <div class="col-md-7">
+                            <p class="lead text-left">
+                                <b>Cause</b>, safety risk.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center align-items-center">
+                        <div class="col-md-3 my-4">
+                            <img width="100%" src="image/bowtie_element/en/prevention.png">
+                        </div>
+                        <div class="col-md-7">
+                            <p class="lead text-left">
+                                <b>Prevention barrier</b>, prevents the progress of causes and/or threats.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center align-items-center">
+                        <div class="col-md-3 my-4">
+                            <img width="100%" src="image/bowtie_element/en/esc_fact.png">
+                        </div>
+                        <div class="col-md-7">
+                            <p class="lead text-left">
+                                <b>Escalation factor</b>, factor countering a barrier.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center align-items-center">
+                        <div class="col-md-3 my-4">
+                            <img width="100%" src="image/bowtie_element/en/consequence.png">
+                        </div>
+                        <div class="col-md-7">
+                            <p class="lead text-left">
+                                <b>Consequence</b> of the unwanted event.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center align-items-center">
+                        <div class="col-md-3 my-4">
+                            <img width="100%" src="image/bowtie_element/en/attenuation.png">
+                        </div>
+                        <div class="col-md-7">
+                            <p class="lead text-left">
+                                <b>Mitigation barrier</b>, mitigates a consequence of an unwanted event.
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -666,124 +741,6 @@
         </div>
     </section>
 
-    <!-- EN SAVOIR PLUS -->
-    <section id="en-savoir-plus" class="section">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-10 ml-auto mr-auto text-center">
-                    <h3 class="display-3 mb-3">Example of a study case</h3>
-
-                    <!-- DIAGRAMME BOWTIE -->
-                    
-                    <!-- <h4 id="diag_bowtie" class="text-left mt-3">Bowtie diagrams</h4>  -->
-                    <img class="p-5" width="100%" src="image/bowtie_element/en/study_case.png">
-                    <!--
-                    <p class="lead text-justify">
-                        A Bowtie diagram as its name suggests has the form of a bowtie. The
-                        center of the diagram describes an unwanted event. On its left side are
-                        situated the potential causes of the event and on its right side are
-                        situated its consequences. The most significant advantage of a Bowtie
-                        diagram compared to other risk analysis models is that it represents in
-                        a comprehensive and intuitive way the relation between causes and
-                        consequences of an unwanted event.
-                    </p>
-                -->
-                    <div class="row justify-content-center align-items-center">
-                        <div class="col-md-3 my-4">
-                            <img width="100%" src="image/bowtie_element/en/bowtie_hazard.png">
-                        </div>
-                        <div class="col-md-7">
-                            <p class="lead text-left">
-                                <b>Hazard</b>, the danger inherent to an activity.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="row justify-content-center align-items-center">
-                        <div class="col-md-3 my-4">
-                            <img width="100%" src="image/bowtie_element/en/bowtie_unwanted-event_en.png">
-                        </div>
-                        <div class="col-md-7">
-                            <p class="lead text-left">
-                                <b>Unwanted event</b>, what we are trying to represent through this diagram.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="row justify-content-center align-items-center">
-                        <div class="col-md-3 my-4">
-                            <img width="100%" src="image/bowtie_element/en/bowtie_asset_en.png">
-                        </div>
-                        <div class="col-md-7">
-                            <p class="lead text-left">
-                                <b>Resources</b>, all infrastructures linked to the unwanted event.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="row justify-content-center align-items-center">
-                        <div class="col-md-3 my-4">
-                            <img width="100%" src="image/bowtie_element/en/threat.png">
-                        </div>
-                        <div class="col-md-7">
-                            <p class="lead text-left">
-                                <b>Threat</b>, security risk.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="row justify-content-center align-items-center">
-                        <div class="col-md-3 my-4">
-                            <img width="100%" src="image/bowtie_element/en/cause.png">
-                        </div>
-                        <div class="col-md-7">
-                            <p class="lead text-left">
-                                <b>Cause</b>, safety risk.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="row justify-content-center align-items-center">
-                        <div class="col-md-3 my-4">
-                            <img width="100%" src="image/bowtie_element/en/prevention.png">
-                        </div>
-                        <div class="col-md-7">
-                            <p class="lead text-left">
-                                <b>Prevention barrier</b>, prevents the progress of causes and/or threats.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="row justify-content-center align-items-center">
-                        <div class="col-md-3 my-4">
-                            <img width="100%" src="image/bowtie_element/en/esc_fact.png">
-                        </div>
-                        <div class="col-md-7">
-                            <p class="lead text-left">
-                                <b>Escalation factor</b>, factor countering a barrier.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="row justify-content-center align-items-center">
-                        <div class="col-md-3 my-4">
-                            <img width="100%" src="image/bowtie_element/en/consequence.png">
-                        </div>
-                        <div class="col-md-7">
-                            <p class="lead text-left">
-                                <b>Consequence</b> of the unwanted event.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="row justify-content-center align-items-center">
-                        <div class="col-md-3 my-4">
-                            <img width="100%" src="image/bowtie_element/en/attenuation.png">
-                        </div>
-                        <div class="col-md-7">
-                            <p class="lead text-left">
-                                <b>Mitigation barrier</b>, mitigates a consequence of an unwanted event.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Footer -->
     <section class="">
         <footer class="swap-color text-center text-lg-start align-items-center">
@@ -792,7 +749,7 @@
                     <div class="col-md-7 mb-4 mb-md-0 ">
                         <h5 class="text-uppercase text-white mb-3">Try Bowtie++</h5>
                         <p class="text-white text-center">
-                            Click on the following link to access the code source of Bowtie++ !
+                            Click on the following link to access the code source of BowTie++ !
                         </p>
                         <a class="btn btn-secondary btn-round" href="https://github.com/bmoulkaf/BowtieTool.git"
                            target="_blank">
@@ -849,7 +806,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="">Design Patterns</h5>
+                    <h5 class="modal-title" >Design Patterns</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -865,8 +822,9 @@
                         its Requirements Framework for secure administration and maintenance providers in April 2020. 
                         Any actor wishing to carry out a risk study concerning the management of an IT system will 
                         therefore have access to a design template containing the ANSSI's requirements concerning 
-                        the management of cyber risks on a local network.
+                        the management of cyber risks on a local network. The corresponding design pattern is shown below.
                     </p>
+                    <img src="image/bowtieSimon.png">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -874,12 +832,13 @@
             </div>
         </div>
     </div>
+
     <!--METHODO-->
     <div class="modal fade" id="methodo" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="">Our Methodology</h5>
+                    <h5 class="modal-title" >Our Methodology</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -917,12 +876,13 @@
             </div>
         </div>
     </div>
+
     <!-- TOP DOWN -->
     <div class="modal fade" id="top_down" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="">The top-down approach</h5>
+                    <h5 class="modal-title">The top-down approach</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -933,7 +893,6 @@
                         then developing the left part of the diagram summarizing the causes that can lead to the realization 
                         of the event, and finally the right part of the diagram modeling the consequences of the event occurrence.
                     </p>
-                     <!-- 
                     <div class="slideshow-container">
 
                         
@@ -968,30 +927,50 @@
                         </div>
                     
                         
-                        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                        <a class="prev" onclick="moinsSlides()">&#10094;</a>
+                        <a class="next" onclick="plusSlides()">&#10095;</a>
                     </div>
                 
                     <br>
                     
                     <div style="text-align:center">
-                        <span class="dot" onclick="currentSlide(1)"></span>
-                        <span class="dot" onclick="currentSlide(2)"></span>
-                        <span class="dot" onclick="currentSlide(3)"></span>
-                        <span class="dot" onclick="currentSlide(4)"></span>
-                        <span class="dot" onclick="currentSlide(5)"></span>
+                        <span class="dot" onclick="currentSlide1()"></span>
+                        <span class="dot" onclick="currentSlide2()"></span>
+                        <span class="dot" onclick="currentSlide3()"></span>
+                        <span class="dot" onclick="currentSlide4()"></span>
+                        <span class="dot" onclick="currentSlide5()"></span>
                     </div> 
 
                     <script>
                         var slideIndex = 1;
                         showSlides(slideIndex);
                         
-                        function plusSlides(n) {
-                        showSlides(slideIndex += n);
+                        function plusSlides() {
+                        showSlides(slideIndex += 1);
+                        }
+
+                        function moinsSlides() {
+                            showSlides(slideIndex -= 1);
                         }
                         
-                        function currentSlide(n) {
-                        showSlides(slideIndex = n);
+                        function currentSlide1() {
+                        showSlides(slideIndex = 1);
+                        }
+
+                        function currentSlide2() {
+                            showSlides(slideIndex = 2);
+                        }
+
+                        function currentSlide3() {
+                            showSlides(slideIndex = 3);
+                        }
+
+                        function currentSlide4() {
+                            showSlides(slideIndex = 4);
+                        }
+
+                        function currentSlide5() {
+                            showSlides(slideIndex = 5);
                         }
                         
                         function showSlides(n) {
@@ -1006,11 +985,10 @@
                         for (i = 0; i < dots.length; i++) {
                             dots[i].className = dots[i].className.replace(" active", "");
                         }
-                        slides[slideIndex-1].style.display = "block";  
+                        slides[slideIndex-1].style.display = "block";
                         dots[slideIndex-1].className += " active";
                         }
                     </script>
-                -->
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -1034,81 +1012,100 @@
                         for each asset added, we complete parts of the diagram (causes and consequences) which 
                         have a link with the asset in question.
                     </p>
-                    <!--
                     <div class="slideshow-container">
-                        <div class="mySlides">
+                        <div class="mySlides2">
                         <div class="numbertext">1 / 5</div>
                         <img src="image/images_assets/1.JPG" style="width:100%">
                         <div class="text">Caption Text</div>
                         </div>
                     
-                        <div class="mySlides">
+                        <div class="mySlides2">
                         <div class="numbertext">2 / 5</div>
                         <img src="image/images_assets/2.JPG" style="width:100%">
                         <div class="text">Caption Two</div>
                         </div>
                     
-                        <div class="mySlides">
+                        <div class="mySlides2">
                         <div class="numbertext">3 / 5</div>
                         <img src="image/images_assets/3.JPG" style="width:100%">
                         <div class="text">Caption Three</div>
                         </div>
 
-                        <div class="mySlides">
+                        <div class="mySlides2">
                             <div class="numbertext">4 / 5</div>
                             <img src="image/images_assets/4.JPG" style="width:100%">
                             <div class="text">Caption Three</div>
                         </div>
 
-                        <div class="mySlides">
+                        <div class="mySlides2">
                             <div class="numbertext">5 / 5</div>
                             <img src="image/images_assets/5.JPG" style="width:100%">
                             <div class="text">Caption Three</div>
                         </div>
                     
-                        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                        <a class="prev" onclick="moinsSlides2()">&#10094;</a>
+                        <a class="next" onclick="plusSlides2()">&#10095;</a>
                     </div>
-                    -->
+
                     <br>
                     
                     <!-- The dots/circles -->
                     <div style="text-align:center">
-                        <span class="dot" onclick="currentSlide(1)"></span>
-                        <span class="dot" onclick="currentSlide(2)"></span>
-                        <span class="dot" onclick="currentSlide(3)"></span>
-                        <span class="dot" onclick="currentSlide(4)"></span>
-                        <span class="dot" onclick="currentSlide(5)"></span>
+                        <span class="dot2" onclick="currentSlide12()"></span>
+                        <span class="dot2" onclick="currentSlide22()"></span>
+                        <span class="dot2" onclick="currentSlide32()"></span>
+                        <span class="dot2" onclick="currentSlide42()"></span>
+                        <span class="dot2" onclick="currentSlide52()"></span>
                     </div> 
 
                     <script>
-                        var slideIndex1 = 1;
-                        showSlides(slideIndex1);
-                        
-                        function plusSlides(n1) {
-                        showSlides(slideIndex1 += n1);
+                            var slideIndex2 = 1;
+                            showSlides2(slideIndex2);
+
+                            function plusSlides2() {
+                            showSlides2(slideIndex2 += 1);
                         }
-                        
-                        function currentSlide(n1) {
-                        showSlides(slideIndex1 = n1);
+
+                            function moinsSlides2() {
+                            showSlides2(slideIndex2 -= 1);
                         }
-                        
-                        function showSlides(n1) {
-                        var i1;
-                        var slides1 = document.getElementsByClassName("mySlides");
-                        var dots1 = document.getElementsByClassName("dot");
-                        if (n > slides1.length) {slideIndex1 = 1}    
-                        if (n < 1) {slideIndex1 = slides1.length}
-                        for (i1 = 0; i1 < slides1.length; i1++) {
-                            slides1[i1].style.display = "none";  
+
+                            function currentSlide12() {
+                            showSlides2(slideIndex2 = 1);
                         }
-                        for (i1 = 0; i1 < dots1.length; i1++) {
-                            dots1[i1].className = dots1[i1].className.replace(" active", "");
+
+                            function currentSlide22() {
+                            showSlides2(slideIndex2 = 2);
                         }
-                        slides1[slideIndex1-1].style.display = "block";  
-                        dots1[slideIndex1-1].className += " active";
+
+                            function currentSlide32() {
+                            showSlides2(slideIndex2 = 3);
                         }
-                        </script>
+
+                            function currentSlide42() {
+                            showSlides2(slideIndex2 = 4);
+                        }
+
+                            function currentSlide52() {
+                            showSlides2(slideIndex2 = 5);
+                        }
+
+                            function showSlides2(n) {
+                            var i;
+                            var slides = document.getElementsByClassName("mySlides2");
+                            var dots = document.getElementsByClassName("dot2");
+                            if (n > slides.length) {slideIndex2 = 1}
+                            if (n < 1) {slideIndex2 = slides.length}
+                            for (i = 0; i < slides.length; i++) {
+                            slides[i].style.display = "none";
+                        }
+                            for (i = 0; i < dots.length; i++) {
+                            dots[i].className = dots[i].className.replace(" active", "");
+                        }
+                            slides[slideIndex2-1].style.display = "block";
+                            dots[slideIndex2-1].className += " active";
+                        }
+                    </script>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -1116,6 +1113,8 @@
             </div>
         </div>
     </div>
+
+    <!-- EVALUATION -->
     <div class="modal fade" id="evaluation" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -1134,6 +1133,8 @@
                         to draw up the diagram and so on. By that way, each diagram created in 
                         the research section can be evaluated and the results compared between different diagrams.
                     </p>
+                    <img src="image/quality.png" height="auto" width="100%">
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -1141,6 +1142,8 @@
             </div>
         </div>
     </div>
+
+    <!-- TUTO -->
     <div class="modal fade" id="user_tutorial" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -1158,13 +1161,16 @@
                         number of barriers to have. These generic figures are derived from the evaluation of the 
                         diagrams, where control values have been calculated using the best representations.
                     </p>
+                    <p> <a href="#demo" onclick=document.getElementById("closeTuto").click() >LIVE EXAMPLE</a></p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button id="closeTuto" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- SECU -->
     <div class="modal fade" id="pentest" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -1177,22 +1183,23 @@
                         This securing process has 3 goals :
                     </p>
                     <ul class="lead text-justify">
-                        <li>The refinement of the BowTie methodology </li>
+                        <li>The refinement of the Bowtie methodology </li>
                         <li>Testing the current state of the app’s security</li>
                         <li>Strengthening the app from a security point of view</li>
                     </ul>
                     <p class="lead text-justify">
-                        The first objective is materialized by creating BowTie diagrams 
+                        The first objective is materialized by creating Bowtie diagrams
                         allowing us to analyze the risks incurred by the application. 
-                        This will allow us to apply the BowTie method to a concrete case study 
+                        This will allow us to apply the Bowtie method to a concrete case study
                         and evaluate its usefulness in a cybersecurity driven scenario.
                         <br>
                         Moreover, testing the current state of the app’s security is done through 
                         a pentest phase which consists of searching for all the possible vulnerabilities 
-                        that we have listed in BowTie diagrams previously created. And finally, we aim
+                        that we have listed in Bowtie diagrams previously created. And finally, we aim
                          on strengthening the app’s security by implementing remedial measures specific 
                          to the vulnerabilities found.
                     </p>
+                    <img src="image/engPageWer.png" height="auto" width="100%">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -1201,6 +1208,8 @@
             
         </div>
     </div>
+
+    <!-- FILLING MATRIX -->
     <div class="modal fade" id="notes" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -1216,7 +1225,7 @@
                         he wants to use. Once the scale is set, the user can register it on the help menu so 
                         that other user working on the diagram can use the same scale to fill-in the matrices.
                     </p>
-                    <img class="rounded shadow" height="300rem"
+                    <img class="rounded shadow" height="auto" width="100%"
                                              src="image/matrice.png">
                 </div>
                 <div class="modal-footer">

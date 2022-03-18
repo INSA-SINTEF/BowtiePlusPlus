@@ -12,7 +12,7 @@ table.center {
   }
   
   /* Hide the images by default */
-  .mySlides {
+  .mySlides, .mySlides2 {
     display: none;
   }
   
@@ -64,7 +64,7 @@ table.center {
   }
   
   /* The dots/bullets/indicators */
-  .dot {
+  .dot , .dot2 {
     cursor: pointer;
     height: 15px;
     width: 15px;
@@ -78,21 +78,25 @@ table.center {
   .active, .dot:hover {
     background-color: #717171;
   }
-  
-  /* Fading animation 
-  .fade {
-    -webkit-animation-name: fade;
-    -webkit-animation-duration: 1.5s;
-    animation-name: fade;
-    animation-duration: 1.5s;
-  }
-  */
-  @-webkit-keyframes fade {
-    from {opacity: .4}
-    to {opacity: 1}
-  }
-  
-  @keyframes fade {
-    from {opacity: .4}
-    to {opacity: 1}
-  }
+
+/* The sticky class is added to the header with JS when it reaches its scroll position */
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 78%;
+  background-color: white;
+  display: flex;
+  align-items: center;
+}
+
+.obj{
+  border-radius: 10px 10px 10px 10px;
+  height : auto;
+  width : 80%;
+  filter: drop-shadow(0 0 0.50rem #6fa9a5ff);
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 8%;
+  margin-bottom: 8%;
+}
