@@ -62,7 +62,8 @@ let VisualizerComponent = {
             window.parent.currentUI.hideDialog()
             //window.parent.close()
         },
-        openTemplate: function (diagram_name) {
+        openTemplate: function () {
+            console.log('Fonction openTemplate appelée');
             let doc;
             let data = undefined;
             let clearMatrix = false;
