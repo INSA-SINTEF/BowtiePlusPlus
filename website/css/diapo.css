@@ -83,7 +83,7 @@ table.center {
 .sticky {
   position: fixed;
   top: 0;
-  width: 78%;
+  width: 67%;
   background-color: white;
   display: flex;
   align-items: center;
