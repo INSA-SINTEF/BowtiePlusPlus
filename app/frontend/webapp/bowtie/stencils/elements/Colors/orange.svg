@@ -1,0 +1,16 @@
+<svg id="threat_actor.svg" width="40" height="40" xmlns="http://www.w3.org/2000/svg">
+    <metadata id="metadata6064">image/svg+xml</metadata>
+    <g>
+        <g>
+            <title>background</title>
+            <rect fill="none" id="canvas_background" height="200" width="200" y="-1" x="-1"/>
+        </g>
+        <g>
+            <title>Threat actors</title>
+            <g opacity="0.7" id="layer1">
+                <ellipse fill="#fe773d" stroke="#000000" stroke-width="0" stroke-linecap="round" stroke-miterlimit="4" ry="15" rx="15" cy="20" cx="20" id="r1c1"/>
+            </g>
+        </g>
+
+    </g>
+</svg>
