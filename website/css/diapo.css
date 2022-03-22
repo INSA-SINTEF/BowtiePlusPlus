@@ -100,3 +100,19 @@ table.center {
   margin-top: 8%;
   margin-bottom: 8%;
 }
+
+.sncf {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height : auto;
+  width : 90%;
+}
+
+.perf {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height : auto;
+  width : 70%;
+}
