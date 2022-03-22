@@ -84,7 +84,7 @@ table.center {
   position: fixed;
   top: 0;
   width: 67%;
-  background-color: white;
+  background-color: #32325d;
   display: flex;
   align-items: center;
 }
