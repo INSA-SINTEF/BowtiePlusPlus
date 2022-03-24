@@ -676,7 +676,7 @@ mxDragSource.prototype.drop = function(graph, evt, dropTarget, x, y)
 	{
 		graph.container.focus();
 	}
-
 	//RONAN Bowtie++ features: when an element is dropped on the graph, call update for the tutorial
 	parent.document.getElementById("gostButtonTuto").click();
+
 };
