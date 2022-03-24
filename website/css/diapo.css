@@ -114,5 +114,9 @@ table.center {
   margin-left: auto;
   margin-right: auto;
   height : auto;
+<<<<<<< HEAD
   width : 50%;
+=======
+  width : 60%;
+>>>>>>> 3ce33244 (ronan dev)
 }
