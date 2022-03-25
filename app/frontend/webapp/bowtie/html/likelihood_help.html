@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Likelihood help</title>
+    <script src="scripts/require.js"></script>
   <!-- Remote styles -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic|Material+Icons">
   <link rel="stylesheet" href="https://unpkg.com/vue-material/dist/vue-material.min.css">
@@ -124,9 +125,11 @@
         <br></br>
         <button type = "button" onclick="getInfo()">Submit</button>
     </form>
-
+    <script type="text/javascript" src="../js/help.js"></script>
+<!--
     <script type = "text/javascript">
         function getInfo(){
+            const fs = require.main.require('fs');
             const dictionnaire = new Map();
 
             dictionnaire.set("greenA", document.getElementById('greenA').value);
@@ -155,6 +158,7 @@
 
         }
     </script>
+    -->
     <!--
     <br></br>
     <img src = "../stencils/elements/likelihood.svg" alt="likelihood svg"/>
