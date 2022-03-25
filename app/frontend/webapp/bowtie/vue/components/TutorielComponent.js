@@ -43,6 +43,15 @@ export const TutorielComponent = {
             this.nbUnwantedEvent = this.graph.getAllEventsCells().length;
             this.nbAssets = this.graph.getAllAssetsCells().length;
             this.tutorialState();
+
+            if(this.nbHazard > 1){
+                this.window.alert("Only one Hazard per diagram is allowed");
+                this.graph.removeCells([this.graph.getAllHazardsCells()[1]],true);
+            }
+            if(this.nbUnwantedEvent > 1){
+                this.window.alert("Only one Unwanted Event per diagram is allowed");
+                this.graph.removeCells([this.graph.getAllEventsCells()[1]],true);
+            }
             },
 
         tutorialState : function () {
