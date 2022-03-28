@@ -38,27 +38,45 @@
 </head>
 <body>
 
-<font size="100%" color="#0000FF"><center> Chose the desired template </center></font>
+<h1>
+    <span style="color: darkslategrey; "><center><b>Chose the desired template</b></center></span>
+</h1>
 
 
 <h3>
-    <span style="color: red; "><b><font size="5">Flood risks</font></b></span>
-    <br><button class="btn btn-secondary" v-on:click="openTemplate()"><img src="../templates/flood_risks.png" height ="105" width="160" />
-        <br><font size="3">This prefilled diagram takes into account Directive 2007/60/EC of the European Parliament and of the Council of 23 October 2007 on the assessment and management of flood risks.</font>
+    <span style="color: darkslategrey; "><b>Flood risks</b></span>
+    <br><button type="button" class="btn btn-outline-info" v-on:click="openTemplate()"><img src="../templates/flood_risks.png" height ="90" width="160" />
+    <br><font size="3">This prefilled diagram takes into account Directive 2007/60/EC of the European Parliament and of the Council of 23 October 2007 on the assessment and management of flood risks.</font></button>
 </h3>
-<button class="styleda" type="button" onclick=" window.open('https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CELEX:32007L0060&from=FR', '_blank');">Link to the standard</button>
+<button class="styled" type="button" onclick=" window.open('https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CELEX:32007L0060&from=FR', '_blank');">Link to the standard</button>
 
 <br><br>
 
 <h3>
-    <span style="color: red; "><b><font size="5">Transport of radioactive material</font></b></span>
-    <br><button class="btn btn-secondary" v-on:click="openTemplate()"> <img src="../templates/transport_of_radioactive_material.png" height ="105" width="160" /></P>
-        <br><font size="3">This prefilled diagram takes into account the safety standards of the International Atomic Energy Agency for the protection of people and the environment.
-        <br>Regulations for the Safe Transport of Radioactive Material, 2018 edition.</font>
+    <span style="color: darkslategrey; "><b><font size="5">Transport of radioactive material</font></b></span>
+    <br><button type="button" class="btn btn-outline-info" v-on:click="openTemplate()"> <img src="../templates/transport_of_radioactive_material.png" height ="105" width="160" />
+        <br><font size="3">This prefilled diagram takes into account the safety standards of the International Atomic Energy Agency for the protection of people and the environment. Regulations for the Safe Transport of Radioactive Material, 2018 edition.</font></button>
 </h3>
-<button class="styleda" type="button" onclick=" window.open('https://www-pub.iaea.org/MTCD/Publications/PDF/P1798F_web.pdf', '_blank');">Link to the standard</button>
+<button class="styled" type="button" onclick=" window.open('https://www-pub.iaea.org/MTCD/Publications/PDF/PUB1798_web.pdf', '_blank');">Link to the standard</button>
 
-<br>
+<br><br>
+
+<h3>
+    <span style="color: darkslategrey; "><b><font size="5">Dangerousness of the product sold</font></b></span>
+    <br><button type="button" class="btn btn-outline-info" v-on:click="openTemplate()"> <img src="../templates/dangerousness_productsold.png" height ="90" width="160" />
+    <br><font size="3">This prefilled diagram takes into account the directive 2001/95/EC of the European Parliament and of the Council of 3 December 2001 on general product safety. The attached diagram provides a summary of the company's obligations.</font></button>
+</h3>
+<button class="styled" type="button" onclick=" window.open('https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CELEX:32001L0095&from=EN', '_blank');">Link to the standard</button>
+
+<br><br>
+
+<h3>
+    <span style="color: darkslategrey; "><b><font size="5">Cyber risks (french version - ANSSI)</font></b></span>
+    <br><button type="button" class="btn btn-outline-info" v-on:click="openTemplate()"><img src="../templates/flood_risks.png" height ="80" width="160" />
+    <br><font size="3">This prefilled diagram takes into account cybersecurity requirements for industrial systems integration and maintenance providers. According to this standard, the risk assessment should include a list of feared incidents within the scope of the service as listed in the diagram.</font></button>
+</h3>
+<button class="styled" type="button" onclick=" window.open('https://www.ssi.gouv.fr/uploads/2016/03/Referentiel_exigences_prestataires_integration_maintenance_V1_0.1.pdf', '_blank');">Link to the standard</button>
+
 
 <script type="text/x-template" id="visualizer-template">
     <div class="all_visuals">

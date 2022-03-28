@@ -394,7 +394,7 @@ class DiagramVersions(APIView):
 
     def post(self, request, pk):
         """Update diagram"""
-        # Checks that the current user as the rights to update specified diagram
+        # Checks that the current user has the rights to update specified diagram
         diagram = self.get_object(pk, auth_user_only=True)
         versions = Version.objects.get_for_object(diagram)
         id = int(request.data['id'])
