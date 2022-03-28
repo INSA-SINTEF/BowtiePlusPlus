@@ -382,6 +382,7 @@ Format.prototype.refresh = function()
 		var containsLabel = this.getSelectionState().containsLabel;
 		var currentLabel = null;
 		var currentPanel = null;
+		var tutorial = parent.document.getElementById("tutoriel_component");
 		
 		var addClickHandler = mxUtils.bind(this, function(elt, panel, index)
 		{
@@ -412,9 +413,12 @@ Format.prototype.refresh = function()
 					{
 						if (currentPanel != null)
 						{
+							//RONAN, display or not the tutorial to avoid conflics
+							index === 1 ? tutorial.style.display = 'none' : tutorial.style.display='block';
+
 							currentPanel.style.display = 'none';
 						}
-						
+
 						currentPanel = panel;
 						currentPanel.style.display = '';
 					}

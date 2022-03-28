@@ -11,19 +11,27 @@ export const TutorielComponent = {
     data: function(){
         return{
             //Deals with the z-index of the component
-            is_displayed : 1, //1 displayed , 0 hided
+            onMouseOver : false,
+            is_displayed : false,
             window : null,
             graph : null,
-            nbThreats: 0,
-            nbConsequences: 0,
-            nbBarriers: 0,
-            nbAssets : 0,
-            nbEscalationFactors : 0,
-            nbHazard: 0,
-            nbUnwantedEvent: 0,
-            nbCauses: 0,
-            events : [],
-            state: 0
+            event : [],
+            threats : [],
+            causes : [],
+            hazard : [],
+            consequences : [],
+            barriers: [],
+            rightBarriers: 0,
+            escalfactors: [],
+            rightEscFactors: 0,
+            assets : [],
+            state: 0,
+            allcells: [],
+            eventLaunch : [],
+            leftFillingRate : 0,
+            rightFillingRate: 0,
+            barriersAccuRateLeft: 0,
+            barriersAccuRateRight: 0
         }
     },
     methods: {
@@ -34,40 +42,83 @@ export const TutorielComponent = {
                 this.window = document.getElementById('diagram-editor').children[1].contentWindow;
                 this.graph = this.window.currentUI.editor.graph;
             }
-            this.nbThreats = this.graph.getAllThreatsCells().length;
-            this.nbConsequences = this.graph.getAllConsequences().length;
-            this.nbCauses = this.graph.getAllCausesCells().length
-            this.nbBarriers = this.graph.getAllBarriersCells().length;
-            this.nbEscalationFactors = this.graph.getAllEscFactCells().length
-            this.nbHazard = this.graph.getAllHazardsCells().length;
-            this.nbUnwantedEvent = this.graph.getAllEventsCells().length;
-            this.nbAssets = this.graph.getAllAssetsCells().length;
+
+            this.is_displayed = true;
+
+            //Get all cells on the graph than check which cell is the new one
+            this.allcells = this.graph.model.cells;
+            for (const cell of Object.values(this.allcells)) {
+                switch (cell.customID) {
+                    case "Hazard":
+                        if(!this.hazard.find(element => element.id === cell.id)) this.hazard.push(cell);
+                        break;
+                    case "Event":
+                        if(!this.event.find(element => element.id === cell.id)) this.event.push(cell);
+                        break;
+                    case "Barrier":
+                        if(!this.barriers.find(element => element.id === cell.id)) this.barriers.push(cell);
+                        break;
+                    case "Escalation Factor":
+                        if(!this.escalfactors.find(element => element.id === cell.id)) this.escalfactors.push(cell);
+                        break;
+                    case "Threat":
+                        if(!this.threats.find(element => element.id === cell.id)) this.threats.push(cell);
+                        break;
+                    case "Cause":
+                        if(!this.causes.find(element => element.id === cell.id)) this.causes.push(cell);
+                        break;
+                    case "Asset":
+                        if(!this.assets.find(element => element.id === cell.id)) this.assets.push(cell);
+                        break;
+                    //consequence are deals in another way to separate the right side elements of the diagram
+                }
+            }
+
+
+            this.consequences = this.graph.getAllConsequences()
+            this.rightBarriers = 0;
+            this.rightEscFactors = 0;
+            this.consequences.forEach(cons => {
+                this.rightBarriers += cons.barriers.length;
+                this.rightEscFactors += cons.barriers_escalfactors.length
+            });
+
+            //Deals with 0 division
+            this.threats.length+this.causes.length == 0? this.leftFillingRate = 0 : this.leftFillingRate = ((this.barriers.length-this.rightBarriers) / (this.threats.length+this.causes.length)).toFixed(1)
+            this.consequences.length == 0 ? this.rightFillingRate = 0 : this.rightFillingRate = (this.rightBarriers / this.consequences.length).toFixed(1);
+            (this.barriers.length-this.rightBarriers) == 0 ? this.barriersAccuRateLeft = 0 : this.barriersAccuRateLeft = ((this.escalfactors.length-this.rightEscFactors)/(this.barriers.length-this.rightBarriers)).toFixed(1);
+            this.rightBarriers == 0 ? this.barriersAccuRateRight = 0 : this.barriersAccuRateRight = (this.rightEscFactors.length/this.rightBarriers).toFixed(1);
+
             this.tutorialState();
 
-            if(this.nbHazard > 1){
+            if(this.hazard.length > 1){
                 this.window.alert("Only one Hazard per diagram is allowed");
                 this.graph.removeCells([this.graph.getAllHazardsCells()[1]],true);
+                this.hazard.length--;
             }
-            if(this.nbUnwantedEvent > 1){
+            if(this.event.length > 1){
                 this.window.alert("Only one Unwanted Event per diagram is allowed");
                 this.graph.removeCells([this.graph.getAllEventsCells()[1]],true);
+                this.event.length--;
             }
             },
 
         tutorialState : function () {
-            this.nbUnwantedEvent >= 1 ? this.state = 1 : '';
-            this.nbHazard >= 1 ? this.state = 2 : '';
-            this.nbAssets >= 3 ? this.state = 3 : '';
-            this.nbThreats + this.nbCauses >= 8 ? this.state = 4 : '';
-            this.nbBarriers >= 6 ? this.state = 5 : '';
-            this.nbEscalationFactors >= 3 ? this.state = 6 : '';
-            this.nbConsequences >= 4 ? this.state = 7 : '';
+            this.event.length >= 1 ? this.state = 1 : '';
+            this.hazard.length >= 1 ? this.state = 2 : '';
+            this.assets.length >= 3 ? this.state = 3 : '';
+            this.threats.length + this.causes.length >= 8 ? this.state = 4 : '';
+            this.barriers.length >= 6 ? this.state = 5 : '';
+            this.escalfactors.length >= 3 ? this.state = 6 : '';
+            this.consequences.length >= 4 ? this.state = 7 : '';
         },
 
-        //function that update the render of the tutoriel, if there is a modal open in the editor, then do not display tutoriel
+
+        /*//function that update the render of the tutoriel, if there is a modal open in the editor, then do not display tutoriel
         zIndex_hide : function () {
             this.is_displayed = 0;
             try {
+                //render the tutorial if close button is selected
                 let closeBtn = this.window.document.getElementsByClassName("geDialogClose")[0];
                 closeBtn.addEventListener('click',this.zIndex_show);
             } catch (e) {
@@ -91,38 +142,61 @@ export const TutorielComponent = {
                     }
                 })
             }
-            this.events.push(this.window.document.getElementById("riskButton"));
-            this.events.forEach(event => {
+            this.eventLaunch.push(this.window.document.getElementById("riskButton"));
+            this.eventLaunch.forEach(event => {
                 event.addEventListener('click',this.zIndex_hide)
             })
 
-        }
+        }*/
     },
+
     template:
         //HTML code corresponding to the component
             `
-<div id="tuto" v-bind:style="{'z-index' : is_displayed}" >
-<button id="gostButtonTuto" v-on:click="update" v-on:click.once="initialisation"> <h3> Tutorial </h3> </button>
-    <div v-bind:class= "[this.nbUnwantedEvent >= 1 ? 'alert-success' : 'alert-danger', 'alert', 'container', this.state < 0 ? 'unused' : '']" role="alert">
-        <div class="item"> UNWANTED EVENT </div> <div class="item"> <h3> {{this.nbUnwantedEvent}}/1 </h3> </div>
+<div id="tuto" v-show="this.is_displayed" >
+<button id="gostButtonTuto" v-on:click="update"> <h3> Tutorial - TopDown approach </h3> </button>
+    <div v-bind:class= "[this.event.length >= 1 ? 'alert-success' : 'alert-danger', 'alert', 'container', 'myToolTip', this.state < 0 ? 'unused' : '']" role="alert">
+        <div class="item"> UNWANTED EVENT </div> <div class="item"> <h3> {{this.event.length}}/1 </h3> </div>
+        <span class="tooltiptext">The unwanted situation you want to analyse. Only one is allowed.</span>
     </div>
-    <div v-bind:class= "[this.nbHazard >= 1 ? 'alert-success' : 'alert-danger', 'alert', 'container', this.state < 1 ? 'unused' : '']" role="alert">
-      <div class="item"> HAZARD </div> <div class="item"> <h3> {{this.nbHazard}}/1 </h3> </div>
+    <div v-bind:class= "[this.hazard.length >= 1 ? 'alert-success' : 'alert-danger', 'alert', 'container', 'myToolTip', this.state < 1 ? 'unused' : '']" role="alert" v-on:mouseover="onMouseOver = true" v-on:mouseleave="onMouseOver = false">
+      <div class="item"> HAZARD </div> <div class="item"> <h3> {{this.hazard.length}}/1 </h3> </div>
+      <span class="tooltiptext">The main hazard related to the studied unwanted event. Only one is allowed.</span>
     </div>
-    <div v-bind:class= "[this.nbAssets >= 3 ? 'alert-success' : 'alert-danger', 'alert', 'container', this.state < 2 ? 'unused' : '']" role="alert">
-      <div class="item"> ASSETS </div> <div class="item"> <h3> {{this.nbAssets}}/3 </h3> </div>
+
+    <div v-bind:class= "[this.assets.length >= 3 ? 'alert-success' : 'alert-danger', 'alert', 'container', 'myToolTip', this.state < 2 ? 'unused' : '']" role="alert" v-on:mouseover="onMouseOver = true" v-on:mouseleave="onMouseOver = false">
+      <div class="item"> ASSETS </div> <div class="item"> <h3> {{this.assets.length}}/3 </h3> </div>
+      <span class="tooltiptext">Resources related to the system you want to protect. It is usual to have several assets, think about what is valuable!</span>
     </div>
-    <div v-bind:class= "[(this.nbThreats+this.nbCauses) >= 8 ? 'alert-success' : 'alert-danger', 'alert', 'container', this.state < 3 ? 'unused' : '']" role="alert">
-      <div class="item"> THREATS & CAUSES </div> <div class="item"> <h3> {{this.nbThreats+this.nbCauses}}/8 </h3> </div>
+
+    <div v-bind:class= "[(this.threats.length+this.causes.length) >= 8 ? 'alert-success' : 'alert-danger', 'alert', 'container', 'myToolTip', this.state < 3 ? 'unused' : '']" role="alert" v-on:mouseover="onMouseOver = true" v-on:mouseleave="onMouseOver = false">
+      <div class="item"> THREATS & CAUSES </div> <div class="item"> <h3> {{this.threats.length+this.causes.length}}/8 </h3> </div>
+      <span class="tooltiptext">Fill the left side of the diagram with all events that can lead to the unwanted situation. Usually, a complete diagram should have 8 threats and/or causes. Be exhaustive and keep the most important elements</span>
     </div>
-    <div v-bind:class= "[this.nbBarriers >= 6 ? 'alert-success' : 'alert-danger', 'alert', 'container', this.state < 4 ? 'unused' : '']" role="alert">
-      <div class="item"> BARRIERS </div> <div class="item"> <h3> {{this.nbBarriers}}/6 </h3> </div>
+
+    <div v-bind:class= "[this.leftFillingRate >= 1 ? 'alert-success' : 'alert-danger', 'alert', 'container', 'myToolTip', this.state < 4 ? 'unused' : '']" role="alert" v-on:mouseover="onMouseOver = true" v-on:mouseleave="onMouseOver = false">
+      <div class="item"> BARRIERS LEFT </div> <div class="item"> <h3> {{this.leftFillingRate}}/1 </h3> </div>
+      <span class="tooltiptext">TIPS: add barriers to increase the left filling rate and improve diagram quality</span>
     </div>
-    <div v-bind:class= "[this.nbEscalationFactors >= 3 ? 'alert-success' : 'alert-danger', 'alert', 'container', this.state < 5 ? 'unused' : '']" role="alert">
-      <div class="item"> ESC. FACTORS </div> <div class="item"> <h3> {{this.nbEscalationFactors}}/3 </h3> </div>
+
+    <div v-bind:class= "[this.barriersAccuRateLeft >= 0.7 ? 'alert-success' : 'alert-danger', 'alert', 'container', 'myToolTip', this.state < 5 ? 'unused' : '']" role="alert" v-on:mouseover="onMouseOver = true" v-on:mouseleave="onMouseOver = false">
+      <div class="item">ESC.FACTORS LEFT</div> <div class="item"> <h3> {{this.barriersAccuRateLeft}}/0.7 </h3> </div>
+      <span class="tooltiptext">The effectiveness of a barrier can be diminished by other events. Add escalation factors to model precisely a barrier and it's failure probability</span>
     </div>
-    <div v-bind:class= "[this.nbConsequences >= 4 ? 'alert-success' : 'alert-danger', 'alert', 'container', this.state < 6 ? 'unused' : '']" role="alert">
-      <div class="item"> CONSEQUENCES </div> <div class="item"> <h3> {{this.nbConsequences}}/4 </h3> </div>
+
+    <div v-bind:class= "[this.consequences.length >= 4 ? 'alert-success' : 'alert-danger', 'alert', 'container', 'myToolTip', this.state < 6 ? 'unused' : '']" role="alert" v-on:mouseover="onMouseOver = true" v-on:mouseleave="onMouseOver = false">
+      <div class="item"> CONSEQUENCES </div> <div class="item"> <h3> {{this.consequences.length}}/4 </h3> </div>
+      <span class="tooltiptext">Fill the right side of the diagram with all consequences resulting by the unwanted event. Usually, a complete diagram should have 4 consequences at least. Be exhaustive and keep the most important ones</span>
+    </div>
+
+    <div v-bind:class= "[this.rightFillingRate >= 1 ? 'alert-success' : 'alert-danger', 'alert', 'container', 'myToolTip', this.state < 4 ? 'unused' : '']" role="alert" v-on:mouseover="onMouseOver = true" v-on:mouseleave="onMouseOver = false">
+      <div class="item"> BARRIERS RIGHT </div> <div class="item"> <h3> {{this.rightFillingRate}}/1 </h3> </div>
+      <span class="tooltiptext">TIPS: add barriers to increase the right filling rate and improve diagram quality</span>
+    </div>
+
+    <div v-bind:class= "[this.barriersAccuRateRight >= 0.7 ? 'alert-success' : 'alert-danger', 'alert', 'container', 'myToolTip', this.state < 5 ? 'unused' : '']" role="alert" v-on:mouseover="onMouseOver = true" v-on:mouseleave="onMouseOver = false">
+      <div class="item">ESC.FACTORS RIGHT</div> <div class="item"> <h3> {{this.barriersAccuRateRight}}/0.7 </h3> </div>
+      <span class="tooltiptext">The effectiveness of a barrier can be diminished by other events. Add escalation factors to model precisely a barrier and it's failure probability</span>
     </div>
 </div>`,
 

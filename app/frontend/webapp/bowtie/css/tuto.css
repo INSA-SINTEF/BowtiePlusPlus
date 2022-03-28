@@ -11,7 +11,7 @@
 }
 
 #gostButtonTuto h3, .item h3{
-    font-size: large;
+    font-size: medium;
     margin: 5px;
 }
 
@@ -28,4 +28,39 @@
 .item{
     align-self: baseline;
     font-weight: bold;
+}
+
+
+
+.myToolTip .tooltiptext {
+    visibility: hidden;
+    width: 90%;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    right: 5%;
+    bottom: 75%;
+
+}
+
+.myToolTip:hover .tooltiptext {
+    visibility: visible;
+}
+
+.myToolTip  .tooltiptext::after {
+    content: " ";
+    position: absolute;
+    top: 100%; /* At the bottom of the tooltip */
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
 }

@@ -2682,7 +2682,6 @@ EditorUi.prototype.createFooter = function () {
 EditorUi.prototype.createDiv = function (classname) {
     var elt = document.createElement('div');
     elt.className = classname;
-
     return elt;
 };
 
@@ -2765,6 +2764,9 @@ EditorUi.prototype.showDialog = function (elt, w, h, modal, closable, onClose) {
 
     this.dialog = new Dialog(this, elt, w, h, modal, closable, onClose);
     this.dialogs.push(this.dialog);
+
+    //RONAN tutorial not display
+    parent.document.getElementById("tutoriel_component").style.display="none";
 };
 
 /**
@@ -2782,6 +2784,10 @@ EditorUi.prototype.hideDialog = function (cancel) {
         }
 
         this.editor.fireEvent(new mxEventObject('hideDialog'));
+
+        //RONAN tutorial display
+        parent.document.getElementById("tutoriel_component").style.display="block";
+
     }
 };
 

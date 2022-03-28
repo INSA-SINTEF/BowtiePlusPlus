@@ -2652,7 +2652,6 @@ var LayersWindow = function (editorUi, x, y, w, h) {
                 newCell.value = mxResources.get('untitledLayer');
                 newCell.setVisible(true);
                 newCell = graph.addCell(newCell, graph.model.root);
-                console.log("test")
                 graph.setDefaultParent(newCell);
             } finally {
                 graph.model.endUpdate();
