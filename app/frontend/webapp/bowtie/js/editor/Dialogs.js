@@ -1813,9 +1813,15 @@ ExportDialog.exportFile = function (editorUi, name, format, bg, s, b) {
 
         let result = encoder.encode(dataObject);
         let dataXml = mxUtils.getXml(result);
-
+        let dicoXML = "<likelihoodHelp>";
+        const dico = new Map(Object.entries(JSON.parse(sessionStorage.getItem('likelihood_dico'))));
+        for (let [key, value] of dico) {
+            dicoXML = dicoXML + "<item>" + "<key>" + key + "</key>" + "<value>" + value + "</value>" + "</item>"
+        }
+        dicoXML = dicoXML + "</likelihoodHelp>"
         //Append dataXml to the graph xml and embed it inside a root diagram xml tag
-        xml = "<diagram>" + xml + dataXml + "</diagram>";
+        xml = "<diagram>" + xml + dataXml + "</diagram>" + dicoXML;
+
         download(xml);
         //ExportDialog.saveLocalFile(editorUi, mxUtils.getXml(editorUi.editor.getGraphXml()), name, format);
 

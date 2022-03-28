@@ -10,6 +10,7 @@
 
   <!-- Bowtie++ styles -->
   <link rel="stylesheet" href="../css/statistics.css">
+  <script type="text/javascript" src="../js/help.js"></script>
 </head>
 <body>
     <h1>How to fill-in the Likelihood matrix ?</h1>
@@ -17,13 +18,15 @@
     <br>To compute the likelihood of a threat, link it to a likelihood matrix that associates a level of danger to each criterion below.
     To fill the matrix, select a dot on each line from "not dangerous"(green) to "extremely dangerous"(red).</br>
     <br></br>
+    <img src = "../stencils/elements/likelihood.svg" alt="likelihood svg"/>
+    <br></br>
     <form id="likelihood">
         <h2><strong>Actors :</strong> the level of skills needed to perform the attack</h2>
         <table>
             <tbody>
             <tr>
                 <td><img src = "../stencils/elements/Colors/colors/green.svg" alt="green svg"/></td>
-                <td><input type="text" id="greenA" name="name" size="20" placeholder="default value"></td>
+                <td><input type="text" id="greenA" name="name" size="20" placeholder="default value" ></td>
             </tr>
             <tr>
                 <td><img src = "../stencils/elements/Colors/colors/lightgreen.svg" alt="lightgreen svg"/></td>
@@ -122,9 +125,34 @@
             </tbody>
         </table>
         <br></br>
-        <button type = "button" onclick="getInfo()">Submit</button>
+        <button type = "button" onclick="run(true, 'None')">Submit</button>
     </form>
-    <script type="text/javascript" src="../js/help.js"></script>
+
+    <script type="text/javascript">
+        document.getElementById('greenA').value = run(false, "greenA");
+        document.getElementById('lgA').value = run(false, "lgA");
+        document.getElementById('yelA').value = run(false, "yelA");
+        document.getElementById('orA').value = run(false, "orA");
+        document.getElementById('redA').value = run(false, "redA");
+
+        document.getElementById('greenO').value = run(false, "greenO");
+        document.getElementById('lgO').value = run(false, "lgO");
+        document.getElementById('yelO').value = run(false, "yelO");
+        document.getElementById('orO').value = run(false, "orO");
+        document.getElementById('redO').value = run(false, "redO");
+
+        document.getElementById('greenM').value = run(false, "greenM");
+        document.getElementById('lgM').value = run(false, "lgM");
+        document.getElementById('yelM').value = run(false, "yelM");
+        document.getElementById('orM').value = run(false, "orM");
+        document.getElementById('redM').value = run(false, "redM");
+
+        document.getElementById('greenMo').value = run(false, "greenMo");
+        document.getElementById('lgMo').value = run(false, "lgMo");
+        document.getElementById('yelMo').value = run(false, "yelMo");
+        document.getElementById('orMo').value = run(false, "orMo");
+        document.getElementById('redMo').value = run(false, "redMo");
+    </script>
 <!--
     <script type = "text/javascript">
         function getInfo(){
