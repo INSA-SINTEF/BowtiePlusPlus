@@ -28,7 +28,7 @@
     <g>
       <title>Window of opportunety</title>
       <g opacity="0.7" id="layer2">
-        <text opacity="1" x="220" y="70" font-family="sans-serif" font-size="17px" fill="black">Window of opportunity</text>
+        <text opacity="1" x="220" y="70" font-family="sans-serif" font-size="17px" fill="black">Opportunity</text>
         <ellipse fill="#00ff06" stroke="#000000" stroke-width="0" stroke-linecap="round" stroke-miterlimit="4" ry="18" rx="18" cy="60" cx="20" id="r2c1"/>
         <ellipse fill="#a7ec67" stroke="#000000" stroke-width="4" stroke-linecap="round" stroke-miterlimit="4" ry="18" rx="18" cy="60" cx="58" id="r2c2"/>
         <ellipse fill="#fffe00" stroke="#000000" stroke-width="0" stroke-linecap="round" stroke-miterlimit="4" ry="18" rx="18" cy="60" cx="96" id="r2c3"/>
