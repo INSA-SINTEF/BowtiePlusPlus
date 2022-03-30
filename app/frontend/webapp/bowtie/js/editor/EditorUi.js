@@ -2896,6 +2896,8 @@ EditorUi.prototype.isCompatibleString = function (data) {
     return false;
 };
 
+
+
 EditorUi.prototype.openFromDb = function (open_endpoint) {
 
     var token = localStorage.getItem('sessionToken');
@@ -3041,6 +3043,11 @@ EditorUi.prototype.manageRoles = function () {
     }
     let newView = this.actions.get('openRolesVue').funct;
     newView()
+}
+
+
+EditorUi.prototype.generatePDF = function () {
+    console.log("test function generatePDF editorui");
 }
 
 /**

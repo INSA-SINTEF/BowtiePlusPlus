@@ -137,6 +137,7 @@ formattedText=Formatted Text
 gap=Gap
 general=General
 glass=Glass
+generateReport=Generate report
 global=Global
 gradient=Gradient
 gradientColor=Color

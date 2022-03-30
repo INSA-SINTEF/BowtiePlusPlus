@@ -95,6 +95,11 @@ Actions.prototype.init = function () {
         }
     ).isEnabled = isLoggedIn;
 
+    //RONAN
+    this.addAction('generateReport', function () {
+        ui.generatePDF();
+    });
+
     this.addAction('import...', function () {
         window.openNew = false;
         window.openKey = 'import';
