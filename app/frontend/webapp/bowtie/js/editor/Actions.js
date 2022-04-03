@@ -47,11 +47,17 @@ Actions.prototype.init = function () {
         }));
 
         window.openFile.setConsumer(mxUtils.bind(this, function (xml, filename) {
-            try {
+            //check for <likelihoodHelp> tag
+            console.log(xml.getElementsByTagName("likelihoodHelp")[0]);
+            //try {
                 let doc;
                 let data = undefined;
+                console.log(xml.slice(0,9))
+                //check for <likelihoodHelp> tag
+                console.log(xml.getElementsByTagName("likelihoodHelp")[0]);
                 //check for <diagram> tag and set risk values
                 if(xml.slice(0,9) == "<diagram>"){
+
                     diag = xml.slice(9,-10);
                     let splittedDiagram = diag.split(/(?<=<\/mxGraphModel>)/);
                     doc = mxUtils.parseXml(splittedDiagram[0]);
@@ -69,9 +75,10 @@ Actions.prototype.init = function () {
                 }
 
 
-            } catch (e) {
+            //}
+            /*catch (e) {
                 mxUtils.alert(mxResources.get('invalidOrMissingFile') + ': ' + e.message);
-            }
+            }*/
         }));
 
         // Removes openFile if dialog is closed
@@ -119,7 +126,6 @@ Actions.prototype.init = function () {
                     let splittedDiagram = diag.split(/(?<=<\/mxGraphModel>)/);
                     doc = mxUtils.parseXml(splittedDiagram[0]);
                     data = mxUtils.parseXml(splittedDiagram[1]);
-
                 }else{
                     doc = mxUtils.parseXml(xml);
                 }
