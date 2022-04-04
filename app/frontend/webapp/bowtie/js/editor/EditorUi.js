@@ -3054,6 +3054,7 @@ EditorUi.prototype.generatePDF = function () {
     let graphThreats = this.editor.graph.getAllThreats();
     let graphConsequences = this.editor.graph.getAllConsequences();
 
+
     //This will sort all threats of the diagram, regarding their probability
     graphThreats.sort(function(threat1, threat2){
         if(!threat1.allDefined() && threat2.allDefined()) return 1;
@@ -3074,13 +3075,18 @@ EditorUi.prototype.generatePDF = function () {
 
     //Handle the case where getAttribute("infoDesc") return null
      function getDescription(element, index,editor){
+         let res =[];
         switch (element){
             case "threat":
-                return (editor.graph.model.getCell(graphThreats[index].cell).getAttribute('infoDesc') == null? 'no description on this element' : editor.graph.model.getCell(graphThreats[index].cell).getAttribute('infoDesc'));
+                res[0] = editor.graph.model.getCell(graphThreats[index].cell).value.getAttribute('label');
+                res[1] = editor.graph.model.getCell(graphThreats[index].cell).getAttribute('infoDesc') == null? 'no description on this element' : editor.graph.model.getCell(graphThreats[index].cell).getAttribute('infoDesc');
+                return res;
             case "consequence":
-                return (editor.graph.model.getCell(graphConsequences[index].cell).getAttribute('infoDesc') == null? 'no description on this element' : editor.graph.model.getCell(graphConsequences[index].cell).getAttribute('infoDesc'));
-            default :
-                return 'no description'
+                res[0] = editor.graph.model.getCell(graphConsequences[index].cell).value.getAttribute('label');
+                res[1] = editor.graph.model.getCell(graphConsequences[index].cell).getAttribute('infoDesc') == null? 'no description on this element' : editor.graph.model.getCell(graphConsequences[index].cell).getAttribute('infoDesc');
+                return res;
+            default:
+                return "error while getting description";
         }
     }
 
@@ -3092,7 +3098,7 @@ EditorUi.prototype.generatePDF = function () {
     //TODO links to the elements. See the XML just above, informations are display into the xml representation
     let docDefinition = {
         content: [{
-            text: 'BowTie++ risk assessment report \n "Name of the study case"',
+            text: 'BowTie++ risk assessment report \n' + this.editor.graph.getAllEventsCells()[0].value,
             style: 'header',
             color: 'red',
             alignment: 'center'
@@ -3119,9 +3125,9 @@ EditorUi.prototype.generatePDF = function () {
                     widths: [100, 50, '*'],
                     body: [
                         ['Cause', 'Likelihood', 'Description'],
-                        [graphThreats[0] == null? 'No threat' : graphThreats[0].name, graphThreats[0] == null? '' : graphThreats[0].getProbability(), graphThreats[0] == null? '' : getDescription('threat',0,this.editor)],
-                        [graphThreats[1] == null? 'No threat' : graphThreats[1].name, graphThreats[1] == null? '' : graphThreats[1].getProbability(), graphThreats[1] == null? '' : getDescription('threat',1, this.editor)],
-                        [graphThreats[2] == null? 'No threat' : graphThreats[2].name, graphThreats[2] == null? '' : graphThreats[2].getProbability(), graphThreats[2] == null? '' : getDescription('threat',2, this.editor)]
+                        [graphThreats[0] == null? 'No threat' : getDescription('threat',0,this.editor)[0], graphThreats[0] == null? '' : graphThreats[0].getProbability(), graphThreats[0] == null? '' : getDescription('threat',0,this.editor)[1]],
+                        [graphThreats[1] == null? 'No threat' : getDescription('threat',1,this.editor)[0], graphThreats[1] == null? '' : graphThreats[1].getProbability(), graphThreats[1] == null? '' : getDescription('threat',1, this.editor)[1]],
+                        [graphThreats[2] == null? 'No threat' : getDescription('threat',2,this.editor)[0], graphThreats[2] == null? '' : graphThreats[2].getProbability(), graphThreats[2] == null? '' : getDescription('threat',2, this.editor)[1]]
                     ]
                 }
             }, {
@@ -3143,9 +3149,9 @@ EditorUi.prototype.generatePDF = function () {
                     widths: [200, 50, 50, 50, 50, 60],
                     body: [
                         ['Cause', 'ACT', 'OPP', 'MEA', 'MTV', 'Total likelihood'],
-                        [graphThreats[0] == null? 'No threat' : graphThreats[0].name, graphThreats[0] == null? '' : graphThreats[0].threatActors, graphThreats[0] == null? '' : graphThreats[0].opportunity, graphThreats[0] == null? '' : graphThreats[0].means, graphThreats[0] == null? '' : graphThreats[0].motivation, graphThreats[0] == null? '' : graphThreats[0].getProbability()],
-                        [graphThreats[1] == null? 'No threat' : graphThreats[1].name, graphThreats[1] == null? '' : graphThreats[1].threatActors, graphThreats[1] == null? '' : graphThreats[1].opportunity, graphThreats[1] == null? '' : graphThreats[1].means, graphThreats[1] == null? '' : graphThreats[1].motivation, graphThreats[1] == null? '' : graphThreats[1].getProbability()],
-                        [graphThreats[2] == null? 'No threat' : graphThreats[2].name, graphThreats[2] == null? '' : graphThreats[2].threatActors, graphThreats[2] == null? '' : graphThreats[2].opportunity, graphThreats[2] == null? '' : graphThreats[2].means, graphThreats[2] == null? '' : graphThreats[2].motivation, graphThreats[2] == null? '' : graphThreats[2].getProbability()]
+                        [graphThreats[0] == null? 'No threat' : getDescription('threat',0,this.editor)[0], graphThreats[0] == null? '' : graphThreats[0].threatActors, graphThreats[0] == null? '' : graphThreats[0].opportunity, graphThreats[0] == null? '' : graphThreats[0].means, graphThreats[0] == null? '' : graphThreats[0].motivation, graphThreats[0] == null? '' : graphThreats[0].getProbability()],
+                        [graphThreats[1] == null? 'No threat' : getDescription('threat',1,this.editor)[0], graphThreats[1] == null? '' : graphThreats[1].threatActors, graphThreats[1] == null? '' : graphThreats[1].opportunity, graphThreats[1] == null? '' : graphThreats[1].means, graphThreats[1] == null? '' : graphThreats[1].motivation, graphThreats[1] == null? '' : graphThreats[1].getProbability()],
+                        [graphThreats[2] == null? 'No threat' : getDescription('threat',2,this.editor)[0], graphThreats[2] == null? '' : graphThreats[2].threatActors, graphThreats[2] == null? '' : graphThreats[2].opportunity, graphThreats[2] == null? '' : graphThreats[2].means, graphThreats[2] == null? '' : graphThreats[2].motivation, graphThreats[2] == null? '' : graphThreats[2].getProbability()]
                     ]
                 }
             },
@@ -3163,9 +3169,9 @@ EditorUi.prototype.generatePDF = function () {
                     widths: [100, 50, '*'],
                     body: [
                         ['Consequence', 'Impact', 'Description'],
-                        [graphConsequences[0] == null? 'No consequence' : graphConsequences[0].name, graphConsequences[0] == null? '' : graphConsequences[0].getProbability(),graphConsequences[0] == null? '' : getDescription('consequence',0, this.editor)],
-                        [graphConsequences[1] == null? 'No consequence' : graphConsequences[1].name, graphConsequences[1] == null? '' : graphConsequences[1].getProbability(), graphConsequences[1] == null? '' : getDescription('consequence',1, this.editor)],
-                        [graphConsequences[2] == null? 'No consequence' : graphConsequences[2].name, graphConsequences[2] == null? '' : graphConsequences[2].getProbability(), graphConsequences[2] == null? '' : getDescription('consequence',2, this.editor)]
+                        [graphConsequences[0] == null? 'No consequence' : getDescription('consequence',0,this.editor)[0], graphConsequences[0] == null? '' : graphConsequences[0].getProbability(),graphConsequences[0] == null? '' : getDescription('consequence',0, this.editor)[1]],
+                        [graphConsequences[1] == null? 'No consequence' : getDescription('consequence',0,this.editor)[0], graphConsequences[1] == null? '' : graphConsequences[1].getProbability(), graphConsequences[1] == null? '' : getDescription('consequence',1, this.editor)[1]],
+                        [graphConsequences[2] == null? 'No consequence' : getDescription('consequence',0,this.editor)[0], graphConsequences[2] == null? '' : graphConsequences[2].getProbability(), graphConsequences[2] == null? '' : getDescription('consequence',2, this.editor)[1]]
                     ]
                 }
             }, {
@@ -3187,9 +3193,9 @@ EditorUi.prototype.generatePDF = function () {
                     widths: [140, 50, 50, 50, 50, 60, 60],
                     body: [
                         ['Impact', 'COM', 'REP', 'ENV', 'IND', 'Severity','Total impact'],
-                        [graphConsequences[0] == null? 'No consequence' : graphConsequences[0].name, graphConsequences[0] == null? '' : graphConsequences[0].com, graphConsequences[0] == null? '' : graphConsequences[0].rep, graphConsequences[0] == null? '' : graphConsequences[0].env, graphConsequences[0] == null? '' : graphConsequences[0].ind, graphConsequences[0] == null? '' : graphConsequences[0].impactValue ,graphConsequences[0] == null? '' : graphConsequences[0].getProbability()],
-                        [graphConsequences[1] == null? 'No consequence' : graphConsequences[1].name, graphConsequences[1] == null? '' : graphConsequences[1].com, graphConsequences[1] == null? '' : graphConsequences[1].rep, graphConsequences[1] == null? '' : graphConsequences[1].env, graphConsequences[1] == null? '' : graphConsequences[1].ind , graphConsequences[1] == null? '' : graphConsequences[1].impactValue, graphConsequences[1] == null? '' : graphConsequences[1].getProbability()],
-                        [graphConsequences[2] == null? 'No consequence' : graphConsequences[2].name, graphConsequences[2] == null? '' : graphConsequences[2].com, graphConsequences[2] == null? '' : graphConsequences[2].rep, graphConsequences[2] == null? '' : graphConsequences[2].env, graphConsequences[2] == null? '' : graphConsequences[2].ind , graphConsequences[2] == null? '' : graphConsequences[2].impactValue, graphConsequences[2] == null? '' : graphConsequences[2].getProbability()]
+                        [graphConsequences[0] == null? 'No consequence' : getDescription('consequence',0,this.editor)[0], graphConsequences[0] == null? '' : graphConsequences[0].com, graphConsequences[0] == null? '' : graphConsequences[0].rep, graphConsequences[0] == null? '' : graphConsequences[0].env, graphConsequences[0] == null? '' : graphConsequences[0].ind, graphConsequences[0] == null? '' : graphConsequences[0].impactValue ,graphConsequences[0] == null? '' : graphConsequences[0].getProbability()],
+                        [graphConsequences[1] == null? 'No consequence' : getDescription('consequence',1,this.editor)[0], graphConsequences[1] == null? '' : graphConsequences[1].com, graphConsequences[1] == null? '' : graphConsequences[1].rep, graphConsequences[1] == null? '' : graphConsequences[1].env, graphConsequences[1] == null? '' : graphConsequences[1].ind, graphConsequences[1] == null? '' : graphConsequences[1].impactValue, graphConsequences[1] == null? '' : graphConsequences[1].getProbability()],
+                        [graphConsequences[2] == null? 'No consequence' : getDescription('consequence',2,this.editor)[0], graphConsequences[2] == null? '' : graphConsequences[2].com, graphConsequences[2] == null? '' : graphConsequences[2].rep, graphConsequences[2] == null? '' : graphConsequences[2].env, graphConsequences[2] == null? '' : graphConsequences[2].ind, graphConsequences[2] == null? '' : graphConsequences[2].impactValue, graphConsequences[2] == null? '' : graphConsequences[2].getProbability()]
                     ]
                 }
             }
@@ -3220,10 +3226,8 @@ EditorUi.prototype.generatePDF = function () {
             // alignment: 'justify'
         }
     }
-    pdfMake.createPdf(docDefinition).download();
 
-
-
+   pdfMake.createPdf(docDefinition).download();
 
 }
 

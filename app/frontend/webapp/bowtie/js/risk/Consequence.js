@@ -190,7 +190,7 @@ class Consequence{
     }
 
     set name(newName) {
-        this._name = String(newName).replaceAll(/<div>/g,"").replaceAll(/<\/div>/g, "")
+        this._name = String(newName.label).replaceAll(/<div>/g,"").replaceAll(/<\/div>/g, "")
             .replaceAll(/<br>/g, "").replaceAll(/<h[0-9]>/g, "")
             .replaceAll(/<\/h[0-9]>/g,"").replaceAll(/<pre>/g,"")
             .replaceAll(/<\/pre>/g,"");
