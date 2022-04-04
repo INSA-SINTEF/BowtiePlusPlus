@@ -139,7 +139,7 @@ sup {
   top: -.5em; }
 
 a {
-  color: #5e72e4;
+  color: #525f7f;
   text-decoration: none;
   background-color: transparent; }
   a:hover {
@@ -341,7 +341,7 @@ h6, .h6 {
   line-height: 1.5; }
 
 .display-2 {
-  font-size: 6.0rem;
+  font-size: 5.0rem;
   font-weight: 600;
   line-height: 1.5; }
 
@@ -5094,7 +5094,7 @@ button.bg-default:focus {
   background-color: #0b1526 !important; }
 
 .bg-white {
-  background-color: #fff !important; }
+  background-color: #eee !important; }
 
 a.bg-white:hover, a.bg-white:focus,
 button.bg-white:hover,
@@ -10698,7 +10698,7 @@ button.bg-cyan:focus {
   background-color: #00f7b5 !important; }
 
 .bg-white {
-  background-color: #fff !important; }
+  background-color: #32325d !important; }
 
 a.bg-white:hover, a.bg-white:focus,
 button.bg-white:hover,
@@ -12897,7 +12897,7 @@ textarea[resize="horizontal"] {
   color: #fff; }
 
 .nav-link {
-  color: #525f7f; }
+  color: #eee; }
   .nav-link:hover, .nav-link.active {
     color: #5e72e4; }
   .nav-link i:not(.fa) {
@@ -12958,7 +12958,7 @@ textarea[resize="horizontal"] {
   width: 100%; }
 
 .navbar-nav .nav-link {
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-family: "Open Sans", sans-serif;
   font-weight: 400;
   text-transform: normal;
@@ -12974,7 +12974,7 @@ textarea[resize="horizontal"] {
   font-size: 0.875rem;
   font-weight: 600;
   text-transform: uppercase;
-  font-size: .875rem;
+  font-size: 1.2rem;
   letter-spacing: .05px; }
   .navbar-brand img {
     height: 30px; }
@@ -14034,7 +14034,7 @@ textarea[resize="horizontal"] {
   margin-left: auto !important; }
 
 p {
-  font-size: 1rem;
+  font-size: 1.25rem;
   font-weight: 300;
   line-height: 1.7; }
 
@@ -19269,7 +19269,7 @@ header {
   background-repeat: no-repeat; }
 
 .header-2 .page-header-image {
-  opacity: .4; }
+  opacity: .2; }
 
 .header-2 .custom-control.custom-checkbox {
   padding-left: .8rem !important; }

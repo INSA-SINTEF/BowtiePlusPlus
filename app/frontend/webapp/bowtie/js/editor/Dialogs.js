@@ -1838,9 +1838,15 @@ ExportDialog.exportFile = function (editorUi, name, format, bg, s, b) {
 
         let result = encoder.encode(dataObject);
         let dataXml = mxUtils.getXml(result);
-
+        let dicoXML = "<likelihoodHelp>";
+        const dico = new Map(Object.entries(JSON.parse(sessionStorage.getItem('likelihood_dico'))));
+        for (let [key, value] of dico) {
+            dicoXML = dicoXML + "<item>" + "<key>" + key + "</key>" + "<value>" + value + "</value>" + "</item>"
+        }
+        dicoXML = dicoXML + "</likelihoodHelp>"
         //Append dataXml to the graph xml and embed it inside a root diagram xml tag
-        xml = "<diagram>" + xml + dataXml + "</diagram>";
+        xml = "<diagram>" + xml + dataXml + "</diagram>" + dicoXML;
+
         download(xml);
         //ExportDialog.saveLocalFile(editorUi, mxUtils.getXml(editorUi.editor.getGraphXml()), name, format);
 
@@ -1908,13 +1914,13 @@ ExportDialog.exportFile = function (editorUi, name, format, bg, s, b) {
                 //TODO there is the png image of the diagram integrated into the PDF,
                 //TODO now we want header, information about the user, the date, title, and all informations
                 //TODO links to the elements. See the XML just above, informations are display into the xml representation
-                var docDefinition = {
-                    content: [
-                        {
-                            image: imgData
-                        }]
-                };
+                let docDefinition = {
+                    content: [{
+                    image: imgData,
+                            width: 100,
+                            height: 300
 
+            }]};
                 pdfMake.createPdf(docDefinition).download();
             }
             var a = document.createElement("a"),
@@ -2677,7 +2683,6 @@ var LayersWindow = function (editorUi, x, y, w, h) {
                 newCell.value = mxResources.get('untitledLayer');
                 newCell.setVisible(true);
                 newCell = graph.addCell(newCell, graph.model.root);
-                console.log("test")
                 graph.setDefaultParent(newCell);
             } finally {
                 graph.model.endUpdate();

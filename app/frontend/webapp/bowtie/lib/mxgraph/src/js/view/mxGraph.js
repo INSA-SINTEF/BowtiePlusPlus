@@ -2399,7 +2399,8 @@ mxGraph.prototype.startEditingAtCell = function(cell, evt)
 	
 		if (cell != null)
 		{
-			this.fireEvent(new mxEventObject(mxEvent.START_EDITING,
+            parent.document.getElementById("tutoriel_component").style.display="none";
+            this.fireEvent(new mxEventObject(mxEvent.START_EDITING,
 					'cell', cell, 'event', evt));
 			this.cellEditor.startEditing(cell, evt);
 			this.fireEvent(new mxEventObject(mxEvent.EDITING_STARTED,
@@ -2438,6 +2439,7 @@ mxGraph.prototype.getEditingValue = function(cell, evt)
  */
 mxGraph.prototype.stopEditing = function(cancel)
 {
+    parent.document.getElementById("tutoriel_component").style.display="block";
 	this.cellEditor.stopEditing(cancel);
 	this.fireEvent(new mxEventObject(mxEvent.EDITING_STOPPED, 'cancel', cancel));
 };

@@ -230,8 +230,10 @@
                             <li><span class="notation_symbol">T<sub>i</sub> </span> : &nbsp The threat i</li>
                             <li><span class="notation_symbol">p(T<sub>i</sub>) </span> : &nbsp The probability that the threat i occurs</li>
                             <li><span class="notation_symbol">p(T<sub>i</sub>)' </span> : &nbsp The probability that the threat i occurs without barriers</li>
-                            <li><span class="notation_symbol">P<sub>SC<sub>k</sub></sub> </span> : &nbsp The probability that the barrier k fails</li>
-                            <li><span class="notation_symbol">nb<sub>SC</sub> </span> : &nbsp The number of barriers</li>
+                            <li><span class="notation_symbol">P<sub>B<sub>k</sub></sub> </span> : &nbsp The probability that the barrier k fails</li>
+                            <li><span class="notation_symbol">P<sub>EF<sub>l</sub></sub> </span> : &nbsp The probability that the escalation factor l occurs</li>
+                            <li><span class="notation_symbol">nb<sub>B</sub> </span> : &nbsp The number of barriers</li>
+                            <li><span class="notation_symbol">nb<sub>EF<sub>k</sub></sub> </span> : &nbsp The number of escalation factors per barrier k</li>
                             <li><span class="notation_symbol">w<sub>i</sub> </span> : &nbsp Average weight of the threat i</li>
                         </ul>
                         </p>
@@ -245,21 +247,27 @@
                         <p><b>Notation :</b></p>
                         <p>
                         <ul>
-                            <li><span class="notation_symbol">p(U) </span> : &nbsp The probability that the unwanted event U occurs</li>
-                            <li><span class="notation_symbol">m </span> : &nbsp The number of consequences</li>
                             <li><span class="notation_symbol">C<sub>j</sub> </span> : &nbsp The consequence j</li>
                             <li><span class="notation_symbol">p(C<sub>j</sub>) </span> : &nbsp The probability that the consequence j occurs</li>
                             <li><span class="notation_symbol">p(C<sub>j</sub>)' </span> : &nbsp The probability that the consequence j occurs without barriers</li>
-                            <li><span class="notation_symbol">P<sub>B<sub>l</sub></sub> </span> : &nbsp The probability that the barrier l fails</li>
+                            <li><span class="notation_symbol">P<sub>B<sub>k</sub></sub> </span> : &nbsp The probability that the barrier k fails</li>
+                            <li><span class="notation_symbol">P<sub>EF<sub>l</sub></sub> </span> : &nbsp The probability that the escalation factor l occurs</li>
                             <li><span class="notation_symbol">nb<sub>B</sub> </span> : &nbsp The number of barriers</li>
+                            <li><span class="notation_symbol">nb<sub>EF<sub>k</sub></sub> </span> : &nbsp The number of escalation factors per barrier k</li>
+                            <li><span class="notation_symbol">L<sub>C<sub>j</sub></sub> </span> : &nbsp The impact value of the consequence j</li>
+                            <li><span class="notation_symbol">w<sub>j</sub> </span> : &nbsp Average weight of the consequence j</li>
                         </ul>
                         </p>
                         <p><b>Formulas :</b></p>
-                        <div class="image_div"><img id="consequence_barriers_image" class="formula_image" src="../images/risk/consequence_with_barriers.png"></div>
+                        <div class="image_div"><img id="consequence_barriers_image" class="formula_image" src="../images/risk/consequences_with_barriers.png"></div>
+                        <br/>
+                        <div class="image_div"><img id="cons_image" class="formula_image" src="../images/risk/cons.png"></div>
+                        <br/>
+                        <div class="image_div"><img id="weight_image_cons" class="formula_image" src="../images/risk/weight_cons.png"></div>
                     </md-tab>
                     <md-tab md-label="Color indicators">
                         <p id="conversion_title"><b>Conversion table for color indicators</b></p>
-                        <img id="conversion_image" src="../images/risk/color_conversion.png">
+                        <img id="conversion_image" src="../images/risk/color_conversion.png" style="width: auto; height: 50%; display: block; margin-left: auto;margin-right: auto">
                     </md-tab>
                 </md-tabs>
                 </md-dialog-content>

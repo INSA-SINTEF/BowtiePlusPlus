@@ -99,6 +99,11 @@ Actions.prototype.init = function () {
         }
     ).isEnabled = isLoggedIn;
 
+    //RONAN
+    this.addAction('generateReport', function () {
+        ui.generatePDF();
+    });
+
     this.addAction('import...', function () {
         window.openNew = false;
         window.openKey = 'import';
@@ -365,7 +370,6 @@ Actions.prototype.init = function () {
                 graph.setInfoDescForCell(cell, newValue1);
 
 
-                //CODERONAN
                 if (newValue1 != ""){
                     //Set the style depending on the type of the cell
                     if(cell.customID == "Barrier"){cell.setStyle('shape=mxgraph.bowtie.'+cell.customID.replace(/\s+/g, '').toLowerCase()+'_filled;whiteSpace=wrap;verticalAlign=bottom;html=1;fontSize=16;aspect=fixed');

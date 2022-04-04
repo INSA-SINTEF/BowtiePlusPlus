@@ -83,8 +83,8 @@ table.center {
 .sticky {
   position: fixed;
   top: 0;
-  width: 78%;
-  background-color: white;
+  width: 67%;
+  background-color: #32325d;
   display: flex;
   align-items: center;
 }
@@ -99,4 +99,20 @@ table.center {
   margin-right: auto;
   margin-top: 8%;
   margin-bottom: 8%;
+}
+
+.sncf {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height : auto;
+  width : 90%;
+}
+
+.perf {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height : auto;
+  width : 60%;
 }
