@@ -47,38 +47,78 @@ Actions.prototype.init = function () {
         }));
 
         window.openFile.setConsumer(mxUtils.bind(this, function (xml, filename) {
+            /*
             //check for <likelihoodHelp> tag
             console.log(xml.getElementsByTagName("likelihoodHelp")[0]);
-            //try {
-                let doc;
-                let data = undefined;
-                console.log(xml.slice(0,9))
-                //check for <likelihoodHelp> tag
-                console.log(xml.getElementsByTagName("likelihoodHelp")[0]);
-                //check for <diagram> tag and set risk values
-                if(xml.slice(0,9) == "<diagram>"){
+            */
+            //let parsedXML = new DOMParser().parseFromString(xml, "text/xml");
+            //console.log(parsedXML.getElementsByTagName("diagram")[0]);
+            let diag;
+            try {
 
-                    diag = xml.slice(9,-10);
+                let data = undefined;
+                let doc;
+
+                //getting the parsedXML of the xml file to find the likelihood and impact tags;
+                let parsedXML = new DOMParser().parseFromString(xml, "text/xml");
+
+                /* Extracting the likelihood map and impact map*/
+                let likelihood = parsedXML.getElementsByTagName('likelihoodHelp')[0];
+                let impact = parsedXML.getElementsByTagName('impactHelp')[0];
+
+                if (likelihood !== null) {
+                    let likelihoodMap = new Map();
+                    for (let i = 0; i < likelihood.childNodes.length; i++) {
+                        let key = likelihood.childNodes[i].childNodes[0].childNodes[0].nodeValue;
+                        let value = "";
+                        if (typeof likelihood.childNodes[i].childNodes[1].childNodes[0] !== 'undefined') {
+                            value = likelihood.childNodes[i].childNodes[1].childNodes[0].nodeValue;
+                        }
+                        likelihoodMap.set(key, value);
+                    }
+                    sessionStorage.setItem('likelihood_dico', JSON.stringify(Object.fromEntries(likelihoodMap)));
+                }
+                if (impact !== null) {
+                    let impactMap = new Map();
+                    for (let i = 0; i < impact.childNodes.length; i++) {
+                        let key = impact.childNodes[i].childNodes[0].childNodes[0].nodeValue;
+                        let value = "";
+                        if (typeof impact.childNodes[i].childNodes[1].childNodes[0] !== 'undefined') {
+                            value = impact.childNodes[i].childNodes[1].childNodes[0].nodeValue;
+                        }
+                        impactMap.set(key, value);
+                    }
+                    sessionStorage.setItem('impact_dico', JSON.stringify(Object.fromEntries(impactMap)));
+                }
+
+                /* remove the likelihoodHelp and impactHelp balises from the xml string to extract the diagram whithout throwing an error*/
+                let diagramParsedXML = parsedXML.getElementsByTagName('diagram')[0]
+
+                diagramParsedXML.removeChild(likelihood);
+                diagramParsedXML.removeChild(impact);
+
+                let newXML = new XMLSerializer().serializeToString(diagramParsedXML);
+
+                //check for <diagram> tag and set risk values
+                if (newXML.slice(0, 9) === "<diagram>") {
+                    diag = newXML.slice(9, -10);
                     let splittedDiagram = diag.split(/(?<=<\/mxGraphModel>)/);
                     doc = mxUtils.parseXml(splittedDiagram[0]);
                     data = mxUtils.parseXml(splittedDiagram[1]);
 
-                }else{
-                    doc = mxUtils.parseXml(xml);
+                } else {
+                    doc = mxUtils.parseXml(newXML);
                 }
                 editor.setGraphXml(doc.documentElement);
                 editor.setModified(false);
                 editor.undoManager.clear();
                 //set graph values if xml contains risk values
-                if(data != undefined){
+                if (data !== undefined) {
                     editor.setGraphValues(data.documentElement);
                 }
-
-
-            //}
-            /*catch (e) {
+            } catch (e) {
                 mxUtils.alert(mxResources.get('invalidOrMissingFile') + ': ' + e.message);
-            }*/
+            }
         }));
 
         // Removes openFile if dialog is closed
@@ -120,25 +160,67 @@ Actions.prototype.init = function () {
             try {
                 let doc;
                 let data = undefined;
+
+                /*getting the parsedXML of the xml file to find the likelihood and impact tags;*/
+                let parsedXML = new DOMParser().parseFromString(xml, "text/xml");
+                /*getting the likelihood and impact map*/
+                let likelihood = parsedXML.getElementsByTagName('likelihoodHelp')[0];
+                let impact = parsedXML.getElementsByTagName('impactHelp')[0];
+
+                if(likelihood !== null){
+                    let likelihoodMap = new Map();
+                    for(let i=0; i<likelihood.childNodes.length; i++){
+                        let key = likelihood.childNodes[i].childNodes[0].childNodes[0].nodeValue;
+                        let value = "";
+                        if(typeof likelihood.childNodes[i].childNodes[1].childNodes[0] !== 'undefined'){
+                                                //item          //value        //text
+                            value = likelihood.childNodes[i].childNodes[1].childNodes[0].nodeValue;
+                        }
+                        likelihoodMap.set(key,value);
+                    }
+                    sessionStorage.setItem('likelihood_dico', JSON.stringify(Object.fromEntries(likelihoodMap)));
+                }
+                if(impact !== null){
+                    let impactMap = new Map();
+                    for(let i=0; i<impact.childNodes.length; i++){
+                        let key = impact.childNodes[i].childNodes[0].childNodes[0].nodeValue;
+                        let value = "";
+                        if(typeof impact.childNodes[i].childNodes[1].childNodes[0] !== 'undefined'){
+                            value = impact.childNodes[i].childNodes[1].childNodes[0].nodeValue;
+                        }
+                        impactMap.set(key,value);
+                    }
+                    sessionStorage.setItem('impact_dico', JSON.stringify(Object.fromEntries(impactMap)));
+                }
+
+                /* removing the likelihood and impact balise so that it doesn't throw an error*/
+                let diagramParsedXML = parsedXML.getElementsByTagName('diagram')[0]
+
+                diagramParsedXML.removeChild(likelihood);
+                diagramParsedXML.removeChild(impact);
+
+                let newXML = new XMLSerializer().serializeToString(diagramParsedXML);
+
                 //check for <diagram> tag and set risk values
-                if(xml.slice(0,9) == "<diagram>"){
-                    diag = xml.slice(9,-10);
+                if(newXML.slice(0,9) === "<diagram>"){
+                    diag = newXML.slice(9,-10);
                     let splittedDiagram = diag.split(/(?<=<\/mxGraphModel>)/);
                     doc = mxUtils.parseXml(splittedDiagram[0]);
                     data = mxUtils.parseXml(splittedDiagram[1]);
+
+
                 }else{
-                    doc = mxUtils.parseXml(xml);
+                    doc = mxUtils.parseXml(newXML);
                 }
                 editor.setGraphXml(doc.documentElement);
                 editor.setModified(false);
                 editor.undoManager.clear();
                 //set graph values if xml contains risk values
-                if(data != undefined){
+                if(data !== undefined){
                     editor.setGraphValues(data.documentElement);
                 }
-
-
             } catch (e) {
+                console.log("ERROR HERE")
                 mxUtils.alert(mxResources.get('invalidOrMissingFile') + ': ' + e.message);
             }
         }));

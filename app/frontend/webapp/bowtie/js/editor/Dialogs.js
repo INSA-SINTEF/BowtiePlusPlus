@@ -1815,7 +1815,7 @@ ExportDialog.exportFile = function (editorUi, name, format, bg, s, b) {
         let dataXml = mxUtils.getXml(result);
 
         //Append dataXml to the graph xml and embed it inside a root diagram xml tag
-        xml = "<diagram>" + xml + dataXml + "</diagram>"
+        xml = "<diagram>" + xml + dataXml;
 
         let item_likelihood = JSON.parse(sessionStorage.getItem('likelihood_dico'));
         let item_impact = JSON.parse(sessionStorage.getItem('impact_dico'));
@@ -1842,6 +1842,8 @@ ExportDialog.exportFile = function (editorUi, name, format, bg, s, b) {
             dico_impactXML = dico_impactXML + "</impactHelp>"
             xml = xml + dico_impactXML;
         }
+
+        xml = xml + "</diagram>";
 
         download(xml);
         //ExportDialog.saveLocalFile(editorUi, mxUtils.getXml(editorUi.editor.getGraphXml()), name, format);
