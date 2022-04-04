@@ -316,6 +316,7 @@ Format.prototype.clear = function()
  */
 Format.prototype.refresh = function()
 {
+	sessionStorage.clear();
 	// Performance tweak: No refresh needed if not visible
 	if (this.container.style.width == '0px')
 	{
