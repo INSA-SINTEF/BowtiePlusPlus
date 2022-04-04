@@ -10,35 +10,157 @@
 
     <!-- Bowtie++ styles -->
     <link rel="stylesheet" href="../css/statistics.css">
+
+    <script type="text/javascript" src="../js/help_impact.js"></script>
 </head>
 <body>
 <h1>How to fill-in the Impact matrix ?</h1>
 
 <br>To compute the impact of a consequence, link it to an impact matrix that associates a level of severity to each criterion below.
-To fill the matrix, select a dot on each line from "not severe"(green), to "extremely severe"(red).</br>
+To fill the matrix, select a dot on each line from "not severe"(green), to "extremely severe"(red).
+<strong>To save your modifications on this page, don't forget to click on the "Subtim" button at the bottom.</strong>
+</br>
 
 <br></br>
 <img src = "../stencils/elements/impact.svg" alt="impact svg"/>
 <br></br>
 
 <h2><strong>Commercial :</strong> severity of the consequence on the commercial activity of the organisation that owns the system</h2>
-<br></br>
-<img src = "../stencils/elements/Colors/commercial.svg" alt="threat actor svg"/>
+
+<table>
+    <tbody>
+    <tr>
+        <td><img src = "../stencils/elements/Colors/colors/green.svg" alt="green svg"/></td>
+        <td><input type="text" id="greenC" name="name" size="20" placeholder="default value" ></td>
+    </tr>
+    <tr>
+        <td><img src = "../stencils/elements/Colors/colors/lightgreen.svg" alt="lightgreen svg"/></td>
+        <td><input type="text" id="lgC" name="name" size="20" placeholder="default value"></td>
+    </tr>
+    <tr>
+        <td><img src = "../stencils/elements/Colors/colors/yellow.svg" alt="yellow svg"/></td>
+        <td><input type="text" id="yelC" name="name" size="20" placeholder="default value"></td>
+    </tr>
+    <tr>
+        <td><img src = "../stencils/elements/Colors/colors/orange.svg" alt="orange svg"/></td>
+        <td><input type="text" id="orC" name="name" size="20" placeholder="default value"></td>
+    </tr>
+    <tr>
+        <td><img src = "../stencils/elements/Colors/colors/red.svg" alt="red svg"/></td>
+        <td><input type="text" id="redC" name="name" size="20" placeholder="default value"></td>
+    </tr>
+    </tbody>
+</table>
 
 <h2><strong>Reputation :</strong> severity of the consequence on the reputation of the organisation that owns the system</h2>
 
-<img src = "../stencils/elements/Colors/reputation.svg" alt="threat actor svg"/>
+<table>
+    <tbody>
+    <tr>
+        <td><img src = "../stencils/elements/Colors/colors/green.svg" alt="green svg"/></td>
+        <td><input type="text" id="greenR" name="name" size="20" placeholder="default value" ></td>
+    </tr>
+    <tr>
+        <td><img src = "../stencils/elements/Colors/colors/lightgreen.svg" alt="lightgreen svg"/></td>
+        <td><input type="text" id="lgR" name="name" size="20" placeholder="default value"></td>
+    </tr>
+    <tr>
+        <td><img src = "../stencils/elements/Colors/colors/yellow.svg" alt="yellow svg"/></td>
+        <td><input type="text" id="yelR" name="name" size="20" placeholder="default value"></td>
+    </tr>
+    <tr>
+        <td><img src = "../stencils/elements/Colors/colors/orange.svg" alt="orange svg"/></td>
+        <td><input type="text" id="orR" name="name" size="20" placeholder="default value"></td>
+    </tr>
+    <tr>
+        <td><img src = "../stencils/elements/Colors/colors/red.svg" alt="red svg"/></td>
+        <td><input type="text" id="redR" name="name" size="20" placeholder="default value"></td>
+    </tr>
+    </tbody>
+</table>
 <br></br>
 
 <h2><strong>Environment :</strong> severity of the consequence on the environment </h2>
 
-<img src = "../stencils/elements/Colors/environment.svg" alt="threat actor svg"/>
+<table>
+    <tbody>
+    <tr>
+        <td><img src = "../stencils/elements/Colors/colors/green.svg" alt="green svg"/></td>
+        <td><input type="text" id="greenE" name="name" size="20" placeholder="default value" ></td>
+    </tr>
+    <tr>
+        <td><img src = "../stencils/elements/Colors/colors/lightgreen.svg" alt="lightgreen svg"/></td>
+        <td><input type="text" id="lgE" name="name" size="20" placeholder="default value"></td>
+    </tr>
+    <tr>
+        <td><img src = "../stencils/elements/Colors/colors/yellow.svg" alt="yellow svg"/></td>
+        <td><input type="text" id="yelE" name="name" size="20" placeholder="default value"></td>
+    </tr>
+    <tr>
+        <td><img src = "../stencils/elements/Colors/colors/orange.svg" alt="orange svg"/></td>
+        <td><input type="text" id="orE" name="name" size="20" placeholder="default value"></td>
+    </tr>
+    <tr>
+        <td><img src = "../stencils/elements/Colors/colors/red.svg" alt="red svg"/></td>
+        <td><input type="text" id="redE" name="name" size="20" placeholder="default value"></td>
+    </tr>
+    </tbody>
+</table>
 <br></br>
 
 <h2><strong>Individual :</strong> severity of the consequence on the individuals around the system</h2>
 
-<img src = "../stencils/elements/Colors/individuals.svg" alt="individuals svg"/>
+<table>
+    <tbody>
+    <tr>
+        <td><img src = "../stencils/elements/Colors/colors/green.svg" alt="green svg"/></td>
+        <td><input type="text" id="greenI" name="name" size="20" placeholder="default value" ></td>
+    </tr>
+    <tr>
+        <td><img src = "../stencils/elements/Colors/colors/lightgreen.svg" alt="lightgreen svg"/></td>
+        <td><input type="text" id="lgI" name="name" size="20" placeholder="default value"></td>
+    </tr>
+    <tr>
+        <td><img src = "../stencils/elements/Colors/colors/yellow.svg" alt="yellow svg"/></td>
+        <td><input type="text" id="yelI" name="name" size="20" placeholder="default value"></td>
+    </tr>
+    <tr>
+        <td><img src = "../stencils/elements/Colors/colors/orange.svg" alt="orange svg"/></td>
+        <td><input type="text" id="orI" name="name" size="20" placeholder="default value"></td>
+    </tr>
+    <tr>
+        <td><img src = "../stencils/elements/Colors/colors/red.svg" alt="red svg"/></td>
+        <td><input type="text" id="redI" name="name" size="20" placeholder="default value"></td>
+    </tr>
+    </tbody>
+</table>
 <br></br>
+<button type = "button" onclick="run(true, 'None')">Submit</button>
+<br></br>
+<script type="text/javascript">
+    document.getElementById('greenC').value = run(false, "greenC");
+    document.getElementById('lgC').value = run(false, "lgC");
+    document.getElementById('yelC').value = run(false, "yelC");
+    document.getElementById('orC').value = run(false, "orC");
+    document.getElementById('redC').value = run(false, "redC");
 
+    document.getElementById('greenR').value = run(false, "greenR");
+    document.getElementById('lgR').value = run(false, "lgR");
+    document.getElementById('yelR').value = run(false, "yelR");
+    document.getElementById('orR').value = run(false, "orR");
+    document.getElementById('redR').value = run(false, "redR");
+
+    document.getElementById('greenE').value = run(false, "greenE");
+    document.getElementById('lgE').value = run(false, "lgE");
+    document.getElementById('yelE').value = run(false, "yelE");
+    document.getElementById('orE').value = run(false, "orE");
+    document.getElementById('redE').value = run(false, "redE");
+
+    document.getElementById('greenI').value = run(false, "greenI");
+    document.getElementById('lgI').value = run(false, "lgI");
+    document.getElementById('yelI').value = run(false, "yelI");
+    document.getElementById('orI').value = run(false, "orI");
+    document.getElementById('redI').value = run(false, "redI");
+</script>
 </body>
 </html>

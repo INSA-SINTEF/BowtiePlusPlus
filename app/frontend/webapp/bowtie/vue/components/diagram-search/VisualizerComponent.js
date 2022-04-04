@@ -62,6 +62,54 @@ let VisualizerComponent = {
             window.parent.currentUI.hideDialog()
             //window.parent.close()
         },
+        openTemplate: function () {
+            console.log('Fonction openTemplate appelée');
+            let doc;
+            let data = undefined;
+            let clearMatrix = false;
+            //let chosen_diag = ?? ;
+            //check for <diagram> tag and that the user has access to the risk computation, then set risk values
+            if (chosen_diag.diagram.slice(0, 9) === "<diagram>") {
+                diag = chosen_diag.diagram.slice(9, -10);
+                let splittedDiagram = diag.split(/(?<=<\/mxGraphModel>)/);
+                doc = mxUtils.parseXml(splittedDiagram[0]);
+                // !== false to avoid getting error when it's undefined
+                if(chosen_diag.isRiskShared !== false) {
+                    data = mxUtils.parseXml(splittedDiagram[1]);
+                }else{
+                    clearMatrix = true;
+                }
+            } else {
+                doc = mxUtils.parseXml(chosen_diag.diagram);
+            }
+            window.parent.currentUI.editor.setGraphXml(doc.documentElement);
+            window.parent.currentUI.editor.setGraphId(chosen_diag.id);
+
+            if(clearMatrix){
+                window.parent.currentUI.editor.graph.clearAllMatrix();
+            }
+            //set graph values if xml contains risk values
+            if (data !== undefined) {
+                window.parent.currentUI.editor.setGraphValues(data.documentElement);
+            }
+            window.parent.currentUI.editor.graph.updateAllThreats();
+            window.parent.currentUI.editor.graph.updateAllConsequences();
+            if (chosen_diag.is_public) {
+                localStorage.setItem('is_public', 'true')
+            } else {
+                localStorage.setItem('is_public', 'false')
+            }
+            window.parent.currentUI.editor.setModified(false);
+            window.parent.currentUI.editor.undoManager.clear();
+
+            if (chosen_diag) {
+                window.parent.currentUI.editor.setFilename(chosen_diag.name);
+                //window.parent.currentUI.editor.updateDocumentTitle();
+                // this.updateDocumentTitle();
+            }
+            window.parent.currentUI.hideDialog()
+            //window.parent.close()
+        },
         deleteDiagram(diagram_id){
             if(confirm("Are you sure you want to delete this diagram")){
                 const token = localStorage.getItem('sessionToken');
