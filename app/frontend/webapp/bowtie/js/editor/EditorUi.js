@@ -3242,6 +3242,7 @@ EditorUi.prototype.generatePDF = function () {
                     ]
                 }
             },
+
             {
                 text: '\n IV - Matrix definition',
                 style: 'subheader',
@@ -3412,7 +3413,8 @@ EditorUi.prototype.generatePDF = function () {
                         ["orange", helpImpactDefinded == true? getImpactValue[18] : 'default value'],
                         ["red", helpImpactDefinded == true? getImpactValue[19] : 'default value']
 
-                    ]
+                    ],
+                    pageBreak: 'after'
                 }
             },
             {
@@ -3420,7 +3422,7 @@ EditorUi.prototype.generatePDF = function () {
                 style: 'subheader',
                 color: '#00008B'
             },
-            'You can find attached the methods used for calculating the final risk :',
+            'Methods used for calculating the final risk :',
             {
                 bold: false,
                 ul: [
@@ -3442,18 +3444,8 @@ EditorUi.prototype.generatePDF = function () {
                     'R(U)j =   p(U) x LCj x p(Cj)',
                     'Highest Risk Value = max( R(u)j )',
                     'Accumulated Risk Value = p(U) x sum ( LCj x p(Cj) )'
-                ],
-                pageBreak: 'after'
-            },
-
-
-            {
-                text: 'Appendix ',
-                style: 'subheader',
-                color: '#00008B'
-            },
-            'You can find the definitions of the scales and dimensions of the threats and consequences'
-
+                ]
+            }
         ],
         styles: {
             header: {
