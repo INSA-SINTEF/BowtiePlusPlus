@@ -53,28 +53,28 @@ class Consequence{
     updateConsCellColor(){
         let consCell = window.currentUI.editor.graph.model.getCell(this._cell);
         if (this.paramDefined()) {
+            let subString = '';
+            consCell.value.getAttribute('infoDesc') == null? subString = 'consequence' : subString = 'consequence_filled';
             switch (this.getColorIndicator()) {
                 case '#00ff06':
-                    consCell.setStyle('shape=mxgraph.bowtie.verylowconsequence;whiteSpace=wrap;html=1;fontSize=16;aspect=fixed');
+                    consCell.setStyle(consCell.style.replace(/(.*bowtie\.)(\w+)(\;.*)/,'$1verylow'+subString+'$3'));
                     break;
                 case '#a7ec67':
-                    consCell.setStyle('shape=mxgraph.bowtie.lowconsequence;whiteSpace=wrap;html=1;fontSize=16;aspect=fixed');
+                    consCell.setStyle(consCell.style.replace(/(.*bowtie\.)(\w+)(\;.*)/,'$1low'+subString+'$3'));
                     break;
                 case '#fffe00':
-                    consCell.setStyle('shape=mxgraph.bowtie.mediumconsequence;whiteSpace=wrap;html=1;fontSize=16;aspect=fixed');
+                    consCell.setStyle(consCell.style.replace(/(.*bowtie\.)(\w+)(\;.*)/,'$1medium'+subString+'$3'));
                     break;
                 case '#fe773d':
-                    consCell.setStyle('shape=mxgraph.bowtie.highconsequence;whiteSpace=wrap;html=1;fontSize=16;aspect=fixed');
+                    consCell.setStyle(consCell.style.replace(/(.*bowtie\.)(\w+)(\;.*)/,'$1high'+subString+'$3'));
                     break;
                 case '#ff0000':
-                    consCell.setStyle('shape=mxgraph.bowtie.veryhighconsequence;whiteSpace=wrap;html=1;fontSize=16;aspect=fixed');
+                    consCell.setStyle(consCell.style.replace(/(.*bowtie\.)(\w+)(\;.*)/,'$1veryhigh'+subString+'$3'));
                     break;
                 default:
                     break;
             }
-        }else{
-            consCell.setStyle('shape=mxgraph.bowtie.consequence;whiteSpace=wrap;html=1;fontSize=16;aspect=fixed');
-        }
+        } //else nothing is done while the matrix is not fully filed
         window.currentUI.editor.graph.refresh();
     }
 

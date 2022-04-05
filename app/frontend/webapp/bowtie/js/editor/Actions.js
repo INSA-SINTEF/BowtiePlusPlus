@@ -460,12 +460,40 @@ Actions.prototype.init = function () {
 
                 if (newValue1 != ""){
                     //Set the style depending on the type of the cell
-                    if(cell.customID == "Barrier"){cell.setStyle('shape=mxgraph.bowtie.'+cell.customID.replace(/\s+/g, '').toLowerCase()+'_filled;whiteSpace=wrap;verticalAlign=bottom;html=1;fontSize=16;aspect=fixed');
-                    } else { cell.setStyle('shape=mxgraph.bowtie.'+cell.customID.replace(/\s+/g, '').toLowerCase()+'_filled;whiteSpace=wrap;html=1;fontSize=16;aspect=fixed');
+                    switch (cell.customID) {
+                        case "Barrier":
+                            cell.setStyle('shape=mxgraph.bowtie.'+cell.customID.replace(/\s+/g, '').toLowerCase()+'_filled;whiteSpace=wrap;verticalAlign=bottom;html=1;fontSize=16;aspect=fixed');
+                            break;
+                        case "Threat":
+                            cell.setStyle(cell.style.replace('threat','threat_filled'));
+                            break;
+                        case "Consequence":
+                            cell.setStyle(cell.style.replace('consequence','consequence_filled'));
+                            break;
+                        case "Cause":
+                            cell.setStyle(cell.style.replace('cause','cause_filled'));
+                            break;
+                        default:
+                            cell.setStyle('shape=mxgraph.bowtie.'+cell.customID.replace(/\s+/g, '').toLowerCase()+'_filled;whiteSpace=wrap;html=1;fontSize=16;aspect=fixed');
+                            break;
                     }
                 } else { //To reset the initial style if there isn't a comment anymore
-                    if(cell.customID == "Barrier"){cell.setStyle('shape=mxgraph.bowtie.'+cell.customID.replace(/\s+/g, '').toLowerCase()+'_prev;whiteSpace=wrap;verticalAlign=bottom;html=1;fontSize=16;aspect=fixed');
-                    } else { cell.setStyle('shape=mxgraph.bowtie.'+cell.customID.replace(/\s+/g, '').toLowerCase()+';whiteSpace=wrap;html=1;fontSize=16;aspect=fixed');
+                    switch (cell.customID) {
+                        case "Barrier":
+                            cell.setStyle('shape=mxgraph.bowtie.'+cell.customID.replace(/\s+/g, '').toLowerCase()+';whiteSpace=wrap;verticalAlign=bottom;html=1;fontSize=16;aspect=fixed');
+                            break;
+                        case "Threat":
+                            cell.setStyle(cell.style.replace('threat_filled','threat'));
+                            break;
+                        case "Consequence":
+                            cell.setStyle(cell.style.replace('consequence_filled','consequence'));
+                            break;
+                        case "Cause":
+                            cell.setStyle(cell.style.replace('cause_filled','cause'));
+                            break;
+                        default:
+                            cell.setStyle('shape=mxgraph.bowtie.'+cell.customID.replace(/\s+/g, '').toLowerCase()+';whiteSpace=wrap;html=1;fontSize=16;aspect=fixed');
+                            break;
                     }
                 }
                 window.currentUI.editor.graph.refresh();

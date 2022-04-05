@@ -20,31 +20,32 @@ class Threat {
         this.updateThreatCellColor();
     }
 
+    //RONAN
     updateThreatCellColor(){
         let threatCell = window.currentUI.editor.graph.model.getCell(this._cell);
         if (this.allDefined()) {
+            let subString = '';
+            threatCell.value.getAttribute('infoDesc') == null? subString = 'threat' : subString = 'threat_filled';
             switch (this.getColorIndicator()) {
                 case '#00ff06':
-                    threatCell.setStyle('shape=mxgraph.bowtie.verylowthreat;whiteSpace=wrap;html=1;fontSize=16;aspect=fixed');
+                    threatCell.setStyle(threatCell.style.replace(/(.*bowtie\.)(\w+)(\;.*)/,'$1verylow'+subString+'$3'));
                     break;
                 case '#a7ec67':
-                    threatCell.setStyle('shape=mxgraph.bowtie.lowthreat;whiteSpace=wrap;html=1;fontSize=16;aspect=fixed');
+                    threatCell.setStyle(threatCell.style.replace(/(.*bowtie\.)(\w+)(\;.*)/,'$1low'+subString+'$3'));
                     break;
                 case '#fffe00':
-                    threatCell.setStyle('shape=mxgraph.bowtie.mediumthreat;whiteSpace=wrap;html=1;fontSize=16;aspect=fixed');
+                    threatCell.setStyle(threatCell.style.replace(/(.*bowtie\.)(\w+)(\;.*)/,'$1medium'+subString+'$3'));
                     break;
                 case '#fe773d':
-                    threatCell.setStyle('shape=mxgraph.bowtie.highthreat;whiteSpace=wrap;html=1;fontSize=16;aspect=fixed');
+                    threatCell.setStyle(threatCell.style.replace(/(.*bowtie\.)(\w+)(\;.*)/,'$1high'+subString+'$3'));
                     break;
                 case '#ff0000':
-                    threatCell.setStyle('shape=mxgraph.bowtie.veryhighthreat;whiteSpace=wrap;html=1;fontSize=16;aspect=fixed');
+                    threatCell.setStyle(threatCell.style.replace(/(.*bowtie\.)(\w+)(\;.*)/,'$1veryhigh'+subString+'$3'));
                     break;
                 default:
                     break;
             }
-        }else{
-            threatCell.setStyle('shape=mxgraph.bowtie.threat;whiteSpace=wrap;html=1;fontSize=16;aspect=fixed');
-        }
+        } //else no update
         window.currentUI.editor.graph.refresh();
     }
 
