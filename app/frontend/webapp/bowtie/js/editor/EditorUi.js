@@ -3091,6 +3091,43 @@ EditorUi.prototype.generatePDF = function () {
     }
 
 
+    // Pour récupérer une map des clés valeurs, likelihood matrix
+    let likelihood_map;
+    let impact_map;
+    let listImpactValue = [];
+    let listLikelihoodValue = [];
+    let helpLikeDefinded = false;
+    let helpImpactDefinded = false;
+
+    try{
+        likelihood_map = new Map(Object.entries(JSON.parse(sessionStorage.getItem('likelihood_dico'))));
+        helpLikeDefinded = true;
+        for (let [key, value] of likelihood_map) {
+            listLikelihoodValue.push(value);
+        }
+    } catch (e) {
+        //case where they are not defined
+        helpLikeDefinded = false;
+    }
+
+    try{
+        impact_map = new Map(Object.entries(JSON.parse(sessionStorage.getItem('impact_dico'))));
+        helpImpactDefinded = true;
+        for (let [key, value] of impact_map) {
+            listImpactValue.push(value);
+        }
+    } catch (e) {
+        //case where they are not defined
+        helpImpactDefinded = false;
+    }
+
+    function getLikeValue(index){
+        return (listLikelihoodValue[index] == "" ? "default value" : listLikelihoodValue[index]);
+    }
+
+    function getImpactValue(index){
+        return (listImpactValue[index] == "" ? "default value" : listImpactValue[index]);
+    }
 
     //Here we fill all PDF content, relative to the pdfMake documentation
     //TODO there is the png image of the diagram integrated into the PDF,
@@ -3114,10 +3151,10 @@ EditorUi.prototype.generatePDF = function () {
                 text: '\n I - Bowtie diagram',
                 style: 'subheader',
                 color: '#00008B'
-            }, /*{ //TODO
-                image: imgData,
-                width: 100,
-                height: 300
+            }, /*{
+                image: ,
+                //width: 100,
+                //height: 300
             },*/
             {
                 text: '\n II - Main causes',
@@ -3205,9 +3242,181 @@ EditorUi.prototype.generatePDF = function () {
                     ]
                 }
             },
-
             {
-                text: '\n IV - Calculations',
+                text: '\n IV - Matrix definition',
+                style: 'subheader',
+                color: '#00008B'
+            },
+            '\n LIKELIHOOD MATRIX \n',
+            {
+                bold: true,
+                ul: [
+                    'Actors : the level of skills needed to perform the attack '
+                ]
+            },
+            {
+                style: 'tableExample',
+                table: {
+                    widths: [100,'*'],
+                    body: [
+                        ["green", helpLikeDefinded == true? getLikeValue[0] : 'default value'],
+                        ["light green", helpLikeDefinded == true? getLikeValue[1] : 'default value'],
+                        ["yellow", helpLikeDefinded == true? getLikeValue[2] : 'default value'],
+                        ["orange", helpLikeDefinded == true? getLikeValue[3] : 'default value'],
+                        ["red", helpLikeDefinded == true? getLikeValue[4] : 'default value']
+
+                    ]
+                }
+            },
+            '\n',
+            {
+                bold: true,
+                ul: [
+                    'Opportunity : the presence of a favorable combination of circumstances that makes an action possible'
+                ]
+            },
+            {
+                style: 'tableExample',
+                table: {
+                    widths: [100,'*'],
+                    body: [
+                        ["green", helpLikeDefinded == true? getLikeValue[5] : 'default value'],
+                        ["light green", helpLikeDefinded == true? getLikeValue[6] : 'default value'],
+                        ["yellow", helpLikeDefinded == true? getLikeValue[7] : 'default value'],
+                        ["orange", helpLikeDefinded == true? getLikeValue[8] : 'default value'],
+                        ["red", helpLikeDefinded == true? getLikeValue[9] : 'default value']
+
+                    ]
+                }
+            },
+            '\n',
+            {
+                bold: true,
+                ul: [
+                    'Means : resources needed to perform the attack'
+                ]
+            },
+            {
+                style: 'tableExample',
+                table: {
+                    widths: [100,'*'],
+                    body: [
+                        ["green", helpLikeDefinded == true? getLikeValue[10] : 'default value'],
+                        ["light green", helpLikeDefinded == true? getLikeValue[11] : 'default value'],
+                        ["yellow", helpLikeDefinded == true? getLikeValue[12] : 'default value'],
+                        ["orange", helpLikeDefinded == true? getLikeValue[13] : 'default value'],
+                        ["red", helpLikeDefinded == true? getLikeValue[14] : 'default value']
+
+                    ]
+                }
+            },
+            '\n',
+            {
+                bold: true,
+                ul: [
+                    'Motivation : reasons that lead the attacker to perform the attack'
+                ]
+            },
+            {
+                style: 'tableExample',
+                table: {
+                    widths: [100,'*'],
+                    body: [
+                        ["green", helpLikeDefinded == true? getLikeValue[15] : 'default value'],
+                        ["light green", helpLikeDefinded == true? getLikeValue[16] : 'default value'],
+                        ["yellow", helpLikeDefinded == true? getLikeValue[17] : 'default value'],
+                        ["orange", helpLikeDefinded == true? getLikeValue[18] : 'default value'],
+                        ["red", helpLikeDefinded == true? getLikeValue[19] : 'default value']
+
+                    ]
+                }
+            },
+            '\n IMPACT MATRIX \n',
+            {
+                bold: true,
+                ul: [
+                    'Actors : the level of skills needed to perform the attack '
+                ]
+            },
+            {
+                style: 'tableExample',
+                table: {
+                    widths: [100,'*'],
+                    body: [
+                        ["green", helpImpactDefinded == true? getImpactValue[0] : 'default value'],
+                        ["light green", helpImpactDefinded == true? getImpactValue[1] : 'default value'],
+                        ["yellow", helpImpactDefinded == true? getImpactValue[2] : 'default value'],
+                        ["orange", helpImpactDefinded == true? getImpactValue[3] : 'default value'],
+                        ["red", helpImpactDefinded == true? getImpactValue[4] : 'default value']
+
+                    ]
+                }
+            },
+            '\n',
+            {
+                bold: true,
+                ul: [
+                    'Opportunity : the presence of a favorable combination of circumstances that makes an action possible'
+                ]
+            },
+            {
+                style: 'tableExample',
+                table: {
+                    widths: [100,'*'],
+                    body: [
+                        ["green", helpImpactDefinded == true? getImpactValue[5] : 'default value'],
+                        ["light green", helpImpactDefinded == true? getImpactValue[6] : 'default value'],
+                        ["yellow", helpImpactDefinded == true? getImpactValue[7] : 'default value'],
+                        ["orange", helpImpactDefinded == true? getImpactValue[8] : 'default value'],
+                        ["red", helpImpactDefinded == true? getImpactValue[9] : 'default value']
+
+                    ]
+                }
+            },
+            '\n',
+            {
+                bold: true,
+                ul: [
+                    'Means : resources needed to perform the attack'
+                ]
+            },
+            {
+                style: 'tableExample',
+                table: {
+                    widths: [100,'*'],
+                    body: [
+                        ["green", helpImpactDefinded == true? getImpactValue[10] : 'default value'],
+                        ["light green", helpImpactDefinded == true? getImpactValue[11] : 'default value'],
+                        ["yellow", helpImpactDefinded == true? getImpactValue[12] : 'default value'],
+                        ["orange", helpImpactDefinded == true? getImpactValue[13] : 'default value'],
+                        ["red", helpImpactDefinded == true? getImpactValue[14] : 'default value']
+
+                    ]
+                }
+            },
+            '\n',
+            {
+                bold: true,
+                ul: [
+                    'Motivation : reasons that lead the attacker to perform the attack'
+                ]
+            },
+            {
+                style: 'tableExample',
+                table: {
+                    widths: [100,'*'],
+                    body: [
+                        ["green", helpImpactDefinded == true? getImpactValue[15] : 'default value'],
+                        ["light green", helpImpactDefinded == true? getImpactValue[16] : 'default value'],
+                        ["yellow", helpImpactDefinded == true? getImpactValue[17] : 'default value'],
+                        ["orange", helpImpactDefinded == true? getImpactValue[18] : 'default value'],
+                        ["red", helpImpactDefinded == true? getImpactValue[19] : 'default value']
+
+                    ]
+                }
+            },
+            {
+                text: '\n V - Calculations',
                 style: 'subheader',
                 color: '#00008B'
             },
