@@ -33,6 +33,7 @@
 
 
 .myToolTip .tooltiptext {
+    font-size: 11px;
     visibility: hidden;
     width: 90%;
     background-color: black;
@@ -63,4 +64,8 @@
     border-width: 5px;
     border-style: solid;
     border-color: black transparent transparent transparent;
+}
+
+.formula{
+    font-size: x-small;
 }

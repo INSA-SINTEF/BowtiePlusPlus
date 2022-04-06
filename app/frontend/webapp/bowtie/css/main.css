@@ -72,10 +72,10 @@
 
 #tutoriel_component {
     position: absolute;
-    width: 235px;
+    width: 230px;
     height: 450px;
     top: 375px;
-    right: 4px;
+    right: 5px;
     overflow: auto;
     display: block;
     z-index: 1;

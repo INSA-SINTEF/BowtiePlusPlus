@@ -166,37 +166,37 @@ export const TutorielComponent = {
 
     <div v-bind:class= "[this.assets.length >= 3 ? 'alert-success' : 'alert-danger', 'alert', 'container', 'myToolTip', this.state < 2 ? 'unused' : '']" role="alert" v-on:mouseover="onMouseOver = true" v-on:mouseleave="onMouseOver = false">
       <div class="item"> ASSETS </div> <div class="item"> <h3> {{this.assets.length}}/3 </h3> </div>
-      <span class="tooltiptext">Resources related to the system you want to protect. It is usual to have several assets, think about what is valuable!</span>
+      <span class="tooltiptext">Add resources related to the system you want to protect. It is usual to have several assets, think about what is valuable!</span>
     </div>
 
     <div v-bind:class= "[(this.threats.length+this.causes.length) >= 8 ? 'alert-success' : 'alert-danger', 'alert', 'container', 'myToolTip', this.state < 3 ? 'unused' : '']" role="alert" v-on:mouseover="onMouseOver = true" v-on:mouseleave="onMouseOver = false">
       <div class="item"> THREATS & CAUSES </div> <div class="item"> <h3> {{this.threats.length+this.causes.length}}/8 </h3> </div>
-      <span class="tooltiptext">Fill the left side of the diagram with all events that can lead to the unwanted situation. Usually, a complete diagram should have 8 threats and/or causes. Be exhaustive and keep the most important elements</span>
+      <span class="tooltiptext">Fill the left side of the diagram with all events that can lead to the unwanted situation. Be exhaustive and keep the most important elements (8 elements at least)</span>
     </div>
 
     <div v-bind:class= "[this.leftFillingRate >= 1 ? 'alert-success' : 'alert-danger', 'alert', 'container', 'myToolTip', this.state < 4 ? 'unused' : '']" role="alert" v-on:mouseover="onMouseOver = true" v-on:mouseleave="onMouseOver = false">
       <div class="item"> BARRIERS LEFT </div> <div class="item"> <h3> {{this.leftFillingRate}}/1 </h3> </div>
-      <span class="tooltiptext">TIPS: add barriers to increase the left filling rate and improve diagram quality</span>
+      <span class="tooltiptext">Add barriers to increase the left filling rate and improve diagram quality <br> <i class="formula"><b>[FORMULA]</b> nb left barriers / (nb threats + nb causes)</i></span>
     </div>
 
     <div v-bind:class= "[this.barriersAccuRateLeft >= 0.7 ? 'alert-success' : 'alert-danger', 'alert', 'container', 'myToolTip', this.state < 5 ? 'unused' : '']" role="alert" v-on:mouseover="onMouseOver = true" v-on:mouseleave="onMouseOver = false">
       <div class="item">ESC.FACTORS LEFT</div> <div class="item"> <h3> {{this.barriersAccuRateLeft}}/0.7 </h3> </div>
-      <span class="tooltiptext">The effectiveness of a barrier can be diminished by other events. Add escalation factors to model precisely a barrier and it's failure probability</span>
+      <span class="tooltiptext">Add escalation factors to model precisely a barrier failure probability <br> <i class="formula"><b>[FORMULA]</b> nb left esc. factors / nb left barriers</i></span>
     </div>
 
     <div v-bind:class= "[this.consequences.length >= 4 ? 'alert-success' : 'alert-danger', 'alert', 'container', 'myToolTip', this.state < 6 ? 'unused' : '']" role="alert" v-on:mouseover="onMouseOver = true" v-on:mouseleave="onMouseOver = false">
       <div class="item"> CONSEQUENCES </div> <div class="item"> <h3> {{this.consequences.length}}/4 </h3> </div>
-      <span class="tooltiptext">Fill the right side of the diagram with all consequences resulting by the unwanted event. Usually, a complete diagram should have 4 consequences at least. Be exhaustive and keep the most important ones</span>
+      <span class="tooltiptext">Fill the right side of the diagram with all consequences resulting by the unwanted event. Be exhaustive and keep the most important elements (4 consequences at least) </span>
     </div>
 
     <div v-bind:class= "[this.rightFillingRate >= 1 ? 'alert-success' : 'alert-danger', 'alert', 'container', 'myToolTip', this.state < 4 ? 'unused' : '']" role="alert" v-on:mouseover="onMouseOver = true" v-on:mouseleave="onMouseOver = false">
       <div class="item"> BARRIERS RIGHT </div> <div class="item"> <h3> {{this.rightFillingRate}}/1 </h3> </div>
-      <span class="tooltiptext">TIPS: add barriers to increase the right filling rate and improve diagram quality</span>
+      <span class="tooltiptext">Add barriers to increase the left filling rate and improve diagram quality <br> <i class="formula"><b>[FORMULA]</b> nb right barriers / nb consequences</i></span>
     </div>
 
     <div v-bind:class= "[this.barriersAccuRateRight >= 0.7 ? 'alert-success' : 'alert-danger', 'alert', 'container', 'myToolTip', this.state < 5 ? 'unused' : '']" role="alert" v-on:mouseover="onMouseOver = true" v-on:mouseleave="onMouseOver = false">
       <div class="item">ESC.FACTORS RIGHT</div> <div class="item"> <h3> {{this.barriersAccuRateRight}}/0.7 </h3> </div>
-      <span class="tooltiptext">The effectiveness of a barrier can be diminished by other events. Add escalation factors to model precisely a barrier and it's failure probability</span>
+      <span class="tooltiptext">Add escalation factors to model precisely a barrier failure probability <br> <i class="formula"><b>[FORMULA]</b> nb right esc. factors / nb consequences </i></span>
     </div>
 </div>`,
 
