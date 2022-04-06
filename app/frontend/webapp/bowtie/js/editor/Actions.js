@@ -66,7 +66,10 @@ Actions.prototype.init = function () {
                 let likelihood = parsedXML.getElementsByTagName('likelihoodHelp')[0];
                 let impact = parsedXML.getElementsByTagName('impactHelp')[0];
 
-                if (likelihood !== null) {
+                /* remove the likelihoodHelp and impactHelp balises from the xml string to extract the diagram whithout throwing an error*/
+                let diagramParsedXML = parsedXML.getElementsByTagName('diagram')[0]
+
+                if (typeof likelihood !== 'undefined') {
                     let likelihoodMap = new Map();
                     for (let i = 0; i < likelihood.childNodes.length; i++) {
                         let key = likelihood.childNodes[i].childNodes[0].childNodes[0].nodeValue;
@@ -77,8 +80,9 @@ Actions.prototype.init = function () {
                         likelihoodMap.set(key, value);
                     }
                     sessionStorage.setItem('likelihood_dico', JSON.stringify(Object.fromEntries(likelihoodMap)));
+                    diagramParsedXML.removeChild(likelihood);
                 }
-                if (impact !== null) {
+                if (typeof impact !== 'undefined') {
                     let impactMap = new Map();
                     for (let i = 0; i < impact.childNodes.length; i++) {
                         let key = impact.childNodes[i].childNodes[0].childNodes[0].nodeValue;
@@ -89,14 +93,8 @@ Actions.prototype.init = function () {
                         impactMap.set(key, value);
                     }
                     sessionStorage.setItem('impact_dico', JSON.stringify(Object.fromEntries(impactMap)));
+                    diagramParsedXML.removeChild(impact);
                 }
-
-                /* remove the likelihoodHelp and impactHelp balises from the xml string to extract the diagram whithout throwing an error*/
-                let diagramParsedXML = parsedXML.getElementsByTagName('diagram')[0]
-
-                diagramParsedXML.removeChild(likelihood);
-                diagramParsedXML.removeChild(impact);
-
                 let newXML = new XMLSerializer().serializeToString(diagramParsedXML);
 
                 //check for <diagram> tag and set risk values
@@ -170,8 +168,10 @@ Actions.prototype.init = function () {
                 /*getting the likelihood and impact map*/
                 let likelihood = parsedXML.getElementsByTagName('likelihoodHelp')[0];
                 let impact = parsedXML.getElementsByTagName('impactHelp')[0];
+                /*getting the whole parsed xml so that we can remove likelihood and impact later*/
+                let diagramParsedXML = parsedXML.getElementsByTagName('diagram')[0]
 
-                if(likelihood !== null){
+                if(typeof likelihood !== 'undefined'){
                     let likelihoodMap = new Map();
                     for(let i=0; i<likelihood.childNodes.length; i++){
                         let key = likelihood.childNodes[i].childNodes[0].childNodes[0].nodeValue;
@@ -183,8 +183,9 @@ Actions.prototype.init = function () {
                         likelihoodMap.set(key,value);
                     }
                     sessionStorage.setItem('likelihood_dico', JSON.stringify(Object.fromEntries(likelihoodMap)));
+                    diagramParsedXML.removeChild(likelihood);
                 }
-                if(impact !== null){
+                if(typeof impact !== 'undefined'){
                     let impactMap = new Map();
                     for(let i=0; i<impact.childNodes.length; i++){
                         let key = impact.childNodes[i].childNodes[0].childNodes[0].nodeValue;
@@ -195,13 +196,8 @@ Actions.prototype.init = function () {
                         impactMap.set(key,value);
                     }
                     sessionStorage.setItem('impact_dico', JSON.stringify(Object.fromEntries(impactMap)));
+                    diagramParsedXML.removeChild(impact);
                 }
-
-                /* removing the likelihood and impact balise so that it doesn't throw an error*/
-                let diagramParsedXML = parsedXML.getElementsByTagName('diagram')[0]
-
-                diagramParsedXML.removeChild(likelihood);
-                diagramParsedXML.removeChild(impact);
 
                 let newXML = new XMLSerializer().serializeToString(diagramParsedXML);
 
