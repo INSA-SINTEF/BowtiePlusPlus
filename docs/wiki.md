@@ -24,8 +24,9 @@ Bowtie++ is an evolution of Bowtie+ which was mainly based on [grapheditor](#Lic
 ## Requirements
 
 - x86 64-bit architectured processor, more installation details for other processor types [here](#Installation-on-other-types-of-processors).
-- Docker engine and docker compose : installation guide on the official website https://docs.docker.com/
-For MACOSX and Windows users, Docker Desktop should be used. For Linux users (or deployment on a Linux server) please follow these instructions:
+- Docker engine and docker compose : installation guide on the official website https://docs.docker.com/.
+For MACOSX and Windows users, Docker Desktop should be used. 
+For Linux users (or deployment on a Linux server) please follow these instructions:
 
 **Uninstall old versions of Docker**
 
