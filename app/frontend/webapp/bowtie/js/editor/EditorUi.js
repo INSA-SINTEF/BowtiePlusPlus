@@ -3151,11 +3151,12 @@ EditorUi.prototype.generatePDF = function () {
                 text: '\n I - Bowtie diagram',
                 style: 'subheader',
                 color: '#00008B'
-            }, /*{
-                image: ,
+            }, {
+            //get svg url
+                //image: svg,
                 //width: 100,
                 //height: 300
-            },*/
+            },
             {
                 text: '\n II - Main causes',
                 style: 'subheader',
@@ -3259,11 +3260,11 @@ EditorUi.prototype.generatePDF = function () {
                 table: {
                     widths: [100,'*'],
                     body: [
-                        ["green", helpLikeDefinded == true? getLikeValue[0] : 'default value'],
-                        ["light green", helpLikeDefinded == true? getLikeValue[1] : 'default value'],
-                        ["yellow", helpLikeDefinded == true? getLikeValue[2] : 'default value'],
-                        ["orange", helpLikeDefinded == true? getLikeValue[3] : 'default value'],
-                        ["red", helpLikeDefinded == true? getLikeValue[4] : 'default value']
+                        ["green", helpLikeDefinded == true? getLikeValue(0) : 'default value'],
+                        ["light green", helpLikeDefinded == true? getLikeValue(1) : 'default value'],
+                        ["yellow", helpLikeDefinded == true? getLikeValue(2) : 'default value'],
+                        ["orange", helpLikeDefinded == true? getLikeValue(3) : 'default value'],
+                        ["red", helpLikeDefinded == true? getLikeValue(4) : 'default value']
 
                     ]
                 }
@@ -3280,11 +3281,11 @@ EditorUi.prototype.generatePDF = function () {
                 table: {
                     widths: [100,'*'],
                     body: [
-                        ["green", helpLikeDefinded == true? getLikeValue[5] : 'default value'],
-                        ["light green", helpLikeDefinded == true? getLikeValue[6] : 'default value'],
-                        ["yellow", helpLikeDefinded == true? getLikeValue[7] : 'default value'],
-                        ["orange", helpLikeDefinded == true? getLikeValue[8] : 'default value'],
-                        ["red", helpLikeDefinded == true? getLikeValue[9] : 'default value']
+                        ["green", helpLikeDefinded == true? getLikeValue(5) : 'default value'],
+                        ["light green", helpLikeDefinded == true? getLikeValue(6) : 'default value'],
+                        ["yellow", helpLikeDefinded == true? getLikeValue(7) : 'default value'],
+                        ["orange", helpLikeDefinded == true? getLikeValue(8) : 'default value'],
+                        ["red", helpLikeDefinded == true? getLikeValue(9) : 'default value']
 
                     ]
                 }
@@ -3301,11 +3302,11 @@ EditorUi.prototype.generatePDF = function () {
                 table: {
                     widths: [100,'*'],
                     body: [
-                        ["green", helpLikeDefinded == true? getLikeValue[10] : 'default value'],
-                        ["light green", helpLikeDefinded == true? getLikeValue[11] : 'default value'],
-                        ["yellow", helpLikeDefinded == true? getLikeValue[12] : 'default value'],
-                        ["orange", helpLikeDefinded == true? getLikeValue[13] : 'default value'],
-                        ["red", helpLikeDefinded == true? getLikeValue[14] : 'default value']
+                        ["green", helpLikeDefinded == true? getLikeValue(10) : 'default value'],
+                        ["light green", helpLikeDefinded == true? getLikeValue(11) : 'default value'],
+                        ["yellow", helpLikeDefinded == true? getLikeValue(12) : 'default value'],
+                        ["orange", helpLikeDefinded == true? getLikeValue(13) : 'default value'],
+                        ["red", helpLikeDefinded == true? getLikeValue(14) : 'default value']
 
                     ]
                 }
@@ -3322,11 +3323,11 @@ EditorUi.prototype.generatePDF = function () {
                 table: {
                     widths: [100,'*'],
                     body: [
-                        ["green", helpLikeDefinded == true? getLikeValue[15] : 'default value'],
-                        ["light green", helpLikeDefinded == true? getLikeValue[16] : 'default value'],
-                        ["yellow", helpLikeDefinded == true? getLikeValue[17] : 'default value'],
-                        ["orange", helpLikeDefinded == true? getLikeValue[18] : 'default value'],
-                        ["red", helpLikeDefinded == true? getLikeValue[19] : 'default value']
+                        ["green", helpLikeDefinded == true? getLikeValue(15) : 'default value'],
+                        ["light green", helpLikeDefinded == true? getLikeValue(16) : 'default value'],
+                        ["yellow", helpLikeDefinded == true? getLikeValue(17) : 'default value'],
+                        ["orange", helpLikeDefinded == true? getLikeValue(18) : 'default value'],
+                        ["red", helpLikeDefinded == true? getLikeValue(19) : 'default value']
 
                     ]
                 }
@@ -3343,11 +3344,11 @@ EditorUi.prototype.generatePDF = function () {
                 table: {
                     widths: [100,'*'],
                     body: [
-                        ["green", helpImpactDefinded == true? getImpactValue[0] : 'default value'],
-                        ["light green", helpImpactDefinded == true? getImpactValue[1] : 'default value'],
-                        ["yellow", helpImpactDefinded == true? getImpactValue[2] : 'default value'],
-                        ["orange", helpImpactDefinded == true? getImpactValue[3] : 'default value'],
-                        ["red", helpImpactDefinded == true? getImpactValue[4] : 'default value']
+                        ["green", helpImpactDefinded == true? getImpactValue(0) : 'default value'],
+                        ["light green", helpImpactDefinded == true? getImpactValue(1) : 'default value'],
+                        ["yellow", helpImpactDefinded == true? getImpactValue(2) : 'default value'],
+                        ["orange", helpImpactDefinded == true? getImpactValue(3) : 'default value'],
+                        ["red", helpImpactDefinded == true? getImpactValue(4) : 'default value']
 
                     ]
                 }
@@ -3364,11 +3365,11 @@ EditorUi.prototype.generatePDF = function () {
                 table: {
                     widths: [100,'*'],
                     body: [
-                        ["green", helpImpactDefinded == true? getImpactValue[5] : 'default value'],
-                        ["light green", helpImpactDefinded == true? getImpactValue[6] : 'default value'],
-                        ["yellow", helpImpactDefinded == true? getImpactValue[7] : 'default value'],
-                        ["orange", helpImpactDefinded == true? getImpactValue[8] : 'default value'],
-                        ["red", helpImpactDefinded == true? getImpactValue[9] : 'default value']
+                        ["green", helpImpactDefinded == true? getImpactValue(5) : 'default value'],
+                        ["light green", helpImpactDefinded == true? getImpactValue(6) : 'default value'],
+                        ["yellow", helpImpactDefinded == true? getImpactValue(7) : 'default value'],
+                        ["orange", helpImpactDefinded == true? getImpactValue(8) : 'default value'],
+                        ["red", helpImpactDefinded == true? getImpactValue(9) : 'default value']
 
                     ]
                 }
@@ -3385,11 +3386,11 @@ EditorUi.prototype.generatePDF = function () {
                 table: {
                     widths: [100,'*'],
                     body: [
-                        ["green", helpImpactDefinded == true? getImpactValue[10] : 'default value'],
-                        ["light green", helpImpactDefinded == true? getImpactValue[11] : 'default value'],
-                        ["yellow", helpImpactDefinded == true? getImpactValue[12] : 'default value'],
-                        ["orange", helpImpactDefinded == true? getImpactValue[13] : 'default value'],
-                        ["red", helpImpactDefinded == true? getImpactValue[14] : 'default value']
+                        ["green", helpImpactDefinded == true? getImpactValue(10) : 'default value'],
+                        ["light green", helpImpactDefinded == true? getImpactValue(11) : 'default value'],
+                        ["yellow", helpImpactDefinded == true? getImpactValue(12) : 'default value'],
+                        ["orange", helpImpactDefinded == true? getImpactValue(13) : 'default value'],
+                        ["red", helpImpactDefinded == true? getImpactValue(14) : 'default value']
 
                     ]
                 }
@@ -3406,11 +3407,11 @@ EditorUi.prototype.generatePDF = function () {
                 table: {
                     widths: [100,'*'],
                     body: [
-                        ["green", helpImpactDefinded == true? getImpactValue[15] : 'default value'],
-                        ["light green", helpImpactDefinded == true? getImpactValue[16] : 'default value'],
-                        ["yellow", helpImpactDefinded == true? getImpactValue[17] : 'default value'],
-                        ["orange", helpImpactDefinded == true? getImpactValue[18] : 'default value'],
-                        ["red", helpImpactDefinded == true? getImpactValue[19] : 'default value']
+                        ["green", helpImpactDefinded == true? getImpactValue(15) : 'default value'],
+                        ["light green", helpImpactDefinded == true? getImpactValue(16) : 'default value'],
+                        ["yellow", helpImpactDefinded == true? getImpactValue(17) : 'default value'],
+                        ["orange", helpImpactDefinded == true? getImpactValue(18) : 'default value'],
+                        ["red", helpImpactDefinded == true? getImpactValue(19) : 'default value']
 
                     ]
                 }
@@ -3514,7 +3515,7 @@ EditorUi.prototype.saveFile = function (forceDialog) {
 /**
  * Saves the current graph under the given filename.
  */
-EditorUi.prototype.save = function (name, tags) {
+EditorUi.prototype.save = function (name, tags, option) {
     if (name != null) {
         if (this.editor.graph.isEditing()) {
             this.editor.graph.stopEditing();
@@ -3615,12 +3616,14 @@ EditorUi.prototype.save = function (name, tags) {
                     formData.append('tags', JSON.stringify(tags))
 
                     var format = "png" // this variables isn't used for now
+
                     function svgToPng(svg, callback) {
                         const url = getSvgUrl(svg);
                         svgUrlToFormat(url, (imgData) => {
                             callback(imgData);
                             URL.revokeObjectURL(url);
                         });
+
                     }
 
                     function getSvgUrl(svg) {
@@ -3669,6 +3672,21 @@ EditorUi.prototype.save = function (name, tags) {
 
                     const svg_encoded = getSvgUrl(svg)
                     formData.append('preview', svg_encoded)
+
+                    /**
+                     * RONAN
+                     * if option is true, the save will generate a pdf report including the image of the diagram
+                     *
+                    if(option) {
+                        let pngImage;
+                        svgToPng(svg,(imgData) => {
+                            pngImage = document.createElement('img');
+                            document.body.appendChild(pngImage);
+                            pngImage.src = imgData;
+                        });
+                        this.generatePDF(pngImage.src);
+                        return ;
+                    } */
 
                     if (!this.editor.getGraphId()) { //Meaning it's the first time we save this diagram
 
