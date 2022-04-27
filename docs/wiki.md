@@ -24,7 +24,50 @@ Bowtie++ is an evolution of Bowtie+ which was mainly based on [grapheditor](#Lic
 ## Requirements
 
 - x86 64-bit architectured processor, more installation details for other processor types [here](#Installation-on-other-types-of-processors).
-- Docker engine and docker compose : installation guide on the official website https://docs.docker.com/
+- Docker engine and docker compose : installation guide on the official website https://docs.docker.com/.
+For MACOSX and Windows users, Docker Desktop should be used. 
+For Linux users (or deployment on a Linux server) please follow these instructions:
+
+**Uninstall old versions of Docker**
+
+```bash
+sudo apt-get remove docker docker-engine docker.io containerd runc
+```
+
+**Set up the Docker repository**
+
+```bash
+sudo apt-get update
+```
+```bash
+sudo apt-get install ca-certificates curl gnupg lsb-release
+```
+```bash
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+```
+```bash
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+```
+
+**Install Docker Engine**
+```bash
+sudo apt-get update
+```
+```bash
+sudo apt-get install docker-ce docker-ce-cli containerd.io
+```
+
+**Install Docker Compose 1.29**
+```bash
+sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+```
+```bash
+sudo chmod +x /usr/local/bin/docker-compose
+```
+```bash
+docker-compose --version
+```
+
 - A recent browser that supports javascript modules (please refer to https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules for more information). **IE is not supported**.
 
 **Windows users** may have to manually enable hardware virtualization in their BIOS settings to run docker containers.
