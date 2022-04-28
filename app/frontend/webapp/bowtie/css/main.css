@@ -73,7 +73,8 @@
 #tutoriel_component {
     position: absolute;
     width: 230px;
-    height: 450px;
+    min-height: 300px;
+    height: 53vh;
     top: 375px;
     right: 5px;
     overflow: auto;

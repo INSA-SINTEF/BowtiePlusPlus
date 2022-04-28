@@ -20,6 +20,7 @@ class Threat {
         this.updateThreatCellColor();
     }
 
+    /*
     updateThreatCellColor(){
         let threatCell = window.currentUI.editor.graph.model.getCell(this._cell);
         if (this.allDefined()) {
@@ -46,14 +47,14 @@ class Threat {
             threatCell.setStyle('shape=mxgraph.bowtie.threat;whiteSpace=wrap;html=1;fontSize=16;aspect=fixed');
         }
         window.currentUI.editor.graph.refresh();
-    }
+    }*/
 
     //RONAN
-    /*updateThreatCellColor(){
+    updateThreatCellColor(){
         let threatCell = window.currentUI.editor.graph.model.getCell(this._cell);
         if (this.allDefined()) {
             let subString = '';
-            threatCell.value.getAttribute('infoDesc') == null? subString = 'threat' : subString = 'threat_filled';
+            this.name.getAttribute('infoDesc') == null? subString = 'threat' : subString = 'threat_filled';
             switch (this.getColorIndicator()) {
                 case '#00ff06':
                     threatCell.setStyle(threatCell.style.replace(/(.*bowtie\.)(\w+)(\;.*)/,'$1verylow'+subString+'$3'));
@@ -75,7 +76,7 @@ class Threat {
             }
         } //else no update
         window.currentUI.editor.graph.refresh();
-    }*/
+    }
 
     convertColorToValue(color){
         switch (color){
@@ -153,10 +154,21 @@ class Threat {
     }
 
     set name(newName){
-        this._name = String(newName).replaceAll(/<div>/g, "").replaceAll(/<\/div>/g, "")
-            .replaceAll(/<br>/g, "").replaceAll(/<h[0-9]>/g, "")
-            .replaceAll(/<\/h[0-9]>/g,"").replaceAll(/<pre>/g,"")
-            .replaceAll(/<\/pre>/g,"");
+        try{
+            newName.getAttribute('label').replaceAll(/<div>/g, "").replaceAll(/<\/div>/g, "")
+                .replaceAll(/<br>/g, "").replaceAll(/<h[0-9]>/g, "")
+                .replaceAll(/<\/h[0-9]>/g,"").replaceAll(/<pre>/g,"")
+                .replaceAll(/<\/pre>/g,"");
+            this._name = newName;
+        } catch (e) {
+            newName.replaceAll(/<div>/g, "").replaceAll(/<\/div>/g, "")
+                .replaceAll(/<br>/g, "").replaceAll(/<h[0-9]>/g, "")
+                .replaceAll(/<\/h[0-9]>/g,"").replaceAll(/<pre>/g,"")
+                .replaceAll(/<\/pre>/g,"");
+            let cell = window.currentUI.editor.graph.model.getCell(this._cell);
+            window.currentUI.editor.graph.setInfoDescForCell(cell,null);
+            this._name = cell.value;
+        }
         //useful to clear style when opening a diagram
         this.updateThreatCellColor();
     }

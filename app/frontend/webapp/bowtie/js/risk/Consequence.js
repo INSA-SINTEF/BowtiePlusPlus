@@ -50,42 +50,13 @@ class Consequence{
         }
     }
 
+
+    //RONAN
     updateConsCellColor(){
         let consCell = window.currentUI.editor.graph.model.getCell(this._cell);
         if (this.paramDefined()) {
-            switch (this.getColorIndicator()) {
-                case '#00ff06':
-                    consCell.setStyle('shape=mxgraph.bowtie.verylowconsequence;whiteSpace=wrap;html=1;fontSize=16;aspect=fixed');
-                    break;
-                case '#a7ec67':
-                    consCell.setStyle('shape=mxgraph.bowtie.lowconsequence;whiteSpace=wrap;html=1;fontSize=16;aspect=fixed');
-                    break;
-                case '#fffe00':
-                    consCell.setStyle('shape=mxgraph.bowtie.mediumconsequence;whiteSpace=wrap;html=1;fontSize=16;aspect=fixed');
-                    break;
-                case '#fe773d':
-                    consCell.setStyle('shape=mxgraph.bowtie.highconsequence;whiteSpace=wrap;html=1;fontSize=16;aspect=fixed');
-                    break;
-                case '#ff0000':
-                    consCell.setStyle('shape=mxgraph.bowtie.veryhighconsequence;whiteSpace=wrap;html=1;fontSize=16;aspect=fixed');
-                    break;
-                default:
-                    break;
-            }
-        }else{
-            consCell.setStyle('shape=mxgraph.bowtie.consequence;whiteSpace=wrap;html=1;fontSize=16;aspect=fixed');
-        }
-        window.currentUI.editor.graph.refresh();
-    }
-
-
-
-    //RONAN
-    /*updateConsCellColor(){
-        let consCell = window.currentUI.editor.graph.model.getCell(this._cell);
-        if (this.paramDefined()) {
             let subString = '';
-            consCell.value.getAttribute('infoDesc') == null? subString = 'consequence' : subString = 'consequence_filled';
+            this.name.getAttribute('infoDesc') == null? subString = 'consequence' : subString = 'consequence_filled';
             switch (this.getColorIndicator()) {
                 case '#00ff06':
                     consCell.setStyle(consCell.style.replace(/(.*bowtie\.)(\w+)(\;.*)/,'$1verylow'+subString+'$3'));
@@ -107,7 +78,7 @@ class Consequence{
             }
         } //else nothing is done while the matrix is not fully filed
         window.currentUI.editor.graph.refresh();
-    }*/
+    }
 
     getMeanValue(){
         if (!this.paramDefined()){
@@ -218,11 +189,23 @@ class Consequence{
         return this._name;
     }
 
-    set name(newName) {
-        this._name = String(newName.label).replaceAll(/<div>/g,"").replaceAll(/<\/div>/g, "")
-            .replaceAll(/<br>/g, "").replaceAll(/<h[0-9]>/g, "")
-            .replaceAll(/<\/h[0-9]>/g,"").replaceAll(/<pre>/g,"")
-            .replaceAll(/<\/pre>/g,"");
+    set name(newName){
+        try{
+            newName.getAttribute('label').replaceAll(/<div>/g, "").replaceAll(/<\/div>/g, "")
+                .replaceAll(/<br>/g, "").replaceAll(/<h[0-9]>/g, "")
+                .replaceAll(/<\/h[0-9]>/g,"").replaceAll(/<pre>/g,"")
+                .replaceAll(/<\/pre>/g,"");
+            this._name = newName;
+        } catch (e) {
+            newName.replaceAll(/<div>/g, "").replaceAll(/<\/div>/g, "")
+                .replaceAll(/<br>/g, "").replaceAll(/<h[0-9]>/g, "")
+                .replaceAll(/<\/h[0-9]>/g,"").replaceAll(/<pre>/g,"")
+                .replaceAll(/<\/pre>/g,"");
+            let cell = window.currentUI.editor.graph.model.getCell(this._cell);
+            window.currentUI.editor.graph.setInfoDescForCell(cell,null);
+            this._name = cell.value;
+        }
+        //useful to clear style when opening a diagram
         this.updateConsCellColor();
     }
 
