@@ -52,6 +52,8 @@ Bowtie++ offers an authentication service so you can save your work and share it
 
 ### Create an account
 
+**First**, take notice of the **User account management and requirements** section in the `wiki.md` file.
+
 To create your account, use the "Sign in" button at the top right of the home page, and then use the "sign up" link to access the registration page. You'll be asked to enter a username, an email and a password. Username and password follow the policy:
 - **Username** : can only be composed of letters, digits, underscores, dashes and space. It can not begin by a white space.
 - **Password** : at least 9 characters and a mix of letters (uppercase AND lowercase), digits and special characters (must contain at least one character of each type mentioned previously).

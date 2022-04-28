@@ -2,20 +2,38 @@
 
 Bowtie++ is a **Web application** supporting security and safety risk analysis using bowtie diagrams.
 
-- [Bowtie++ wiki](#bowtie++-wiki)
-    - [Project's background](#projects-background)
-    - [Requirements](#requirements)
-    - [Installation](#installation)
-    - [Deployment](#deployment)
-    - [Installation on other types of processors](#installation-on-other-types-of-processors)
-        - [Example for the raspberry PI (AMR32)](#example-for-the-raspberry-pi-ARM32)
-    - [Technical documentation](#technical-documentation)
-        - [Software architecture](#software-architecture)
-        - [Front-end](#front-end)
-        - [Back-end](#back-end)
-    - [Licenses](#Licenses)
-        - [Front-end](#front-end-2)
-        - [Back-end](#back-end-1)
+- [Bowtie++ wiki](#bowtie-wiki)
+  - [Project's background](#projects-background)
+  - [Requirements](#requirements)
+  - [Installation](#installation)
+    - [Create an admin user](#create-an-admin-user)
+  - [Deployment](#deployment)
+    - [Back-end (REST API)](#back-end-rest-api)
+    - [Environment file specifics](#environment-file-specifics)
+    - [Front-end](#front-end)
+      - [Js environment variables](#js-environment-variables)
+      - [Js libraries](#js-libraries)
+    - [Nginx reverse-proxy](#nginx-reverse-proxy)
+      - [SSL configuration for the reverse-proxy server](#ssl-configuration-for-the-reverse-proxy-server)
+    - [Launch the deployment configuration](#launch-the-deployment-configuration)
+    - [Create an admin user](#create-an-admin-user-1)
+  - [Installation on other types of processors](#installation-on-other-types-of-processors)
+    - [Example for the raspberry PI (ARM32)](#example-for-the-raspberry-pi-arm32)
+  - [Technical documentation](#technical-documentation)
+    - [Software architecture](#software-architecture)
+    - [Front-end](#front-end-1)
+    - [Back-end](#back-end)
+      - [App module](#app-module)
+        - [<span>settings.py</span>](#settingspy)
+        - [.env](#env)
+      - [User account management requirements](#user-account-management-requirements)
+        - [<span>urls.py</span>](#urlspy)
+      - [Core module](#core-module)
+      - [User module](#user-module)
+      - [Diagram module](#diagram-module)
+  - [Licenses](#licenses)
+    - [Front-end](#front-end-2)
+    - [Back-end](#back-end-1)
 
 ## Project's background
 
@@ -419,6 +437,15 @@ API_SERVER_PORT=
 WEB_PROTOCOL=
 SHARE_BY_EMAIL_ACTIVATED=
 ```
+
+#### User account management requirements
+<br>
+
+When creating a user account, reseting password, etc, emails are sent to the user such as account confirmation emails. To send these mails, we use the SMTP feature of the **EMAIL_HOST** environment variable in the `.env` file above.  
+<br> </t> There are a few **requirements** regarding this email to make account management work : <br> First, remember that most SMTP client/server providers require a 2 factor authentication when the login is attempted from unknown IP adresses. BowTie++ does not handle 2FA. Each time you want to create a user account from a new IP adress, first you might need  to regularly log in to your **EMAIL_HOST** account on your usual email client. <br>
+Moreover, your email provider must allow the usage of the SMTP feature of the email from any application. For instance, if you are using a GMAIL account, you must enable the *less secure apps* feature.
+
+
 ##### <span>urls.py</span>
 This file defines all of the url prefixes used by API services in the other modules. 
 
