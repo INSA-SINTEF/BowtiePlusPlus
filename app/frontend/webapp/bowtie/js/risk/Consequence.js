@@ -53,6 +53,37 @@ class Consequence{
     updateConsCellColor(){
         let consCell = window.currentUI.editor.graph.model.getCell(this._cell);
         if (this.paramDefined()) {
+            switch (this.getColorIndicator()) {
+                case '#00ff06':
+                    consCell.setStyle('shape=mxgraph.bowtie.verylowconsequence;whiteSpace=wrap;html=1;fontSize=16;aspect=fixed');
+                    break;
+                case '#a7ec67':
+                    consCell.setStyle('shape=mxgraph.bowtie.lowconsequence;whiteSpace=wrap;html=1;fontSize=16;aspect=fixed');
+                    break;
+                case '#fffe00':
+                    consCell.setStyle('shape=mxgraph.bowtie.mediumconsequence;whiteSpace=wrap;html=1;fontSize=16;aspect=fixed');
+                    break;
+                case '#fe773d':
+                    consCell.setStyle('shape=mxgraph.bowtie.highconsequence;whiteSpace=wrap;html=1;fontSize=16;aspect=fixed');
+                    break;
+                case '#ff0000':
+                    consCell.setStyle('shape=mxgraph.bowtie.veryhighconsequence;whiteSpace=wrap;html=1;fontSize=16;aspect=fixed');
+                    break;
+                default:
+                    break;
+            }
+        }else{
+            consCell.setStyle('shape=mxgraph.bowtie.consequence;whiteSpace=wrap;html=1;fontSize=16;aspect=fixed');
+        }
+        window.currentUI.editor.graph.refresh();
+    }
+
+
+
+    //RONAN
+    /*updateConsCellColor(){
+        let consCell = window.currentUI.editor.graph.model.getCell(this._cell);
+        if (this.paramDefined()) {
             let subString = '';
             consCell.value.getAttribute('infoDesc') == null? subString = 'consequence' : subString = 'consequence_filled';
             switch (this.getColorIndicator()) {
@@ -76,7 +107,7 @@ class Consequence{
             }
         } //else nothing is done while the matrix is not fully filed
         window.currentUI.editor.graph.refresh();
-    }
+    }*/
 
     getMeanValue(){
         if (!this.paramDefined()){
@@ -120,9 +151,7 @@ class Consequence{
 
 
     allDefined(){
-        //return (this._impactValue !== "") && this.paramDefined();
-        //RONAN
-        return this.paramDefined();
+        return (this._impactValue !== "") && this.paramDefined();
     }
 
     getProbability(){

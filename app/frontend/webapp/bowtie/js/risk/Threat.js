@@ -20,8 +20,36 @@ class Threat {
         this.updateThreatCellColor();
     }
 
-    //RONAN
     updateThreatCellColor(){
+        let threatCell = window.currentUI.editor.graph.model.getCell(this._cell);
+        if (this.allDefined()) {
+            switch (this.getColorIndicator()) {
+                case '#00ff06':
+                    threatCell.setStyle('shape=mxgraph.bowtie.verylowthreat;whiteSpace=wrap;html=1;fontSize=16;aspect=fixed');
+                    break;
+                case '#a7ec67':
+                    threatCell.setStyle('shape=mxgraph.bowtie.lowthreat;whiteSpace=wrap;html=1;fontSize=16;aspect=fixed');
+                    break;
+                case '#fffe00':
+                    threatCell.setStyle('shape=mxgraph.bowtie.mediumthreat;whiteSpace=wrap;html=1;fontSize=16;aspect=fixed');
+                    break;
+                case '#fe773d':
+                    threatCell.setStyle('shape=mxgraph.bowtie.highthreat;whiteSpace=wrap;html=1;fontSize=16;aspect=fixed');
+                    break;
+                case '#ff0000':
+                    threatCell.setStyle('shape=mxgraph.bowtie.veryhighthreat;whiteSpace=wrap;html=1;fontSize=16;aspect=fixed');
+                    break;
+                default:
+                    break;
+            }
+        }else{
+            threatCell.setStyle('shape=mxgraph.bowtie.threat;whiteSpace=wrap;html=1;fontSize=16;aspect=fixed');
+        }
+        window.currentUI.editor.graph.refresh();
+    }
+
+    //RONAN
+    /*updateThreatCellColor(){
         let threatCell = window.currentUI.editor.graph.model.getCell(this._cell);
         if (this.allDefined()) {
             let subString = '';
@@ -47,7 +75,7 @@ class Threat {
             }
         } //else no update
         window.currentUI.editor.graph.refresh();
-    }
+    }*/
 
     convertColorToValue(color){
         switch (color){

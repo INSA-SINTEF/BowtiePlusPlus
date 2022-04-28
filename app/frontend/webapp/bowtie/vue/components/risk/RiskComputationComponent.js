@@ -59,6 +59,7 @@ let ConsequencesComponent = {
     beforeMount: function () {
         //get consequences array from diagram
         this.consequences = window.parent.currentUI.editor.graph.getAllConsequences();
+        console.log(this.consequences[0].name)
     },
     methods: {
         display_detail : function(consequence){
