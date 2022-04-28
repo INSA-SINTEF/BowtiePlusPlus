@@ -265,7 +265,7 @@ Useful information:
 - https://faun.pub/setting-up-ssl-certificates-for-nginx-in-docker-environ-e7eec5ebb418
 - https://www.nginx.com/resources/library/nginx-cookbook-2019-edition/
 
-## Installation on other types of processors
+## Installation on other types of processors   
 
 Base docker images used for Bowtie++ have their equivalent for other types of processor architecture. You can find them on the official docker pages for each images.
 - https://hub.docker.com/_/python/
