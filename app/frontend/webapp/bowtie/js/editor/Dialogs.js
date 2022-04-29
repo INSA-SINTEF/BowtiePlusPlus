@@ -1765,6 +1765,66 @@ ExportDialog.showPdfOption = true;
  * parameter and value to be used in the request in the form
  * key=value, where value should be URL encoded.
  */
+function createDefaultLikelihoodDico(){
+    default_dico = new Map();
+
+    default_dico.set("greenA", "Nobody can perform the action");
+    default_dico.set("lgA", "10% of the population");
+    default_dico.set("yelA", "50% of the population");
+    default_dico.set("orA", "80% of the population");
+    default_dico.set("redA", "100% of the population");
+
+    default_dico.set("greenO", "Too difficult and time consuming to be considered");
+    default_dico.set("lgO", "Time-consuming, strong skills and privileged location required");
+    default_dico.set("yelO", "Some skills, some time and/or privileged location required");
+    default_dico.set("orO", "Easy, fast but with a privileged location required");
+    default_dico.set("redO", "Easy, fast, no specific location necessary");
+
+    default_dico.set("greenM", "Nobody can perform");
+    default_dico.set("lgM", "Extraordinary skills/equipment required");
+    default_dico.set("yelM", "Important skills/equipment required");
+    default_dico.set("orM", "Some skills/equipment required");
+    default_dico.set("redM", "Any person can perform");
+
+    default_dico.set("greenMo", "Attacker's death");
+    default_dico.set("lgMo", "Jail sentence if caught");
+    default_dico.set("yelMo", "Fine sentence if caught");
+    default_dico.set("orMo", "Light consequences for the attacker");
+    default_dico.set("redMo", "No negative consequences for the attacker");
+
+    return default_dico
+}
+
+function createDefaultImpactDico(){
+    default_dico = new Map();
+
+    default_dico.set("greenA", "None");
+    default_dico.set("lgA", "Negligible");
+    default_dico.set("yelA", "Moderate");
+    default_dico.set("orA", "Critical");
+    default_dico.set("redA", "Catastrophic");
+
+    default_dico.set("greenO", "None");
+    default_dico.set("lgO", "Negligible");
+    default_dico.set("yelO", "Moderate");
+    default_dico.set("orO", "Critical");
+    default_dico.set("redO", "Catastrophic");
+
+    default_dico.set("greenM", "None");
+    default_dico.set("lgM", "Negligible");
+    default_dico.set("yelM", "Moderate");
+    default_dico.set("orM", "Critical");
+    default_dico.set("redM", "Catastrophic");
+
+    default_dico.set("greenMo", "None");
+    default_dico.set("lgMo", "Negligibel");
+    default_dico.set("yelMo", "Moderate");
+    default_dico.set("orMo", "Critical");
+    default_dico.set("redMo", "Catastrophic");
+
+    return default_dico
+}
+
 ExportDialog.exportFile = function (editorUi, name, format, bg, s, b) {
     var graph = editorUi.editor.graph;
 
@@ -1857,11 +1917,25 @@ ExportDialog.exportFile = function (editorUi, name, format, bg, s, b) {
             }
             dico_likelihoodXML = dico_likelihoodXML + "</likelihoodHelp>"
             xml = xml + dico_likelihoodXML;
+        }else{
+            map = createDefaultLikelihoodDico();
+            for (let [key, value] of map) {
+                dico_likelihoodXML = dico_likelihoodXML + "<item>" + "<key>" + key + "</key>" + "<value>" + value + "</value>" + "</item>"
+            }
+            dico_likelihoodXML = dico_likelihoodXML + "</likelihoodHelp>"
+            xml = xml + dico_likelihoodXML;
         }
 
         if(item_impact !== null){
             const dico_impact = new Map(Object.entries(item_impact));
             for (let [key, value] of dico_impact) {
+                dico_impactXML = dico_impactXML + "<item>" + "<key>" + key + "</key>" + "<value>" + value + "</value>" + "</item>"
+            }
+            dico_impactXML = dico_impactXML + "</impactHelp>"
+            xml = xml + dico_impactXML;
+        }else{
+            map = createDefaultImpactDico();
+            for (let [key, value] of map) {
                 dico_impactXML = dico_impactXML + "<item>" + "<key>" + key + "</key>" + "<value>" + value + "</value>" + "</item>"
             }
             dico_impactXML = dico_impactXML + "</impactHelp>"
