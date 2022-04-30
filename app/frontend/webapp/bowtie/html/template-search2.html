@@ -57,9 +57,9 @@
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">{{diagram.name}}</h5>
-                       <!--  <p class="card-text"> Description: {{diagram.info}}
-                            <button class="styled" type="button" onclick=" window.open(diagram.btn_link, '_blank');">Link to the standard</button>
-                        </p>-->
+                        <p class="card-text"> Description: {{diagram.info}}
+                            <button class="styled" type="button" v-on:click= "openUrl(diagram.btn_link)">Link to the standard</button>
+                        </p>
                     </div>
                     <button class="btn btn-secondary" v-on:click="openDiagram(diagram.id)">
                         Open this diagram

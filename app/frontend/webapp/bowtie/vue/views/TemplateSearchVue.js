@@ -16,7 +16,7 @@ let templateSearchVue = new Vue({
                     "btn_link": "https://www-pub.iaea.org/MTCD/Publications/PDF/PUB1798_web.pdf",
                     "info": "This prefilled diagram takes into account the safety standards of the International Atomic Energy Agency for the protection of people and the environment. Regulations for the Safe Transport of Radioactive Material, 2018 edition."
                 },
-                /*{
+                {
                     "id": 2,
                     "name": "Dangerousness of the product sold",
                     "file": "dangerousness_productsold.xml",
@@ -29,7 +29,7 @@ let templateSearchVue = new Vue({
                     "file": "norme_AIEA.xml",
                     "btn_link": "https://www.ssi.gouv.fr/uploads/2016/03/Referentiel_exigences_prestataires_integration_maintenance_V1_0.1.pdf",
                     "info": "This prefilled diagram takes into account cybersecurity requirements for industrial systems integration and maintenance providers. According to this standard, the risk assessment should include a list of feared incidents within the scope of the service as listed in the diagram."
-                }*/
+                }
             ],
             all_diagrams: [],
             tags_selected: [],
@@ -62,20 +62,20 @@ let templateSearchVue = new Vue({
         loadTemplate : function () {
             let xhr = new XMLHttpRequest();
             this.all_template_names.forEach(template => {
-                xhr.open('GET', '../../'+template.file, false);
+                xhr.open('GET', '../../templates/'+template.file, false);
                 xhr.send(null);
                 let diag = Object({
                     id : template.id,
                     name : template.name,
                     is_public: true,
                     diagram : xhr.responseText,
-                    //info : template.info,
-                    //btn_link: template.btn_link
+                    info : template.info,
+                    btn_link: template.btn_link
                 });
                 // console.log(diag);
                 this.all_diagrams.push(diag);
             })
-        }
+        },
 
     },
     created() {
