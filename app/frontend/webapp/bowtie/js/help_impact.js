@@ -1,6 +1,13 @@
 var dicoSingleton = (function () {
     var dictionnaire;
     var empty = true;
+    function getValOrPlaceholder(key){
+        let value = document.getElementById(key).value
+        if(value === ""){
+            return document.getElementById(key).placeholder;
+        }
+        return value;
+    }
     function createInstance() {
         dictionnaire = new Map();
 
@@ -31,42 +38,9 @@ var dicoSingleton = (function () {
         empty = false;
         return dictionnaire;
     }
-    /*
-        function initalizeDictionnaire(dictionnaire){
-            dictionnaire.set("greenA", " ");
-            dictionnaire.set("lgA", " ");
-            dictionnaire.set("yelA", " ");
-            dictionnaire.set("orA", " ");
-            dictionnaire.set("redA", " ");
-
-            dictionnaire.set("greenO", " ");
-            dictionnaire.set("lgO", " ");
-            dictionnaire.set("yelO", " ");
-            dictionnaire.set("orO", " ");
-            dictionnaire.set("redO", " ");
-
-            dictionnaire.set("greenM", " ");
-            dictionnaire.set("lgM", " ");
-            dictionnaire.set("yelM", " ");
-            dictionnaire.set("orM", " ");
-            dictionnaire.set("redM", " ");
-
-            dictionnaire.set("greenMo", " ");
-            dictionnaire.set("lgMo", " ");
-            dictionnaire.set("yelMo", " ");
-            dictionnaire.set("orMo", " ");
-            dictionnaire.set("redMo", " ");
-        }
-     */
     return {
         getInstance : function (update, key) {
             const item = sessionStorage.getItem('impact_dico');
-
-            /*
-            if(item===null){
-                console.log("item is null");
-            }
-            */
 
             if (!dictionnaire && update){
                 dictionnaire = createInstance();
@@ -74,29 +48,29 @@ var dicoSingleton = (function () {
             }
             if (update && (key === 'None')) {
                 //Fill-in the map
-                dictionnaire.set("greenC", document.getElementById("greenC").value);
-                dictionnaire.set("lgC", document.getElementById('lgC').value);
-                dictionnaire.set("yelC", document.getElementById('yelC').value);
-                dictionnaire.set("orC", document.getElementById('orC').value);
-                dictionnaire.set("redC", document.getElementById('redC').value);
+                dictionnaire.set("greenC", getValOrPlaceholder("greenC").value);
+                dictionnaire.set("lgC", getValOrPlaceholder('lgC').value);
+                dictionnaire.set("yelC", getValOrPlaceholder('yelC').value);
+                dictionnaire.set("orC", getValOrPlaceholder('orC').value);
+                dictionnaire.set("redC", getValOrPlaceholder('redC').value);
 
-                dictionnaire.set("greenR", document.getElementById('greenR').value);
-                dictionnaire.set("lgR", document.getElementById('lgR').value);
-                dictionnaire.set("yelR", document.getElementById('yelR').value);
-                dictionnaire.set("orR", document.getElementById('orR').value);
-                dictionnaire.set("redR", document.getElementById('redR').value);
+                dictionnaire.set("greenR", getValOrPlaceholder('greenR').value);
+                dictionnaire.set("lgR", getValOrPlaceholder('lgR').value);
+                dictionnaire.set("yelR", getValOrPlaceholder('yelR').value);
+                dictionnaire.set("orR", getValOrPlaceholder('orR').value);
+                dictionnaire.set("redR", getValOrPlaceholder('redR').value);
 
-                dictionnaire.set("greenE", document.getElementById('greenE').value);
-                dictionnaire.set("lgE", document.getElementById('lgE').value);
-                dictionnaire.set("yelE", document.getElementById('yelE').value);
-                dictionnaire.set("orE", document.getElementById('orE').value);
-                dictionnaire.set("redE", document.getElementById('redE').value);
+                dictionnaire.set("greenE", getValOrPlaceholder('greenE').value);
+                dictionnaire.set("lgE", getValOrPlaceholder('lgE').value);
+                dictionnaire.set("yelE", getValOrPlaceholder('yelE').value);
+                dictionnaire.set("orE", getValOrPlaceholder('orE').value);
+                dictionnaire.set("redE", getValOrPlaceholder('redE').value);
 
-                dictionnaire.set("greenI", document.getElementById('greenI').value);
-                dictionnaire.set("lgI", document.getElementById('lgI').value);
-                dictionnaire.set("yelI", document.getElementById('yelI').value);
-                dictionnaire.set("orI", document.getElementById('orI').value);
-                dictionnaire.set("redI", document.getElementById('redI').value);
+                dictionnaire.set("greenI", getValOrPlaceholder('greenI').value);
+                dictionnaire.set("lgI", getValOrPlaceholder('lgI').value);
+                dictionnaire.set("yelI", getValOrPlaceholder('yelI').value);
+                dictionnaire.set("orI", getValOrPlaceholder('orI').value);
+                dictionnaire.set("redI", getValOrPlaceholder('redI').value);
 
                 sessionStorage.setItem('impact_dico', JSON.stringify(Object.fromEntries(dictionnaire)));
 
