@@ -48,6 +48,7 @@ let diagramSearch_vue = new Vue({
                     //console.log(error)
                 })
             // Getting all the public diags
+            //RONAN NB: Templates are public diagram
             axios.get(window.API_PUBLIC_DIAGRAMS, {
                 headers: {
                     'Authorization': 'Token ' + token

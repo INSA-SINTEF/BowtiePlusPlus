@@ -161,7 +161,7 @@ export const TutorielComponent = {
     </div>
     <div v-bind:class= "[this.hazard.length >= 1 ? 'alert-success' : 'alert-danger', 'alert', 'container', 'myToolTip', this.state < 1 ? 'unused' : '']" role="alert" v-on:mouseover="onMouseOver = true" v-on:mouseleave="onMouseOver = false">
       <div class="item"> HAZARD </div> <div class="item"> <h3> {{this.hazard.length}}/1 </h3> </div>
-      <span class="tooltiptext">The main hazard related to the studied unwanted event. Only one is allowed.</span>
+      <span class="tooltiptext">The main hazard related to the studied unwanted event (ie. something around or part of the organization which has the potential to cause damage). Only one is allowed.</span>
     </div>
 
     <div v-bind:class= "[this.assets.length >= 3 ? 'alert-success' : 'alert-danger', 'alert', 'container', 'myToolTip', this.state < 2 ? 'unused' : '']" role="alert" v-on:mouseover="onMouseOver = true" v-on:mouseleave="onMouseOver = false">

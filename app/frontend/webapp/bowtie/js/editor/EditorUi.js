@@ -1820,7 +1820,8 @@ EditorUi.prototype.open = function () {
 
                     return;
                 } catch (e) {
-                    mxUtils.alert(mxResources.get('invalidOrMissingFile') + ': ' + e.message);
+                    console.log("Error when importing the diagram:" + e);
+                    //mxUtils.alert(mxResources.get('invalidOrMissingFile') + ': ' + e.message);
                 }
             }));
         } else {

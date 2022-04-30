@@ -489,6 +489,7 @@ var OpenVersioningDialog = function (width, height) {
     iframe.setAttribute('src', window.VERSIONING_SEARCH);
     iframe_holder.appendChild(iframe)
     this.container = iframe_holder;
+    console.log(iframe.getAttribute('src'));
 };
 
 /**
@@ -658,6 +659,10 @@ var FilenameDialog = function (editorUi, filename, buttonText, fn, label, valida
         localStorage.setItem('is_public', 'false')
     }
 
+    if (localStorage.getItem('is_template') === null) {
+        localStorage.setItem('is_template', 'false')
+    }
+
 
     var tags_row = document.createElement('tr')
     var tags_td = document.createElement('td')
@@ -704,6 +709,9 @@ var FilenameDialog = function (editorUi, filename, buttonText, fn, label, valida
 
     const public_row = document.createElement('tr')
     const public_td = document.createElement('td')
+    public_td.style.whiteSpace = 'nowrap';
+    public_td.style.fontSize = '10pt';
+    public_td.style.width = '120px';
     var check_box = document.createElement('input')
     check_box.setAttribute("type", "checkbox")
     check_box.setAttribute("id", "public_checkbox")
@@ -719,6 +727,7 @@ var FilenameDialog = function (editorUi, filename, buttonText, fn, label, valida
     public_td.appendChild(checkBox_label)
     public_row.appendChild(public_td)
 
+
     check_box.addEventListener('click', () => {
         switch (localStorage.getItem('is_public').toLowerCase().trim()) {
             case 'false':
@@ -728,7 +737,6 @@ var FilenameDialog = function (editorUi, filename, buttonText, fn, label, valida
                 localStorage.setItem('is_public', 'false');
                 break;
         }
-        // that way if the checkbox isn't clicked once we can send a null value
     })
 
     var genericBtn = mxUtils.button(buttonText, function () {

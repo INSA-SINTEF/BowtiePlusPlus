@@ -573,12 +573,15 @@ Editor.prototype.setGraphValues = function(dataObjectXml){
 				let bar = new Barrier(barrierCell);
 				bar.failureProbability = barrier._failureProbability;
 				bar.escalfactors = [];
+				//If there is no escalation factors
+				try{
 				barrier.escalfactors.forEach(factor => {
 					let factorCell = this.graph.model.getCell(factor._cell);
 					let fact = new EscalationFactor(factorCell);
 					fact.probability = factor._probability;
 					bar.escalfactors.push(fact);
-				})
+				})} catch (e) {}
+
 				barriers.push(bar);
 			})
 			thr.barriers = barriers;

@@ -115,7 +115,8 @@ Actions.prototype.init = function () {
                     editor.setGraphValues(data.documentElement);
                 }
             } catch (e) {
-                mxUtils.alert(mxResources.get('invalidOrMissingFile') + ': ' + e.message);
+                console.log("Error when importing the diagram:" + e);
+                // mxUtils.alert(mxResources.get('invalidOrMissingFile') + ': ' + e.message);
             }
         }));
 
@@ -125,7 +126,6 @@ Actions.prototype.init = function () {
         });
     }).isEnabled = isGraphEnabled;
     this.addAction('openTemplate...', function () {
-        console.log("je suis bien appelé (template)");
         //ui.openFromDb(window.TEMPLATE_GRAPHS);
         const width = 1250;
         const height = 0.7*window.innerHeight;
@@ -220,8 +220,8 @@ Actions.prototype.init = function () {
                     editor.setGraphValues(data.documentElement);
                 }
             } catch (e) {
-                console.log("ERROR HERE")
-                mxUtils.alert(mxResources.get('invalidOrMissingFile') + ': ' + e.message);
+                console.log("Error when importing the diagram:" + e);
+                //mxUtils.alert(mxResources.get('invalidOrMissingFile') + ': ' + e.message);
             }
         }));
 
