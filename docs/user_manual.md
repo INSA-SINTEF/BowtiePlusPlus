@@ -100,12 +100,12 @@ You can download the data in a csv file at the bottom of the page:
 ## Save diagrams
 After modifying a diagram you might want to save it. 
 ### Save locally
-To save a diagram locally, use the 'Export' button and choose one of the following formats : XML, PNG, SVG, PDF or JPEG.
-The PDF format is a bit different from the others as it's in the form of a scientific report that summarizes the case study. You can find an example of such a report in the image below :
+To save a diagram locally, use the 'Export' button and choose one of the following formats : XML, PNG, SVG or JPEG.
+You can also generate a scientific report (in PDF format) that summarizes the case study by clicking on the 'Generate report' button. You can find an example of such a report in the image below :
 
-[INSERT IMAGE OF THE PDF]
+![](images/report.png)
 
-![](images/3PiFIFc.png)
+![](images/barre.png)
 
 ### Save online (in database)
 
@@ -218,7 +218,7 @@ You will have access to a new interface with all the existing versions of your d
 
 If you want to quickly edit a threat's parameters, you can directly click on the likelihood matrix linked to the threat.
 
-![](images/zrVzhgd.png)
+![](images/risk.png)
 
 To open the risk computation window and check or edit threats', consequences' and barriers' parameters, click on the "Risk computation" button: 
 
@@ -266,6 +266,8 @@ You can navigate through formulas by clicking on the different tabs. The last ta
 Filling-in likelihood and impact matrices can be challenging without proper support. So to properly fill-in these matrices, it is strongly recommended to check our helper box. As it is possible to see in the following image, after selecting the 'help' button, a new interface will be loaded for the matrix chosen. The helper contains definitions for each parameter of the matrix and an area where you can enter the scale related to your matrix. This will allow any user to understand the level of danger related to each parameter of your likelihood or impact matrices.
 
 ![](images/helper.png)
+
+![](images/helper_impact.png)
 
 ## Comments on the diagram's components 
 

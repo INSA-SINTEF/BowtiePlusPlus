@@ -1773,6 +1773,7 @@ ExportDialog.showPdfOption = true;
  * parameter and value to be used in the request in the form
  * key=value, where value should be URL encoded.
  */
+
 function createDefaultLikelihoodDico(){
     default_dico = new Map();
 
@@ -1806,29 +1807,29 @@ function createDefaultLikelihoodDico(){
 function createDefaultImpactDico(){
     default_dico = new Map();
 
-    default_dico.set("greenA", "None");
-    default_dico.set("lgA", "Negligible");
-    default_dico.set("yelA", "Moderate");
-    default_dico.set("orA", "Critical");
-    default_dico.set("redA", "Catastrophic");
+    default_dico.set("greenC", "None");
+    default_dico.set("lgC", "Negligible");
+    default_dico.set("yelC", "Moderate");
+    default_dico.set("orC", "Critical");
+    default_dico.set("redC", "Catastrophic");
 
-    default_dico.set("greenO", "None");
-    default_dico.set("lgO", "Negligible");
-    default_dico.set("yelO", "Moderate");
-    default_dico.set("orO", "Critical");
-    default_dico.set("redO", "Catastrophic");
+    default_dico.set("greenR", "None");
+    default_dico.set("lgR", "Negligible");
+    default_dico.set("yelR", "Moderate");
+    default_dico.set("orR", "Critical");
+    default_dico.set("redR", "Catastrophic");
 
-    default_dico.set("greenM", "None");
-    default_dico.set("lgM", "Negligible");
-    default_dico.set("yelM", "Moderate");
-    default_dico.set("orM", "Critical");
-    default_dico.set("redM", "Catastrophic");
+    default_dico.set("greenE", "None");
+    default_dico.set("lgE", "Negligible");
+    default_dico.set("yelE", "Moderate");
+    default_dico.set("orE", "Critical");
+    default_dico.set("redE", "Catastrophic");
 
-    default_dico.set("greenMo", "None");
-    default_dico.set("lgMo", "Negligibel");
-    default_dico.set("yelMo", "Moderate");
-    default_dico.set("orMo", "Critical");
-    default_dico.set("redMo", "Catastrophic");
+    default_dico.set("greenI", "None");
+    default_dico.set("lgI", "Negligible");
+    default_dico.set("yelI", "Moderate");
+    default_dico.set("orI", "Critical");
+    default_dico.set("redI", "Catastrophic");
 
     return default_dico
 }
@@ -1911,12 +1912,16 @@ ExportDialog.exportFile = function (editorUi, name, format, bg, s, b) {
         xml = "<diagram>" + xml + dataXml;
 
         let item_likelihood = JSON.parse(sessionStorage.getItem('likelihood_dico'));
+        console.log(item_likelihood);
         let item_impact = JSON.parse(sessionStorage.getItem('impact_dico'));
-
+        console.log(item_impact);
 
 
         let dico_likelihoodXML = "<likelihoodHelp>";
         let dico_impactXML = "<impactHelp>";
+
+        let defaultLikelihoodMap = createDefaultLikelihoodDico();
+        let defaultImpactMap = createDefaultImpactDico();
 
         if(item_likelihood !== null){
             const dico_likelihood = new Map(Object.entries(item_likelihood));
@@ -1926,8 +1931,7 @@ ExportDialog.exportFile = function (editorUi, name, format, bg, s, b) {
             dico_likelihoodXML = dico_likelihoodXML + "</likelihoodHelp>"
             xml = xml + dico_likelihoodXML;
         }else{
-            map = createDefaultLikelihoodDico();
-            for (let [key, value] of map) {
+            for (let [key, value] of defaultLikelihoodMap) {
                 dico_likelihoodXML = dico_likelihoodXML + "<item>" + "<key>" + key + "</key>" + "<value>" + value + "</value>" + "</item>"
             }
             dico_likelihoodXML = dico_likelihoodXML + "</likelihoodHelp>"
@@ -1942,8 +1946,7 @@ ExportDialog.exportFile = function (editorUi, name, format, bg, s, b) {
             dico_impactXML = dico_impactXML + "</impactHelp>"
             xml = xml + dico_impactXML;
         }else{
-            map = createDefaultImpactDico();
-            for (let [key, value] of map) {
+            for (let [key, value] of defaultImpactMap) {
                 dico_impactXML = dico_impactXML + "<item>" + "<key>" + key + "</key>" + "<value>" + value + "</value>" + "</item>"
             }
             dico_impactXML = dico_impactXML + "</impactHelp>"

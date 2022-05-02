@@ -3095,15 +3095,80 @@ EditorUi.prototype.generatePDF = function () {
          }
     }
 
+    function createDefaultLikelihoodDico(){
+        default_dico = new Map();
+
+        default_dico.set("greenA", "Nobody can perform the action");
+        default_dico.set("lgA", "10% of the population");
+        default_dico.set("yelA", "50% of the population");
+        default_dico.set("orA", "80% of the population");
+        default_dico.set("redA", "100% of the population");
+
+        default_dico.set("greenO", "Too difficult and time consuming to be considered");
+        default_dico.set("lgO", "Time-consuming, strong skills and privileged location required");
+        default_dico.set("yelO", "Some skills, some time and/or privileged location required");
+        default_dico.set("orO", "Easy, fast but with a privileged location required");
+        default_dico.set("redO", "Easy, fast, no specific location necessary");
+
+        default_dico.set("greenM", "Nobody can perform");
+        default_dico.set("lgM", "Extraordinary skills/equipment required");
+        default_dico.set("yelM", "Important skills/equipment required");
+        default_dico.set("orM", "Some skills/equipment required");
+        default_dico.set("redM", "Any person can perform");
+
+        default_dico.set("greenMo", "Attacker's death");
+        default_dico.set("lgMo", "Jail sentence if caught");
+        default_dico.set("yelMo", "Fine sentence if caught");
+        default_dico.set("orMo", "Light consequences for the attacker");
+        default_dico.set("redMo", "No negative consequences for the attacker");
+
+        return default_dico
+    }
+
+    function createDefaultImpactDico(){
+        default_dico = new Map();
+
+        default_dico.set("greenC", "None");
+        default_dico.set("lgC", "Negligible");
+        default_dico.set("yelC", "Moderate");
+        default_dico.set("orC", "Critical");
+        default_dico.set("redC", "Catastrophic");
+
+        default_dico.set("greenR", "None");
+        default_dico.set("lgR", "Negligible");
+        default_dico.set("yelR", "Moderate");
+        default_dico.set("orR", "Critical");
+        default_dico.set("redR", "Catastrophic");
+
+        default_dico.set("greenE", "None");
+        default_dico.set("lgE", "Negligible");
+        default_dico.set("yelE", "Moderate");
+        default_dico.set("orE", "Critical");
+        default_dico.set("redE", "Catastrophic");
+
+        default_dico.set("greenI", "None");
+        default_dico.set("lgI", "Negligible");
+        default_dico.set("yelI", "Moderate");
+        default_dico.set("orI", "Critical");
+        default_dico.set("redI", "Catastrophic");
+
+        return default_dico
+    }
 
     // Pour récupérer une map des clés valeurs, likelihood matrix
+    /*
     let likelihood_map;
     let impact_map;
     let listImpactValue = [];
     let listLikelihoodValue = [];
     let helpLikeDefinded = false;
     let helpImpactDefinded = false;
+    */
 
+    let defaultLikelihoodMap = createDefaultLikelihoodDico();
+    let defaultImpactMap = createDefaultImpactDico();
+
+    /*
     try{
         likelihood_map = new Map(Object.entries(JSON.parse(sessionStorage.getItem('likelihood_dico'))));
         helpLikeDefinded = true;
@@ -3132,6 +3197,37 @@ EditorUi.prototype.generatePDF = function () {
 
     function getImpactValue(index){
         return (listImpactValue[index] == "" ? "default value" : listImpactValue[index]);
+    }
+    */
+
+    function getLikelihoodValue(key){
+        let item_likelihood = JSON.parse(sessionStorage.getItem('likelihood_dico'));
+        if(item_likelihood !== null){
+            let dico_likelihood = new Map(Object.entries(item_likelihood));
+            let val = dico_likelihood.get(key);
+            if(val === ""){
+                return defaultLikelihoodMap.get(key);
+            }else{
+                return val;
+            }
+        } else {
+            return defaultLikelihoodMap.get(key);
+        }
+    }
+
+    function getImpactValue(key){
+        let item_impact = JSON.parse(sessionStorage.getItem('impact_dico'));
+        if(item_impact !== null){
+            let dico_impact = new Map(Object.entries(item_impact));
+            let val = dico_impact.get(key);
+            if(val === ""){
+                return defaultImpactMap.get(key);
+            }else{
+                return val;
+            }
+        } else {
+            return defaultImpactMap.get(key);
+        }
     }
 
     //Here we fill all PDF content, relative to the pdfMake documentation
@@ -3262,11 +3358,11 @@ EditorUi.prototype.generatePDF = function () {
                 table: {
                     widths: [100,'*'],
                     body: [
-                        ["green", helpLikeDefinded == true? getLikeValue(0) : 'default value'],
-                        ["light green", helpLikeDefinded == true? getLikeValue(1) : 'default value'],
-                        ["yellow", helpLikeDefinded == true? getLikeValue(2) : 'default value'],
-                        ["orange", helpLikeDefinded == true? getLikeValue(3) : 'default value'],
-                        ["red", helpLikeDefinded == true? getLikeValue(4) : 'default value']
+                        ["green", getLikelihoodValue("greenA")],
+                        ["light green", getLikelihoodValue("lgA")],
+                        ["yellow", getLikelihoodValue("yelA")],
+                        ["orange", getLikelihoodValue("orA")],
+                        ["red", getLikelihoodValue("redA")]
 
                     ]
                 }
@@ -3283,11 +3379,11 @@ EditorUi.prototype.generatePDF = function () {
                 table: {
                     widths: [100,'*'],
                     body: [
-                        ["green", helpLikeDefinded == true? getLikeValue(5) : 'default value'],
-                        ["light green", helpLikeDefinded == true? getLikeValue(6) : 'default value'],
-                        ["yellow", helpLikeDefinded == true? getLikeValue(7) : 'default value'],
-                        ["orange", helpLikeDefinded == true? getLikeValue(8) : 'default value'],
-                        ["red", helpLikeDefinded == true? getLikeValue(9) : 'default value']
+                        ["green", getLikelihoodValue("greenO")],
+                        ["light green", getLikelihoodValue("lgO")],
+                        ["yellow", getLikelihoodValue("yelO")],
+                        ["orange", getLikelihoodValue("orO")],
+                        ["red", getLikelihoodValue("redO")]
 
                     ]
                 }
@@ -3304,11 +3400,11 @@ EditorUi.prototype.generatePDF = function () {
                 table: {
                     widths: [100,'*'],
                     body: [
-                        ["green", helpLikeDefinded == true? getLikeValue(10) : 'default value'],
-                        ["light green", helpLikeDefinded == true? getLikeValue(11) : 'default value'],
-                        ["yellow", helpLikeDefinded == true? getLikeValue(12) : 'default value'],
-                        ["orange", helpLikeDefinded == true? getLikeValue(13) : 'default value'],
-                        ["red", helpLikeDefinded == true? getLikeValue(14) : 'default value']
+                        ["green", getLikelihoodValue("greenM")],
+                        ["light green", getLikelihoodValue("lgM")],
+                        ["yellow", getLikelihoodValue("yelM")],
+                        ["orange", getLikelihoodValue("orM")],
+                        ["red", getLikelihoodValue("redM")]
 
                     ]
                 }
@@ -3325,11 +3421,11 @@ EditorUi.prototype.generatePDF = function () {
                 table: {
                     widths: [100,'*'],
                     body: [
-                        ["green", helpLikeDefinded == true? getLikeValue(15) : 'default value'],
-                        ["light green", helpLikeDefinded == true? getLikeValue(16) : 'default value'],
-                        ["yellow", helpLikeDefinded == true? getLikeValue(17) : 'default value'],
-                        ["orange", helpLikeDefinded == true? getLikeValue(18) : 'default value'],
-                        ["red", helpLikeDefinded == true? getLikeValue(19) : 'default value']
+                        ["green", getLikelihoodValue("greenMo")],
+                        ["light green", getLikelihoodValue("lgMo")],
+                        ["yellow", getLikelihoodValue("yelMo")],
+                        ["orange", getLikelihoodValue("orMo")],
+                        ["red", getLikelihoodValue("redMo")]
 
                     ]
                 }
@@ -3338,7 +3434,7 @@ EditorUi.prototype.generatePDF = function () {
             {
                 bold: true,
                 ul: [
-                    'Actors : the level of skills needed to perform the attack '
+                    'Commercial : severity of the consequence on the commercial activity of the organisation that owns the system'
                 ]
             },
             {
@@ -3346,11 +3442,11 @@ EditorUi.prototype.generatePDF = function () {
                 table: {
                     widths: [100,'*'],
                     body: [
-                        ["green", helpImpactDefinded == true? getImpactValue(0) : 'default value'],
-                        ["light green", helpImpactDefinded == true? getImpactValue(1) : 'default value'],
-                        ["yellow", helpImpactDefinded == true? getImpactValue(2) : 'default value'],
-                        ["orange", helpImpactDefinded == true? getImpactValue(3) : 'default value'],
-                        ["red", helpImpactDefinded == true? getImpactValue(4) : 'default value']
+                        ["green", getImpactValue("greenC")],
+                        ["light green", getImpactValue("lgC")],
+                        ["yellow", getImpactValue("yelC")],
+                        ["orange", getImpactValue("orC")],
+                        ["red", getImpactValue("redC")]
 
                     ]
                 }
@@ -3359,7 +3455,7 @@ EditorUi.prototype.generatePDF = function () {
             {
                 bold: true,
                 ul: [
-                    'Opportunity : the presence of a favorable combination of circumstances that makes an action possible'
+                    'Reputation : severity of the consequence on the reputation of the organisation that owns the system'
                 ]
             },
             {
@@ -3367,11 +3463,11 @@ EditorUi.prototype.generatePDF = function () {
                 table: {
                     widths: [100,'*'],
                     body: [
-                        ["green", helpImpactDefinded == true? getImpactValue(5) : 'default value'],
-                        ["light green", helpImpactDefinded == true? getImpactValue(6) : 'default value'],
-                        ["yellow", helpImpactDefinded == true? getImpactValue(7) : 'default value'],
-                        ["orange", helpImpactDefinded == true? getImpactValue(8) : 'default value'],
-                        ["red", helpImpactDefinded == true? getImpactValue(9) : 'default value']
+                        ["green", getImpactValue("greenR")],
+                        ["light green", getImpactValue("lgR")],
+                        ["yellow", getImpactValue("yelR")],
+                        ["orange", getImpactValue("orR")],
+                        ["red", getImpactValue("redR")]
 
                     ]
                 }
@@ -3380,7 +3476,7 @@ EditorUi.prototype.generatePDF = function () {
             {
                 bold: true,
                 ul: [
-                    'Means : resources needed to perform the attack'
+                    'Environment : severity of the consequence on the environment'
                 ]
             },
             {
@@ -3388,11 +3484,11 @@ EditorUi.prototype.generatePDF = function () {
                 table: {
                     widths: [100,'*'],
                     body: [
-                        ["green", helpImpactDefinded == true? getImpactValue(10) : 'default value'],
-                        ["light green", helpImpactDefinded == true? getImpactValue(11) : 'default value'],
-                        ["yellow", helpImpactDefinded == true? getImpactValue(12) : 'default value'],
-                        ["orange", helpImpactDefinded == true? getImpactValue(13) : 'default value'],
-                        ["red", helpImpactDefinded == true? getImpactValue(14) : 'default value']
+                        ["green", getImpactValue("greenE")],
+                        ["light green", getImpactValue("lgE")],
+                        ["yellow", getImpactValue("yelE")],
+                        ["orange", getImpactValue("orE")],
+                        ["red", getImpactValue("redE")]
 
                     ]
                 }
@@ -3401,7 +3497,7 @@ EditorUi.prototype.generatePDF = function () {
             {
                 bold: true,
                 ul: [
-                    'Motivation : reasons that lead the attacker to perform the attack'
+                    'Individual : severity of the consequence on the individuals around the system'
                 ]
             },
             {
@@ -3409,11 +3505,11 @@ EditorUi.prototype.generatePDF = function () {
                 table: {
                     widths: [100,'*'],
                     body: [
-                        ["green", helpImpactDefinded == true? getImpactValue(15) : 'default value'],
-                        ["light green", helpImpactDefinded == true? getImpactValue(16) : 'default value'],
-                        ["yellow", helpImpactDefinded == true? getImpactValue(17) : 'default value'],
-                        ["orange", helpImpactDefinded == true? getImpactValue(18) : 'default value'],
-                        ["red", helpImpactDefinded == true? getImpactValue(19) : 'default value']
+                        ["green", getImpactValue("greenI")],
+                        ["light green", getImpactValue("lgI")],
+                        ["yellow", getImpactValue("yelI")],
+                        ["orange", getImpactValue("orI")],
+                        ["red", getImpactValue("redI")]
 
                     ],
                     pageBreak: 'after'
