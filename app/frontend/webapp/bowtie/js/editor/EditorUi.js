@@ -3146,7 +3146,7 @@ EditorUi.prototype.generatePDF = function () {
             return { text: 'BowTie++ risk assessment report', alignment:'right' };
         },
         content: [{
-            text: 'BowTie++ risk assessment report \n' + this.editor.graph.getAllEventsCells()[0].value,
+            text: 'BowTie++ risk assessment report \n' + this.editor.graph.getAllEventsCells()[0].value.getAttribute('label'),
             style: 'header',
             color: 'red',
             alignment: 'center'
@@ -3156,12 +3156,8 @@ EditorUi.prototype.generatePDF = function () {
                 text: '\n I - Bowtie diagram',
                 style: 'subheader',
                 color: '#00008B'
-            }, {
-            //get svg url
-                //image: svg,
-                //width: 100,
-                //height: 300
             },
+            'Export the diagram directly in pdf or image format to see the whole diagram. \n',
             {
                 text: '\n II - Main causes',
                 style: 'subheader',
@@ -3219,8 +3215,8 @@ EditorUi.prototype.generatePDF = function () {
                     body: [
                         ['Consequence', 'Impact', 'Description'],
                         [graphConsequences[0] == null? 'No consequence' : getDescription('consequence',0,this.editor)[0], graphConsequences[0] == null? '' : parseFloat(graphConsequences[0].getProbability()).toFixed(2),graphConsequences[0] == null? '' : getDescription('consequence',0, this.editor)[1]],
-                        [graphConsequences[1] == null? 'No consequence' : getDescription('consequence',0,this.editor)[0], graphConsequences[1] == null? '' : parseFloat(graphConsequences[1].getProbability()).toFixed(2), graphConsequences[1] == null? '' : getDescription('consequence',1, this.editor)[1]],
-                        [graphConsequences[2] == null? 'No consequence' : getDescription('consequence',0,this.editor)[0], graphConsequences[2] == null? '' : parseFloat(graphConsequences[2].getProbability()).toFixed(2), graphConsequences[2] == null? '' : getDescription('consequence',2, this.editor)[1]]
+                        [graphConsequences[1] == null? 'No consequence' : getDescription('consequence',1,this.editor)[0], graphConsequences[1] == null? '' : parseFloat(graphConsequences[1].getProbability()).toFixed(2), graphConsequences[1] == null? '' : getDescription('consequence',1, this.editor)[1]],
+                        [graphConsequences[2] == null? 'No consequence' : getDescription('consequence',2,this.editor)[0], graphConsequences[2] == null? '' : parseFloat(graphConsequences[2].getProbability()).toFixed(2), graphConsequences[2] == null? '' : getDescription('consequence',2, this.editor)[1]]
                     ]
                 }
             }, {

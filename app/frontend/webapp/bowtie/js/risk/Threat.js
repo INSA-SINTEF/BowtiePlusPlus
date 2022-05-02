@@ -155,13 +155,13 @@ class Threat {
 
     set name(newName){
         try{
-            newName.getAttribute('label').replaceAll(/<div>/g, "").replaceAll(/<\/div>/g, "")
+            String(newName.getAttribute('label')).replaceAll(/<div>/g, "").replaceAll(/<\/div>/g, "")
                 .replaceAll(/<br>/g, "").replaceAll(/<h[0-9]>/g, "")
                 .replaceAll(/<\/h[0-9]>/g,"").replaceAll(/<pre>/g,"")
                 .replaceAll(/<\/pre>/g,"");
             this._name = newName;
         } catch (e) {
-            newName.replaceAll(/<div>/g, "").replaceAll(/<\/div>/g, "")
+            String(newName).replaceAll(/<div>/g, "").replaceAll(/<\/div>/g, "")
                 .replaceAll(/<br>/g, "").replaceAll(/<h[0-9]>/g, "")
                 .replaceAll(/<\/h[0-9]>/g,"").replaceAll(/<pre>/g,"")
                 .replaceAll(/<\/pre>/g,"");
