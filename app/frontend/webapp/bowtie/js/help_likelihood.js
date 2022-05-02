@@ -75,14 +75,6 @@ var dicoSingleton = (function () {
 
                 sessionStorage.setItem('likelihood_dico', JSON.stringify(Object.fromEntries(dictionnaire)));
 
-                /*
-                var obj = Object.fromEntries(dictionnaire);
-                var jsonString = JSON.stringify(obj);
-
-                localStorage.setItem('dico', jsonString);
-                 */
-                //sessionStorage.setItem('dico', JSON.stringify(Object.fromEntries(dictionnaire)));
-
             } else{ //update est faux
                 if(item !== null){
                     let obj = new Map(Object.entries(JSON.parse(item)));

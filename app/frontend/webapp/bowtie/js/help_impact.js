@@ -48,39 +48,32 @@ var dicoSingleton = (function () {
             }
             if (update && (key === 'None')) {
                 //Fill-in the map
-                dictionnaire.set("greenC", getValOrPlaceholder("greenC").value);
-                dictionnaire.set("lgC", getValOrPlaceholder('lgC').value);
-                dictionnaire.set("yelC", getValOrPlaceholder('yelC').value);
-                dictionnaire.set("orC", getValOrPlaceholder('orC').value);
-                dictionnaire.set("redC", getValOrPlaceholder('redC').value);
+                dictionnaire.set("greenC", getValOrPlaceholder("greenC"));
+                dictionnaire.set("lgC", getValOrPlaceholder('lgC'));
+                dictionnaire.set("yelC", getValOrPlaceholder('yelC'));
+                dictionnaire.set("orC", getValOrPlaceholder('orC'));
+                dictionnaire.set("redC", getValOrPlaceholder('redC'));
 
-                dictionnaire.set("greenR", getValOrPlaceholder('greenR').value);
-                dictionnaire.set("lgR", getValOrPlaceholder('lgR').value);
-                dictionnaire.set("yelR", getValOrPlaceholder('yelR').value);
-                dictionnaire.set("orR", getValOrPlaceholder('orR').value);
-                dictionnaire.set("redR", getValOrPlaceholder('redR').value);
+                dictionnaire.set("greenR", getValOrPlaceholder('greenR'));
+                dictionnaire.set("lgR", getValOrPlaceholder('lgR'));
+                dictionnaire.set("yelR", getValOrPlaceholder('yelR'));
+                dictionnaire.set("orR", getValOrPlaceholder('orR'));
+                dictionnaire.set("redR", getValOrPlaceholder('redR'));
 
-                dictionnaire.set("greenE", getValOrPlaceholder('greenE').value);
-                dictionnaire.set("lgE", getValOrPlaceholder('lgE').value);
-                dictionnaire.set("yelE", getValOrPlaceholder('yelE').value);
-                dictionnaire.set("orE", getValOrPlaceholder('orE').value);
-                dictionnaire.set("redE", getValOrPlaceholder('redE').value);
+                dictionnaire.set("greenE", getValOrPlaceholder('greenE'));
+                dictionnaire.set("lgE", getValOrPlaceholder('lgE'));
+                dictionnaire.set("yelE", getValOrPlaceholder('yelE'));
+                dictionnaire.set("orE", getValOrPlaceholder('orE'));
+                dictionnaire.set("redE", getValOrPlaceholder('redE'));
 
-                dictionnaire.set("greenI", getValOrPlaceholder('greenI').value);
-                dictionnaire.set("lgI", getValOrPlaceholder('lgI').value);
-                dictionnaire.set("yelI", getValOrPlaceholder('yelI').value);
-                dictionnaire.set("orI", getValOrPlaceholder('orI').value);
-                dictionnaire.set("redI", getValOrPlaceholder('redI').value);
+                dictionnaire.set("greenI", getValOrPlaceholder('greenI'));
+                dictionnaire.set("lgI", getValOrPlaceholder('lgI'));
+                dictionnaire.set("yelI", getValOrPlaceholder('yelI'));
+                dictionnaire.set("orI", getValOrPlaceholder('orI'));
+                dictionnaire.set("redI", getValOrPlaceholder('redI'));
 
                 sessionStorage.setItem('impact_dico', JSON.stringify(Object.fromEntries(dictionnaire)));
-
-                /*
-                var obj = Object.fromEntries(dictionnaire);
-                var jsonString = JSON.stringify(obj);
-
-                localStorage.setItem('dico', jsonString);
-                 */
-                //sessionStorage.setItem('dico', JSON.stringify(Object.fromEntries(dictionnaire)));
+                console.log(dictionnaire);
 
             } else{ //update est faux
                 if(item !== null){
