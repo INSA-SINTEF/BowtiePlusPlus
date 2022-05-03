@@ -15,14 +15,29 @@ class Barrier{
     }
 
     get name() {
-        return this._name;
+        try{
+                return this._name.getAttribute('label');
+            } catch (e) {
+                return this._name;
+            }
     }
 
     set name(newName) {
-        this._name = newName.replaceAll(/<div>/g, "").replaceAll(/<\/div>/g, "")
-            .replaceAll(/<br>/g, "").replaceAll(/<h[0-9]>/g, "")
-            .replaceAll(/<\/h[0-9]>/g,"").replaceAll(/<pre>/g,"")
-            .replaceAll(/<\/pre>/g,"");
+        try{
+            String(newName.getAttribute('label')).replaceAll(/<div>/g, "").replaceAll(/<\/div>/g, "")
+                .replaceAll(/<br>/g, "").replaceAll(/<h[0-9]>/g, "")
+                .replaceAll(/<\/h[0-9]>/g,"").replaceAll(/<pre>/g,"")
+                .replaceAll(/<\/pre>/g,"");
+            this._name = newName;
+        } catch (e) {
+            String(newName).replaceAll(/<div>/g, "").replaceAll(/<\/div>/g, "")
+                .replaceAll(/<br>/g, "").replaceAll(/<h[0-9]>/g, "")
+                .replaceAll(/<\/h[0-9]>/g,"").replaceAll(/<pre>/g,"")
+                .replaceAll(/<\/pre>/g,"");
+            let cell = window.currentUI.editor.graph.model.getCell(this._cell);
+            window.currentUI.editor.graph.setInfoDescForCell(cell,null);
+            this._name = cell.value;
+        }
     }
 
     get escalfactors() {

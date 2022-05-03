@@ -56,7 +56,12 @@ class Consequence{
         let consCell = window.currentUI.editor.graph.model.getCell(this._cell);
         if (this.paramDefined()) {
             let subString = '';
-            this.name.getAttribute('infoDesc') == null? subString = 'consequence' : subString = 'consequence_filled';
+            try{
+                this._name.getAttribute('infoDesc') == null? subString = 'consequence' : subString = 'consequence_filled';
+
+            } catch (e) {
+                subString = 'consequence';
+            }
             switch (this.getColorIndicator()) {
                 case '#00ff06':
                     consCell.setStyle(consCell.style.replace(/(.*bowtie\.)(\w+)(\;.*)/,'$1verylow'+subString+'$3'));
@@ -186,18 +191,22 @@ class Consequence{
     }
 
     get name() {
-        return this._name;
+        try{
+            return this._name.getAttribute('label');
+        } catch (e) {
+            return this._name;
+        }
     }
 
     set name(newName){
         try{
-            newName.getAttribute('label').replaceAll(/<div>/g, "").replaceAll(/<\/div>/g, "")
+            String(newName.getAttribute('label')).replaceAll(/<div>/g, "").replaceAll(/<\/div>/g, "")
                 .replaceAll(/<br>/g, "").replaceAll(/<h[0-9]>/g, "")
                 .replaceAll(/<\/h[0-9]>/g,"").replaceAll(/<pre>/g,"")
                 .replaceAll(/<\/pre>/g,"");
             this._name = newName;
         } catch (e) {
-            newName.replaceAll(/<div>/g, "").replaceAll(/<\/div>/g, "")
+            String(newName).replaceAll(/<div>/g, "").replaceAll(/<\/div>/g, "")
                 .replaceAll(/<br>/g, "").replaceAll(/<h[0-9]>/g, "")
                 .replaceAll(/<\/h[0-9]>/g,"").replaceAll(/<pre>/g,"")
                 .replaceAll(/<\/pre>/g,"");
