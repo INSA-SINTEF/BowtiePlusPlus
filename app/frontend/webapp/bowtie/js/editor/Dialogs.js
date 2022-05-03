@@ -1878,6 +1878,7 @@ ExportDialog.exportFile = function (editorUi, name, format, bg, s, b) {
                     barriersObjects.push({...barrier})
                 });
                 threatObject._barriers = barriersObjects;
+                threatObject._escalfactors = escalfactorsObjetcs;
                 threatObject._matrix = {...threat._matrix};
                 threatsObjects.push(threatObject);
             });
@@ -1899,6 +1900,7 @@ ExportDialog.exportFile = function (editorUi, name, format, bg, s, b) {
                     barriersObjects.push({...barrier})
                 });
                 consequenceObject._barriers = barriersObjects;
+                consequenceObject._escalfactors = escalfactorsObjetcs;
                 consequenceObject._matrix = {...consequence._matrix};
                 consequencesObjects.push(consequenceObject);
             });

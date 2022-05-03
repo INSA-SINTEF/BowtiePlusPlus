@@ -15,6 +15,7 @@ class Consequence{
         this._rep = "";
         this._env = "";
         this._ind = "";
+        this._escalfactors = [];
         this.setParameters();
 
         //this.updateStyle();
@@ -350,9 +351,17 @@ class Consequence{
         //this.updateStyle();
     }*/
 
-    get barriers_escalfactors() {
+    get escalfactors() {
+        return this._escalfactors;
+    }
+
+    set escalfactors(value) {
+        this._escalfactors = value;
+    }
+
+    /*get barriers_escalfactors() {
         let res = [];
         this._barriers.forEach(b => b.escalfactors.forEach(e => res.push(e)));
         return res;
-    }
+    }*/
 }

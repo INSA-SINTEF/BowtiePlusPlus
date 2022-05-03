@@ -81,7 +81,7 @@ export const TutorielComponent = {
             this.rightEscFactors = 0;
             this.consequences.forEach(cons => {
                 this.rightBarriers += cons.barriers.length;
-                this.rightEscFactors += cons.barriers_escalfactors.length
+                this.rightEscFactors += cons.escalfactors.length
             });
 
             //Deals with 0 division

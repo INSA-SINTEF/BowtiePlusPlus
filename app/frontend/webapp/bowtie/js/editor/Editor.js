@@ -568,23 +568,34 @@ Editor.prototype.setGraphValues = function(dataObjectXml){
 			thr.means = threat._means;
 			thr.motivation = threat._motivation;
 			let barriers = [];
+			let escfact = [];
 			threat._barriers.forEach(barrier =>{
 				let barrierCell = this.graph.model.getCell(barrier._cell);
 				let bar = new Barrier(barrierCell);
 				bar.failureProbability = barrier._failureProbability;
-				bar.escalfactors = [];
+				bar.name = barrier._name;
+				/*bar.escalfactors = [];
 				//If there is no escalation factors
 				try{
 				barrier.escalfactors.forEach(factor => {
 					let factorCell = this.graph.model.getCell(factor._cell);
 					let fact = new EscalationFactor(factorCell);
 					fact.probability = factor._probability;
+					fact.name = factor._name;
 					bar.escalfactors.push(fact);
-				})} catch (e) {}
+				})} catch (e) {}*/
 
 				barriers.push(bar);
 			})
+			threat._escalfactors.forEach(factor =>{
+				let factorCell = this.graph.model.getCell(factor._cell);
+				let fact = new EscalationFactor(factorCell);
+				fact.probability = factor._probability;
+				fact.name = factor._name;
+				escfact.push(fact);
+			})
 			thr.barriers = barriers;
+			thr.escalfactors = escfact;
 			threats.push(thr);
 		});
 	}
@@ -604,21 +615,30 @@ Editor.prototype.setGraphValues = function(dataObjectXml){
 			//consequence._isHighest == 0 ? cons.isHighest = false : cons.isHighest = true;
 			//cons.indicator = consequence._indicator;
 			let barriers = [];
+			let escfact = [];
 			consequence._barriers.forEach(barrier =>{
 				let barrierCell = this.graph.model.getCell(barrier._cell);
 				let bar = new Barrier(barrierCell);
 				bar.failureProbability = barrier._failureProbability;
 				bar.name = barrier._name;
 				bar.escalfactors = [];
-				barrier.escalfactors.forEach(factor => {
+				/*barrier.escalfactors.forEach(factor => {
 					let factorCell = this.graph.model.getCell(factor._cell);
 					let fact = new EscalationFactor(factorCell);
 					fact.probability = factor._probability;
 					bar.escalfactors.push(fact);
-				})
+				})*/
 				barriers.push(bar);
 			})
+			consequence._escalfactors.forEach(factor =>{
+				let factorCell = this.graph.model.getCell(factor._cell);
+				let fact = new EscalationFactor(factorCell);
+				fact.probability = factor._probability;
+				fact.name = factor._name;
+				escfact.push(fact);
+			})
 			cons.barriers = barriers;
+			cons.escalfactors = escfact;
 			consequences.push(cons);
 		});
 	}

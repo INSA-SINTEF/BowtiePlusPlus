@@ -2689,7 +2689,15 @@ Graph.prototype.updateAllThreats = function () {
     //update threats barriers and their escalation factors
     newThreatsArray.forEach(threat => {
         this.updateThreatBarriers(this.model.getCell(threat.cell), threat);
-        threat.barriers.forEach(barrier => this.updateBarrierEscalFactors(this.model.getCell(barrier.cell), barrier));
+        threat.barriers.forEach(barrier => {
+            this.updateBarrierEscalFactors(this.model.getCell(barrier.cell), barrier);
+            threat.escalfactors = [];
+            barrier.escalfactors.forEach(factor => {
+                if(!threat.escalfactors.includes(factor)){
+                    threat.escalfactors.push(factor);
+                }
+            });
+        });
     });
     this.setThreats(newThreatsArray);
 
@@ -2767,7 +2775,16 @@ Graph.prototype.updateAllConsequences = function() {
     //update consequences barriers and their escalation factors
     newConsequencesArray.forEach(consequence => {
         this.updateConsequenceBarriers(this.model.getCell(consequence.cell), consequence);
-        consequence.barriers.forEach(barrier => this.updateBarrierEscalFactors(this.model.getCell(barrier.cell), barrier));
+        //consequence.barriers.forEach(barrier => this.updateBarrierEscalFactors(this.model.getCell(barrier.cell), barrier));
+        consequence.barriers.forEach(barrier => {
+            this.updateBarrierEscalFactors(this.model.getCell(barrier.cell), barrier);
+            consequence.escalfactors = [];
+            barrier.escalfactors.forEach(factor => {
+                if(!consequence.escalfactors.includes(factor)){
+                    consequence.escalfactors.push(factor);
+                }
+            });
+        });
     });
     this.setConsequences(newConsequencesArray);
 

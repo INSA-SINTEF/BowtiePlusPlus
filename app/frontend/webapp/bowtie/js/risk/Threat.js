@@ -9,6 +9,7 @@ class Threat {
         this._means = "";
         this._motivation = "";
         this._barriers = [];
+        this._escalfactors = [];
         this.setParameters();
     }
 
@@ -283,9 +284,18 @@ class Threat {
         this._barriers = value;
     }
 
-    get barriers_escalfactors() {
+    get escalfactors() {
+        return this._escalfactors;
+    }
+
+    set escalfactors(value) {
+        this._escalfactors = value;
+    }
+
+    /*get barriers_escalfactors() {
         let res = [];
         this._barriers.forEach(b => b.escalfactors.forEach(e => res.push(e)));
+        this._escalfactors = res;
         return res;
-    }
+    }*/
 }
