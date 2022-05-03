@@ -15,7 +15,11 @@ class Barrier{
     }
 
     get name() {
-        return this._name;
+        try{
+                return this._name.getAttribute('label');
+            } catch (e) {
+                return this._name;
+            }
     }
 
     set name(newName) {

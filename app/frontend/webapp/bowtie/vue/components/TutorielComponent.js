@@ -87,7 +87,7 @@ export const TutorielComponent = {
             this.threats.length+this.causes.length == 0? this.leftFillingRate = 0 : this.leftFillingRate = ((this.barriers.length-this.rightBarriers) / (this.threats.length+this.causes.length)).toFixed(1)
             this.consequences.length == 0 ? this.rightFillingRate = 0 : this.rightFillingRate = (this.rightBarriers / this.consequences.length).toFixed(1);
             (this.barriers.length-this.rightBarriers) == 0 ? this.barriersAccuRateLeft = 0 : this.barriersAccuRateLeft = ((this.escalfactors.length-this.rightEscFactors)/(this.barriers.length-this.rightBarriers)).toFixed(1);
-            this.rightBarriers == 0 ? this.barriersAccuRateRight = 0 : this.barriersAccuRateRight = (this.rightEscFactors.length/this.rightBarriers).toFixed(1);
+            this.rightBarriers == 0? this.barriersAccuRateRight = 0 : this.barriersAccuRateRight = (this.rightEscFactors.length/this.rightBarriers).toFixed(1);
 
             this.tutorialState();
 

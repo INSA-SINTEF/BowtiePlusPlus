@@ -3230,6 +3230,15 @@ EditorUi.prototype.generatePDF = function () {
         }
     }
 
+    function getUnwantedEventName(editor){
+        try{
+            return editor.graph.getAllEventsCells()[0].value.getAttribute('label');
+        } catch (e) {
+            return editor.graph.getAllEventsCells()[0].value;
+
+        }
+    }
+
     //Here we fill all PDF content, relative to the pdfMake documentation
     //TODO there is the png image of the diagram integrated into the PDF,
     //TODO now we want header, information about the user, the date, title, and all informations
@@ -3242,7 +3251,7 @@ EditorUi.prototype.generatePDF = function () {
             return { text: 'BowTie++ risk assessment report', alignment:'right' };
         },
         content: [{
-            text: 'BowTie++ risk assessment report \n' + this.editor.graph.getAllEventsCells()[0].value.getAttribute('label'),
+            text: 'BowTie++ risk assessment report \n' + getUnwantedEventName(this.editor),
             style: 'header',
             color: 'red',
             alignment: 'center'
