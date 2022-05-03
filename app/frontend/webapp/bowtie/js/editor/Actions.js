@@ -323,6 +323,7 @@ Actions.prototype.init = function () {
                 graph.setSelectionCells(select);
             }
         }
+        parent.document.getElementById("gostButtonTuto").click();
     };
 
     this.addAction('delete', function (evt) {
