@@ -29,7 +29,7 @@ Format.prototype.init = function()
 	this.update = mxUtils.bind(this, function(sender, evt)
 	{
 		this.clearSelectionState();
-		this.refresh();
+		this.refresh(false);
 	});
 	
 	graph.getSelectionModel().addListener(mxEvent.CHANGE, this.update);
@@ -38,10 +38,10 @@ Format.prototype.init = function()
 	graph.getModel().addListener(mxEvent.CHANGE, this.update);
 	graph.addListener(mxEvent.ROOT, mxUtils.bind(this, function()
 	{
-		this.refresh();
+		this.refresh(true);
 	}));
 	
-	this.refresh();
+	this.refresh(true);
 };
 
 /**
@@ -314,15 +314,18 @@ Format.prototype.clear = function()
 /**
  * Adds the label menu items to the given menu and parent.
  */
-Format.prototype.refresh = function()
+Format.prototype.refresh = function(eraseData)
 {
-	sessionStorage.clear();
+
 	// Performance tweak: No refresh needed if not visible
 	if (this.container.style.width == '0px')
 	{
 		return;
 	}
-	
+	if(eraseData){
+		sessionStorage.clear();
+	}
+
 	this.clear();
 	var ui = this.editorUi;
 	var graph = ui.editor.graph;
