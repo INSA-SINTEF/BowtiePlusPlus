@@ -47,28 +47,29 @@ export const TutorielComponent = {
 
             //Get all cells on the graph than check which cell is the new one
             this.allcells = this.graph.model.cells;
+            this.rebase();
             for (const cell of Object.values(this.allcells)) {
                 switch (cell.customID) {
                     case "Hazard":
-                        if(!this.hazard.find(element => element.id === cell.id)) this.hazard.push(cell);
+                        this.hazard.push(cell);
                         break;
                     case "Event":
-                        if(!this.event.find(element => element.id === cell.id)) this.event.push(cell);
+                        this.event.push(cell);
                         break;
                     case "Barrier":
-                        if(!this.barriers.find(element => element.id === cell.id)) this.barriers.push(cell);
+                        this.barriers.push(cell);
                         break;
                     case "Escalation Factor":
-                        if(!this.escalfactors.find(element => element.id === cell.id)) this.escalfactors.push(cell);
+                        this.escalfactors.push(cell);
                         break;
                     case "Threat":
-                        if(!this.threats.find(element => element.id === cell.id)) this.threats.push(cell);
+                        this.threats.push(cell);
                         break;
                     case "Cause":
-                        if(!this.causes.find(element => element.id === cell.id)) this.causes.push(cell);
+                        this.causes.push(cell);
                         break;
                     case "Asset":
-                        if(!this.assets.find(element => element.id === cell.id)) this.assets.push(cell);
+                        this.assets.push(cell);
                         break;
                     //consequence are deals in another way to separate the right side elements of the diagram
                 }
@@ -87,7 +88,7 @@ export const TutorielComponent = {
             this.threats.length+this.causes.length == 0? this.leftFillingRate = 0 : this.leftFillingRate = ((this.barriers.length-this.rightBarriers) / (this.threats.length+this.causes.length)).toFixed(1)
             this.consequences.length == 0 ? this.rightFillingRate = 0 : this.rightFillingRate = (this.rightBarriers / this.consequences.length).toFixed(1);
             (this.barriers.length-this.rightBarriers) == 0 ? this.barriersAccuRateLeft = 0 : this.barriersAccuRateLeft = ((this.escalfactors.length-this.rightEscFactors)/(this.barriers.length-this.rightBarriers)).toFixed(1);
-            this.rightBarriers == 0? this.barriersAccuRateRight = 0 : this.barriersAccuRateRight = (this.rightEscFactors.length/this.rightBarriers).toFixed(1);
+            this.rightBarriers == 0? this.barriersAccuRateRight = 0 : this.barriersAccuRateRight = (this.rightEscFactors/this.rightBarriers).toFixed(1);
 
             this.tutorialState();
 
@@ -112,6 +113,16 @@ export const TutorielComponent = {
             this.escalfactors.length >= 3 ? this.state = 6 : '';
             this.consequences.length >= 4 ? this.state = 7 : '';
         },
+
+        rebase() {
+            this.assets =[];
+            this.hazard =[];
+            this.event =[];
+            this.threats =[];
+            this.barriers =[];
+            this.escalfactors =[];
+            this.causes =[];
+        }
 
 
         /*//function that update the render of the tutoriel, if there is a modal open in the editor, then do not display tutoriel
@@ -161,42 +172,42 @@ export const TutorielComponent = {
     </div>
     <div v-bind:class= "[this.hazard.length >= 1 ? 'alert-success' : 'alert-danger', 'alert', 'container', 'myToolTip', this.state < 1 ? 'unused' : '']" role="alert" v-on:mouseover="onMouseOver = true" v-on:mouseleave="onMouseOver = false">
       <div class="item"> HAZARD </div> <div class="item"> <h3> {{this.hazard.length}}/1 </h3> </div>
-      <span class="tooltiptext">The main hazard related to the studied unwanted event (ie. something around or part of the organization which has the potential to cause damage). Only one is allowed.</span>
+      <span class="tooltiptext">The main hazard related to the studied unwanted event (i.e., something around or part of the organization which has the potential to cause damage). Only one is allowed.</span>
     </div>
 
     <div v-bind:class= "[this.assets.length >= 3 ? 'alert-success' : 'alert-danger', 'alert', 'container', 'myToolTip', this.state < 2 ? 'unused' : '']" role="alert" v-on:mouseover="onMouseOver = true" v-on:mouseleave="onMouseOver = false">
       <div class="item"> ASSETS </div> <div class="item"> <h3> {{this.assets.length}}/3 </h3> </div>
-      <span class="tooltiptext">Add resources related to the system you want to protect. It is usual to have several assets, think about what is valuable!</span>
+      <span class="tooltiptext">Resources related to the system you want to protect. It is usual to have several assets, think about what is valuable!</span>
     </div>
 
     <div v-bind:class= "[(this.threats.length+this.causes.length) >= 8 ? 'alert-success' : 'alert-danger', 'alert', 'container', 'myToolTip', this.state < 3 ? 'unused' : '']" role="alert" v-on:mouseover="onMouseOver = true" v-on:mouseleave="onMouseOver = false">
       <div class="item"> THREATS & CAUSES </div> <div class="item"> <h3> {{this.threats.length+this.causes.length}}/8 </h3> </div>
-      <span class="tooltiptext">Fill the left side of the diagram with all events that can lead to the unwanted situation. Be exhaustive and keep the most important elements (8 elements at least)</span>
+      <span class="tooltiptext">Fill-in the left side of the diagram with events that can lead to the unwanted event.</span>
     </div>
 
     <div v-bind:class= "[this.leftFillingRate >= 1 ? 'alert-success' : 'alert-danger', 'alert', 'container', 'myToolTip', this.state < 4 ? 'unused' : '']" role="alert" v-on:mouseover="onMouseOver = true" v-on:mouseleave="onMouseOver = false">
-      <div class="item"> BARRIERS LEFT </div> <div class="item"> <h3> {{this.leftFillingRate}}/1 </h3> </div>
-      <span class="tooltiptext">Add barriers to increase the left filling rate and improve diagram quality <br> <i class="formula"><b>[FORMULA]</b> nb left barriers / (nb threats + nb causes)</i></span>
+      <div class="item"> BARRIERS LEFT </div> <div class="item"> <h3> {{this.leftFillingRate}} </h3> </div>
+      <span class="tooltiptext"><b> <i>RATIO between barriers and causes/threats</i></b> <br>Add barriers to make threats/causes relevant and improve diagram quality <b>(Ratio of 1 is good)</b></span>
     </div>
 
-    <div v-bind:class= "[this.barriersAccuRateLeft >= 0.7 ? 'alert-success' : 'alert-danger', 'alert', 'container', 'myToolTip', this.state < 5 ? 'unused' : '']" role="alert" v-on:mouseover="onMouseOver = true" v-on:mouseleave="onMouseOver = false">
-      <div class="item">ESC.FACTORS LEFT</div> <div class="item"> <h3> {{this.barriersAccuRateLeft}}/0.7 </h3> </div>
-      <span class="tooltiptext">Add escalation factors to model precisely a barrier failure probability <br> <i class="formula"><b>[FORMULA]</b> nb left esc. factors / nb left barriers</i></span>
+    <div v-bind:class= "[this.barriersAccuRateLeft >= 0.5 ? 'alert-success' : 'alert-danger', 'alert', 'container', 'myToolTip', this.state < 5 ? 'unused' : '']" role="alert" v-on:mouseover="onMouseOver = true" v-on:mouseleave="onMouseOver = false">
+      <div class="item">ESC.FACTORS LEFT</div> <div class="item"> <h3> {{this.barriersAccuRateLeft}} </h3> </div>
+      <span class="tooltiptext"><b> <i>RATIO between esc. factors and barriers</i></b> <br>Add escalation factors to model precisely a barrier failure probability <b>(Ratio of 0.5 is good)</b></span>
     </div>
 
     <div v-bind:class= "[this.consequences.length >= 4 ? 'alert-success' : 'alert-danger', 'alert', 'container', 'myToolTip', this.state < 6 ? 'unused' : '']" role="alert" v-on:mouseover="onMouseOver = true" v-on:mouseleave="onMouseOver = false">
       <div class="item"> CONSEQUENCES </div> <div class="item"> <h3> {{this.consequences.length}}/4 </h3> </div>
-      <span class="tooltiptext">Fill the right side of the diagram with all consequences resulting by the unwanted event. Be exhaustive and keep the most important elements (4 consequences at least) </span>
+      <span class="tooltiptext">Fill-in the right side of the diagram with consequences resulting from the unwanted event. </span>
     </div>
 
     <div v-bind:class= "[this.rightFillingRate >= 1 ? 'alert-success' : 'alert-danger', 'alert', 'container', 'myToolTip', this.state < 4 ? 'unused' : '']" role="alert" v-on:mouseover="onMouseOver = true" v-on:mouseleave="onMouseOver = false">
-      <div class="item"> BARRIERS RIGHT </div> <div class="item"> <h3> {{this.rightFillingRate}}/1 </h3> </div>
-      <span class="tooltiptext">Add barriers to increase the left filling rate and improve diagram quality <br> <i class="formula"><b>[FORMULA]</b> nb right barriers / nb consequences</i></span>
+      <div class="item"> BARRIERS RIGHT </div> <div class="item"> <h3> {{this.rightFillingRate}} </h3> </div>
+      <span class="tooltiptext"><b> <i>RATIO between barriers and causes/threats</i></b> <br>Add barriers to make threats/causes relevant and improve diagram quality <b>(Ratio of 1 is good)</b></span>
     </div>
 
-    <div v-bind:class= "[this.barriersAccuRateRight >= 0.7 ? 'alert-success' : 'alert-danger', 'alert', 'container', 'myToolTip', this.state < 5 ? 'unused' : '']" role="alert" v-on:mouseover="onMouseOver = true" v-on:mouseleave="onMouseOver = false">
-      <div class="item">ESC.FACTORS RIGHT</div> <div class="item"> <h3> {{this.barriersAccuRateRight}}/0.7 </h3> </div>
-      <span class="tooltiptext">Add escalation factors to model precisely a barrier failure probability <br> <i class="formula"><b>[FORMULA]</b> nb right esc. factors / nb consequences </i></span>
+    <div v-bind:class= "[this.barriersAccuRateRight >= 0.5 ? 'alert-success' : 'alert-danger', 'alert', 'container', 'myToolTip', this.state < 5 ? 'unused' : '']" role="alert" v-on:mouseover="onMouseOver = true" v-on:mouseleave="onMouseOver = false">
+      <div class="item">ESC.FACTORS RIGHT</div> <div class="item"> <h3> {{this.barriersAccuRateRight}} </h3> </div>
+      <span class="tooltiptext"><b> <i>RATIO between esc. factors and barriers</i></b> <br>Add escalation factors to model precisely a barrier failure probability <b>(Ratio of 0.5 is good)</b></span>
     </div>
 </div>`,
 
