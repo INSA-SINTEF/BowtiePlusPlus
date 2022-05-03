@@ -65,7 +65,7 @@ class Barrier{
         if (isNaN(value) || value < 0 || value > 1 || value === ""){
             this._failureProbability = 1;
         }else{
-            this._failureProbability = value;
+            this._failureProbability = parseFloat(value).toFixed(2);
         }
     }
 

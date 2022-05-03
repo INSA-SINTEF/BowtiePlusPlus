@@ -136,13 +136,29 @@ class Consequence{
         }else{
             let barriersFailureProbability = 1;
             let escalationFactorProbability = 1;
-            this.barriers.forEach(barrier => {
-                barrier.escalfactors.forEach(e => {
-                    escalationFactorProbability *= (1-e.probability);
+            if(this.barriers.length === 0){
+                return (this.impactValue/10)*(this.getMeanValue()/10);
+            }
+            else if(this.barriers.length !== 0){
+                this.barriers.forEach(barrier => {
+                    if(barrier.escalfactors.length === 0){
+                        barriersFailureProbability *= parseFloat(barrier.failureProbability);
+                    }
+                    else{
+                        barrier.escalfactors.forEach(e => {
+                            escalationFactorProbability *= parseFloat(e.probability);
+                        })
+                        if(parseFloat(barrier.failureProbability) < 1){
+                            barriersFailureProbability *= (parseFloat(barrier.failureProbability) + (parseFloat(barrier.failureProbability)*escalationFactorProbability)/100);
+                        }
+                        else{
+                            barriersFailureProbability *= parseFloat(barrier.failureProbability);
+                        }
+
+                    }
                 })
-                barriersFailureProbability *= 1-(barrier.failureProbability * escalationFactorProbability);
-            })
-            return (this.impactValue/10 * this.getMeanValue()/10 * barriersFailureProbability);
+                return ((this.impactValue/10)*(this.getMeanValue()/10) * barriersFailureProbability);
+            }
         }
     }
     /*updateStyle(){

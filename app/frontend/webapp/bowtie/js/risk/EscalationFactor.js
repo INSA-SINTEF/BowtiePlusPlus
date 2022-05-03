@@ -47,7 +47,7 @@ class EscalationFactor{
         if (isNaN(value) || value < 0 || value > 1 || value === ""){
             this._probability = 0;
         }else{
-            this._probability = value;
+            this._probability = parseFloat(value).toFixed(2);
         }
     }
 
