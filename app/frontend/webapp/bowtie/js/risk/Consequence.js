@@ -3,7 +3,7 @@ class Consequence{
     constructor(cell,mat){
         this._cell = cell.id;
         this._name = cell.value;
-        this._impactValue =  "";
+        this._impactValue =  1;
         //this._probability =  "";
         //this._indicator = 0;
         this._barriers = [];
@@ -214,8 +214,8 @@ class Consequence{
     }
 
     set impactValue(value) {
-        if (isNaN(value) || value < 0){
-            this._impactValue = "";
+        if (isNaN(value) || value < 1 || value > 10){
+            this._impactValue = 1;
         }else{
             this._impactValue = value;
         }
