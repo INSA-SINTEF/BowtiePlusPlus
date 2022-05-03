@@ -132,7 +132,7 @@
                 <md-table-row>
                     <md-table-head class="consequence_description">Consequence C<sub>j</sub></md-table-head>
                     <md-table-head class="indicator">Indicator</md-table-head>
-                    <md-table-head class="impact_value" md-numeric>Impact L<sub>C<sub>j</sub></sub></md-table-head>
+                    <md-table-head class="impact_value">Impact L<sub>C<sub>j</sub></sub></md-table-head>
                     <md-table-head class="barriers">Barriers</md-table-head>
                     <md-table-head class="escalfactors">Esc. Factors</md-table-head>
                     <md-table-head class="consequence_probability">Probability p(C<sub>j</sub>)</md-table-head>
@@ -143,7 +143,7 @@
                     <md-table-row> <!--v-bind:class='{"highest_rv_row" : consequence.isHighest}'-->
                         <md-table-cell class="consequence_description"> {{consequence.name}}</md-table-cell>
                         <md-table-cell class="indicator" ><div class="indicatorDot" v-if="consequence.allDefined()" style="width: 25px; height: 25px; border-radius: 20px;" :style="{background: consequence.getColorIndicator()}"></div></md-table-cell>
-                        <md-table-cell class="impact_value" md-numeric><md-field class="consequence_field"><md-input class="numeric_input" v-model="consequence.impactValue" v-on:change="emitConsequences()" type="number" min="1" max="10" step="1"></md-input></md-field></md-table-cell>
+                        <md-table-cell class="impact_value"><md-field class="consequence_field"><md-input class="numeric_input" v-model="consequence.impactValue" v-on:change="emitConsequences()" type="number" min="0" max="10" step="1"></md-input></md-field></md-table-cell>
                         <md-table-cell class="barriers" v-if="consequence.barriers.length == 0">No barriers linked to this consequence</md-table-cell>
                         <md-table-cell class="barriers" v-else>
                             <md-menu md-size="auto">
