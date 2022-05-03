@@ -91,5 +91,8 @@ var dicoSingleton = (function () {
 }) ();
 
 function run(update, key) {
+    if(update){
+        alert("The form has been submitted succesfully");
+    }
     return dicoSingleton.getInstance(update, key);
 }
