@@ -90,8 +90,6 @@ export const TutorielComponent = {
             (this.barriers.length-this.rightBarriers) == 0 ? this.barriersAccuRateLeft = 0 : this.barriersAccuRateLeft = ((this.escalfactors.length-this.rightEscFactors)/(this.barriers.length-this.rightBarriers)).toFixed(1);
             this.rightBarriers == 0? this.barriersAccuRateRight = 0 : this.barriersAccuRateRight = (this.rightEscFactors/this.rightBarriers).toFixed(1);
 
-            this.tutorialState();
-
             if(this.hazard.length > 1){
                 this.window.alert("Only one Hazard per diagram is allowed");
                 this.graph.removeCells([this.graph.getAllHazardsCells()[1]],true);
@@ -104,16 +102,6 @@ export const TutorielComponent = {
             }
             },
 
-        tutorialState : function () {
-            this.event.length >= 1 ? this.state = 1 : '';
-            this.hazard.length >= 1 ? this.state = 2 : '';
-            this.assets.length >= 3 ? this.state = 3 : '';
-            this.threats.length + this.causes.length >= 8 ? this.state = 4 : '';
-            this.barriers.length >= 6 ? this.state = 5 : '';
-            this.escalfactors.length >= 3 ? this.state = 6 : '';
-            this.consequences.length >= 4 ? this.state = 7 : '';
-        },
-
         rebase() {
             this.assets =[];
             this.hazard =[];
@@ -123,42 +111,6 @@ export const TutorielComponent = {
             this.escalfactors =[];
             this.causes =[];
         }
-
-
-        /*//function that update the render of the tutoriel, if there is a modal open in the editor, then do not display tutoriel
-        zIndex_hide : function () {
-            this.is_displayed = 0;
-            try {
-                //render the tutorial if close button is selected
-                let closeBtn = this.window.document.getElementsByClassName("geDialogClose")[0];
-                closeBtn.addEventListener('click',this.zIndex_show);
-            } catch (e) {
-                //console.log(e);
-            }
-            },
-
-        //function that update the render of the tutoriel, if we close the modal then display tutoriel
-        zIndex_show : function () {
-            this.is_displayed = 1;
-        },
-
-        initialisation : function () {
-            let items = [];
-            items = this.window.document.getElementsByClassName("geItem");
-            for (let item of items) {
-                item.addEventListener('click',() => {
-                    let tmp = this.window.document.getElementsByClassName("mxPopupMenuItem");
-                    for (let test of tmp){
-                        test.addEventListener('mouseup',this.zIndex_hide);
-                    }
-                })
-            }
-            this.eventLaunch.push(this.window.document.getElementById("riskButton"));
-            this.eventLaunch.forEach(event => {
-                event.addEventListener('click',this.zIndex_hide)
-            })
-
-        }*/
     },
 
     template:
@@ -166,47 +118,47 @@ export const TutorielComponent = {
             `
 <div id="tuto" v-show="this.is_displayed" >
 <button id="gostButtonTuto" v-on:click="update"> <h3> Tutorial - TopDown approach </h3> </button>
-    <div v-bind:class= "[this.event.length >= 1 ? 'alert-success' : 'alert-danger', 'alert', 'container', 'myToolTip', this.state < 0 ? 'unused' : '']" role="alert">
+    <div v-bind:class= "[this.event.length >= 1 ? 'alert-success' : 'alert-danger', 'alert', 'container', 'myToolTip']" role="alert">
         <div class="item"> UNWANTED EVENT </div> <div class="item"> <h3> {{this.event.length}}/1 </h3> </div>
         <span class="tooltiptext">The unwanted situation you want to analyse. Only one is allowed.</span>
     </div>
-    <div v-bind:class= "[this.hazard.length >= 1 ? 'alert-success' : 'alert-danger', 'alert', 'container', 'myToolTip', this.state < 1 ? 'unused' : '']" role="alert" v-on:mouseover="onMouseOver = true" v-on:mouseleave="onMouseOver = false">
+    <div v-bind:class= "[this.hazard.length >= 1 ? 'alert-success' : 'alert-danger', 'alert', 'container', 'myToolTip']" role="alert" v-on:mouseover="onMouseOver = true" v-on:mouseleave="onMouseOver = false">
       <div class="item"> HAZARD </div> <div class="item"> <h3> {{this.hazard.length}}/1 </h3> </div>
       <span class="tooltiptext">The main hazard related to the studied unwanted event (i.e., something around or part of the organization which has the potential to cause damage). Only one is allowed.</span>
     </div>
 
-    <div v-bind:class= "[this.assets.length >= 3 ? 'alert-success' : 'alert-danger', 'alert', 'container', 'myToolTip', this.state < 2 ? 'unused' : '']" role="alert" v-on:mouseover="onMouseOver = true" v-on:mouseleave="onMouseOver = false">
+    <div v-bind:class= "[this.assets.length >= 3 ? 'alert-success' : 'alert-danger', 'alert', 'container', 'myToolTip']" role="alert" v-on:mouseover="onMouseOver = true" v-on:mouseleave="onMouseOver = false">
       <div class="item"> ASSETS </div> <div class="item"> <h3> {{this.assets.length}}/3 </h3> </div>
       <span class="tooltiptext">Resources related to the system you want to protect. It is usual to have several assets, think about what is valuable!</span>
     </div>
 
-    <div v-bind:class= "[(this.threats.length+this.causes.length) >= 8 ? 'alert-success' : 'alert-danger', 'alert', 'container', 'myToolTip', this.state < 3 ? 'unused' : '']" role="alert" v-on:mouseover="onMouseOver = true" v-on:mouseleave="onMouseOver = false">
+    <div v-bind:class= "[(this.threats.length+this.causes.length) >= 8 ? 'alert-success' : 'alert-danger', 'alert', 'container', 'myToolTip']" role="alert" v-on:mouseover="onMouseOver = true" v-on:mouseleave="onMouseOver = false">
       <div class="item"> THREATS & CAUSES </div> <div class="item"> <h3> {{this.threats.length+this.causes.length}}/8 </h3> </div>
       <span class="tooltiptext">Fill-in the left side of the diagram with events that can lead to the unwanted event.</span>
     </div>
 
-    <div v-bind:class= "[this.leftFillingRate >= 1 ? 'alert-success' : 'alert-danger', 'alert', 'container', 'myToolTip', this.state < 4 ? 'unused' : '']" role="alert" v-on:mouseover="onMouseOver = true" v-on:mouseleave="onMouseOver = false">
-      <div class="item"> BARRIERS LEFT </div> <div class="item"> <h3> {{this.leftFillingRate}} </h3> </div>
-      <span class="tooltiptext"><b> <i>RATIO between barriers and causes/threats</i></b> <br>Add barriers to make threats/causes relevant and improve diagram quality <b>(Ratio of 1 is good)</b></span>
+    <div v-bind:class= "[this.leftFillingRate >= 1 ? 'alert-success' : 'alert-danger', 'alert', 'container', 'myToolTip']" role="alert" v-on:mouseover="onMouseOver = true" v-on:mouseleave="onMouseOver = false">
+      <div class="item">BARRIERS LEFT / (CAUSES+THREATS)</div> <div class="item"> <h3> {{this.leftFillingRate}} </h3> </div>
+      <span class="tooltiptext">Add barriers to make threats/causes relevant and improve diagram quality <b>(Ratio of 1 is good)</b></span>
     </div>
 
-    <div v-bind:class= "[this.barriersAccuRateLeft >= 0.5 ? 'alert-success' : 'alert-danger', 'alert', 'container', 'myToolTip', this.state < 5 ? 'unused' : '']" role="alert" v-on:mouseover="onMouseOver = true" v-on:mouseleave="onMouseOver = false">
-      <div class="item">ESC.FACTORS LEFT</div> <div class="item"> <h3> {{this.barriersAccuRateLeft}} </h3> </div>
-      <span class="tooltiptext"><b> <i>RATIO between esc. factors and barriers</i></b> <br>Add escalation factors to model precisely a barrier failure probability <b>(Ratio of 0.5 is good)</b></span>
+    <div v-bind:class= "[this.barriersAccuRateLeft >= 0.5 ? 'alert-success' : 'alert-danger', 'alert', 'container', 'myToolTip']" role="alert" v-on:mouseover="onMouseOver = true" v-on:mouseleave="onMouseOver = false">
+      <div class="item">ESC.FACTORS LEFT / BARRIERS LEFT</div> <div class="item"> <h3> {{this.barriersAccuRateLeft}} </h3> </div>
+      <span class="tooltiptext">Add escalation factors to model precisely a barrier failure probability <b>(Ratio of 0.5 is good)</b></span>
     </div>
 
-    <div v-bind:class= "[this.consequences.length >= 4 ? 'alert-success' : 'alert-danger', 'alert', 'container', 'myToolTip', this.state < 6 ? 'unused' : '']" role="alert" v-on:mouseover="onMouseOver = true" v-on:mouseleave="onMouseOver = false">
+    <div v-bind:class= "[this.consequences.length >= 4 ? 'alert-success' : 'alert-danger', 'alert', 'container', 'myToolTip']" role="alert" v-on:mouseover="onMouseOver = true" v-on:mouseleave="onMouseOver = false">
       <div class="item"> CONSEQUENCES </div> <div class="item"> <h3> {{this.consequences.length}}/4 </h3> </div>
       <span class="tooltiptext">Fill-in the right side of the diagram with consequences resulting from the unwanted event. </span>
     </div>
 
-    <div v-bind:class= "[this.rightFillingRate >= 1 ? 'alert-success' : 'alert-danger', 'alert', 'container', 'myToolTip', this.state < 4 ? 'unused' : '']" role="alert" v-on:mouseover="onMouseOver = true" v-on:mouseleave="onMouseOver = false">
-      <div class="item"> BARRIERS RIGHT </div> <div class="item"> <h3> {{this.rightFillingRate}} </h3> </div>
-      <span class="tooltiptext"><b> <i>RATIO between barriers and causes/threats</i></b> <br>Add barriers to make threats/causes relevant and improve diagram quality <b>(Ratio of 1 is good)</b></span>
+    <div v-bind:class= "[this.rightFillingRate >= 1 ? 'alert-success' : 'alert-danger', 'alert', 'container', 'myToolTip']" role="alert" v-on:mouseover="onMouseOver = true" v-on:mouseleave="onMouseOver = false">
+      <div class="item"> BARRIERS RIGHT / CONSEQUENCES</div> <div class="item"> <h3> {{this.rightFillingRate}} </h3> </div>
+      <span class="tooltiptext">Add barriers to make threats/causes relevant and improve diagram quality <b>(Ratio of 1 is good)</b></span>
     </div>
 
-    <div v-bind:class= "[this.barriersAccuRateRight >= 0.5 ? 'alert-success' : 'alert-danger', 'alert', 'container', 'myToolTip', this.state < 5 ? 'unused' : '']" role="alert" v-on:mouseover="onMouseOver = true" v-on:mouseleave="onMouseOver = false">
-      <div class="item">ESC.FACTORS RIGHT</div> <div class="item"> <h3> {{this.barriersAccuRateRight}} </h3> </div>
+    <div v-bind:class= "[this.barriersAccuRateRight >= 0.5 ? 'alert-success' : 'alert-danger', 'alert', 'container', 'myToolTip']" role="alert" v-on:mouseover="onMouseOver = true" v-on:mouseleave="onMouseOver = false">
+      <div class="item">ESC.FACTORS RIGHT / BARRIERS RIGHT</div> <div class="item"> <h3> {{this.barriersAccuRateRight}} </h3> </div>
       <span class="tooltiptext"><b> <i>RATIO between esc. factors and barriers</i></b> <br>Add escalation factors to model precisely a barrier failure probability <b>(Ratio of 0.5 is good)</b></span>
     </div>
 </div>`,
