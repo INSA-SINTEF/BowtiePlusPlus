@@ -86,10 +86,10 @@
                                     </md-menu-content>
                                 </md-menu>
                             </md-table-cell>
-                            <md-table-cell class="escalfactors" v-if="threat.escalfactors.length == 0">No escalation factors defined</md-table-cell>
+                            <md-table-cell class="escalfactors" v-if="threat.escalfactors.length === 0">No escalation factors defined</md-table-cell>
                             <md-table-cell class="escalfactors"v-else>
                                 <md-menu md-size="auto">
-                                    <md-button md-menu-trigger>Edit Escalation Factors' impact</md-button>
+                                    <md-button md-menu-trigger>Edit Escalation Factor's impact probability</md-button>
                                     <md-menu-content class="factors_menu">
                                         <md-menu-item v-for="factor in threat.escalfactors" v-bind:key="factor.cell">
                                             <div class="factor_detail_name_div">{{factor.name}} : </div><span class="factor_detail_field_span"><md-field class="factor_detail_field"><md-input class="numeric_input" v-model="factor.probability" v-on:change="emitThreats()" type="number" min ="0" max="1" step="0.01"></md-input></md-field></span>
@@ -155,10 +155,10 @@
                                 </md-menu-content>
                             </md-menu>
                         </md-table-cell>
-                        <md-table-cell class="escalfactors" v-if="consequence.escalfactors === 0">No escalation factors defined</md-table-cell>
+                        <md-table-cell class="escalfactors" v-if="consequence.escalfactors.length === 0">No escalation factors defined</md-table-cell>
                         <md-table-cell class="escalfactors" v-else>
                             <md-menu md-size="auto">
-                                <md-button md-menu-trigger>Edit Escal. Factors' failure probability</md-button>
+                                <md-button md-menu-trigger>Edit Escal. Factor's impact probability</md-button>
                                 <md-menu-content class="factors_menu">
                                     <md-menu-item v-for="factor in consequence.escalfactors" v-bind:key="factor.cell">
                                         <div class="factor_detail_name_div">{{factor.name}} : </div><span class="factor_detail_field_span"><md-field class="factor_detail_field"><md-input class="numeric_input" v-model="factor._probability" v-on:change="emitConsequences()" type="number" min ="0" max="1" step="0.01"></md-input></md-field></span>
@@ -198,10 +198,10 @@
         <div>
             <md-toolbar :md-elevation="5">
                 <span class="md-title">Results</span>
-                <md-button id="equations_button" class="md-raised" @click="showFormulasDialog = true">Formulas details</md-button>
+                <md-button id="equations_button" class="md-raised" @click="showFormulasDialog = true">Computation Details</md-button>
             </md-toolbar>
             <md-dialog :md-active.sync="showFormulasDialog">
-                <md-dialog-title>Formulas detail</md-dialog-title>
+                <md-dialog-title>Computation Details</md-dialog-title>
                 <md-dialog-content>
                 <md-tabs md-dynamic-height>
                     <md-tab md-label="Risk Value formulas">

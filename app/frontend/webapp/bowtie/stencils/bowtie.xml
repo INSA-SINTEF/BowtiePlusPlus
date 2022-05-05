@@ -4,6 +4,8 @@
 
     <shape name="barrier_filled" h="80" w="120" aspect="fixed" strokewidth="inherit">
         <connections>
+            <constraint x="0.5" y="0" perimeter="0" name="N"></constraint>
+            <constraint x="0.5" y="1" perimeter="0" name="S"></constraint>
             <constraint x="0.4" y="0.25" perimeter="0" name="W"></constraint>
             <constraint x="0.6" y="0.25" perimeter="0" name="E"></constraint>
         </connections>
@@ -53,6 +55,8 @@
 
     <shape name="barrier_prev" h="80" w="120" aspect="fixed" strokewidth="inherit">
         <connections>
+            <constraint x="0.5" y="0" perimeter="0" name="N"></constraint>
+            <constraint x="0.5" y="1" perimeter="0" name="S"></constraint>
             <constraint x="0.4" y="0.25" perimeter="0" name="W"></constraint>
             <constraint x="0.6" y="0.25" perimeter="0" name="E"></constraint>
         </connections>
@@ -94,6 +98,8 @@
 
     <shape name="barrier_react" h="80" w="120" aspect="fixed" strokewidth="inherit">
         <connections>
+            <constraint x="0.5" y="0" perimeter="0" name="N"></constraint>
+            <constraint x="0.5" y="1" perimeter="0" name="S"></constraint>
             <constraint x="0.4" y="0.25" perimeter="0" name="W"></constraint>
             <constraint x="0.6" y="0.25" perimeter="0" name="E"></constraint>
         </connections>
@@ -122,6 +128,8 @@
 
     <shape name="barrier_react_filled" h="80" w="120" aspect="fixed" strokewidth="inherit">
         <connections>
+            <constraint x="0.5" y="0" perimeter="0" name="N"></constraint>
+            <constraint x="0.5" y="1" perimeter="0" name="S"></constraint>
             <constraint x="0.4" y="0.25" perimeter="0" name="W"></constraint>
             <constraint x="0.6" y="0.25" perimeter="0" name="E"></constraint>
         </connections>
@@ -357,6 +365,7 @@
 
     <shape name="threat_filled" h="80" w="120" aspect="fixed" strokewidth="inherit">
         <connections>
+            <constraint x="0.5" y="0" perimeter="0" name="N"></constraint>
             <constraint x="1" y="0.5" perimeter="0" name="E"></constraint>
             <constraint x="0" y="0.5" perimeter="0" name="W"></constraint>
             <constraint x="0.5" y="1" perimeter="0" name="S"></constraint>
@@ -401,6 +410,7 @@
 
     <shape name="threat" h="80" w="120" aspect="fixed" strokewidth="inherit">
         <connections>
+            <constraint x="0.5" y="0" perimeter="0" name="N"></constraint>
             <constraint x="1" y="0.5" perimeter="0" name="E"></constraint>
             <constraint x="0" y="0.5" perimeter="0" name="W"></constraint>
             <constraint x="0.5" y="1" perimeter="0" name="S"></constraint>
@@ -436,6 +446,7 @@
 
     <shape name="verylowthreat" h="80" w="120" aspect="fixed" strokewidth="inherit">
         <connections>
+            <constraint x="0.5" y="0" perimeter="0" name="N"></constraint>
             <constraint x="1" y="0.5" perimeter="0" name="E"></constraint>
             <constraint x="0" y="0.5" perimeter="0" name="W"></constraint>
             <constraint x="0.5" y="1" perimeter="0" name="S"></constraint>
@@ -470,6 +481,7 @@
 
     <shape name="verylowthreat_filled" h="80" w="120" aspect="fixed" strokewidth="inherit">
         <connections>
+            <constraint x="0.5" y="0" perimeter="0" name="N"></constraint>
             <constraint x="1" y="0.5" perimeter="0" name="E"></constraint>
             <constraint x="0" y="0.5" perimeter="0" name="W"></constraint>
             <constraint x="0.5" y="1" perimeter="0" name="S"></constraint>
@@ -517,6 +529,7 @@
 
     <shape name="lowthreat" h="80" w="120" aspect="fixed" strokewidth="inherit">
         <connections>
+            <constraint x="0.5" y="0" perimeter="0" name="N"></constraint>
             <constraint x="1" y="0.5" perimeter="0" name="E"></constraint>
             <constraint x="0" y="0.5" perimeter="0" name="W"></constraint>
             <constraint x="0.5" y="1" perimeter="0" name="S"></constraint>
@@ -550,6 +563,7 @@
 
     <shape name="lowthreat_filled" h="80" w="120" aspect="fixed" strokewidth="inherit">
         <connections>
+            <constraint x="0.5" y="0" perimeter="0" name="N"></constraint>
             <constraint x="1" y="0.5" perimeter="0" name="E"></constraint>
             <constraint x="0" y="0.5" perimeter="0" name="W"></constraint>
             <constraint x="0.5" y="1" perimeter="0" name="S"></constraint>
@@ -596,6 +610,7 @@
 
     <shape name="mediumthreat" h="80" w="120" aspect="fixed" strokewidth="inherit">
         <connections>
+            <constraint x="0.5" y="0" perimeter="0" name="N"></constraint>
             <constraint x="1" y="0.5" perimeter="0" name="E"></constraint>
             <constraint x="0" y="0.5" perimeter="0" name="W"></constraint>
             <constraint x="0.5" y="1" perimeter="0" name="S"></constraint>
@@ -629,6 +644,7 @@
 
     <shape name="mediumthreat_filled" h="80" w="120" aspect="fixed" strokewidth="inherit">
         <connections>
+            <constraint x="0.5" y="0" perimeter="0" name="N"></constraint>
             <constraint x="1" y="0.5" perimeter="0" name="E"></constraint>
             <constraint x="0" y="0.5" perimeter="0" name="W"></constraint>
             <constraint x="0.5" y="1" perimeter="0" name="S"></constraint>
@@ -675,6 +691,7 @@
 
     <shape name="highthreat" h="80" w="120" aspect="fixed" strokewidth="inherit">
         <connections>
+            <constraint x="0.5" y="0" perimeter="0" name="N"></constraint>
             <constraint x="1" y="0.5" perimeter="0" name="E"></constraint>
             <constraint x="0" y="0.5" perimeter="0" name="W"></constraint>
             <constraint x="0.5" y="1" perimeter="0" name="S"></constraint>
@@ -708,6 +725,7 @@
 
     <shape name="highthreat_filled" h="80" w="120" aspect="fixed" strokewidth="inherit">
         <connections>
+            <constraint x="0.5" y="0" perimeter="0" name="N"></constraint>
             <constraint x="1" y="0.5" perimeter="0" name="E"></constraint>
             <constraint x="0" y="0.5" perimeter="0" name="W"></constraint>
             <constraint x="0.5" y="1" perimeter="0" name="S"></constraint>
@@ -755,6 +773,7 @@
 
     <shape name="veryhighthreat" h="80" w="120" aspect="fixed" strokewidth="inherit">
         <connections>
+            <constraint x="0.5" y="0" perimeter="0" name="N"></constraint>
             <constraint x="1" y="0.5" perimeter="0" name="E"></constraint>
             <constraint x="0" y="0.5" perimeter="0" name="W"></constraint>
             <constraint x="0.5" y="1" perimeter="0" name="S"></constraint>
@@ -788,6 +807,7 @@
 
     <shape name="veryhighthreat_filled" h="80" w="120" aspect="fixed" strokewidth="inherit">
         <connections>
+            <constraint x="0.5" y="0" perimeter="0" name="N"></constraint>
             <constraint x="1" y="0.5" perimeter="0" name="E"></constraint>
             <constraint x="0" y="0.5" perimeter="0" name="W"></constraint>
             <constraint x="0.5" y="1" perimeter="0" name="S"></constraint>
@@ -834,6 +854,8 @@
 
     <shape name="cause" h="80" w="120" aspect="fixed" strokewidth="inherit">
         <connections>
+            <constraint x="0.5" y="0" perimeter="0" name="N"></constraint>
+            <constraint x="0.5" y="1" perimeter="0" name="S"></constraint>
             <constraint x="1" y="0.5" perimeter="0" name="E"></constraint>
             <constraint x="0" y="0.5" perimeter="0" name="W"></constraint>
         </connections>
@@ -870,6 +892,8 @@
 
     <shape name="cause_filled" h="80" w="120" aspect="fixed" strokewidth="inherit">
         <connections>
+            <constraint x="0.5" y="0" perimeter="0" name="N"></constraint>
+            <constraint x="0.5" y="1" perimeter="0" name="S"></constraint>
             <constraint x="1" y="0.5" perimeter="0" name="E"></constraint>
             <constraint x="0" y="0.5" perimeter="0" name="W"></constraint>
         </connections>
@@ -1766,7 +1790,10 @@
 
     <shape name="escalationfactor" h="80" w="120">
         <connections>
-            <constraint x="0.5" y="0" perimeter="0" name="E"></constraint>
+            <constraint x="0.5" y="0" perimeter="0" name="N"></constraint>
+            <constraint x="0.5" y="1" perimeter="0" name="S"></constraint>
+            <constraint x="0" y="0.5" perimeter="0" name="E"></constraint>
+            <constraint x="1" y="0.5" perimeter="0" name="W"></constraint>
         </connections>
         <foreground>
             <stroke>
@@ -1800,7 +1827,10 @@
 
     <shape name="escalationfactor_filled" h="80" w="120">
         <connections>
-            <constraint x="0.5" y="0" perimeter="0" name="E"></constraint>
+            <constraint x="0.5" y="0" perimeter="0" name="N"></constraint>
+            <constraint x="0.5" y="1" perimeter="0" name="S"></constraint>
+            <constraint x="0" y="0.5" perimeter="0" name="E"></constraint>
+            <constraint x="1" y="0.5" perimeter="0" name="W"></constraint>
         </connections>
         <foreground>
             <stroke>
