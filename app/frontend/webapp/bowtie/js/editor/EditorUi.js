@@ -3098,29 +3098,29 @@ EditorUi.prototype.generatePDF = function () {
     function createDefaultLikelihoodDico(){
         default_dico = new Map();
 
-        default_dico.set("greenA", "Nobody can perform the action");
-        default_dico.set("lgA", "10% of the population");
-        default_dico.set("yelA", "50% of the population");
-        default_dico.set("orA", "80% of the population");
-        default_dico.set("redA", "100% of the population");
+        default_dico.set("greenA", "No potential attacker can perform this attack");
+        default_dico.set("lgA", "Very few potential attackers can perform this attack");
+        default_dico.set("yelA", "Some potential attackers can perform this attack");
+        default_dico.set("orA", "Most of the potential attackers can perform this attack");
+        default_dico.set("redA", "All potential attackers can perform this attack");
 
-        default_dico.set("greenO", "Too difficult and time consuming to be considered");
-        default_dico.set("lgO", "Time-consuming, strong skills and privileged location required");
-        default_dico.set("yelO", "Some skills, some time and/or privileged location required");
-        default_dico.set("orO", "Easy, fast but with a privileged location required");
-        default_dico.set("redO", "Easy, fast, no specific location necessary");
+        default_dico.set("greenO", "No spatial/temporal/vulnerability exploiting opportunities are required");
+        default_dico.set("lgO", "Few spatial/temporal/vulnerability exploiting opportunities are required");
+        default_dico.set("yelO", "Some spatial/temporal/vulnerability exploiting opportunities are required");
+        default_dico.set("orO", "Substantial spatial/temporal/vulnerability exploiting opportunities are required");
+        default_dico.set("redO", "Extraordinary spatial/temporal/vulnerability exploiting opportunities are required");
 
-        default_dico.set("greenM", "Nobody can perform");
-        default_dico.set("lgM", "Extraordinary skills/equipment required");
-        default_dico.set("yelM", "Important skills/equipment required");
-        default_dico.set("orM", "Some skills/equipment required");
-        default_dico.set("redM", "Any person can perform");
+        default_dico.set("greenM", "No specific means required");
+        default_dico.set("lgM", "Few specific means required");
+        default_dico.set("yelM", "Some specific means required");
+        default_dico.set("orM", "Substantial specific means required");
+        default_dico.set("redM", "Extraordinary means required");
 
-        default_dico.set("greenMo", "Attacker's death");
-        default_dico.set("lgMo", "Jail sentence if caught");
-        default_dico.set("yelMo", "Fine sentence if caught");
-        default_dico.set("orMo", "Light consequences for the attacker");
-        default_dico.set("redMo", "No negative consequences for the attacker");
+        default_dico.set("greenMo", "Requires extraordinary motivation/ intentions");
+        default_dico.set("lgMo", "Requires high motivation/intentions");
+        default_dico.set("yelMo", "Requires important motivation/intentions");
+        default_dico.set("orMo", "Requires light motivation/intentions");
+        default_dico.set("redMo", "Requires no special motivation/intentions");
 
         return default_dico
     }
@@ -3296,10 +3296,10 @@ EditorUi.prototype.generatePDF = function () {
             'Where :', {
                 bold: true,
                 ul: [
-                    'ACT = Actors : this parameter represents how large a group the actor represents is, in comparison to the other actors.',
-                    'OPP = Opportunity : this parameter should be based on the threat actor’s spatial, temporal and vulnerability exploiting opportunities.',
-                    'MEA = Means : this parameter considers to what extent the different threat actors have the required means needed to perform the attack.',
-                    'MTV = Motivation : this parameter should be based on attacker\'s motivation factors and intentions.'
+                    'ACT = Actors : this parameter represents how large a group the actor represents is, in comparison to the other actors',
+                    'OPP = Opportunity : this parameter takes into account the threat actor’s spatial, temporal and vulnerability exploiting opportunities',
+                    'MEA = Means : this parameter takes into account to which extent the different threat actors have the required means needed to perform the attack',
+                    'MTV = Motivation : this parameter takes into account the attacker’s motivation and intentions'
                 ]
             },
 
@@ -3339,10 +3339,10 @@ EditorUi.prototype.generatePDF = function () {
             {
                 bold: true,
                 ul: [
-                    'COM = Commercial : severity of the consequence on the commercial activity of the organisation that owns the system.',
-                    'REP = Reputation : severity of the consequence on the reputation of the organisation that owns the system.',
-                    'ENV = Environment : severity of the consequence on the environment.',
-                    'IND = Individual : severity of the consequence on the individuals around the system.'
+                    'COM = Commercial : impact on the commercial activity of the organisation that owns the system',
+                    'REP = Reputation : impact on the reputation of the organisation that owns the system',
+                    'ENV = Environment : impact on the environment',
+                    'IND = Individual : impact on the individuals around the system'
                 ]
             },
 
@@ -3388,7 +3388,7 @@ EditorUi.prototype.generatePDF = function () {
             {
                 bold: true,
                 ul: [
-                    'Actors : this parameter represents how large a group the actor represents is, in comparison to the other actors.'
+                    'Actors : this parameter represents how large a group the actor represents is, in comparison to the other actors'
                 ]
             },
             {
@@ -3409,7 +3409,7 @@ EditorUi.prototype.generatePDF = function () {
             {
                 bold: true,
                 ul: [
-                    'Opportunity : this parameter should be based on the threat actor’s spatial, temporal and vulnerability exploiting opportunities.'
+                    'Opportunity : this parameter takes into account the threat actor’s spatial, temporal and vulnerability exploiting opportunities'
                 ]
             },
             {
@@ -3430,7 +3430,7 @@ EditorUi.prototype.generatePDF = function () {
             {
                 bold: true,
                 ul: [
-                    'Means : this parameter considers to what extent the different threat actors have the required means needed to perform the attack.'
+                    'Means : this parameter takes into account to which extent the different threat actors have the required means needed to perform the attack'
                 ]
             },
             {
@@ -3451,7 +3451,7 @@ EditorUi.prototype.generatePDF = function () {
             {
                 bold: true,
                 ul: [
-                    'Motivation : this parameter should be based on attacker\'s motivation factors and intentions.'
+                    'Motivation : this parameter takes into account the attacker’s motivation and intentions'
                 ]
             },
             {
@@ -3473,7 +3473,7 @@ EditorUi.prototype.generatePDF = function () {
             {
                 bold: true,
                 ul: [
-                    'Commercial : severity of the consequence on the commercial activity of the organisation that owns the system'
+                    'Commercial : impact on the commercial activity of the organisation that owns the system'
                 ]
             },
             {
@@ -3494,7 +3494,7 @@ EditorUi.prototype.generatePDF = function () {
             {
                 bold: true,
                 ul: [
-                    'Reputation : severity of the consequence on the reputation of the organisation that owns the system'
+                    'Reputation : impact on the reputation of the organisation that owns the system'
                 ]
             },
             {
@@ -3515,7 +3515,7 @@ EditorUi.prototype.generatePDF = function () {
             {
                 bold: true,
                 ul: [
-                    'Environment : severity of the consequence on the environment'
+                    'Environment : impact on the environment'
                 ]
             },
             {
@@ -3536,7 +3536,7 @@ EditorUi.prototype.generatePDF = function () {
             {
                 bold: true,
                 ul: [
-                    'Individual : severity of the consequence on the individuals around the system'
+                    'Individual : impact on the individuals around the system'
                 ]
             },
             {
