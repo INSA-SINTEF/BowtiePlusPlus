@@ -110,6 +110,7 @@ Actions.prototype.init = function () {
                 editor.setGraphXml(doc.documentElement);
                 editor.setModified(false);
                 editor.undoManager.clear();
+                parent.document.getElementById("gostButtonTuto").click();
                 //set graph values if xml contains risk values
                 if (data !== undefined) {
                     editor.setGraphValues(data.documentElement);
@@ -124,6 +125,7 @@ Actions.prototype.init = function () {
         ui.showDialog(new OpenDialog(this).container, 320, 220, true, true, function () {
             window.openFile = null;
         });
+
     }).isEnabled = isGraphEnabled;
     this.addAction('openTemplate...', function () {
         //ui.openFromDb(window.TEMPLATE_GRAPHS);
