@@ -58027,7 +58027,7 @@ mxGraph.prototype.createEdge = function(parent, id, value, source, target, style
 	edge.setId(id);
 	edge.setEdge(true);
 	edge.geometry.relative = true;
-	
+
 	return edge;
 };
 

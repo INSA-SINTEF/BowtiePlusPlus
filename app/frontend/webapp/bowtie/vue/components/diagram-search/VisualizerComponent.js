@@ -52,6 +52,7 @@ let VisualizerComponent = {
             }
             window.parent.currentUI.editor.setModified(false);
             window.parent.currentUI.editor.undoManager.clear();
+            window.parent.parent.document.getElementById("gostButtonTuto").click();
 
             if (chosen_diag) {
                 window.parent.currentUI.editor.setFilename(chosen_diag.name);

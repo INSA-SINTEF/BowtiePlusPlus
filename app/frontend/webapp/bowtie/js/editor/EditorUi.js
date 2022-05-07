@@ -2788,7 +2788,6 @@ EditorUi.prototype.hideDialog = function (cancel) {
 
         //RONAN tutorial display
         parent.document.getElementById("tutoriel_component").style.display="block";
-
     }
 };
 
