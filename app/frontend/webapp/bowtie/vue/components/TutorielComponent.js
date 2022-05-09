@@ -138,12 +138,12 @@ export const TutorielComponent = {
     </div>
 
     <div v-bind:class= "[this.leftFillingRate >= 1 ? 'alert-success' : 'alert-danger', 'alert', 'container', 'myToolTip']" role="alert" v-on:mouseover="onMouseOver = true" v-on:mouseleave="onMouseOver = false">
-      <div class="item">BARRIERS LEFT / (CAUSES+THREATS)</div> <div class="item"> <h3> {{this.leftFillingRate}} </h3> </div>
+      <div class="item">LEFT BARRIERS / (CAUSES+THREATS)</div> <div class="item"> <h3> {{this.leftFillingRate}} </h3> </div>
       <span class="tooltiptext">Add barriers to make threats/causes relevant and improve diagram quality <b>(Ratio of 1 is good)</b></span>
     </div>
 
     <div v-bind:class= "[this.barriersAccuRateLeft >= 0.5 ? 'alert-success' : 'alert-danger', 'alert', 'container', 'myToolTip']" role="alert" v-on:mouseover="onMouseOver = true" v-on:mouseleave="onMouseOver = false">
-      <div class="item">ESC.FACTORS LEFT / BARRIERS LEFT</div> <div class="item"> <h3> {{this.barriersAccuRateLeft}} </h3> </div>
+      <div class="item">LEFT ESC.FACTORS / LEFT BARRIERS</div> <div class="item"> <h3> {{this.barriersAccuRateLeft}} </h3> </div>
       <span class="tooltiptext">Add escalation factors to model precisely a barrier failure probability <b>(Ratio of 0.5 is good)</b></span>
     </div>
 
@@ -153,13 +153,13 @@ export const TutorielComponent = {
     </div>
 
     <div v-bind:class= "[this.rightFillingRate >= 1 ? 'alert-success' : 'alert-danger', 'alert', 'container', 'myToolTip']" role="alert" v-on:mouseover="onMouseOver = true" v-on:mouseleave="onMouseOver = false">
-      <div class="item"> BARRIERS RIGHT / CONSEQUENCES</div> <div class="item"> <h3> {{this.rightFillingRate}} </h3> </div>
+      <div class="item"> RIGHT BARRIERS / CONSEQUENCES</div> <div class="item"> <h3> {{this.rightFillingRate}} </h3> </div>
       <span class="tooltiptext">Add barriers to make threats/causes relevant and improve diagram quality <b>(Ratio of 1 is good)</b></span>
     </div>
 
     <div v-bind:class= "[this.barriersAccuRateRight >= 0.5 ? 'alert-success' : 'alert-danger', 'alert', 'container', 'myToolTip']" role="alert" v-on:mouseover="onMouseOver = true" v-on:mouseleave="onMouseOver = false">
-      <div class="item">ESC.FACTORS RIGHT / BARRIERS RIGHT</div> <div class="item"> <h3> {{this.barriersAccuRateRight}} </h3> </div>
-      <span class="tooltiptext"><b> <i>RATIO between esc. factors and barriers</i></b> <br>Add escalation factors to model precisely a barrier failure probability <b>(Ratio of 0.5 is good)</b></span>
+      <div class="item">RIGHT ESC.FACTORS / RIGHT BARRIERS</div> <div class="item"> <h3> {{this.barriersAccuRateRight}} </h3> </div>
+      <span class="tooltiptext">Add escalation factors to model precisely a barrier failure probability <b>(Ratio of 0.5 is good)</b></span>
     </div>
 </div>`,
 
