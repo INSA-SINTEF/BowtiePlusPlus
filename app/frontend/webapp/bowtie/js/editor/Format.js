@@ -38,7 +38,7 @@ Format.prototype.init = function()
 	graph.getModel().addListener(mxEvent.CHANGE, this.update);
 	graph.addListener(mxEvent.ROOT, mxUtils.bind(this, function()
 	{
-		this.refresh(true);
+		this.refresh(false);
 	}));
 	
 	this.refresh(true);
@@ -324,6 +324,7 @@ Format.prototype.refresh = function(eraseData)
 	}
 	if(eraseData){
 		sessionStorage.clear();
+		console.log("refresh erases");
 	}
 
 	this.clear();
