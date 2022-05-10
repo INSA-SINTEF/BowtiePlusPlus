@@ -24,10 +24,10 @@ class Barrier{
 
     set name(newName) {
         try{
-            String(newName.getAttribute('label')).replaceAll(/<div>/g, "").replaceAll(/<\/div>/g, "")
+            newName.setAttribute('label',String(newName.getAttribute('label')).replaceAll(/<div>/g, "").replaceAll(/<\/div>/g, "")
                 .replaceAll(/<br>/g, "").replaceAll(/<h[0-9]>/g, "")
                 .replaceAll(/<\/h[0-9]>/g,"").replaceAll(/<pre>/g,"")
-                .replaceAll(/<\/pre>/g,"");
+                .replaceAll(/<\/pre>/g,""));
             this._name = newName;
         } catch (e) {
             String(newName).replaceAll(/<div>/g, "").replaceAll(/<\/div>/g, "")
