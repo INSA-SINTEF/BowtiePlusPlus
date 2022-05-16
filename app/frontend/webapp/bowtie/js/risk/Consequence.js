@@ -52,7 +52,6 @@ class Consequence{
     }
 
 
-    //RONAN
     updateConsCellColor(){
         let consCell = window.currentUI.editor.graph.model.getCell(this._cell);
         if (this.paramDefined()) {

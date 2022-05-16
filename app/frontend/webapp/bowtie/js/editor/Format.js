@@ -418,7 +418,7 @@ Format.prototype.refresh = function(eraseData)
 					{
 						if (currentPanel != null)
 						{
-							//RONAN, display or not the tutorial to avoid conflics
+							//display or not the tutorial to avoid conflics
 							index === 1 ? tutorial.style.display = 'none' : tutorial.style.display='block';
 
 							currentPanel.style.display = 'none';

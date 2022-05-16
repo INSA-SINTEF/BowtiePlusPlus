@@ -2766,7 +2766,7 @@ EditorUi.prototype.showDialog = function (elt, w, h, modal, closable, onClose) {
     this.dialog = new Dialog(this, elt, w, h, modal, closable, onClose);
     this.dialogs.push(this.dialog);
 
-    //RONAN tutorial not display
+    //tutorial not display
     parent.document.getElementById("tutoriel_component").style.display="none";
 };
 
@@ -2786,7 +2786,7 @@ EditorUi.prototype.hideDialog = function (cancel) {
 
         this.editor.fireEvent(new mxEventObject('hideDialog'));
 
-        //RONAN tutorial display
+        //tutorial display
         parent.document.getElementById("tutoriel_component").style.display="block";
     }
 };
@@ -3047,7 +3047,6 @@ EditorUi.prototype.manageRoles = function () {
 
 /**
  * Generation of a custom raport in pdf format
- * RONAN
  */
 EditorUi.prototype.generatePDF = function () {
 
@@ -3772,7 +3771,6 @@ EditorUi.prototype.save = function (name, tags, option) {
                     formData.append('preview', svg_encoded)
 
                     /**
-                     * RONAN
                      * if option is true, the save will generate a pdf report including the image of the diagram
                      *
                     if(option) {

@@ -146,7 +146,6 @@ Actions.prototype.init = function () {
         }
     ).isEnabled = isLoggedIn;
 
-    //RONAN
     this.addAction('generateReport', function () {
         ui.generatePDF();
     });

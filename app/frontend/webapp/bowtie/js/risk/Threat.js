@@ -50,7 +50,6 @@ class Threat {
         window.currentUI.editor.graph.refresh();
     }*/
 
-    //RONAN
     updateThreatCellColor(){
         let threatCell = window.currentUI.editor.graph.model.getCell(this._cell);
         if (this.allDefined()) {
